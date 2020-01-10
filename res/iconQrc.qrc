@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="icon">
+    <file>Tianheng.ico</file>
+    <file>JHJ1.png</file>
+    <file>JHJ2.png</file>
+    <file>JHJ3.png</file>
+    <file>JHJ4.png</file>
+    <file>JHJ5.png</file>
+  </qresource>
+</RCC>
