@@ -9,6 +9,7 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QMainWindow,QTreeWidgetItem,QMessageBox
 from modules.ecom_ns_2.ECOM_NS_2 import EcomDialog
 from modules.test.module import TestModule
+from modules.com_control_device.COM_CONTROL_DEVICE import COM_CONTROL_DEVICE
 import sys
 
 from Ui_MainWindow import Ui_MainWindow
@@ -30,7 +31,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # self.child = TestModule()
         self.menu2module = {
             "散射高频设备:收/发单元": "TestModule",
-            "交换机:切换(交换)模块(主控板)": "EcomDialog"}
+            "交换机:切换(交换)模块(主控板)": "EcomDialog",
+            "通信控制设备:协议控制和转换模块":"COM_CONTROL_DEVICE"}
         self.child = None
 
     @pyqtSlot(QTreeWidgetItem, int)
@@ -50,6 +52,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         if item.parent() != None:
             tempStr = item.parent().text(0) + ":" + item.text(0)
+            print(tempStr)
             if tempStr in self.menu2module:
                 self.groupBox.setTitle("测试项目:" + item.parent().text(0) + "-" + item.text(0))
                 # module = __import__('module')
@@ -61,6 +64,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.gridLayout.addWidget(self.child)
                 elif "交换机" in tempStr:
                     self.child = EcomDialog()
+                    self.child.signalTitle.connect(self.deal_signal_title_emit_slot)
+                    self.child.signalStatus.connect(self.deal_signal_status_emit_slot)
+                    self.gridLayout.addWidget(self.child)
+                elif "协议控制" in tempStr:
+                    self.child = COM_CONTROL_DEVICE()
                     self.child.signalTitle.connect(self.deal_signal_title_emit_slot)
                     self.child.signalStatus.connect(self.deal_signal_status_emit_slot)
                     self.gridLayout.addWidget(self.child)
