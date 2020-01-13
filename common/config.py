@@ -1,9 +1,9 @@
 import os
 from pathlib import Path
 import json
-from common.logConfig import Logger
-
-logger = Logger.module_logger("logConfig")
+# from common.logConfig import Logger
+#
+# logger = Logger.module_logger("logConfig")
 class BaseConfig:
     def __init__(self,file_name):
         self.config_directory = "conf"
@@ -18,9 +18,11 @@ class BaseConfig:
             with open(self.full_config_file,encoding='utf-8') as json_file:
                 data = json.load(json_file)
         except IOError as e:
-            logger.error(str(e))
+            s =str(e)
+            # logger.error(str(e))
         except BaseException as e1:
-            logger.error(str(e1))
+            s = str(e1)
+            # logger.error(str(e1))
         return data
 
 class TestModuleConfig(BaseConfig):
@@ -45,7 +47,8 @@ class TestModuleConfig(BaseConfig):
             self.testprepare = config_obj["testprepare"]
             self.testexecute = config_obj["testexecute"]
         except BaseException as e:
-            logger.error(str(e))
+            str(e)
+            # logger.error(str(e))
         return config_obj
 
 class SystemConfig(BaseConfig):
@@ -60,5 +63,6 @@ class SystemConfig(BaseConfig):
             config_obj = self.read_config()
             self.step2name = config_obj["step2name"]
         except BaseException as e:
-            logger.error(str(e))
+            str(e)
+            # logger.error(str(e))
         return config_obj

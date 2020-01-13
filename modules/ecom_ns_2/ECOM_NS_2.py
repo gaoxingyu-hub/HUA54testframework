@@ -41,11 +41,14 @@ class EcomDialog(QDialog, Ui_Dialog):
         self.pushButton_disassemble_previous.setEnabled(False)
         self.pushButton_testdevice_previous.setEnabled(False)
 
-        self.test_config = TestModuleConfig("ecom_ns_2.json")
-        module_path = os.getcwd()
-        self.pic_file_path = os.path.join(module_path, "imgs", self.test_config.module_name)
+        module_path = "C:\\"
+        self.config_file_path = os.path.join(module_path, "54TestFramework", "conf", "ecom_ns_2.json")
+        self.system_config_file_path = os.path.join(module_path, "54TestFramework", "conf", "system.json")
+        self.test_config = TestModuleConfig(self.config_file_path)
+        # module_path = os.getcwd()
+        self.pic_file_path = os.path.join(module_path, "54TestFramework","imgs", "ecom_ns_2")
 
-        self.system_config = SystemConfig()
+        self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name
 
         self.label_disassemble_imageview.setPixmap(

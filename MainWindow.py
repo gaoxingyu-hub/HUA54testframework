@@ -84,9 +84,3 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.statusbar.showMessage(paras)
 
 
-
-if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = MainWindow()
-    MainWindow.show()
-    sys.exit(app.exec_())

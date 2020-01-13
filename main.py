@@ -1,8 +1,10 @@
-from common.config import BaseConfig,TestModuleConfig
-from common.logConfig import Logger
-
-logger = Logger.module_logger("tianheng")
+from MainWindow import MainWindow
+import sys
+from PyQt5 import QtWidgets
 
 if __name__ == '__main__':
-    temp = TestModuleConfig("ecom_ns_2.json")
-    temp.get_test_parameters()
+    if __name__ == '__main__':
+        app = QtWidgets.QApplication(sys.argv)
+        MainWindow = MainWindow()
+        MainWindow.show()
+        sys.exit(app.exec_())

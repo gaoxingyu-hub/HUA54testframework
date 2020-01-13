@@ -36,11 +36,14 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         self.pushButton_disassemble_previous.setEnabled(False)
         self.pushButton_testdevice_previous.setEnabled(False)
 
-        self.test_config = TestModuleConfig("com_control_device.json")
-        module_path = os.getcwd()
-        self.pic_file_path = os.path.join(module_path, "imgs", self.test_config.module_name)
+        module_path = "C:\\"
+        self.config_file_path = os.path.join(module_path, "54TestFramework","conf", "com_control_device.json")
+        self.system_config_file_path = os.path.join(module_path, "54TestFramework", "conf", "system.json")
+        self.test_config = TestModuleConfig(self.config_file_path)
 
-        self.system_config = SystemConfig()
+        self.pic_file_path = os.path.join(module_path, "54TestFramework","imgs", "com_control_device")
+
+        self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name
 
         self.label_disassemble_imageview.setPixmap(
@@ -101,7 +104,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        raise NotImplementedError
+        pass
     
     @pyqtSlot()
     def on_testexecute_page6_pushButton_savedata_clicked(self):
@@ -109,7 +112,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        raise NotImplementedError
+        pass
     
     @pyqtSlot()
     def on_testexecute_page6_pushButton_local_disconnet_clicked(self):
@@ -117,7 +120,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        raise NotImplementedError
+        pass
     
     @pyqtSlot()
     def on_testexecute_page6_pushButton_remote_link_clicked(self):
@@ -125,7 +128,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        raise NotImplementedError
+        pass
     
     @pyqtSlot()
     def on_testexecute_page5_pushButton_execute_clicked(self):
@@ -133,7 +136,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        raise NotImplementedError
+        pass
     
     @pyqtSlot()
     def on_testexecute_page5_pushButton_savedata_clicked(self):
@@ -141,7 +144,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        raise NotImplementedError
+        pass
     
     @pyqtSlot()
     def on_testexecute_page5_pushButton_local_disconnect_clicked(self):
@@ -149,7 +152,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        raise NotImplementedError
+        pass
     
     @pyqtSlot()
     def on_testexecute_page5_pushButton_remote_link_clicked(self):
@@ -157,7 +160,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        raise NotImplementedError
+        pass
     
     @pyqtSlot()
     def on_testexecute_page3_pushButton_execute_clicked(self):
@@ -165,7 +168,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        raise NotImplementedError
+        pass
     
     @pyqtSlot()
     def on_testexecute_page3_pushButton_savedata_clicked(self):
@@ -173,7 +176,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        raise NotImplementedError
+        pass
     
     @pyqtSlot()
     def on_testexecute_page4_pushButton_execute_clicked(self):
@@ -181,7 +184,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        raise NotImplementedError
+        pass
     
     @pyqtSlot()
     def on_testexecute_page4_pushButton_savedata_clicked(self):
@@ -189,7 +192,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        raise NotImplementedError
+        pass
     
     @pyqtSlot()
     def on_testexecute_page4_pushButton_local_disconnect_clicked(self):
@@ -197,7 +200,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        raise NotImplementedError
+        pass
     
     @pyqtSlot()
     def on_testexecute_page4_pushButton_remote_link_clicked(self):
@@ -205,7 +208,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        raise NotImplementedError
+        pass
     
     @pyqtSlot()
     def on_pushButton_testdevice_previous_clicked(self):
