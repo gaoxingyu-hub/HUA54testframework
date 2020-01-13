@@ -26,7 +26,6 @@ dist
 *.iobj
 *.ipdb
 *.pdb
-*.json
 
 # Documents
 _build
@@ -34,4 +33,3 @@ _static
 _templates
 docs/*
 data.log
-log.conf
