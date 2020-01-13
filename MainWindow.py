@@ -52,7 +52,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         if item.parent() != None:
             tempStr = item.parent().text(0) + ":" + item.text(0)
-            print(tempStr)
             if tempStr in self.menu2module:
                 self.groupBox.setTitle("测试项目:" + item.parent().text(0) + "-" + item.text(0))
                 # module = __import__('module')
