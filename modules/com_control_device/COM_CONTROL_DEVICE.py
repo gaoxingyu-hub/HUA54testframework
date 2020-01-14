@@ -10,6 +10,8 @@ from PyQt5.QtCore import pyqtSignal
 import os
 from .Ui_COM_CONTROL_DEVICE import Ui_Dialog
 from common.config import TestModuleConfig,SystemConfig
+from modules.info.testInfo import TestInfo
+from PyQt5.QtWidgets import QMessageBox
 
 
 class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
@@ -28,6 +30,13 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         """
         super(COM_CONTROL_DEVICE, self).__init__(parent)
         self.setupUi(self)
+        test = TestInfo()
+        test.setWindowTitle("通信控制设备测试")
+        if test.exec_():
+            if test.flag == -1:
+                QMessageBox.warning(self, "警告", "测试参数输入不完整！")
+        else:
+            QMessageBox.warning(self, "警告", "测试参数输入不完整！")
         self.page_index = 0
         self.page_execute_index = 0
         self.disassemble_pic_index = 1

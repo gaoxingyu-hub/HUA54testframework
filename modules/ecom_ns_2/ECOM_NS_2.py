@@ -10,6 +10,8 @@ from PyQt5 import QtGui
 from common.config import TestModuleConfig,SystemConfig
 from PyQt5.QtCore import pyqtSignal
 from .Ui_ECOM_NS_2 import Ui_Dialog
+from modules.info.testInfo import TestInfo
+from PyQt5.QtWidgets import QMessageBox
 import os
 
 
@@ -29,6 +31,13 @@ class EcomDialog(QDialog, Ui_Dialog):
         """
         super(EcomDialog, self).__init__(parent)
         self.setupUi(self)
+        test = TestInfo()
+        test.setWindowTitle("通信控制设备测试")
+        if test.exec_():
+            if test.flag == -1:
+                QMessageBox.warning(self, "警告", "测试参数输入不完整！")
+        else:
+            QMessageBox.warning(self, "警告", "测试参数输入不完整！")
         self.str_testexecute_step2 = "更换保险丝后，继续进行电源模块的输出电压测试，ECOM-NS-2型" \
                                      "交换机的电源模块XS4的第1、2脚为+12V，第3、4脚为GND，使用万用" \
                                      "表测试是否在规定范围内。如果电源电压不在规定范围内，请更换改电源" \
