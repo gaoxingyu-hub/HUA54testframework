@@ -157,7 +157,7 @@ class Ui_MainWindow(object):
         self.treeWidget.topLevelItem(2).child(1).setText(0, _translate("MainWindow", "键盘和信号灯"))
         self.treeWidget.topLevelItem(2).child(2).setText(0, _translate("MainWindow", "PLC模块"))
         self.treeWidget.topLevelItem(2).child(3).setText(0, _translate("MainWindow", "伺服控制模块"))
-        self.treeWidget.topLevelItem(3).setText(0, _translate("MainWindow", "MW-1500微波电台"))
+        self.treeWidget.topLevelItem(3).setText(0, _translate("MainWindow", "MW-1500微波"))
         self.treeWidget.topLevelItem(3).child(0).setText(0, _translate("MainWindow", "数字处理单元"))
         self.treeWidget.topLevelItem(3).child(1).setText(0, _translate("MainWindow", "收/发单元"))
         self.treeWidget.topLevelItem(3).child(2).setText(0, _translate("MainWindow", "LNA和射频自环器"))
