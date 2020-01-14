@@ -13,7 +13,9 @@ from .Ui_ECOM_NS_2 import Ui_Dialog
 from modules.info.testInfo import TestInfo
 from PyQt5.QtWidgets import QMessageBox
 import os
+import frozen_dir
 
+SETUP_DIR = frozen_dir.app_path()
 
 class EcomDialog(QDialog, Ui_Dialog):
     """
@@ -50,12 +52,11 @@ class EcomDialog(QDialog, Ui_Dialog):
         self.pushButton_disassemble_previous.setEnabled(False)
         self.pushButton_testdevice_previous.setEnabled(False)
 
-        module_path = "C:\\"
-        self.config_file_path = os.path.join(module_path, "54TestFramework", "conf", "ecom_ns_2.json")
-        self.system_config_file_path = os.path.join(module_path, "54TestFramework", "conf", "system.json")
+        self.config_file_path = os.path.join(SETUP_DIR, "conf", "ecom_ns_2.json")
+        self.system_config_file_path = os.path.join(SETUP_DIR,"conf", "system.json")
         self.test_config = TestModuleConfig(self.config_file_path)
         # module_path = os.getcwd()
-        self.pic_file_path = os.path.join(module_path, "54TestFramework","imgs", "ecom_ns_2")
+        self.pic_file_path = os.path.join(SETUP_DIR,"imgs", "ecom_ns_2")
 
         self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name

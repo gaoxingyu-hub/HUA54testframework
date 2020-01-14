@@ -12,7 +12,9 @@ from .Ui_COM_CONTROL_DEVICE import Ui_Dialog
 from common.config import TestModuleConfig,SystemConfig
 from modules.info.testInfo import TestInfo
 from PyQt5.QtWidgets import QMessageBox
+import frozen_dir
 
+SETUP_DIR = frozen_dir.app_path()
 
 class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
     """
@@ -45,12 +47,11 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         self.pushButton_disassemble_previous.setEnabled(False)
         self.pushButton_testdevice_previous.setEnabled(False)
 
-        module_path = "C:\\"
-        self.config_file_path = os.path.join(module_path, "54TestFramework","conf", "com_control_device.json")
-        self.system_config_file_path = os.path.join(module_path, "54TestFramework", "conf", "system.json")
+        self.config_file_path = os.path.join(SETUP_DIR,"conf", "com_control_device.json")
+        self.system_config_file_path = os.path.join(SETUP_DIR, "conf", "system.json")
         self.test_config = TestModuleConfig(self.config_file_path)
 
-        self.pic_file_path = os.path.join(module_path, "54TestFramework","imgs", "com_control_device")
+        self.pic_file_path = os.path.join(SETUP_DIR,"imgs", "com_control_device")
 
         self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name

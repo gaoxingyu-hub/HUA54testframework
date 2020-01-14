@@ -2,11 +2,11 @@
 
 block_cipher = None
 
-
+src_dir="E:\\tianheng_projects\\54\\54TestFramework\\"
 a = Analysis(['main.py'],
              pathex=['E:\\tianheng_projects\\54\\54TestFramework'],
              binaries=[],
-             datas=[],
+             datas=[(src_dir+'logs','logs'),(src_dir+'imgs','imgs'),(src_dir+'langs','langs'),(src_dir+'conf','conf')],
              hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],
@@ -19,15 +19,19 @@ pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
 exe = EXE(pyz,
           a.scripts,
-          a.binaries,
-          a.zipfiles,
-          a.datas,
           [],
-          name='main',
+          exclude_binaries=True,
+          name='test_system',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
-          upx_exclude=[],
-          runtime_tmpdir=None,
           console=False )
+coll = COLLECT(exe,
+               a.binaries,
+               a.zipfiles,
+               a.datas,
+               strip=False,
+               upx=True,
+               upx_exclude=[],
+               name='test_system')
