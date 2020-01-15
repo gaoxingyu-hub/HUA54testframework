@@ -379,7 +379,8 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         return
 
     def display_log(self,contents):
-        print(self.testexecute_page3_textBrowser_log.forwardHistoryCount())
+        if self.testexecute_page3_textBrowser_log.document().blockCount() > 500:
+            self.testexecute_page3_textBrowser_log.clear()
         self.testexecute_page3_textBrowser_log.append(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "-" + contents)
         return
 
