@@ -12,7 +12,10 @@ from .Ui_COM_CONTROL_DEVICE import Ui_Dialog
 from common.config import TestModuleConfig,SystemConfig
 from modules.info.testInfo import TestInfo
 from PyQt5.QtWidgets import QMessageBox
+from .test_process import ThComControlDeviceTestProcess
+from common.info import ThCommonNoticeInfo
 import frozen_dir
+import datetime
 
 SETUP_DIR = frozen_dir.app_path()
 
@@ -178,8 +181,16 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        pass
-    
+        self.display_log(ThCommonNoticeInfo.START_TEST)
+        self.test_controller = ThComControlDeviceTestProcess()
+        self.display_log(ThCommonNoticeInfo.DUT + ":" + self.testexecute_page3_listWidget_lan.selectedItems()[0].text())
+        temp = self.test_controller.test_ip_connection(self.testexecute_page3_lineEdit_ip.text())
+        if temp:
+            self.display_log(ThCommonNoticeInfo.TEST_SUCCESS)
+        else:
+            self.display_log(ThCommonNoticeInfo.TEST_FAIL)
+        self.display_log(ThCommonNoticeInfo.FINISH_TEST)
+
     @pyqtSlot()
     def on_testexecute_page3_pushButton_savedata_clicked(self):
         """
@@ -366,3 +377,9 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         if self.page_execute_index == 1:
             self.testexecute_page2_textBrowser.setText(self.test_config.testexecute["2"]["contents"])
         return
+
+    def display_log(self,contents):
+        print(self.testexecute_page3_textBrowser_log.forwardHistoryCount())
+        self.testexecute_page3_textBrowser_log.append(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "-" + contents)
+        return
+
