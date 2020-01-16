@@ -12,3 +12,4 @@ class ThCommonNoticeInfo:
     TEST_SUCCESS = "测试成功"
     TEST_FAIL = "测试失败"
     DUT = "测试对象"
+    UDP_SERVER_IS_RUNNING = "本地Udp Server已启动"

@@ -12,7 +12,7 @@ from .Ui_COM_CONTROL_DEVICE import Ui_Dialog
 from common.config import TestModuleConfig,SystemConfig
 from modules.info.testInfo import TestInfo
 from PyQt5.QtWidgets import QMessageBox
-from .test_process import ThComControlDeviceTestProcess
+from .test_process import ThComControlDeviceTestProcess,UdpServerThread
 from common.info import ThCommonNoticeInfo
 import frozen_dir
 import datetime
@@ -25,6 +25,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
     """
     signalTitle = pyqtSignal(str)
     signalStatus = pyqtSignal(str)
+    debug_model = True
 
     def __init__(self, parent=None):
         """
@@ -35,13 +36,16 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         """
         super(COM_CONTROL_DEVICE, self).__init__(parent)
         self.setupUi(self)
-        test = TestInfo()
-        test.setWindowTitle("通信控制设备测试")
-        if test.exec_():
-            if test.flag == -1:
+
+        if not self.debug_model:
+            test = TestInfo()
+            test.setWindowTitle("通信控制设备测试")
+            if test.exec_():
+                if test.flag == -1:
+                    QMessageBox.warning(self, "警告", "测试参数输入不完整！")
+            else:
                 QMessageBox.warning(self, "警告", "测试参数输入不完整！")
-        else:
-            QMessageBox.warning(self, "警告", "测试参数输入不完整！")
+
         self.page_index = 0
         self.page_execute_index = 0
         self.disassemble_pic_index = 1
@@ -69,6 +73,9 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
 
         self.stackedWidget_testexecute.setCurrentIndex(0)
         self.testexecute_page1_textBrowser.setText(self.test_config.testexecute["1"]["contents"])
+
+        self.test_process_controller = ThComControlDeviceTestProcess()
+        self.udp_test_local_server = None
     
     @pyqtSlot()
     def on_pushButton_TestData_export_clicked(self):
@@ -182,9 +189,8 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         """
         # TODO: not implemented yet
         self.display_log(ThCommonNoticeInfo.START_TEST)
-        self.test_controller = ThComControlDeviceTestProcess()
         self.display_log(ThCommonNoticeInfo.DUT + ":" + self.testexecute_page3_listWidget_lan.selectedItems()[0].text())
-        temp = self.test_controller.test_ip_connection(self.testexecute_page3_lineEdit_ip.text())
+        temp = self.test_process_controller.test_ip_connection(self.testexecute_page3_lineEdit_ip.text())
         if temp:
             self.display_log(ThCommonNoticeInfo.TEST_SUCCESS)
         else:
@@ -205,7 +211,8 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        pass
+        self.test_process_controller.udp_send(self.udp_remote_host,self.udp_remote_port)
+
     
     @pyqtSlot()
     def on_testexecute_page4_pushButton_savedata_clicked(self):
@@ -221,7 +228,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        pass
+        self.test_process_controller.disconnect_udp_link()
     
     @pyqtSlot()
     def on_testexecute_page4_pushButton_remote_link_clicked(self):
@@ -229,7 +236,19 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        pass
+        self.udp_local_host = self.testexecute_page4_lineEdit_local_ip.text()
+        self.udp_local_port = int(self.testexecute_page4_lineEdit_local_port.text())
+        self.udp_remote_host = self.testexecute_page4_lineEdit_remote_ip.text()
+        self.udp_remote_port = int(self.testexecute_page4_lineEdit_remote_port.text())
+        try:
+            if self.udp_test_local_server and self.self.udp_test_local_server.isRunning():
+                self.signalStatus.emit(ThCommonNoticeInfo.UDP_SERVER_IS_RUNNING)
+                return
+            self.udp_test_local_server = UdpServerThread(self.udp_local_host,self.udp_local_port,"test")
+            self.udp_test_local_server._signalInfo.connect(self.pyqt_event_process_emit_slot)
+            self.udp_test_local_server.start()
+        except BaseException as e:
+            print(str(e))
     
     @pyqtSlot()
     def on_pushButton_testdevice_previous_clicked(self):
@@ -382,5 +401,10 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         if self.testexecute_page3_textBrowser_log.document().blockCount() > 500:
             self.testexecute_page3_textBrowser_log.clear()
         self.testexecute_page3_textBrowser_log.append(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "-" + contents)
+        return
+
+    def pyqt_event_process_emit_slot(self,contents):
+        print("pyqt_event_process_emit_slot")
+        self.signalStatus.emit(contents)
         return
 

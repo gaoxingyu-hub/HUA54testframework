@@ -4,13 +4,14 @@
 Module implementing MainWindow.
 """
 
-from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QMainWindow,QTreeWidgetItem,QMessageBox
 from modules.ecom_ns_2.ECOM_NS_2 import EcomDialog
 from modules.test.module import TestModule
 from modules.com_control_device.COM_CONTROL_DEVICE import COM_CONTROL_DEVICE
-import sys
+from PyQt5.QtCore import pyqtSignal
+from PyQt5 import QtCore
+import time
 
 from Ui_MainWindow import Ui_MainWindow
 
@@ -34,6 +35,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             "交换机:切换(交换)模块(主控板)": "EcomDialog",
             "通信控制设备:协议控制和转换模块":"COM_CONTROL_DEVICE"}
         self.child = None
+
+        self.status_cleaner = UdpServerThread()
+        self.status_cleaner._signalInfo.connect(self.deal_signal_status_emit_slot)
+        self.status_cleaner.start()
 
     @pyqtSlot(QTreeWidgetItem, int)
     def on_treeWidget_itemClicked(self, item, column):
@@ -75,12 +80,31 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 QMessageBox.warning(self, "警告", "测试模块不存在！")
         return
 
+    def closeEvent(self, event):
+        if self.status_cleaner and  self.status_cleaner.isRunning():
+            self.status_cleaner.terminate()
+        return
+
     def deal_signal_title_emit_slot(self, paras):
         if paras == "close":
             self.gridLayout.removeWidget(self.child)
             self.groupBox.setTitle("测试项目:")
 
+    # @delay_seconds_clean_status_bar(5)
     def deal_signal_status_emit_slot(self, paras):
         self.statusbar.showMessage(paras)
+
+
+class UdpServerThread(QtCore.QThread):
+    _signalInfo = pyqtSignal(str)
+
+    def run(self):
+        try:
+            while True:
+                self._signalInfo.emit("")
+                time.sleep(5)
+
+        except BaseException as e:
+            print(str(e))
 
 
