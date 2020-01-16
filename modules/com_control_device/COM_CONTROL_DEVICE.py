@@ -14,6 +14,7 @@ from modules.info.testInfo import TestInfo
 from PyQt5.QtWidgets import QMessageBox
 from .test_process import ThComControlDeviceTestProcess,UdpServerThread
 from common.info import ThCommonNoticeInfo
+from common.data_checker import ThDataChecker
 import frozen_dir
 import datetime
 
@@ -240,6 +241,11 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         self.udp_local_port = int(self.testexecute_page4_lineEdit_local_port.text())
         self.udp_remote_host = self.testexecute_page4_lineEdit_remote_ip.text()
         self.udp_remote_port = int(self.testexecute_page4_lineEdit_remote_port.text())
+
+        if not ThDataChecker.is_ip(self.udp_local_host) or not ThDataChecker.is_ip(self.udp_remote_host):
+            QMessageBox.warning(self, "警告", "输入IP地址有误!")
+            return
+
         try:
             if self.udp_test_local_server and self.self.udp_test_local_server.isRunning():
                 self.signalStatus.emit(ThCommonNoticeInfo.UDP_SERVER_IS_RUNNING)
