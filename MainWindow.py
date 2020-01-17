@@ -81,7 +81,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         return
 
     def closeEvent(self, event):
-        if self.status_cleaner and  self.status_cleaner.isRunning():
+        if self.status_cleaner and self.status_cleaner.isRunning():
             self.status_cleaner.terminate()
         return
 
