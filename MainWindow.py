@@ -76,6 +76,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.child.signalTitle.connect(self.deal_signal_title_emit_slot)
                     self.child.signalStatus.connect(self.deal_signal_status_emit_slot)
                     self.gridLayout.addWidget(self.child)
+                elif "散射高频" in tempStr:
+                    self.child = COM_CONTROL_DEVICE()
+                    self.child.signalTitle.connect(self.deal_signal_title_emit_slot)
+                    self.child.signalStatus.connect(self.deal_signal_status_emit_slot)
+                    self.gridLayout.addWidget(self.child)
+                    
             else:
                 QMessageBox.warning(self, "警告", "测试模块不存在！")
         return
