@@ -9,4 +9,3 @@
 修改pyinstall打包配置文件spec，该文件未经允许禁止修改
 打包命令运行方式： pyinstaller.exe -D .\main.spec
 增加国际化支持
-2321321321
