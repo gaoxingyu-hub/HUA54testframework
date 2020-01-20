@@ -208,7 +208,7 @@ class Ui_MainWindow(object):
         self.treeWidget.topLevelItem(17).child(1).setText(0, _translate("MainWindow", "监控单元"))
         self.treeWidget.setSortingEnabled(__sortingEnabled)
         self.groupBox.setTitle(_translate("MainWindow", "测试项目"))
-import res.iconQrc_rc
+import iconQrc_rc
 
 
 if __name__ == "__main__":
