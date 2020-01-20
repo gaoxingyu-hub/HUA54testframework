@@ -77,7 +77,18 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        pass
+        if not self.debug_model:
+            test = TestInfo()
+            test.setWindowTitle("通信控制设备测试")
+            if test.exec_():
+                if test.flag == -1:
+                    QMessageBox.warning(self, "警告", "测试参数输入不完整！")
+            else:
+                QMessageBox.warning(self, "警告", "测试参数输入不完整！")
+            self.current_test_step = 0
+        else:
+            self.current_test_step = 1
+        self.test_process_control("next")
     
     @pyqtSlot()
     def on_pushButton_close_clicked(self):
@@ -96,21 +107,18 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         if action is "next":
             if self.current_test_step < self.test_config.max_step:
                 temp_test_process = self.test_config.steps[self.current_test_step - 1]
-                temp = globals()[temp_test_process['module']]()
-                temp._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
-                print(self.current_test_step)
-                print(temp_test_process['title'])
-                temp.set_contents(temp_test_process['title'],temp_test_process['contents'],os.path.join(
+                self.current_test_step_dialog = globals()[temp_test_process['module']]()
+                self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
+                self.current_test_step_dialog.set_contents(temp_test_process['title'],temp_test_process['contents'],os.path.join(
                     self.pic_file_path,
                     temp_test_process['img']))
-                if temp.exec_():
-                    self.current_test_step = self.current_test_step + 1
-                self.current_test_step = self.current_test_step + 1
-                print(self.current_test_step)
+                self.current_test_step_dialog.exec_()
         return
 
 
     def deal_signal_test_step_finish_emit_slot(self, paras):
-        self.current_test_step = self.current_test_step + 1
-        time.sleep(0.2)
-        self.test_process_control("next")
+        if self.current_test_step_dialog:
+            self.current_test_step_dialog.close()
+            self.current_test_step = self.current_test_step + 1
+            time.sleep(0.2)
+            self.test_process_control("next")
