@@ -14,13 +14,14 @@ import os
 import frozen_dir
 from modules.general.PIC_TEXT import DialogPicText
 import time
-from threading import Timer
-from datetime import datetime
+from common.logConfig import Logger
 from common.th_thread_model import ThThreadTimerUpdateTestTime
 
 from .Ui_COM_CONTROL_DEVICE_PA2 import Ui_Dialog
 
 SETUP_DIR = frozen_dir.app_path()
+
+logger = Logger.module_logger("com_control_device")
 class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
@@ -54,7 +55,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
 
         self.test_time_update_obj = ThThreadTimerUpdateTestTime()
 
-
+        logger.info("com_control_device inited")
     
     @pyqtSlot()
     def on_pushButton_start_clicked(self):
@@ -75,6 +76,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
             self.current_test_step = 1
         self.start_caculate_test_duration()
         self.test_process_control("next")
+        logger.info("com_control_device test process start")
 
 
 
@@ -100,6 +102,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
             self.current_test_step = 1
         self.test_process_control("next")
         self.start_caculate_test_duration()
+        logger.info("com_control_device test process restart")
     
     @pyqtSlot()
     def on_pushButton_close_clicked(self):
@@ -109,7 +112,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         # TODO: not implemented yet
         self.signalTitle.emit("close")
         self.close()
-        return
+        logger.info("com_control_device test process close")
 
     def test_process_control(self,action):
         """
@@ -124,6 +127,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
                     self.pic_file_path,
                     temp_test_process['img']))
                 self.current_test_step_dialog.exec_()
+            logger.info("com_control_device test process: next step")
         return
 
 
@@ -151,7 +155,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
             minutes, seconds = divmod(remainder, 60)
             self.label_test_duration.setText(str(int(hours)) + ":" + str(int(minutes)) + ":" + str(int(seconds)))
         except BaseException as e:
-            print(str(e))
+            logger.info("com_control_device deal_signal_test_duration_caculate_emit_slot fail:" + str(e))
 
     def start_caculate_test_duration(self):
         if not self.test_time_update_obj:

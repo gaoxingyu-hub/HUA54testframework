@@ -30,6 +30,9 @@ class ThQtThreadModelBase(QThread):
 
 
 class ThThreadTimerUpdateTestTime(QThread):
+    """
+    thread model for test duration updates used in pyqt gui
+    """
     _signal = pyqtSignal(object)
 
     def __init__(self,parent=None):
@@ -41,6 +44,12 @@ class ThThreadTimerUpdateTestTime(QThread):
         self.thread_status = False
 
     def run(self):
+        """
+        thread core methods:
+        update test duration by one seconds
+        emit signal to upper application
+        :return:
+        """
         self.start_datetime = datetime.now()
         try:
             while True:
