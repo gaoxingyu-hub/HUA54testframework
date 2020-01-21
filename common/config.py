@@ -95,7 +95,9 @@ class TestModuleConfigNew(BaseConfig):
         self.title = ""
         self.module_name = ""
         self.steps = None
+        self.test=None
         self.max_step = 0
+        self.prepare_and_test=0
         self.get_test_parameters()
         return
 
@@ -105,6 +107,8 @@ class TestModuleConfigNew(BaseConfig):
             self.title = config_obj["title"]
             self.module_name = config_obj["module_name"]
             self.steps = config_obj["steps"]
+            self.test = config_obj["test"]
+            self.prepare_and_test = len(self.steps)+len(self.test)
             self.max_step = len(self.steps)
         except BaseException as e:
             logger.error(str(e))
