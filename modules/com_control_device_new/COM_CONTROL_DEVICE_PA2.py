@@ -14,10 +14,14 @@ import os
 import frozen_dir
 from modules.general.PIC_TEXT import DialogPicText
 import time
+from common.logConfig import Logger
+from common.th_thread_model import ThThreadTimerUpdateTestTime
 
 from .Ui_COM_CONTROL_DEVICE_PA2 import Ui_Dialog
 
 SETUP_DIR = frozen_dir.app_path()
+
+logger = Logger.module_logger("com_control_device")
 class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
@@ -49,7 +53,9 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name
 
+        self.test_time_update_obj = ThThreadTimerUpdateTestTime()
 
+        logger.info("com_control_device inited")
     
     @pyqtSlot()
     def on_pushButton_start_clicked(self):
@@ -68,7 +74,13 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
             self.current_test_step = 0
         else:
             self.current_test_step = 1
+        self.start_caculate_test_duration()
         self.test_process_control("next")
+        logger.info("com_control_device test process start")
+
+
+
+
 
     
     @pyqtSlot()
@@ -89,6 +101,8 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         else:
             self.current_test_step = 1
         self.test_process_control("next")
+        self.start_caculate_test_duration()
+        logger.info("com_control_device test process restart")
     
     @pyqtSlot()
     def on_pushButton_close_clicked(self):
@@ -98,7 +112,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         # TODO: not implemented yet
         self.signalTitle.emit("close")
         self.close()
-        return
+        logger.info("com_control_device test process close")
 
     def test_process_control(self,action):
         """
@@ -113,12 +127,41 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
                     self.pic_file_path,
                     temp_test_process['img']))
                 self.current_test_step_dialog.exec_()
+            logger.info("com_control_device test process: next step")
         return
 
 
     def deal_signal_test_step_finish_emit_slot(self, paras):
+        """
+
+        :param paras:
+        :return:
+        """
         if self.current_test_step_dialog:
             self.current_test_step_dialog.close()
             self.current_test_step = self.current_test_step + 1
-            time.sleep(0.2)
+            time.sleep(0.1)
             self.test_process_control("next")
+
+    def deal_signal_test_duration_caculate_emit_slot(self, paras):
+        """
+
+        :param paras:
+        :return:
+        """
+
+        try:
+            hours, remainder = divmod(paras, 3600)
+            minutes, seconds = divmod(remainder, 60)
+            self.label_test_duration.setText(str(int(hours)) + ":" + str(int(minutes)) + ":" + str(int(seconds)))
+        except BaseException as e:
+            logger.info("com_control_device deal_signal_test_duration_caculate_emit_slot fail:" + str(e))
+
+    def start_caculate_test_duration(self):
+        if not self.test_time_update_obj:
+            self.test_time_update_obj = ThThreadTimerUpdateTestTime()
+
+        self.test_time_update_obj.restart()
+        self.test_time_update_obj._signal.connect(self.deal_signal_test_duration_caculate_emit_slot)
+        if not self.test_time_update_obj.thread_status:
+            self.test_time_update_obj.start()

@@ -139,8 +139,8 @@ class Ui_Dialog(object):
         font.setPointSize(-1)
         font.setKerning(False)
         self.label_test_duration.setFont(font)
-        self.label_test_duration.setText("")
         self.label_test_duration.setTextFormat(QtCore.Qt.PlainText)
+        self.label_test_duration.setAlignment(QtCore.Qt.AlignCenter)
         self.label_test_duration.setObjectName("label_test_duration")
         self.gridLayout_2.addWidget(self.label_test_duration, 0, 0, 1, 1)
         self.gridLayout_3.addWidget(self.groupBox_2, 0, 0, 1, 1)
@@ -210,6 +210,7 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.groupBox_test_modules.setTitle(_translate("Dialog", "测试项目"))
+        self.label_test_duration.setText(_translate("Dialog", "00:00:00"))
         self.treeWidget.headerItem().setText(0, _translate("Dialog", "1"))
         __sortingEnabled = self.treeWidget.isSortingEnabled()
         self.treeWidget.setSortingEnabled(False)

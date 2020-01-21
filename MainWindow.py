@@ -12,11 +12,12 @@ from modules.test.module import TestModule
 from modules.com_control_device_new.COM_CONTROL_DEVICE_PA2 import COM_CONTROL_DEVICE
 from PyQt5.QtCore import pyqtSignal
 from PyQt5 import QtCore
+from common.logConfig import Logger
 import time
 
 from Ui_MainWindow import Ui_MainWindow
 
-
+logger = Logger.module_logger("main")
 class MainWindow(QMainWindow, Ui_MainWindow):
     """
     Class documentation goes here.
@@ -37,9 +38,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             "通信控制设备:协议控制和转换模块":"COM_CONTROL_DEVICE"}
         self.child = None
 
-        self.status_cleaner = UdpServerThread()
+
+        self.status_cleaner = StatusCleanerThread()
         self.status_cleaner._signalInfo.connect(self.deal_signal_status_emit_slot)
         self.status_cleaner.start()
+        logger.info("System Start")
 
     @pyqtSlot(QTreeWidgetItem, int)
     def on_treeWidget_itemClicked(self, item, column):
@@ -60,32 +63,31 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             tempStr = item.parent().text(0) + ":" + item.text(0)
             if tempStr in self.menu2module:
                 self.groupBox.setTitle("测试项目:" + item.parent().text(0) + "-" + item.text(0))
-                # module = __import__('module')
-                # obj_class_name = getattr(module, self.menu2module[tempStr])
+                logger.info("test module start:" + tempStr)
                 if tempStr is "散射高频设备:收/发单元":
                     self.child = TestModule()
                     self.child.signalTitle.connect(self.deal_signal_title_emit_slot)
                     self.child.signalStatus.connect(self.deal_signal_status_emit_slot)
                     self.gridLayout.addWidget(self.child)
+                    logger.info("TestModule start")
                 elif "交换机" in tempStr:
                     self.child = EcomDialog()
                     self.child.signalTitle.connect(self.deal_signal_title_emit_slot)
                     self.child.signalStatus.connect(self.deal_signal_status_emit_slot)
                     self.gridLayout.addWidget(self.child)
+                    logger.info("EcomDialog start")
                 elif "协议控制" in tempStr:
                     self.child = COM_CONTROL_DEVICE()
                     self.child.signalTitle.connect(self.deal_signal_title_emit_slot)
                     self.child.signalStatus.connect(self.deal_signal_status_emit_slot)
                     self.gridLayout.addWidget(self.child)
-                    # self.child = COM_CONTROL_DEVICE()
-                    # self.child.signalTitle.connect(self.deal_signal_title_emit_slot)
-                    # self.child.signalStatus.connect(self.deal_signal_status_emit_slot)
-                    # self.gridLayout.addWidget(self.child)
+                    logger.info("COM_CONTROL_DEVICE start")
                 elif "散射高频" in tempStr:
                     self.child = COM_CONTROL_DEVICE()
                     self.child.signalTitle.connect(self.deal_signal_title_emit_slot)
                     self.child.signalStatus.connect(self.deal_signal_status_emit_slot)
                     self.gridLayout.addWidget(self.child)
+                    logger.info("COM_CONTROL_DEVICE start")
                     
             else:
                 QMessageBox.warning(self, "警告", "测试模块不存在！")
@@ -94,6 +96,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def closeEvent(self, event):
         if self.status_cleaner and self.status_cleaner.isRunning():
             self.status_cleaner.terminate()
+        logger.info("main window close")
         return
 
     def deal_signal_title_emit_slot(self, paras):
@@ -106,7 +109,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.statusbar.showMessage(paras)
 
 
-class UdpServerThread(QtCore.QThread):
+class StatusCleanerThread(QtCore.QThread):
     _signalInfo = pyqtSignal(str)
 
     def run(self):
@@ -116,6 +119,6 @@ class UdpServerThread(QtCore.QThread):
                 time.sleep(5)
 
         except BaseException as e:
-            print(str(e))
+            logger.warn("main window StatusCleanerThread exception:"+str(e))
 
 

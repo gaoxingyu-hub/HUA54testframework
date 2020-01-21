@@ -221,10 +221,13 @@ border:1px solid rgb(0, 0, 0);
                </font>
               </property>
               <property name="text">
-               <string/>
+               <string>00:00:00</string>
               </property>
               <property name="textFormat">
                <enum>Qt::PlainText</enum>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>

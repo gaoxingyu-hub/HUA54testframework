@@ -7,6 +7,9 @@
 
 
 class ThCommonNoticeInfo:
+    """
+    software common notice information text
+    """
     START_TEST = "开始测试"
     FINISH_TEST = "完成测试"
     TEST_SUCCESS = "测试成功"
