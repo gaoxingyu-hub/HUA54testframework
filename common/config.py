@@ -1,31 +1,40 @@
 import os
 from pathlib import Path
 import json
-# from common.logConfig import Logger
-#
-# logger = Logger.module_logger("logConfig")
+from common.logConfig import Logger
+import frozen_dir
+
+logger = Logger.module_logger("baseconfig")
+SETUP_DIR = frozen_dir.app_path()
 class BaseConfig:
+    """
+    parent class
+    load the config file into object
+    """
     def __init__(self,file_name):
         self.config_directory = "conf"
-        module_path = os.path.dirname(__file__)
-        self.app_directory = Path(module_path).parent
-        self.full_config_file = os.path.join(self.app_directory, self.config_directory,file_name)
+        self.full_config_file = os.path.join(SETUP_DIR, self.config_directory,file_name)
         return
 
     def read_config(self):
+        """
+        read config json format file info data object
+        :return: json data object
+        """
         try:
             data = None
             with open(self.full_config_file,encoding='utf-8') as json_file:
                 data = json.load(json_file)
         except IOError as e:
-            s =str(e)
-            # logger.error(str(e))
+            logger.error(str(e))
         except BaseException as e1:
-            s = str(e1)
-            # logger.error(str(e1))
+            logger.error(str(e1))
         return data
 
 class TestModuleConfig(BaseConfig):
+    """
+    child class for module test log file read
+    """
     def __init__(self,file_name):
         super(TestModuleConfig,self).__init__(file_name)
         self.title = ""
@@ -38,6 +47,10 @@ class TestModuleConfig(BaseConfig):
         return
 
     def get_test_parameters(self):
+        """
+        read the module test log file into data object
+        :return: data dict object
+        """
         try:
             config_obj = self.read_config()
             self.title = config_obj["title"]
@@ -47,11 +60,13 @@ class TestModuleConfig(BaseConfig):
             self.testprepare = config_obj["testprepare"]
             self.testexecute = config_obj["testexecute"]
         except BaseException as e:
-            str(e)
-            # logger.error(str(e))
+            logger.error(str(e))
         return config_obj
 
 class SystemConfig(BaseConfig):
+    """
+    child class for software system config file
+    """
     def __init__(self,file_name='system.json'):
         super(SystemConfig,self).__init__(file_name)
         self.step2name = None
@@ -59,15 +74,22 @@ class SystemConfig(BaseConfig):
         return
 
     def get_system_parameters(self):
+        """
+        read the system config log file into data object
+        :return: data dict object
+        """
         try:
             config_obj = self.read_config()
             self.step2name = config_obj["step2name"]
         except BaseException as e:
-            str(e)
-            # logger.error(str(e))
+            logger.error(str(e))
         return config_obj
 
 class TestModuleConfigNew(BaseConfig):
+    """
+        child class for module test log file read
+        latest version
+    """
     def __init__(self,file_name):
         super(TestModuleConfigNew,self).__init__(file_name)
         self.title = ""
@@ -89,6 +111,5 @@ class TestModuleConfigNew(BaseConfig):
             self.prepare_and_test = len(self.steps)+len(self.test)
             self.max_step = len(self.steps)
         except BaseException as e:
-            str(e)
-            # logger.error(str(e))
+            logger.error(str(e))
         return config_obj
