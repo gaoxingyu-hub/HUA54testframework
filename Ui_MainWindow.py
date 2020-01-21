@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'E:\tianheng_projects\54\Eric6WorkSpace\MainWindow.ui'
+# Form implementation generated from reading ui file 'E:\tianheng_projects\54\54TestFramework\ui\MainWindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.3
+# Created by: PyQt5 UI code generator 5.13.1
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1270, 640)
+        MainWindow.resize(1280, 1024)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -34,12 +36,12 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.groupBoxMenu = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBoxMenu.setGeometry(QtCore.QRect(0, 0, 261, 611))
+        self.groupBoxMenu.setGeometry(QtCore.QRect(0, 0, 261, 1021))
         self.groupBoxMenu.setStyleSheet("background-color:#D0DAE5;\n"
 "color:#666666")
         self.groupBoxMenu.setObjectName("groupBoxMenu")
         self.treeWidget = QtWidgets.QTreeWidget(self.groupBoxMenu)
-        self.treeWidget.setGeometry(QtCore.QRect(10, 20, 231, 561))
+        self.treeWidget.setGeometry(QtCore.QRect(10, 20, 231, 971))
         self.treeWidget.setHeaderHidden(True)
         self.treeWidget.setObjectName("treeWidget")
         item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget)
@@ -109,7 +111,7 @@ class Ui_MainWindow(object):
         item_1 = QtWidgets.QTreeWidgetItem(item_0)
         item_1 = QtWidgets.QTreeWidgetItem(item_0)
         self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox.setGeometry(QtCore.QRect(260, 0, 1011, 611))
+        self.groupBox.setGeometry(QtCore.QRect(260, 0, 1011, 1001))
         font = QtGui.QFont()
         font.setFamily("Microsoft YaHei")
         font.setPointSize(-1)
@@ -118,7 +120,7 @@ class Ui_MainWindow(object):
 "color:#666666")
         self.groupBox.setObjectName("groupBox")
         self.gridLayoutWidget = QtWidgets.QWidget(self.groupBox)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(10, 20, 991, 581))
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(10, 20, 991, 971))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
         self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
@@ -157,7 +159,7 @@ class Ui_MainWindow(object):
         self.treeWidget.topLevelItem(2).child(1).setText(0, _translate("MainWindow", "键盘和信号灯"))
         self.treeWidget.topLevelItem(2).child(2).setText(0, _translate("MainWindow", "PLC模块"))
         self.treeWidget.topLevelItem(2).child(3).setText(0, _translate("MainWindow", "伺服控制模块"))
-        self.treeWidget.topLevelItem(3).setText(0, _translate("MainWindow", "MW-1500微波"))
+        self.treeWidget.topLevelItem(3).setText(0, _translate("MainWindow", "MW-1500微波电台"))
         self.treeWidget.topLevelItem(3).child(0).setText(0, _translate("MainWindow", "数字处理单元"))
         self.treeWidget.topLevelItem(3).child(1).setText(0, _translate("MainWindow", "收/发单元"))
         self.treeWidget.topLevelItem(3).child(2).setText(0, _translate("MainWindow", "LNA和射频自环器"))
@@ -206,8 +208,8 @@ class Ui_MainWindow(object):
         self.treeWidget.topLevelItem(17).child(1).setText(0, _translate("MainWindow", "监控单元"))
         self.treeWidget.setSortingEnabled(__sortingEnabled)
         self.groupBox.setTitle(_translate("MainWindow", "测试项目"))
-
 import res.iconQrc_rc
+
 
 if __name__ == "__main__":
     import sys
@@ -217,4 +219,3 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-

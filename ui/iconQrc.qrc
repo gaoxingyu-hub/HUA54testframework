@@ -1,13 +1,7 @@
 <RCC>
   <qresource prefix="newPrefix">
-    <file>icon/close4.ico</file>
-    <file>JHJ1.png</file>
-    <file>icon/last4.ico</file>
-    <file>icon/next4.ico</file>
-    <file>icon/last3.ico</file>
-    <file>icon/next3.ico</file>
     <file>icon/close1.ico</file>
-    <file>icon/next1.ico</file>
-    <file>icon/run1.ico</file>
+    <file>icon/restart1.ico</file>
+    <file>icon/start1.ico</file>
   </qresource>
 </RCC>

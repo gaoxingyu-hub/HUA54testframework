@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1270</width>
-    <height>640</height>
+    <width>1280</width>
+    <height>1024</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -44,7 +44,7 @@ font-color:rgb(255, 255, 255);
       <x>0</x>
       <y>0</y>
       <width>261</width>
-      <height>611</height>
+      <height>1021</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -60,7 +60,7 @@ color:#666666</string>
        <x>10</x>
        <y>20</y>
        <width>231</width>
-       <height>561</height>
+       <height>971</height>
       </rect>
      </property>
      <property name="headerHidden">
@@ -409,7 +409,7 @@ color:#666666</string>
       <x>260</x>
       <y>0</y>
       <width>1011</width>
-      <height>611</height>
+      <height>1001</height>
      </rect>
     </property>
     <property name="font">
@@ -431,7 +431,7 @@ color:#666666</string>
        <x>10</x>
        <y>20</y>
        <width>991</width>
-       <height>581</height>
+       <height>971</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout"/>

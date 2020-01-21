@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project test -->
-<!-- Saved: 2020-01-16, 18:49:51 -->
+<!-- Saved: 2020-01-20, 18:26:46 -->
 <!-- Copyright (C) 2020 ,  -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -13,13 +13,24 @@
   <Email></Email>
   <Eol index="0"/>
   <Sources>
+    <Source>COM_CONTROL_DEVICE_PA2.py</Source>
+    <Source>PIC_TEXT.py</Source>
+    <Source>TEST_PROCEDURE_CONTROL.py</Source>
     <Source>Ui_COM_CONTROL_DEVICE.py</Source>
+    <Source>Ui_COM_CONTROL_DEVICE_PA2.py</Source>
+    <Source>Ui_MainWindow.py</Source>
+    <Source>Ui_PIC_TEXT.py</Source>
+    <Source>Ui_TEST_PROCEDURE_CONTROL.py</Source>
+    <Source>iconQrc_rc.py</Source>
   </Sources>
   <Forms>
     <Form>COM_CONTROL_DEVICE.ui</Form>
+    <Form>COM_CONTROL_DEVICE_PA2.ui</Form>
     <Form>Demo.ui</Form>
     <Form>ECOM-NS-2.ui</Form>
     <Form>MainWindow.ui</Form>
+    <Form>PIC_TEXT.ui</Form>
+    <Form>TEST_PROCEDURE_CONTROL.ui</Form>
     <Form>module.ui</Form>
     <Form>testInfo.ui</Form>
     <Form>testPA4.ui</Form>

@@ -66,3 +66,25 @@ class SystemConfig(BaseConfig):
             str(e)
             # logger.error(str(e))
         return config_obj
+
+class TestModuleConfigNew(BaseConfig):
+    def __init__(self,file_name):
+        super(TestModuleConfigNew,self).__init__(file_name)
+        self.title = ""
+        self.module_name = ""
+        self.steps = None
+        self.max_step = 0
+        self.get_test_parameters()
+        return
+
+    def get_test_parameters(self):
+        try:
+            config_obj = self.read_config()
+            self.title = config_obj["title"]
+            self.module_name = config_obj["module_name"]
+            self.steps = config_obj["steps"]
+            self.max_step = len(self.steps)
+        except BaseException as e:
+            str(e)
+            # logger.error(str(e))
+        return config_obj
