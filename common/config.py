@@ -69,8 +69,10 @@ class SystemConfig(BaseConfig):
     """
     def __init__(self,file_name='system.json'):
         super(SystemConfig,self).__init__(file_name)
-        self.step2name = None
-        self.get_system_parameters()
+        config_obj = self.get_system_parameters()
+        self.step2name = config_obj["step2name"]
+        self.menu = config_obj["menu"]
+        self.menu2module = config_obj["menu2module"]
         return
 
     def get_system_parameters(self):
@@ -80,7 +82,6 @@ class SystemConfig(BaseConfig):
         """
         try:
             config_obj = self.read_config()
-            self.step2name = config_obj["step2name"]
         except BaseException as e:
             logger.error(str(e))
         return config_obj
@@ -94,10 +95,8 @@ class TestModuleConfigNew(BaseConfig):
         super(TestModuleConfigNew,self).__init__(file_name)
         self.title = ""
         self.module_name = ""
-        self.steps = None
-        self.test=None
-        self.max_step = 0
-        self.prepare_and_test=0
+        self.test_case = None
+        self.test_case_detail = None
         self.get_test_parameters()
         return
 
@@ -106,10 +105,8 @@ class TestModuleConfigNew(BaseConfig):
             config_obj = self.read_config()
             self.title = config_obj["title"]
             self.module_name = config_obj["module_name"]
-            self.steps = config_obj["steps"]
-            self.test = config_obj["test"]
-            self.prepare_and_test = len(self.steps)+len(self.test)
-            self.max_step = len(self.steps)
+            self.test_case = config_obj["test_case"]
+            self.test_case_detail = config_obj["test_case_detail"]
         except BaseException as e:
             logger.error(str(e))
         return config_obj

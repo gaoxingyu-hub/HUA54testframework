@@ -1,23 +1,76 @@
 {
     "title":"通信控制设备测试",
     "module_name":"com_control_device",
-    "steps":[
-        {"img":"1.png","title":"通信控制设备测试","contents":"拧开四个将设备固定在机柜上的螺钉，将设备从机柜上抽出","module": "DialogPicText"},
-        {"img":"2.png","title":"通信控制设备测试","contents":"保险丝安装于机箱后面板","module": "DialogPicText"},
-        {"img":"3.png","title":"通信控制设备测试","contents":"将保险丝后盖（与保险丝连接在一起）旋出","module": "DialogPicText"},
-        {"img":"4.png","title":"通信控制设备测试","contents":"打开设备上盖板，就可以看到设备内部布局","module": "DialogPicText"},
-        {"img":"5.png","title":"通信控制设备测试","contents":"电源模块进行拆装时，需要将电源接线端子松开（红色方框内），并将四个固定螺母旋开（红色圆圈）","module": "DialogPicText"},
-        {"img":"6.png","title":"通信控制设备测试","contents":"指示灯驱动板进行拆装时，需要将插头拔出（红色方框内），并将两个固定螺钉旋开（红色圆圈）","module": "DialogPicText"},
-        {"img":"7.png","title":"通信控制设备测试","contents":"协议转换与控制模块进行拆装时，首先将串口锁紧件松开，然后依次将串口插头、电源插头和指示灯插头拔出，并将五个固定螺钉旋开（红色圆圈）","module": "DialogPicText"},
-        {"img":"8.png","title":"通信控制设备测试","contents":"网络协议转换板进行拆装时，首先将网口锁紧件松开，然后依次将网头、电源插头和指示灯插头拔出，并将四个固定螺钉旋开（红色圆圈）","module": "DialogPicText"},
-        {"img":"9.png","title":"通信控制设备测试","contents":"网线","module": "DialogPicText"},
-        {"img":"10.png","title":"通信控制设备测试","contents":"网线连接位置","module": "DialogPicText"},
-        {"img":"11.png","title":"通信控制设备测试","contents":"232串口自环头","module": "DialogPicText"},
-        {"img":"12.png","title":"通信控制设备测试","contents":"485自测电缆","module": "DialogPicText"},
-        {"img":"13.png","title":"通信控制设备测试","contents":"COM9的232自环头","module": "DialogPicText"},
-        {"img":"14.png","title":"通信控制设备测试","contents":"COM9的422自环头","module": "DialogPicText"},
-        {"img":"15.png","title":"通信控制设备测试","contents":"测试线连接位置","module": "DialogPicText"},
-        {"img":"16.png","title":"通信控制设备测试","contents":"便携式军用加固计算机","module": "DialogPicText"},
-        {"img":"17.png","title":"通信控制设备测试","contents":"测试连接框图","module": "DialogPicText"}
+    "test_case": ["case1","case2","case3"],
+    "test_case_detail":[
+        {
+            "case_name": "case1",
+            "title": "case1",
+            "steps": [
+                {"img":"1.png","title":"通信控制设备测试","contents":"拧开四个将设备固定在机柜上的螺钉，将设备从机柜上抽出","module": "DialogPicText","category": "disassemble"},
+                {"img":"2.png","title":"通信控制设备测试","contents":"保险丝安装于机箱后面板","module": "DialogPicText","category": "disassemble"},
+                {"img":"3.png","title":"通信控制设备测试","contents":"将保险丝后盖（与保险丝连接在一起）旋出","module": "DialogPicText","category": "disassemble"},
+                {"img":"4.png","title":"通信控制设备测试","contents":"打开设备上盖板，就可以看到设备内部布局","module": "DialogPicText","category": "disassemble"},
+                {"img":"5.png","title":"通信控制设备测试","contents":"电源模块进行拆装时，需要将电源接线端子松开（红色方框内），并将四个固定螺母旋开（红色圆圈）","module": "DialogPicText","category": "disassemble"},
+                {"img":"6.png","title":"通信控制设备测试","contents":"指示灯驱动板进行拆装时，需要将插头拔出（红色方框内），并将两个固定螺钉旋开（红色圆圈）","module": "DialogPicText","category": "disassemble"},
+                {"img":"7.png","title":"通信控制设备测试","contents":"协议转换与控制模块进行拆装时，首先将串口锁紧件松开，然后依次将串口插头、电源插头和指示灯插头拔出，并将五个固定螺钉旋开（红色圆圈）","module": "DialogPicText","category": "disassemble"},
+                {"img":"8.png","title":"通信控制设备测试","contents":"网络协议转换板进行拆装时，首先将网口锁紧件松开，然后依次将网头、电源插头和指示灯插头拔出，并将四个固定螺钉旋开（红色圆圈）","module": "DialogPicText","category": "disassemble"},
+                {"img":"9.png","title":"通信控制设备测试","contents":"网线","module": "DialogPicText","category": "prepare"},
+                {"img":"10.png","title":"通信控制设备测试","contents":"网线连接位置","module": "DialogPicText","category": "prepare"},
+                {"img":"11.png","title":"通信控制设备测试","contents":"232串口自环头","module": "DialogPicText","category": "prepare"},
+                {"img":"12.png","title":"通信控制设备测试","contents":"485自测电缆","module": "DialogPicText","category": "prepare"},
+                {"img":"13.png","title":"通信控制设备测试","contents":"COM9的232自环头","module": "DialogPicText","category": "prepare"},
+                {"img":"14.png","title":"通信控制设备测试","contents":"COM9的422自环头","module": "DialogPicText","category": "prepare"},
+                {"img":"15.png","title":"通信控制设备测试","contents":"测试线连接位置","module": "DialogPicText","category": "prepare"},
+                {"img":"16.png","title":"通信控制设备测试","contents":"便携式军用加固计算机","module": "DialogPicText","category": "execute"},
+                {"img":"17.png","title":"通信控制设备测试","contents":"测试连接框图","module": "DialogPicText","category": "data"}
+            ]
+        },
+        {
+            "case_name": "case2",
+            "title": "case2",
+            "steps": [
+                {"img":"1.png","title":"case2通信控制设备测试","contents":"拧开四个将设备固定在机柜上的螺钉，将设备从机柜上抽出","module": "DialogPicText","category": "disassemble"},
+                {"img":"2.png","title":"case2通信控制设备测试","contents":"保险丝安装于机箱后面板","module": "DialogPicText","category": "disassemble"},
+                {"img":"3.png","title":"case2通信控制设备测试","contents":"将保险丝后盖（与保险丝连接在一起）旋出","module": "DialogPicText","category": "disassemble"},
+                {"img":"4.png","title":"case2通信控制设备测试","contents":"打开设备上盖板，就可以看到设备内部布局","module": "DialogPicText","category": "disassemble"},
+                {"img":"5.png","title":"case2通信控制设备测试","contents":"电源模块进行拆装时，需要将电源接线端子松开（红色方框内），并将四个固定螺母旋开（红色圆圈）","module": "DialogPicText","category": "disassemble"},
+                {"img":"6.png","title":"case2通信控制设备测试","contents":"指示灯驱动板进行拆装时，需要将插头拔出（红色方框内），并将两个固定螺钉旋开（红色圆圈）","module": "DialogPicText","category": "disassemble"},
+                {"img":"7.png","title":"case2通信控制设备测试","contents":"协议转换与控制模块进行拆装时，首先将串口锁紧件松开，然后依次将串口插头、电源插头和指示灯插头拔出，并将五个固定螺钉旋开（红色圆圈）","module": "DialogPicText","category": "disassemble"},
+                {"img":"8.png","title":"case2通信控制设备测试","contents":"网络协议转换板进行拆装时，首先将网口锁紧件松开，然后依次将网头、电源插头和指示灯插头拔出，并将四个固定螺钉旋开（红色圆圈）","module": "DialogPicText","category": "disassemble"},
+                {"img":"9.png","title":"case2通信控制设备测试","contents":"网线","module": "DialogPicText","category": "disassemble"},
+                {"img":"10.png","title":"case2通信控制设备测试","contents":"网线连接位置","module": "DialogPicText","category": "disassemble"},
+                {"img":"11.png","title":"case2通信控制设备测试","contents":"232串口自环头","module": "DialogPicText","category": "disassemble"},
+                {"img":"12.png","title":"case2通信控制设备测试","contents":"485自测电缆","module": "DialogPicText","category": "disassemble"},
+                {"img":"13.png","title":"case2通信控制设备测试","contents":"COM9的232自环头","module": "DialogPicText","category": "disassemble"},
+                {"img":"14.png","title":"case2通信控制设备测试","contents":"COM9的422自环头","module": "DialogPicText","category": "disassemble"},
+                {"img":"15.png","title":"case2通信控制设备测试","contents":"测试线连接位置","module": "DialogPicText","category": "disassemble"},
+                {"img":"16.png","title":"case2通信控制设备测试","contents":"便携式军用加固计算机","module": "DialogPicText","category": "disassemble"},
+                {"img":"17.png","title":"case2通信控制设备测试","contents":"测试连接框图","module": "DialogPicText","category": "disassemble"}
+            ]
+        },
+        {
+            "case_name": "case3",
+            "title": "case3",
+            "steps": [
+                {"img":"1.png","title":"case3通信控制设备测试","contents":"拧开四个将设备固定在机柜上的螺钉，将设备从机柜上抽出","module": "DialogPicText","category": "disassemble"},
+                {"img":"2.png","title":"case3通信控制设备测试","contents":"保险丝安装于机箱后面板","module": "DialogPicText","category": "disassemble"},
+                {"img":"3.png","title":"case3通信控制设备测试","contents":"将保险丝后盖（与保险丝连接在一起）旋出","module": "DialogPicText","category": "disassemble"},
+                {"img":"4.png","title":"case3通信控制设备测试","contents":"打开设备上盖板，就可以看到设备内部布局","module": "DialogPicText","category": "disassemble"},
+                {"img":"5.png","title":"case3通信控制设备测试","contents":"电源模块进行拆装时，需要将电源接线端子松开（红色方框内），并将四个固定螺母旋开（红色圆圈）","module": "DialogPicText","category": "disassemble"},
+                {"img":"6.png","title":"case3通信控制设备测试","contents":"指示灯驱动板进行拆装时，需要将插头拔出（红色方框内），并将两个固定螺钉旋开（红色圆圈）","module": "DialogPicText","category": "disassemble"},
+                {"img":"7.png","title":"case3通信控制设备测试","contents":"协议转换与控制模块进行拆装时，首先将串口锁紧件松开，然后依次将串口插头、电源插头和指示灯插头拔出，并将五个固定螺钉旋开（红色圆圈）","module": "DialogPicText","category": "disassemble"},
+                {"img":"8.png","title":"case3通信控制设备测试","contents":"网络协议转换板进行拆装时，首先将网口锁紧件松开，然后依次将网头、电源插头和指示灯插头拔出，并将四个固定螺钉旋开（红色圆圈）","module": "DialogPicText","category": "disassemble"},
+                {"img":"9.png","title":"case3通信控制设备测试","contents":"网线","module": "DialogPicText","category": "disassemble"},
+                {"img":"10.png","title":"case3通信控制设备测试","contents":"网线连接位置","module": "DialogPicText","category": "disassemble"},
+                {"img":"11.png","title":"case3通信控制设备测试","contents":"232串口自环头","module": "DialogPicText","category": "disassemble"},
+                {"img":"12.png","title":"case3通信控制设备测试","contents":"485自测电缆","module": "DialogPicText","category": "disassemble"},
+                {"img":"13.png","title":"case3通信控制设备测试","contents":"COM9的232自环头","module": "DialogPicText","category": "disassemble"},
+                {"img":"14.png","title":"case3通信控制设备测试","contents":"COM9的422自环头","module": "DialogPicText","category": "disassemble"},
+                {"img":"15.png","title":"case3通信控制设备测试","contents":"测试线连接位置","module": "DialogPicText","category": "disassemble"},
+                {"img":"16.png","title":"case3通信控制设备测试","contents":"便携式军用加固计算机","module": "DialogPicText","category": "disassemble"},
+                {"img":"17.png","title":"case3通信控制设备测试","contents":"测试连接框图","module": "DialogPicText","category": "disassemble"}
+            ]
+        }
     ]
 }
