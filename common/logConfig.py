@@ -5,6 +5,7 @@ import frozen_dir
 import re
 
 SETUP_DIR = frozen_dir.app_path()
+debug_flag = True
 class Logger:
 
     """
@@ -15,7 +16,7 @@ class Logger:
     logger = Logger.module_logger("com_control_device")
     """
     def __init__(self):
-        return
+        pass
 
     @classmethod
     def module_logger(self,module_name):
@@ -30,14 +31,21 @@ class Logger:
         logger = logging.getLogger("logger")
         logger.setLevel(logging.INFO)
 
-        formatter = logging.Formatter("%(asctime)s %(name)s %(levelname)s %(message)s")
-        log_file_handler = TimedRotatingFileHandler(filename=log_file_directory, when="D", interval=1, backupCount=7)
-        log_file_handler.suffix = "%Y-%m-%d_%H-%M.log"
-        log_file_handler.extMatch = re.compile(r"^\d{4}-\d{2}-\d{2}_\d{2}-\d{2}.log$")
-        log_file_handler.setFormatter(formatter)
-        log_file_handler.setLevel(logging.DEBUG)
+        formatter = logging.Formatter("%(asctime)s %(filename)s %(module)s %(funcName)s %(levelname)s %(message)s")
 
-        logger.addHandler(log_file_handler)
+        if debug_flag:
+            handler = logging.StreamHandler()
+            handler.setLevel(logging.DEBUG)
+            handler.setFormatter(formatter)
+            logger.addHandler(handler)
+        else:
+            log_file_handler = TimedRotatingFileHandler(filename=log_file_directory, when="D", interval=1, backupCount=7)
+            log_file_handler.suffix = "%Y-%m-%d_%H-%M.log"
+            log_file_handler.extMatch = re.compile(r"^\d{4}-\d{2}-\d{2}_\d{2}-\d{2}.log$")
+            log_file_handler.setFormatter(formatter)
+            log_file_handler.setLevel(logging.DEBUG)
+
+            logger.addHandler(log_file_handler)
         return logger
 
     @classmethod

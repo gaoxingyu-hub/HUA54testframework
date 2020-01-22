@@ -42,6 +42,6 @@ class DialogPicText(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        self._signalFinish.emit("close")
+        self._signalFinish.emit("next")
         self.accept()
         self.close()
