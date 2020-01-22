@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project test -->
-<!-- Saved: 2020-01-22, 09:39:12 -->
+<!-- Saved: 2020-01-22, 17:16:52 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
   <Task priority="1" completed="False" type="1" uid="{8a2e3555-4644-4d0e-a1dd-2d7b481bb4cc}">
