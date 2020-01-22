@@ -1,22 +1,23 @@
 # -*- coding: utf-8 -*-
 
 """
-Module implementing PIC_TEXT.
+Module implementing Dialog_COM_CONTROL_DEVICE_EXECUTE3.
 """
 
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QDialog
-from PyQt5 import QtGui
 from PyQt5.QtCore import pyqtSignal
+from PyQt5 import QtGui
 
-from .Ui_PIC_TEXT import Ui_Dialog
+from .Ui_COM_CONTROL_DEVICE_EXECUTE3 import Ui_Dialog
 import os
 
-class DialogPicText(QDialog, Ui_Dialog):
+
+class DialogComControlDeviceExecute3(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
-    _signalFinish = pyqtSignal(str,object)
+    _signalFinish = pyqtSignal(str)
 
     def __init__(self, parent=None):
         """
@@ -25,7 +26,7 @@ class DialogPicText(QDialog, Ui_Dialog):
         @param parent reference to the parent widget
         @type QWidget
         """
-        super(DialogPicText, self).__init__(parent)
+        super(DialogComControlDeviceExecute3, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
 
@@ -37,7 +38,22 @@ class DialogPicText(QDialog, Ui_Dialog):
                 self.label_img.setPixmap(QtGui.QPixmap(img_file_path))
         except:
             pass
-        return
+    
+    @pyqtSlot()
+    def on_pushButton_local_disconnect_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        pass
+    
+    @pyqtSlot()
+    def on_pushButton_remote_link_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        pass
     
     @pyqtSlot()
     def on_pushButton_next_clicked(self):
