@@ -257,7 +257,7 @@ border:1px solid rgb(0, 0, 0);
          </font>
         </property>
         <property name="currentIndex">
-         <number>3</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="testexecute_page1">
          <widget class="QLabel" name="testexecute_page1_label">
@@ -1894,7 +1894,7 @@ border:1px solid rgb(0, 0, 0);
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="iconQrc.qrc">
+     <iconset>
       <normaloff>:/newPrefix/icon/last4.ico</normaloff>:/newPrefix/icon/last4.ico</iconset>
     </property>
     <property name="iconSize">
@@ -1912,7 +1912,7 @@ border:1px solid rgb(0, 0, 0);
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="iconQrc.qrc">
+     <iconset>
       <normaloff>:/newPrefix/icon/next4.ico</normaloff>:/newPrefix/icon/next4.ico</iconset>
     </property>
     <property name="iconSize">
@@ -1930,7 +1930,7 @@ border:1px solid rgb(0, 0, 0);
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="iconQrc.qrc">
+     <iconset>
       <normaloff>:/newPrefix/icon/close4.ico</normaloff>:/newPrefix/icon/close4.ico</iconset>
     </property>
     <property name="iconSize">
