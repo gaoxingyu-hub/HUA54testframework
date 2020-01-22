@@ -1,30 +1,33 @@
 {
     "title":"通信控制设备测试",
     "module_name":"com_control_device",
-    "steps":["disassemble","testprepare","testexecute","testdata","assemble"],
-    "disassemble":{
-        "1":{"img":"1.png","contents":"拧开四个将设备固定在机柜上的螺钉，将设备从机柜上抽出"},
-        "2":{"img":"2.png","contents":"保险丝安装于机箱后面板"},
-        "3":{"img":"3.png","contents":"将保险丝后盖（与保险丝连接在一起）旋出"},
-        "4":{"img":"4.png","contents":"打开设备上盖板，就可以看到设备内部布局"},
-        "5":{"img":"5.png","contents":"电源模块进行拆装时，需要将电源接线端子松开（红色方框内），并将四个固定螺母旋开（红色圆圈）"},
-        "6":{"img":"6.png","contents":"指示灯驱动板进行拆装时，需要将插头拔出（红色方框内），并将两个固定螺钉旋开（红色圆圈）"},
-        "7":{"img":"7.png","contents":"协议转换与控制模块进行拆装时，首先将串口锁紧件松开，然后依次将串口插头、电源插头和指示灯插头拔出，并将五个固定螺钉旋开（红色圆圈）"},
-        "8":{"img":"8.png","contents":"网络协议转换板进行拆装时，首先将网口锁紧件松开，然后依次将网头、电源插头和指示灯插头拔出，并将四个固定螺钉旋开（红色圆圈）"}
-    },
-    "testprepare":{
-        "1":{"img":"1.png","contents":"网线"},
-        "2":{"img":"2.png","contents":"网线连接位置"},
-        "3":{"img":"3.png","contents":"232串口自环头"},
-        "4":{"img":"4.png","contents":"485自测电缆"},
-        "5":{"img":"5.png","contents":"COM9的232自环头"},
-        "6":{"img":"6.png","contents":"COM9的422自环头"},
-        "7":{"img":"7.png","contents":"测试线连接位置"},
-        "8":{"img":"8.png","contents":"便携式军用加固计算机"},
-        "9":{"img":"9.png","contents":"测试连接框图"}
-    },
-    "testexecute":{
-        "1":{"img":"1.png","contents":"电源指示灯不亮的时候，首先检查保险丝管是否完好，如果已经熔断请首先更换保险丝。此处应该跳转到保险丝更换画面或者相应拆机指导。"},
-        "2":{"img":"2.png","contents":"更换保险丝后，继续进行电源模块的输出电压测试，ECOM-NS-2型交换机的电源模块XS4的第1、2脚为+12V，第3、4脚为GND，使用万用表测试是否在规定范围内。如果电源电压不在规定范围内，请更换改电源模块，如果故障仍未排除，请继续进行后续测试。"}
-    }
+    "test_case": ["case1"],
+    "test_case_detail":[
+        {
+            "case_name": "case1",
+            "title": "case1",
+            "steps": [
+                {"img":"1.png","title":"通信控制设备测试","contents":"拧开四个将设备固定在机柜上的螺钉，将设备从机柜上抽出","module": "DialogPicText","category": "disassemble"},
+                {"img":"2.png","title":"通信控制设备测试","contents":"保险丝安装于机箱后面板","module": "DialogPicText","category": "disassemble"},
+                {"img":"3.png","title":"通信控制设备测试","contents":"将保险丝后盖（与保险丝连接在一起）旋出","module": "DialogPicText","category": "disassemble"},
+                {"img":"4.png","title":"通信控制设备测试","contents":"打开设备上盖板，就可以看到设备内部布局","module": "DialogPicText","category": "disassemble"},
+                {"img":"5.png","title":"通信控制设备测试","contents":"电源模块进行拆装时，需要将电源接线端子松开（红色方框内），并将四个固定螺母旋开（红色圆圈）","module": "DialogPicText","category": "disassemble"},
+                {"img":"6.png","title":"通信控制设备测试","contents":"指示灯驱动板进行拆装时，需要将插头拔出（红色方框内），并将两个固定螺钉旋开（红色圆圈）","module": "DialogPicText","category": "disassemble"},
+                {"img":"7.png","title":"通信控制设备测试","contents":"协议转换与控制模块进行拆装时，首先将串口锁紧件松开，然后依次将串口插头、电源插头和指示灯插头拔出，并将五个固定螺钉旋开（红色圆圈）","module": "DialogPicText","category": "disassemble"},
+                {"img":"8.png","title":"通信控制设备测试","contents":"网络协议转换板进行拆装时，首先将网口锁紧件松开，然后依次将网头、电源插头和指示灯插头拔出，并将四个固定螺钉旋开（红色圆圈）","module": "DialogPicText","category": "disassemble"},
+                {"img":"9.png","title":"通信控制设备测试","contents":"网线","module": "DialogPicText","category": "prepare"},
+                {"img":"10.png","title":"通信控制设备测试","contents":"网线连接位置","module": "DialogPicText","category": "prepare"},
+                {"img":"11.png","title":"通信控制设备测试","contents":"232串口自环头","module": "DialogPicText","category": "prepare"},
+                {"img":"12.png","title":"通信控制设备测试","contents":"485自测电缆","module": "DialogPicText","category": "prepare"},
+                {"img":"13.png","title":"通信控制设备测试","contents":"COM9的232自环头","module": "DialogPicText","category": "prepare"},
+                {"img":"14.png","title":"通信控制设备测试","contents":"COM9的422自环头","module": "DialogPicText","category": "prepare"},
+                {"img":"15.png","title":"通信控制设备测试","contents":"测试线连接位置","module": "DialogPicText","category": "prepare"},
+                {"img":"16.png","title":"通信控制设备测试","contents":"便携式军用加固计算机","module": "DialogPicText","category": "prepare"},
+                {"img":"17.png","title":"通信控制设备测试","contents":"测试连接框图","module": "DialogPicText","category": "prepare"},
+                {"img":"","title":"网络协议转换板测试","contents":"","module": "DialogComControlDeviceExecute1","category": "execute"},
+                {"img":"","title":"协议转换与控制测试：COM1-COM4","contents":"","module": "DialogComControlDeviceExecute2","category": "execute"},
+                {"img":"","title":"协议转换与控制测试：COM5-COM8","contents":"","module": "DialogComControlDeviceExecute3","category": "execute"}
+            ]
+        }
+    ]
 }

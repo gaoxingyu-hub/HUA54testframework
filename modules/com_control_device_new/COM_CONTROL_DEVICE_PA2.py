@@ -18,6 +18,10 @@ from common.logConfig import Logger
 from common.th_thread_model import ThThreadTimerUpdateTestTime
 
 from .Ui_COM_CONTROL_DEVICE_PA2 import Ui_Dialog
+from .COM_CONTROL_DEVICE_EXECUTE1 import DialogComControlDeviceExecute1
+from .COM_CONTROL_DEVICE_EXECUTE2 import DialogComControlDeviceExecute2
+from .COM_CONTROL_DEVICE_EXECUTE3 import DialogComControlDeviceExecute3
+from .testResult import TestData1
 
 SETUP_DIR = frozen_dir.app_path()
 
@@ -148,14 +152,16 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         """
         if action is "next":
             for case,step in self.test_cases_records.items():
-                if step["current"] >= step["max"]:
+                if step["current"] > step["max"]:
                     continue
 
                 #get the test case detail parameters
                 for x in range(len(self.test_config.test_case)):
                     if case in self.test_config.test_case_detail[x]["title"]:
+
                         temp_test_process = self.test_config.test_case_detail[x]["steps"][step["current"] - 1]
                         self.current_test_case = case
+
                         self.current_test_step_dialog = globals()[temp_test_process['module']]()
                         self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
                         self.current_test_step_dialog.set_contents(temp_test_process['title'],
@@ -173,7 +179,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         return
 
 
-    def deal_signal_test_step_finish_emit_slot(self, paras):
+    def deal_signal_test_step_finish_emit_slot(self, flag,para):
         """
 
         :param paras:
@@ -181,12 +187,18 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         """
         if self.current_test_step_dialog:
             self.current_test_step_dialog.close()
-            self.test_cases_records[self.current_test_case]["current"] = \
-                self.test_cases_records[self.current_test_case]["current"] + 1
-            time.sleep(0.1)
-            self.test_process_control("next")
+            if flag == "step1":
+                self.test_cases_records[self.current_test_case]["current"] = \
+                    self.test_cases_records[self.current_test_case]["current"] + 1
+                time.sleep(0.1)
+                self.test_process_control("next")
+            else:
+                self.test_cases_records[self.current_test_case]["current"] = \
+                    self.test_cases_records[self.current_test_case]["current"] + 1
+                time.sleep(0.1)
+                self.test_process_control("next")
 
-    def deal_signal_test_duration_caculate_emit_slot(self, paras):
+    def deal_signal_test_duration_caculate_emit_slot(self, para):
         """
 
         :param paras:
@@ -194,7 +206,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         """
 
         try:
-            hours, remainder = divmod(paras, 3600)
+            hours, remainder = divmod(para, 3600)
             minutes, seconds = divmod(remainder, 60)
             self.label_test_duration.setText(str(int(hours)) + ":" + str(int(minutes)) + ":" + str(int(seconds)))
         except BaseException as e:

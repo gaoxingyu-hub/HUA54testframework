@@ -1,18 +1,19 @@
 # -*- coding: utf-8 -*-
 
 """
-Module implementing PIC_TEXT.
+Module implementing DIALOG_COM_CONTROL_DEVICE_EXECUTE1.
 """
 
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QDialog
-from PyQt5 import QtGui
 from PyQt5.QtCore import pyqtSignal
+from PyQt5 import QtGui
 
-from .Ui_PIC_TEXT import Ui_Dialog
+from .Ui_COM_CONTROL_DEVICE_EXECUTE1 import Ui_Dialog
+from .testResult import TestData1
 import os
 
-class DialogPicText(QDialog, Ui_Dialog):
+class DialogComControlDeviceExecute1(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
@@ -25,7 +26,7 @@ class DialogPicText(QDialog, Ui_Dialog):
         @param parent reference to the parent widget
         @type QWidget
         """
-        super(DialogPicText, self).__init__(parent)
+        super(DialogComControlDeviceExecute1, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
 
@@ -37,7 +38,14 @@ class DialogPicText(QDialog, Ui_Dialog):
                 self.label_img.setPixmap(QtGui.QPixmap(img_file_path))
         except:
             pass
-        return
+    
+    @pyqtSlot()
+    def on_pushButton_execute_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        pass
     
     @pyqtSlot()
     def on_pushButton_next_clicked(self):
@@ -45,6 +53,7 @@ class DialogPicText(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        self._signalFinish.emit("next",None)
+        temp = TestData1()
+        self._signalFinish.emit("step1",temp)
         self.accept()
         self.close()
