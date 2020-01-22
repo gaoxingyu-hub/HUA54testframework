@@ -67,7 +67,6 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         parent.setText(0, self.test_config.title)
         parent.setFlags(parent.flags() | Qt.ItemIsTristate | Qt.ItemIsUserCheckable)
 
-        print(self.test_config.test_case)
         for x in range(len(self.test_config.test_case)):
             child = QTreeWidgetItem(parent)
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
@@ -110,8 +109,8 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         else:
             self.current_test_step = 1
         self.start_caculate_test_duration()
-        self.test_process_control("next")
-        logger.info("com_control_device test process start")
+        self.test_process_control("next",None)
+        logger.info("high_freq_device test process start")
     
     @pyqtSlot()
     def on_pushButton_restart_clicked(self):
@@ -130,9 +129,9 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
             self.current_test_step = 0
         else:
             self.current_test_step = 1
-        self.test_process_control("next")
+        self.test_process_control("next",None)
         self.start_caculate_test_duration()
-        logger.info("com_control_device test process restart")
+        logger.info("high_freq_device test process restart")
     
     @pyqtSlot()
     def on_pushButton_close_clicked(self):
@@ -142,9 +141,9 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         # TODO: not implemented yet
         self.signalTitle.emit("close")
         self.close()
-        logger.info("com_control_device test process close")
+        logger.info("high_freq_device test process close")
 
-    def test_process_control(self,action):
+    def test_process_control(self,action,data):
         """
         action: test execute action "next" or "restart"
         """
@@ -168,14 +167,14 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
                         self.current_test_step_dialog.exec_()
                         break
 
-            logger.info("com_control_device test process: next step")
+            logger.info("high_freq_device test process: next step")
         elif action is "test":
-            self.test_data_refesh()
+            self.test_data_refesh(data)
 
         return
 
 
-    def deal_signal_test_step_finish_emit_slot(self, paras):
+    def deal_signal_test_step_finish_emit_slot(self, paras,data):
         """
 
         :param paras:
@@ -187,9 +186,9 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
                 self.test_cases_records[self.current_test_case]["current"] + 1
             time.sleep(0.1)
             if paras.find('next')>=0:
-                self.test_process_control("next")
+                self.test_process_control("next",None)
             elif paras.find('test')>=0:
-                self.test_process_control('test')
+                self.test_process_control('test',data)
 
     def deal_signal_test_duration_caculate_emit_slot(self, paras):
         """
@@ -241,16 +240,24 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         self.tableWidget_test_results.setColumnCount(4)
         self.tableWidget_test_results.setRowCount(0)
         self.tableWidget_test_results.setHorizontalHeaderLabels(['测试项目', '测试条件', '测试值','测试结论'])
-    def test_data_refesh(self):
-        print('更新结果')
+    def test_data_refesh(self,reuslt):
         rowCount=self.tableWidget_test_results.rowCount()
         self.tableWidget_test_results.insertRow(rowCount)
         current_row=rowCount
-        newItem = QTableWidgetItem('收发单元发射通道故障定位')
+        newItem = QTableWidgetItem(str(reuslt.test_item))
         self.tableWidget_test_results.setItem(current_row, 0, newItem)
-        newItem = QTableWidgetItem('频率：67MHz，功率：0dBm')
+        newItem = QTableWidgetItem(str(reuslt.test_condition))
         self.tableWidget_test_results.setItem(current_row, 1, newItem)
-        newItem = QTableWidgetItem('1.5dBm')
+        newItem = QTableWidgetItem(str(reuslt.test_results))
         self.tableWidget_test_results.setItem(current_row, 2, newItem)
-        newItem = QTableWidgetItem('PASS')
+        newItem = QTableWidgetItem(str(reuslt.test_conclusion))
         self.tableWidget_test_results.setItem(current_row, 3, newItem)
+
+        # newItem = QTableWidgetItem('收发单元发射通道故障定位')
+        # self.tableWidget_test_results.setItem(current_row, 0, newItem)
+        # newItem = QTableWidgetItem('频率：67MHz，功率：0dBm')
+        # self.tableWidget_test_results.setItem(current_row, 1, newItem)
+        # newItem = QTableWidgetItem('1.5dBm')
+        # self.tableWidget_test_results.setItem(current_row, 2, newItem)
+        # newItem = QTableWidgetItem('PASS')
+        # self.tableWidget_test_results.setItem(current_row, 3, newItem)

@@ -17,7 +17,7 @@ class AUTO_TEST(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
-    _signalFinish = pyqtSignal(str)
+    _signalFinish = pyqtSignal(str,object)
 
     def __init__(self, parent=None):
         """
@@ -29,7 +29,6 @@ class AUTO_TEST(QDialog, Ui_Dialog):
         super(AUTO_TEST, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
-        print("123")
 
     # def set_contents(self,title,contents):
     #     self.setWindowTitle(title)
@@ -57,18 +56,19 @@ class AUTO_TEST(QDialog, Ui_Dialog):
         addr_sa=str(self.lineEdit_freq_sa.text())
         addr_sg="TCPIP0::"+addr_sg+"::inst0::INSTR"
         addr_sa = "TCPIP0::" + addr_sa + "::inst0::INSTR"
-        self.test_rulst=test_results()
+        data=test_results()
         try:
             self.sa=AgilentN5242.VNA_AgilentN5242(addr_sa)
             self.sg = AgilentN5242.VNA_AgilentN5242(addr_sg)
         except:
             pass
             # print('仪表连接错误，请确认！')
-        self.test_rulst.test_item = 'LO'
-        self.test_rulst.test_condition = 'freq:69MHz，Power:0dBm'
-        self.test_results=1.5
-        self.test_conclusion='PASS'
-        self._signalFinish.emit("test")
+        data.test_item = 'transmitter'
+        data.test_condition = 'freq:69MHz，Power:0dBm'
+        data.test_results=1.5
+        data.test_conclusion='PASS'
+        self._signalFinish.emit("test",data)
+
         self.accept()
         self.close()
 
