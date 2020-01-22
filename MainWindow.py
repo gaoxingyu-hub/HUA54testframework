@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QMainWindow,QTreeWidgetItem,QMessageBox
 from modules.ecom_ns_2.ECOM_NS_2 import EcomDialog
 from modules.test.module import TestModule
 from modules.com_control_device_new.COM_CONTROL_DEVICE_PA2 import COM_CONTROL_DEVICE
-from modules.high_freq_device.high_freq_device import HIGH_FREQ_DEVICE
+from modules.high_freq_device.high_freq_device_PA2 import HIGH_FREQ_DEVICE
 from PyQt5.QtCore import pyqtSignal
 from PyQt5 import QtCore
 from common.logConfig import Logger

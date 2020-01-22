@@ -1,13 +1,42 @@
 {
-    "title":"散射高频设备",
+    "title":"散射通信高频设备",
     "module_name":"high_freq_device",
-    "steps":[
-        {"img":"1.png","title":"散射高频设备-收/发单元接收通道","contents":"拆开高频设备的上盖板，露出收发单元，拧下收发单元的XS4和XS8处的连接线","module": "DialogPicText"},
-        {"img":"2.png","title":"散射高频设备-收/发单元接收通道","contents":"高频设备和信号源、频谱仪接地，接通电源","module": "DialogPicText"},
-        {"img":"3.png","title":"散射高频设备-收/发单元接收通道","contents":"按图连接好高频设备的外部接线，收发单元XS4和XS8按照上图连接到信号源和频谱仪","module": "DialogPicText"},
-        {"img":"4.png","title":"散射高频设备-收/发单元接收通道","contents":"打开高频设备开关查看设备的收发频率，确认高频设备的接收衰减为0dB","module": "DialogPicText"}
-    ],
-    "test":[
-        {"img":"","title":"散射高频设备-收/发单元接收通道","contents":"设置信号源和频谱仪相关参数","module": "AUTO_TEST"}
+    "test_case": ["收发单元本振故障定位","收发单元接收通道故障定位","收发单元发射通道故障定位"],
+    "test_case_detail":[
+        {
+            "case_name": "LO_TEST",
+            "title": "收发单元本振故障定位",
+            "steps": [
+                {"img":"1.png","title":"通信控制设备测试","contents":"拧开四个将设备固定在机柜上的螺钉，将设备从机柜上抽出","module": "DialogPicText","category": "disassemble"},
+                {"img":"2.png","title":"通信控制设备测试","contents":"保险丝安装于机箱后面板","module": "DialogPicText","category": "disassemble"},
+                {"img":"3.png","title":"通信控制设备测试","contents":"将保险丝后盖（与保险丝连接在一起）旋出","module": "DialogPicText","category": "disassemble"},
+                {"img":"4.png","title":"通信控制设备测试","contents":"打开设备上盖板，就可以看到设备内部布局","module": "DialogPicText","category": "disassemble"}
+            ]
+        },
+        {
+            "case_name": "RECEIVER_TEST",
+            "title": "收发单元接收通道故障定位",
+            "steps": [
+                {"img":"1.png","title":"case2通信控制设备测试","contents":"拧开四个将设备固定在机柜上的螺钉，将设备从机柜上抽出","module": "DialogPicText","category": "disassemble"},
+                {"img":"2.png","title":"case2通信控制设备测试","contents":"保险丝安装于机箱后面板","module": "DialogPicText","category": "disassemble"},
+                {"img":"3.png","title":"case2通信控制设备测试","contents":"将保险丝后盖（与保险丝连接在一起）旋出","module": "DialogPicText","category": "disassemble"},
+                {"img":"4.png","title":"case2通信控制设备测试","contents":"打开设备上盖板，就可以看到设备内部布局","module": "DialogPicText","category": "disassemble"},
+                {"img":"5.png","title":"case2通信控制设备测试","contents":"电源模块进行拆装时，需要将电源接线端子松开（红色方框内），并将四个固定螺母旋开（红色圆圈）","module": "DialogPicText","category": "disassemble"}
+            ]
+        },
+        {
+            "case_name": "TRANSMITTER_TEST",
+            "title": "收发单元发射通道故障定位",
+            "steps": [
+                {"img":"1.png","title":"收/发单元接收通道","contents":"拆开高频设备的上盖板，露出收发单元，拧下收发单元的XS4和XS8处的连接线","module": "DialogPicText","category": "disassemble"},
+                {"img":"2.png","title":"收/发单元接收通道","contents":"高频设备和信号源、频谱仪接地，接通电源","module": "DialogPicText","category": "disassemble"},
+                {"img":"3.png","title":"收/发单元接收通道","contents":"按图连接好高频设备的外部接线，收发单元XS4和XS8按照上图连接到信号源和频谱仪","module": "DialogPicText","category": "disassemble"},
+                {"img":"4.png","title":"收/发单元接收通道","contents":"打开高频设备开关查看设备的收发频率，确认高频设备的接收衰减为0dB","module": "DialogPicText","category": "disassemble"},
+                {"img":"","title":"收/发单元接收通道","contents":"设置信号源和频谱仪相关参数","module": "AUTO_TEST","category": "execute"}
+            ]
+        }
     ]
 }
+
+
+

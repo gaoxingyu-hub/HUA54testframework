@@ -20,7 +20,7 @@ import time
 from .Ui_high_freq_device import Ui_Dialog
 
 SETUP_DIR = frozen_dir.app_path()
-class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
+class HIGH_FREQ_DEVICE1(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
@@ -35,7 +35,7 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         @param parent reference to the parent widget
         @type QWidget
         """
-        super(HIGH_FREQ_DEVICE, self).__init__(parent)
+        super(HIGH_FREQ_DEVICE1, self).__init__(parent)
         self.setupUi(self)
         self.current_test_step = 0
 

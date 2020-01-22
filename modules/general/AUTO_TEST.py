@@ -17,7 +17,7 @@ class AUTO_TEST(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
-    _signalTest = pyqtSignal(str)
+    _signalFinish = pyqtSignal(str)
 
     def __init__(self, parent=None):
         """
@@ -29,14 +29,20 @@ class AUTO_TEST(QDialog, Ui_Dialog):
         super(AUTO_TEST, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
+        print("123")
 
-    def set_contents(self,title,contents):
+    # def set_contents(self,title,contents):
+    #     self.setWindowTitle(title)
+    #     self.textBrowser_contents.setText(contents)
+    #     # if os.access(img_file_path, os.W_OK):
+    #     #     self.label_img.setPixmap(QtGui.QPixmap(img_file_path))
+    #     # return
+    def set_contents(self,title,contents,img_file_path):
         self.setWindowTitle(title)
         self.textBrowser_contents.setText(contents)
         # if os.access(img_file_path, os.W_OK):
         #     self.label_img.setPixmap(QtGui.QPixmap(img_file_path))
-        # return
-    
+        return
     @pyqtSlot()
     def on_pushButton_next_clicked(self):
         """
@@ -56,12 +62,13 @@ class AUTO_TEST(QDialog, Ui_Dialog):
             self.sa=AgilentN5242.VNA_AgilentN5242(addr_sa)
             self.sg = AgilentN5242.VNA_AgilentN5242(addr_sg)
         except:
-            print('仪表连接错误，请确认！')
+            pass
+            # print('仪表连接错误，请确认！')
         self.test_rulst.test_item = 'LO'
         self.test_rulst.test_condition = 'freq:69MHz，Power:0dBm'
         self.test_results=1.5
         self.test_conclusion='PASS'
-        self._signalTest.emit("test")
+        self._signalFinish.emit("test")
         self.accept()
         self.close()
 
