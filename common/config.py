@@ -96,8 +96,10 @@ class TestModuleConfigNew(BaseConfig):
         self.title = ""
         self.module_name = ""
         self.test_case = None
+        self.test_source = None
         self.test_case_detail = None
         self.get_test_parameters()
+
         return
 
     def get_test_parameters(self):
@@ -107,6 +109,7 @@ class TestModuleConfigNew(BaseConfig):
             self.module_name = config_obj["module_name"]
             self.test_case = config_obj["test_case"]
             self.test_case_detail = config_obj["test_case_detail"]
+            self.test_source = config_obj["test_source"]
         except BaseException as e:
             logger.error(str(e))
         return config_obj

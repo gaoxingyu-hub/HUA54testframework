@@ -1,76 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project test -->
-<!-- Saved: 2020-01-22, 17:16:52 -->
+<!-- Saved: 2020-01-30, 22:09:18 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
-  <Task priority="1" completed="False" type="1" uid="{8a2e3555-4644-4d0e-a1dd-2d7b481bb4cc}">
+  <Task priority="1" completed="False" type="1" uid="{cb39e4b6-0a2c-4c4f-9157-01eb7c33f007}">
     <Summary>TODO: not implemented yet</Summary>
     <Description></Description>
-    <Created>2020-01-22, 09:39:08</Created>
+    <Created>2020-01-30, 22:09:14</Created>
+    <Resource>
+      <Filename>COM_CONTROL_DEVICE_EXECUTE1.py</Filename>
+      <Linenumber>32</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{b040e4d4-e829-4808-8093-9cb322422066}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2020-01-30, 22:09:14</Created>
+    <Resource>
+      <Filename>COM_CONTROL_DEVICE_EXECUTE1.py</Filename>
+      <Linenumber>40</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{60d63424-2b66-489b-88ec-bb90930ccc56}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2020-01-30, 22:09:14</Created>
+    <Resource>
+      <Filename>COM_CONTROL_DEVICE_EXECUTE2.py</Filename>
+      <Linenumber>32</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{502a0276-0021-451e-ae1e-b79fca41e57c}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2020-01-30, 22:09:14</Created>
+    <Resource>
+      <Filename>COM_CONTROL_DEVICE_EXECUTE2.py</Filename>
+      <Linenumber>40</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{8e07ba48-2352-47c8-99ce-ed74a5ea7511}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2020-01-30, 22:09:14</Created>
+    <Resource>
+      <Filename>COM_CONTROL_DEVICE_EXECUTE2.py</Filename>
+      <Linenumber>48</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{050fb572-c116-4828-9489-cfadacde95ad}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2020-01-30, 22:09:14</Created>
+    <Resource>
+      <Filename>COM_CONTROL_DEVICE_EXECUTE3.py</Filename>
+      <Linenumber>32</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{d57dc129-9a96-44d8-a3cf-e5e7f1f9d024}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2020-01-30, 22:09:14</Created>
+    <Resource>
+      <Filename>COM_CONTROL_DEVICE_EXECUTE3.py</Filename>
+      <Linenumber>40</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{1ae7f6e7-3b1d-4a72-96c9-41113904ca3d}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2020-01-30, 22:09:14</Created>
+    <Resource>
+      <Filename>COM_CONTROL_DEVICE_EXECUTE3.py</Filename>
+      <Linenumber>48</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{4777fd73-e6de-4ac0-9be8-8928ed8a0a07}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2020-01-30, 22:09:15</Created>
     <Resource>
       <Filename>COM_CONTROL_DEVICE_PA2.py</Filename>
       <Linenumber>32</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{68de1945-4256-4b94-9de6-329d1571600f}">
+  <Task priority="1" completed="False" type="1" uid="{c2026f2f-cc2f-4fb1-aca8-e82fae40dd55}">
     <Summary>TODO: not implemented yet</Summary>
     <Description></Description>
-    <Created>2020-01-22, 09:39:08</Created>
+    <Created>2020-01-30, 22:09:15</Created>
     <Resource>
       <Filename>COM_CONTROL_DEVICE_PA2.py</Filename>
       <Linenumber>40</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{8cb078c0-4d52-4260-8e53-8a61f2723c77}">
+  <Task priority="1" completed="False" type="1" uid="{e76b64ab-8b32-496b-bf84-0cc72aec20ae}">
     <Summary>TODO: not implemented yet</Summary>
     <Description></Description>
-    <Created>2020-01-22, 09:39:08</Created>
+    <Created>2020-01-30, 22:09:15</Created>
     <Resource>
       <Filename>COM_CONTROL_DEVICE_PA2.py</Filename>
       <Linenumber>48</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{cad8b80a-0e5c-43a1-aa92-97a5ffb45aef}">
+  <Task priority="1" completed="False" type="1" uid="{702a83d1-cd99-48fc-aa91-fb952980d1b7}">
     <Summary>TODO: not implemented yet</Summary>
     <Description></Description>
-    <Created>2020-01-22, 09:39:09</Created>
-    <Resource>
-      <Filename>COM_CONTROL_DEVICE_PA2.py</Filename>
-      <Linenumber>32</Linenumber>
-    </Resource>
-  </Task>
-  <Task priority="1" completed="False" type="1" uid="{41affcc6-aabe-41f2-b541-fcbf80124b66}">
-    <Summary>TODO: not implemented yet</Summary>
-    <Description></Description>
-    <Created>2020-01-22, 09:39:09</Created>
-    <Resource>
-      <Filename>COM_CONTROL_DEVICE_PA2.py</Filename>
-      <Linenumber>40</Linenumber>
-    </Resource>
-  </Task>
-  <Task priority="1" completed="False" type="1" uid="{8e8debd9-7a97-442f-8c30-8c6003030884}">
-    <Summary>TODO: not implemented yet</Summary>
-    <Description></Description>
-    <Created>2020-01-22, 09:39:09</Created>
-    <Resource>
-      <Filename>COM_CONTROL_DEVICE_PA2.py</Filename>
-      <Linenumber>48</Linenumber>
-    </Resource>
-  </Task>
-  <Task priority="1" completed="False" type="1" uid="{0be78412-10b4-402c-9bc2-b9ad42e6c9ad}">
-    <Summary>TODO: not implemented yet</Summary>
-    <Description></Description>
-    <Created>2020-01-22, 09:39:09</Created>
+    <Created>2020-01-30, 22:09:15</Created>
     <Resource>
       <Filename>PIC_TEXT.py</Filename>
       <Linenumber>32</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{e4a0bafd-9b2a-4efe-91a5-486848bb7d87}">
+  <Task priority="1" completed="False" type="1" uid="{445a7b45-362d-42b6-be37-fca962e35a75}">
     <Summary>TODO: not implemented yet</Summary>
     <Description></Description>
-    <Created>2020-01-22, 09:39:09</Created>
+    <Created>2020-01-30, 22:09:15</Created>
     <Resource>
       <Filename>TEST_PROCEDURE_CONTROL.py</Filename>
       <Linenumber>32</Linenumber>

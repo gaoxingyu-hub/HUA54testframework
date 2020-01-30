@@ -3,10 +3,10 @@
 """
 Module implementing COM_CONTROL_DEVICE.
 """
-
+from PyQt5 import QtGui, QtCore
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import QDialog,QTreeWidgetItem,QTreeWidget
-from PyQt5.QtCore import pyqtSignal,Qt
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import pyqtSignal, Qt
 from modules.info.testInfo import TestInfo
 from PyQt5.QtWidgets import QMessageBox
 from common.config import TestModuleConfigNew, SystemConfig
@@ -63,7 +63,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         self.test_cases_records = None  #用来记录测试项目的执行测试的进度
         self.current_test_case = None #记录当前执行的test case
 
-        #init tree widget for test case
+        # init tree widget for test case
         self.treeWidget.clear()
         parent = QTreeWidgetItem(self.treeWidget)
         parent.setText(0, self.test_config.title)
@@ -74,6 +74,24 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
             child.setText(0, self.test_config.test_case_detail[x]["title"])
             child.setCheckState(0, Qt.Unchecked)
+        # 加载测试资源
+        temp_length = len(self.test_config.test_source)
+        print(temp_length)
+        temp_list = self.test_config.test_source
+        # 插入数据,根据temp_length数组的长度插入行数
+        self.tableWidget_test_resource.insertRow(temp_length)
+        for x in range(temp_length):
+            item = QTableWidgetItem(str(temp_list[x]["name"]))
+            self.tableWidget_test_resource.setItem(x, 0, item)
+
+            item = QTableWidgetItem(str(temp_list[x]["number"]))
+            self.tableWidget_test_resource.setItem(x, 1, item)
+
+            item = QTableWidgetItem(str(temp_list[x]["count"]))
+            self.tableWidget_test_resource.setItem(x, 2, item)
+
+            item = QTableWidgetItem(str(temp_list[x]["note"]))
+            self.tableWidget_test_resource.setItem(x, 3, item)
 
         logger.info("com_control_device inited")
     
