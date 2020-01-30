@@ -9,13 +9,13 @@ from PyQt5.QtWidgets import QDialog
 from PyQt5 import QtGui
 from PyQt5.QtCore import pyqtSignal
 
-from ui.Ui_AUTO_TEST import Ui_Dialog
+from .Ui_SWITCH_TEST import Ui_Dialog
 import os
 from InstrumentDrivers.VNADriver import AgilentN5242
 from PyQt5.Qt import QMessageBox
 import numpy as np
 
-class AUTO_TEST(QDialog, Ui_Dialog):
+class MANUAL_TEST_SWITCH(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
@@ -28,7 +28,7 @@ class AUTO_TEST(QDialog, Ui_Dialog):
         @param parent reference to the parent widget
         @type QWidget
         """
-        super(AUTO_TEST, self).__init__(parent)
+        super(MANUAL_TEST_SWITCH, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
         self.demo = True
@@ -46,43 +46,33 @@ class AUTO_TEST(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        try:
-            self.freq_sg=float(self.lineEdit_freq_sg.text())*1e6
-            self.power_sg=float(self.lineEdit_power_sg.text())
-            self.freq_sa=float(self.lineEdit_freq_sa.text())*1e6
-            self.bw_sa=float(self.lineEdit_bw_sa.text())*1e6
-            addr_sg=str(self.lineEdit_addr_sg.text())
-            addr_sa=str(self.lineEdit_addr_sa.text())
-        except:
-            QMessageBox.warning(self, "警告", "测试参数输入不完整或格式不正确！")
-            return
-        addr_sg="TCPIP0::"+addr_sg+"::inst0::INSTR"
-        addr_sa = "TCPIP0::" + addr_sa + "::inst0::INSTR"
+
         self.test_result=test_results()
+        addr_sa=str(self.lineEdit_addr_sa.text())
+        addr_sa = "TCPIP0::" + addr_sa + "::inst0::INSTR"
         if not self.demo:
             try:
                 self.sa=AgilentN5242.VNA_AgilentN5242(addr_sa)
-                self.sg = AgilentN5242.VNA_AgilentN5242(addr_sg)
             except:
                 QMessageBox.warning(self, "警告", "仪表连接错误！")
                 print('仪表连接错误，请确认！')
                 return
-        self.test_result.test_item = '收发单元发射通道'
-        self.test_result.test_condition = '频率:'+self.lineEdit_freq_sg.text()+'MHz，功率:'+self.lineEdit_power_sg.text()+'dBm'
-        self.test_result.test_results=1+np.random.random(1)
+        self.test_result.test_item = '收发单元本振测试'
+        self.test_result.test_condition = '--'
+        self.test_result.test_results=str(self.testProcess())
         self.test_result.test_conclusion='PASS'
-        self._signalTest.emit("test")
+        self._signalTest.emit("test_lo")
         self.accept()
         self.close()
     
     
     def testProcess(self):
-        mres =1+ round(np.random.random(1),2)
+        mres =np.random.choice([u'无告警',u'有告警']) 
         return mres
     
 class test_results:
     def __init__(self):
         self.test_item=''
         self.test_condition=''
-        self.test_results=0.0
+        self.test_results='无本振告警'
         self.test_conclusion='PASS'

@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QDialog
 from PyQt5 import QtGui
 from PyQt5.QtCore import pyqtSignal
 
-from ui.Ui_AUTO_TEST import Ui_Dialog
+from .Ui_AUTO_TEST import Ui_Dialog
 import os
 from InstrumentDrivers.VNADriver import AgilentN5242
 from PyQt5.Qt import QMessageBox
@@ -67,9 +67,9 @@ class AUTO_TEST(QDialog, Ui_Dialog):
                 QMessageBox.warning(self, "警告", "仪表连接错误！")
                 print('仪表连接错误，请确认！')
                 return
-        self.test_result.test_item = '收发单元发射通道'
+        self.test_result.test_item = '收发单元接收通道'
         self.test_result.test_condition = '频率:'+self.lineEdit_freq_sg.text()+'MHz，功率:'+self.lineEdit_power_sg.text()+'dBm'
-        self.test_result.test_results=1+np.random.random(1)
+        self.test_result.test_results=self.testProcess()
         self.test_result.test_conclusion='PASS'
         self._signalTest.emit("test")
         self.accept()
@@ -77,8 +77,8 @@ class AUTO_TEST(QDialog, Ui_Dialog):
     
     
     def testProcess(self):
-        mres =1+ round(np.random.random(1),2)
-        return mres
+        mres =float(2+ np.random.random(1))
+        return round(mres,3)
     
 class test_results:
     def __init__(self):
