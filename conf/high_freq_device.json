@@ -92,7 +92,7 @@
 	            	{"img":"15.png","title":"散射高频设备-耦合器","contents":"耦合器在高频中的位置如下图所示","module": "DialogPicText"},
 			        {"img":"15.png","title":"散射高频设备-耦合器","contents":"拆开高频设备的上盖板，露出耦合器，拧下耦合器XS3处的连接线","module": "DialogPicText"},
 			        {"img":"15.png","title":"散射高频设备-耦合器","contents":"矢量网络分析仪接地，接通电源，选择通道S21，中心频率设置为4700MHz，带宽设置为800MHz，1dB/DIV，REFERENCE VALUE： -40 dB，仪器接SMA电缆进行校准","module": "DialogPicText"},
-			        {"img":"16.png","title":"散射高频设备-耦合器","contents":"按图连接好高频设备天线口和内部耦合器的接线","module": "DialogPicText"}
+			        {"img":"16.png","title":"散射高频设备-耦合器","contents":"按图连接好高频设备天线口和内部耦合器的接线","module": "DialogPicText"},
 			        {"img":"","title":"散射高频设备-耦合器","contents":"设置矢量网络分析仪相关参数","module": "AUTO_TEST_COUPLER"}
 			    ]
 	        },

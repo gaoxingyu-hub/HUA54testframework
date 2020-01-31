@@ -114,7 +114,7 @@ class Ui_Dialog(object):
         self.comboBox_sg_addr.setItemText(0, _translate("Dialog", "波导开关正常"))
         self.comboBox_sg_addr.setItemText(1, _translate("Dialog", "波导开关故障"))
         self.pushButton_next.setText(_translate("Dialog", "下一步"))
-import iconQrc_rc
+import res.iconQrc_rc
 
 
 if __name__ == "__main__":
