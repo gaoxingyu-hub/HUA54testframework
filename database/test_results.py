@@ -50,7 +50,7 @@ class TestItem:
 
 class TestResultBase:
     """
-    test result standard data format
+    test result standard database format
     example:
     temp = TestResultBase()
     temp.dutDrawingNbr = "1"
@@ -107,7 +107,7 @@ class TestResultBase:
 
 if __name__ == '__main__':
     temp = TestResultBase()
-    temp.dutDrawingNbr = "1"
+    temp.testObjName = "1"
     temp.stationName = "2"
     temp.stationDrawingNbr = "3"
     temp.stationSn = "4"
@@ -117,7 +117,7 @@ if __name__ == '__main__':
     temp.dutName = "8"
     temp.dutDrawingNbr = "9"
     temp.dutSn = "10"
-    temp.testTime = "11"
+    temp.testTime = "2020-01-31 15:00:00"
 
     testvalue1 = TestValue()
     testvalue1.value = "12300"

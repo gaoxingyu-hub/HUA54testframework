@@ -18,8 +18,8 @@ class BaseConfig:
 
     def read_config(self):
         """
-        read config json format file info data object
-        :return: json data object
+        read config json format file info database object
+        :return: json database object
         """
         try:
             data = None
@@ -48,8 +48,8 @@ class TestModuleConfig(BaseConfig):
 
     def get_test_parameters(self):
         """
-        read the module test log file into data object
-        :return: data dict object
+        read the module test log file into database object
+        :return: database dict object
         """
         try:
             config_obj = self.read_config()
@@ -77,8 +77,8 @@ class SystemConfig(BaseConfig):
 
     def get_system_parameters(self):
         """
-        read the system config log file into data object
-        :return: data dict object
+        read the system config log file into database object
+        :return: database dict object
         """
         try:
             config_obj = self.read_config()
