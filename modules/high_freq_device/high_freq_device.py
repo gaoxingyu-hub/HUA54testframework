@@ -6,7 +6,7 @@ Module implementing COM_CONTROL_DEVICE.
 
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QDialog
-from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtCore import pyqtSignal,Qt
 from modules.info.testInfo import TestInfo
 from PyQt5.QtWidgets import QMessageBox
 from common.config import TestModuleConfigNew, SystemConfig
@@ -14,19 +14,37 @@ from PyQt5.QtWidgets import *
 import os
 import frozen_dir
 from modules.general.PIC_TEXT import DialogPicText
-from modules.general.AUTO_TEST import AUTO_TEST
-import time
+from modules.high_freq_device.MANUAL_TEST_LO import MANUAL_TEST_LO
+from modules.high_freq_device.AUTO_TEST import AUTO_TEST
+from modules.high_freq_device.AUTO_TEST_T import AUTO_TEST_T
+from modules.high_freq_device.AUTO_TEST_LNA import AUTO_TEST_LNA
+from modules.high_freq_device.AUTO_TEST_PA import AUTO_TEST_PA
+from modules.high_freq_device.AUTO_TEST_LOOP import AUTO_TEST_LOOP
+from modules.high_freq_device.AUTO_TEST_FILTER import AUTO_TEST_FILTER
+from modules.high_freq_device.AUTO_TEST_COUPLER import AUTO_TEST_COUPLER
+from modules.high_freq_device.MANUAL_TEST_SWITCH import MANUAL_TEST_SWITCH
+from modules.high_freq_device.MANUAL_TEST_MONITOR import MANUAL_TEST_MONITOR
 
-from .Ui_high_freq_device import Ui_Dialog
+
+import time
+from common.logConfig import Logger
+from common.th_thread_model import ThThreadTimerUpdateTestTime
+
+from ui.Ui_high_freq_device import Ui_Dialog
+from asyncio.tasks import sleep
+#test
+import sys
+from PyQt5 import QtWidgets,QtCore
 
 SETUP_DIR = frozen_dir.app_path()
+logger = Logger.module_logger("high_freq_device")
 class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
     signalTitle = pyqtSignal(str)
     signalStatus = pyqtSignal(str)
-    debug_model = True
+    debug_model = False
 
     def __init__(self, parent=None):
         """
@@ -50,6 +68,27 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
 
         self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name
+        
+        self.test_time_update_obj = ThThreadTimerUpdateTestTime()
+
+        self.selected_test_cases = None #用来记录选中的测试项目
+        self.test_cases_records = None  #用来记录测试项目的执行测试的进度
+        self.current_test_case = None #记录当前执行的test case
+
+        #init tree widget for test case
+        self.treeWidget.clear()
+        parent = QTreeWidgetItem(self.treeWidget)
+        parent.setText(0, self.test_config.title)
+        parent.setFlags(parent.flags() | Qt.ItemIsTristate | Qt.ItemIsUserCheckable)
+
+        for x in range(len(self.test_config.test_case)):
+            child = QTreeWidgetItem(parent)
+            child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
+            child.setText(0, self.test_config.test_case_detail[x]["title"])
+            child.setCheckState(0, Qt.Unchecked)
+
+        logger.info("high_freq_device inited")
+        self.tabWidget.setCurrentIndex(0)
         self.record_table_init()
 
     
@@ -59,18 +98,34 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        if not self.debug_model:
-            test = TestInfo()
-            test.setWindowTitle("散射通信高频设备")
-            if test.exec_():
-                if test.flag == -1:
-                    QMessageBox.warning(self, "警告", "测试参数输入不完整！")
-            else:
-                QMessageBox.warning(self, "警告", "测试参数输入不完整！")
-            self.current_test_step = 0
-        else:
-            self.current_test_step = 1
+        self.selected_test_cases = self.get_checked_test_cases()
+
+        if len(self.selected_test_cases) == 0:
+            QMessageBox.warning(self, "警告", "请选择测试项目")
+            return
+
+        self.test_cases_records = {}
+        for item in self.selected_test_cases:
+            for x in range(len(self.test_config.test_case)):
+                if item in self.test_config.test_case_detail[x]["title"]:
+                    temp = {}
+                    temp["current"] = 1
+                    temp["max"] = len(self.test_config.test_case_detail[x]["steps"])
+                    self.test_cases_records[item] = temp
+#         if not self.debug_model:
+#             test = TestInfo()
+#             test.setWindowTitle("散射通信高频设备")
+#             if test.exec_():
+#                 if test.flag == -1:
+#                     QMessageBox.warning(self, "警告", "测试参数输入不完整！")
+#             else:
+#                 QMessageBox.warning(self, "警告", "测试参数输入不完整！")
+#             self.current_test_step = 0
+#         else:
+#             self.current_test_step = 1
+        self.start_caculate_test_duration()
         self.test_process_control("next")
+        logger.info("high_freq_device test process start")
 
     
     @pyqtSlot()
@@ -107,53 +162,247 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         action: test execute action "next" or "restart"
         """
         if action is "next":
-            if self.current_test_step < self.test_config.max_step:
-                temp_test_process = self.test_config.steps[self.current_test_step - 1]
-                self.current_test_step_dialog = globals()[temp_test_process['module']]()
-                self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
-                self.current_test_step_dialog.set_contents(temp_test_process['title'],temp_test_process['contents'],os.path.join(
-                    self.pic_file_path,
-                    temp_test_process['img']))
-                self.current_test_step_dialog.exec_()
-            elif self.current_test_step >= self.test_config.max_step and self.current_test_step < self.test_config.prepare_and_test:
-                temp_test_process = self.test_config.test[self.current_test_step -self.test_config.max_step]
-                self.current_test_step_dialog = globals()[temp_test_process['module']]()
-                # self.current_test_step_dialog._signalTest.connect(self.deal_test_data_finish_emit_slot)
-                self.current_test_step_dialog._signalTest.connect(self.test_data_refesh)
-                self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
-                self.current_test_step_dialog.exec_()
+            for case,step in self.test_cases_records.items():
+                if step["current"] > step["max"]:
+                    continue
+
+                #get the test case detail parameters
+                for x in range(len(self.test_config.test_case)):
+                    if case in self.test_config.test_case_detail[x]["title"]:
+
+                        temp_test_process = self.test_config.test_case_detail[x]["steps"][step["current"] - 1]
+                        self.current_test_case = case
+
+                        self.current_test_step_dialog = globals()[temp_test_process['module']]()
+                        if temp_test_process['module'] == 'AUTO_TEST':
+                            self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_tr)
+                            self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
+                        elif temp_test_process['module'] == 'AUTO_TEST_T':
+                            self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_tr)
+                            self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
+                        elif temp_test_process['module'] == 'MANUAL_TEST_LO':
+                            self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_tr)
+                            self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
+                        elif temp_test_process['module'] == 'AUTO_TEST_LNA':
+                            self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_lna)
+                            self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
+                        elif temp_test_process['module'] == 'AUTO_TEST_PA':
+                            self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_lna)
+                            self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
+                        elif temp_test_process['module'] == 'AUTO_TEST_LOOP':
+                            self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_lna)
+                            self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
+                        elif temp_test_process['module'] == 'AUTO_TEST_FILTER':
+                            self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_lna)
+                            self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
+                        elif temp_test_process['module'] == 'AUTO_TEST_COUPLER':
+                            self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_lna)
+                            self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
+                        elif temp_test_process['module'] == 'MANUAL_TEST_SWITCH':
+                            self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_lna)
+                            self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
+                        elif temp_test_process['module'] == 'MANUAL_TEST_MONITOR':
+                            self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_lna)
+                            self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
+
+                        else:
+                            self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
+                            self.current_test_step_dialog.set_contents(temp_test_process['title'],
+                                                                       temp_test_process['contents'],
+                                                                       os.path.join(
+                                                                           self.pic_file_path,
+                                                                           temp_test_process['img']))
+                        self.current_test_step_dialog.exec_()
+                        break
+
+            logger.info("high_freq_device test process: next step")
+        elif action is "finish":
+            pass
+
         return
 
 
-    def deal_signal_test_step_finish_emit_slot(self, paras):
+    def deal_signal_test_step_finish_emit_slot(self, flag,para):
+        """
+
+        :param paras:
+        :return:
+        """
         if self.current_test_step_dialog:
             self.current_test_step_dialog.close()
-            self.current_test_step = self.current_test_step + 1
-            time.sleep(0.2)
-            self.test_process_control("next")
+            if flag == "step1":
+                self.test_cases_records[self.current_test_case]["current"] = \
+                    self.test_cases_records[self.current_test_case]["current"] + 1
+                time.sleep(0.1)
+                self.test_process_control("next")
+            else:
+                self.test_cases_records[self.current_test_case]["current"] = \
+                    self.test_cases_records[self.current_test_case]["current"] + 1
+                time.sleep(0.1)
+                self.test_process_control("next")
 
-    def deal_test_data_finish_emit_slot(self):
-        # if self.current_test_step_dialog:
-        #     self.current_test_step_dialog.close()
-        #     self.current_test_step = self.current_test_step + 1
-        #     time.sleep(0.2)
-            self.test_data_refesh()
+#     def deal_signal_test_step_finish_emit_slot(self, paras):
+#         if self.current_test_step_dialog:
+#             self.current_test_step_dialog.close()
+#             self.current_test_step = self.current_test_step + 1
+#             time.sleep(0.2)
+#             self.test_process_control("next")
+
 
     def record_table_init(self):
-        self.tableWidget_test_results.clear()
-        self.tableWidget_test_results.setColumnCount(4)
-        self.tableWidget_test_results.setRowCount(0)
-        self.tableWidget_test_results.setHorizontalHeaderLabels(['测试项目', '测试条件', '测试值','测试结论'])
-    def test_data_refesh(self):
-        print('更新结果')
-        rowCount=self.tableWidget_test_results.rowCount()
-        self.tableWidget_test_results.insertRow(rowCount)
+        
+        #收发单元
+        self.table = self.tableWidget_test_results_tr
+        self.table.clear()
+        self.table.setColumnCount(4)
+        self.table.setRowCount(0)
+        self.table.setHorizontalHeaderLabels(['测试项目', '测试条件', '测试值','测试结论'])
+        self.table.horizontalHeader().setSectionResizeMode (1)  
+        #低噪放单元
+        self.table = self.tableWidget_test_results_lna
+        self.table.clear()
+        self.table.setColumnCount(4)
+        self.table.setRowCount(0)
+        self.table.setHorizontalHeaderLabels(['测试项目', '测试条件', '测试值','测试结论'])
+        self.table.horizontalHeader().setSectionResizeMode (1)  
+        
+    def test_data_refesh_tr(self,flag):
+        print('更新结果tr')
+        self.tabWidget.setCurrentIndex(0)
+        self.table = self.tableWidget_test_results_tr
+        rowCount=self.table.rowCount()
+        self.table.insertRow(rowCount)
         current_row=rowCount
-        newItem = QTableWidgetItem('收发单元发射通道故障定位')
-        self.tableWidget_test_results.setItem(current_row, 0, newItem)
-        newItem = QTableWidgetItem('频率：67MHz，功率：0dBm')
-        self.tableWidget_test_results.setItem(current_row, 1, newItem)
-        newItem = QTableWidgetItem('1.5dBm')
-        self.tableWidget_test_results.setItem(current_row, 2, newItem)
-        newItem = QTableWidgetItem('PASS')
-        self.tableWidget_test_results.setItem(current_row, 3, newItem)
+        
+        mItem = self.current_test_step_dialog.test_result.test_item
+        newItem = QTableWidgetItem(mItem)
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+        self.table.setItem(current_row, 0, newItem)
+        
+        mItem = self.current_test_step_dialog.test_result.test_condition
+        newItem = QTableWidgetItem(mItem)
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+        self.table.setItem(current_row, 1, newItem)
+        
+        mItem = str(self.current_test_step_dialog.test_result.test_results)
+        newItem = QTableWidgetItem(mItem)
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+        self.table.setItem(current_row, 2, newItem)
+        
+        mItem = self.current_test_step_dialog.test_result.test_conclusion
+        newItem = QTableWidgetItem(mItem)
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+        self.table.setItem(current_row, 3, newItem)
+        #test
+        if self.current_test_step_dialog:
+            self.current_test_step_dialog.close()
+            if flag == "step1":
+                self.test_cases_records[self.current_test_case]["current"] = \
+                    self.test_cases_records[self.current_test_case]["current"] + 1
+                time.sleep(0.1)
+                self.test_process_control("next")
+            else:
+                self.test_cases_records[self.current_test_case]["current"] = \
+                    self.test_cases_records[self.current_test_case]["current"] + 1
+                time.sleep(0.1)
+                self.test_process_control("next")
+                
+    def test_data_refesh_lna(self,flag):
+        print('更新结果lna')
+        self.tabWidget.setCurrentIndex(1)
+        self.table = self.tableWidget_test_results_lna
+        rowCount=self.table.rowCount()
+        self.table.insertRow(rowCount)
+        current_row=rowCount
+        mItem = self.current_test_step_dialog.test_result.test_item
+        newItem = QTableWidgetItem(mItem)
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+        self.table.setItem(current_row, 0, newItem)
+        
+        mItem = self.current_test_step_dialog.test_result.test_condition
+        newItem = QTableWidgetItem(mItem)
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+        self.table.setItem(current_row, 1, newItem)
+        
+        mItem = str(self.current_test_step_dialog.test_result.test_results)
+        newItem = QTableWidgetItem(mItem)
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+        self.table.setItem(current_row, 2, newItem)
+        
+        mItem = self.current_test_step_dialog.test_result.test_conclusion
+        newItem = QTableWidgetItem(mItem)
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+        self.table.setItem(current_row, 3, newItem)
+        #test
+        if self.current_test_step_dialog:
+            self.current_test_step_dialog.close()
+            if flag == "step1":
+                self.test_cases_records[self.current_test_case]["current"] = \
+                    self.test_cases_records[self.current_test_case]["current"] + 1
+                time.sleep(0.1)
+                self.test_process_control("next")
+            else:
+                self.test_cases_records[self.current_test_case]["current"] = \
+                    self.test_cases_records[self.current_test_case]["current"] + 1
+                time.sleep(0.1)
+                self.test_process_control("next")
+                
+  
+    
+    def start_caculate_test_duration(self):
+        if not self.test_time_update_obj:
+            self.test_time_update_obj = ThThreadTimerUpdateTestTime()
+
+        self.test_time_update_obj.restart()
+        self.test_time_update_obj._signal.connect(self.deal_signal_test_duration_caculate_emit_slot)
+        if not self.test_time_update_obj.thread_status:
+            self.test_time_update_obj.start()
+       
+    def get_checked_test_cases(self):
+        """
+        get the tree widget checked test cases
+        all the checked item are child nodes,not parent node
+
+        :return:
+        """
+        selected_test_cases = []
+        for item in self.treeWidget.findItems("", Qt.MatchContains | Qt.MatchRecursive):
+
+            # excludes the parent node
+            if item.parent() is None:
+                continue
+
+            # check the child node whether checked,if it had checked,
+            # the checkState value greater than 0
+            if item.checkState(0) > 0:
+                selected_test_cases.append(item.text(0))
+
+        return selected_test_cases
+    
+    
+    def deal_signal_test_duration_caculate_emit_slot(self, para):
+        """
+
+        :param paras:
+        :return:
+        """
+
+        try:
+            hours, remainder = divmod(para, 3600)
+            minutes, seconds = divmod(remainder, 60)
+            self.label_test_duration.setText(str(int(hours)) + ":" + str(int(minutes)) + ":" + str(int(seconds)))
+        except BaseException as e:
+            logger.info("high_freq_device deal_signal_test_duration_caculate_emit_slot fail:" + str(e))
+
+
+
+
+if __name__ == '__main__':
+    app = QtWidgets.QApplication(sys.argv)
+    # trans = QtCore.QTranslator()
+    # temp_file_path = os.path.join(SETUP_DIR,"langs","en","main_en.qm")
+    # trans.load(temp_file_path)
+    # app.installTranslator(trans)
+    mTest = HIGH_FREQ_DEVICE()
+    mTest.show()
+    sys.exit(app.exec_())

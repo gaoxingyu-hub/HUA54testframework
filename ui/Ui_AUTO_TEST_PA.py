@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'E:\autoTest\54testframework\ui\AUTO_TEST.ui'
+# Form implementation generated from reading ui file 'E:\autoTest\54testframework\ui\AUTO_TEST_PA.ui'
 #
 # Created by: PyQt5 UI code generator 5.14.1
 #
@@ -176,7 +176,7 @@ class Ui_Dialog(object):
         self.label_8.setText(_translate("Dialog", "带宽"))
         self.comboBox_sa_bw.setItemText(0, _translate("Dialog", "MHz"))
         self.label_9.setText(_translate("Dialog", "地址"))
-import res.iconQrc_rc
+import iconQrc_rc
 
 
 if __name__ == "__main__":

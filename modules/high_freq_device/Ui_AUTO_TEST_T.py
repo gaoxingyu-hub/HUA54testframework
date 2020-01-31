@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'E:\autoTest\54testframework\ui\AUTO_TEST.ui'
+# Form implementation generated from reading ui file 'E:\autoTest\54testframework\ui\AUTO_TEST_T.ui'
 #
 # Created by: PyQt5 UI code generator 5.14.1
 #
