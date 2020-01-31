@@ -37,7 +37,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
     def __init__(self, parent=None):
         """
         Constructor
-        
+
         @param parent reference to the parent widget
         @type QWidget
         """
@@ -69,29 +69,29 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         parent.setText(0, self.test_config.title)
         parent.setFlags(parent.flags() | Qt.ItemIsTristate | Qt.ItemIsUserCheckable)
 
+        # 加载测试资源
+
+        for x in range(len(self.test_config.test_source)):
+            # 插入数据,根据temp_length数组的长度插入行数
+            self.tableWidget_test_resource.setRowCount(len(self.test_config.test_source))
+
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["name"]))
+            self.tableWidget_test_resource.setItem(x, 0, item)
+
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["number"]))
+            self.tableWidget_test_resource.setItem(x, 1, item)
+
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["count"]))
+            self.tableWidget_test_resource.setItem(x, 2, item)
+
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["note"]))
+            self.tableWidget_test_resource.setItem(x, 3, item)
+
         for x in range(len(self.test_config.test_case)):
             child = QTreeWidgetItem(parent)
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
             child.setText(0, self.test_config.test_case_detail[x]["title"])
             child.setCheckState(0, Qt.Unchecked)
-        # 加载测试资源
-        temp_length = len(self.test_config.test_source)
-        print(temp_length)
-        temp_list = self.test_config.test_source
-        # 插入数据,根据temp_length数组的长度插入行数
-        self.tableWidget_test_resource.insertRow(temp_length)
-        for x in range(temp_length):
-            item = QTableWidgetItem(str(temp_list[x]["name"]))
-            self.tableWidget_test_resource.setItem(x, 0, item)
-
-            item = QTableWidgetItem(str(temp_list[x]["number"]))
-            self.tableWidget_test_resource.setItem(x, 1, item)
-
-            item = QTableWidgetItem(str(temp_list[x]["count"]))
-            self.tableWidget_test_resource.setItem(x, 2, item)
-
-            item = QTableWidgetItem(str(temp_list[x]["note"]))
-            self.tableWidget_test_resource.setItem(x, 3, item)
 
         logger.info("com_control_device inited")
     
