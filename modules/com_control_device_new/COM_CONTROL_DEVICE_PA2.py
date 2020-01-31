@@ -186,7 +186,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         """
         if self.current_test_step_dialog:
             self.current_test_step_dialog.close()
-            if flag == "step1":
+            if flag == "step1" or flag == "step2":
                 self.test_cases_records[self.current_test_case]["current"] = \
                     self.test_cases_records[self.current_test_case]["current"] + 1
                 time.sleep(0.1)

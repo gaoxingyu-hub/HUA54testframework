@@ -3,12 +3,12 @@
 # @Time    : 2020/1/16 18:55
 # @Author  : chuan.yang
 # @File    : data_checker.py
-# @Desc    : check data format is correct
+# @Desc    : check database format is correct
 import re
 
 class ThDataChecker:
     """
-    static class methods for general purpose data process
+    static class methods for general purpose database process
     """
     @classmethod
     def is_ip(self,inputs):
