@@ -3,10 +3,10 @@
 """
 Module implementing COM_CONTROL_DEVICE.
 """
-
+from PyQt5 import QtGui, QtCore
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import QDialog,QTreeWidgetItem,QTreeWidget
-from PyQt5.QtCore import pyqtSignal,Qt
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import pyqtSignal, Qt
 from modules.info.testInfo import TestInfo
 from PyQt5.QtWidgets import QMessageBox
 from common.config import TestModuleConfigNew, SystemConfig
@@ -37,7 +37,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
     def __init__(self, parent=None):
         """
         Constructor
-        
+
         @param parent reference to the parent widget
         @type QWidget
         """
@@ -63,11 +63,29 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         self.test_cases_records = None  #用来记录测试项目的执行测试的进度
         self.current_test_case = None #记录当前执行的test case
 
-        #init tree widget for test case
+        # init tree widget for test case
         self.treeWidget.clear()
         parent = QTreeWidgetItem(self.treeWidget)
         parent.setText(0, self.test_config.title)
         parent.setFlags(parent.flags() | Qt.ItemIsTristate | Qt.ItemIsUserCheckable)
+
+        # 加载测试资源
+
+        for x in range(len(self.test_config.test_source)):
+            # 插入数据,根据temp_length数组的长度插入行数
+            self.tableWidget_test_resource.setRowCount(len(self.test_config.test_source))
+
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["name"]))
+            self.tableWidget_test_resource.setItem(x, 0, item)
+
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["number"]))
+            self.tableWidget_test_resource.setItem(x, 1, item)
+
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["count"]))
+            self.tableWidget_test_resource.setItem(x, 2, item)
+
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["note"]))
+            self.tableWidget_test_resource.setItem(x, 3, item)
 
         for x in range(len(self.test_config.test_case)):
             child = QTreeWidgetItem(parent)
@@ -186,7 +204,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         """
         if self.current_test_step_dialog:
             self.current_test_step_dialog.close()
-            if flag == "step1":
+            if flag == "step1" or flag == "step2":
                 self.test_cases_records[self.current_test_case]["current"] = \
                     self.test_cases_records[self.current_test_case]["current"] + 1
                 time.sleep(0.1)
