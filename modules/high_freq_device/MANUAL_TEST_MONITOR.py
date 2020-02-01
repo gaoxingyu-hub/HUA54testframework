@@ -48,20 +48,12 @@ class MANUAL_TEST_MONITOR(QDialog, Ui_Dialog):
         # TODO: not implemented yet
 
         self.test_result=test_results()
-        addr_sa=str(self.lineEdit_addr_sa.text())
-        addr_sa = "TCPIP0::" + addr_sa + "::inst0::INSTR"
-        if not self.demo:
-            try:
-                self.sa=AgilentN5242.VNA_AgilentN5242(addr_sa)
-            except:
-                QMessageBox.warning(self, "警告", "仪表连接错误！")
-                print('仪表连接错误，请确认！')
-                return
-        self.test_result.test_item = '收发单元本振测试'
+
+        self.test_result.test_item = '监控模块'
         self.test_result.test_condition = '--'
         self.test_result.test_results=str(self.testProcess())
         self.test_result.test_conclusion='PASS'
-        self._signalTest.emit("test_lo")
+        self._signalTest.emit("test_monitor")
         self.accept()
         self.close()
     

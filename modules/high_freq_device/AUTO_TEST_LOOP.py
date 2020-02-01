@@ -67,7 +67,7 @@ class AUTO_TEST_LOOP(QDialog, Ui_Dialog):
                 QMessageBox.warning(self, "警告", "仪表连接错误！")
                 print('仪表连接错误，请确认！')
                 return
-        self.test_result.test_item = '低噪声放大器'
+        self.test_result.test_item = '自环器'
         self.test_result.test_condition = '频率:'+self.lineEdit_freq_sg.text()+'MHz，功率:'+self.lineEdit_power_sg.text()+'dBm'
  
         self.test_result.test_results=self.testProcess()
