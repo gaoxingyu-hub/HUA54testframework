@@ -48,3 +48,5 @@ class DialogPicText(QDialog, Ui_Dialog):
         self._signalFinish.emit("next",None)
         self.accept()
         self.close()
+    
+    

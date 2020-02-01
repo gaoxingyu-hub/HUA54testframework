@@ -47,28 +47,24 @@ class AUTO_TEST_COUPLER(QDialog, Ui_Dialog):
         """
         # TODO: not implemented yet
         try:
-            self.freq_sg=float(self.lineEdit_freq_sg.text())*1e6
-            self.power_sg=float(self.lineEdit_power_sg.text())
-            self.freq_sa=float(self.lineEdit_freq_sa.text())*1e6
-            self.bw_sa=float(self.lineEdit_bw_sa.text())*1e6
-            addr_sg=str(self.lineEdit_addr_sg.text())
-            addr_sa=str(self.lineEdit_addr_sa.text())
+            self.freq_na=float(self.lineEdit_freq_na.text())*1e6
+            self.bw_na=float(self.lineEdit_bw_na.text())*1e6
+            addr_na=str(self.lineEdit_addr_na.text())
         except:
             QMessageBox.warning(self, "警告", "测试参数输入不完整或格式不正确！")
             return
-        addr_sg="TCPIP0::"+addr_sg+"::inst0::INSTR"
-        addr_sa = "TCPIP0::" + addr_sa + "::inst0::INSTR"
+        addr_na="TCPIP0::"+addr_na+"::inst0::INSTR"
+
         self.test_result=test_results()
         if not self.demo:
             try:
-                self.sa=AgilentN5242.VNA_AgilentN5242(addr_sa)
-                self.sg = AgilentN5242.VNA_AgilentN5242(addr_sg)
+                self.sa=AgilentN5242.VNA_AgilentN5242(addr_na)
             except:
                 QMessageBox.warning(self, "警告", "仪表连接错误！")
                 print('仪表连接错误，请确认！')
                 return
-        self.test_result.test_item = '低噪声放大器'
-        self.test_result.test_condition = '频率:'+self.lineEdit_freq_sg.text()+'MHz，功率:'+self.lineEdit_power_sg.text()+'dBm'
+        self.test_result.test_item = '耦合器'
+        self.test_result.test_condition = '频率:'+self.lineEdit_freq_na.text()+'MHz，带宽:'+self.lineEdit_bw_na.text()+'MHz'
  
         self.test_result.test_results=self.testProcess()
         self.test_result.test_conclusion='PASS'

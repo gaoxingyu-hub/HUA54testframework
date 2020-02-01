@@ -711,7 +711,7 @@ border:1px solid rgb(0, 0, 0);
          <enum>QTabWidget::South</enum>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>7</number>
         </property>
         <widget class="QWidget" name="tab">
          <attribute name="title">
@@ -787,7 +787,28 @@ border:1px solid rgb(0, 0, 0);
          </attribute>
          <layout class="QGridLayout" name="gridLayout_10">
           <item row="0" column="0">
-           <widget class="QTableWidget" name="tableWidget_test_results_pa"/>
+           <widget class="QTableWidget" name="tableWidget_test_results_pa">
+            <column>
+             <property name="text">
+              <string>测试项</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>测试条件</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>测试结果</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>测试结论</string>
+             </property>
+            </column>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -797,7 +818,28 @@ border:1px solid rgb(0, 0, 0);
          </attribute>
          <layout class="QGridLayout" name="gridLayout_11">
           <item row="0" column="0">
-           <widget class="QTableWidget" name="tableWidget_test_results_sc"/>
+           <widget class="QTableWidget" name="tableWidget_test_results_sc">
+            <column>
+             <property name="text">
+              <string>测试项</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>测试条件</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>测试结果</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>测试结论</string>
+             </property>
+            </column>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -807,7 +849,28 @@ border:1px solid rgb(0, 0, 0);
          </attribute>
          <layout class="QGridLayout" name="gridLayout_12">
           <item row="0" column="0">
-           <widget class="QTableWidget" name="tableWidget_test_results_filter"/>
+           <widget class="QTableWidget" name="tableWidget_test_results_filter">
+            <column>
+             <property name="text">
+              <string>测试项</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>测试条件</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>测试结果</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>测试结论</string>
+             </property>
+            </column>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -817,7 +880,28 @@ border:1px solid rgb(0, 0, 0);
          </attribute>
          <layout class="QGridLayout" name="gridLayout_13">
           <item row="0" column="0">
-           <widget class="QTableWidget" name="tableWidget_test_results_wg"/>
+           <widget class="QTableWidget" name="tableWidget_test_results_wg">
+            <column>
+             <property name="text">
+              <string>测试项</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>测试条件</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>测试结果</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>测试结论</string>
+             </property>
+            </column>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -827,7 +911,28 @@ border:1px solid rgb(0, 0, 0);
          </attribute>
          <layout class="QGridLayout" name="gridLayout_14">
           <item row="0" column="0">
-           <widget class="QTableWidget" name="tableWidget_test_results_coupler"/>
+           <widget class="QTableWidget" name="tableWidget_test_results_coupler">
+            <column>
+             <property name="text">
+              <string>测试项</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>测试条件</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>测试结果</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>测试结论</string>
+             </property>
+            </column>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -837,7 +942,28 @@ border:1px solid rgb(0, 0, 0);
          </attribute>
          <layout class="QGridLayout" name="gridLayout_15">
           <item row="0" column="0">
-           <widget class="QTableWidget" name="tableWidget_test_results_monitor"/>
+           <widget class="QTableWidget" name="tableWidget_test_results_monitor">
+            <column>
+             <property name="text">
+              <string>测试项</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>测试条件</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>测试结果</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>测试结论</string>
+             </property>
+            </column>
+           </widget>
           </item>
          </layout>
         </widget>
