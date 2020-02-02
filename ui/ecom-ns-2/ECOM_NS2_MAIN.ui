@@ -128,7 +128,7 @@ border:1px solid rgb(0, 0, 0);
        <string/>
       </property>
       <property name="icon">
-       <iconset resource="iconQrc.qrc">
+       <iconset resource="../iconQrc.qrc">
         <normaloff>:/newPrefix/icon/start1.ico</normaloff>:/newPrefix/icon/start1.ico</iconset>
       </property>
       <property name="iconSize">
@@ -148,7 +148,7 @@ border:1px solid rgb(0, 0, 0);
        <string/>
       </property>
       <property name="icon">
-       <iconset resource="iconQrc.qrc">
+       <iconset resource="../iconQrc.qrc">
         <normaloff>:/newPrefix/icon/restart1.ico</normaloff>:/newPrefix/icon/restart1.ico</iconset>
       </property>
       <property name="iconSize">
@@ -168,7 +168,7 @@ border:1px solid rgb(0, 0, 0);
        <string/>
       </property>
       <property name="icon">
-       <iconset resource="iconQrc.qrc">
+       <iconset resource="../iconQrc.qrc">
         <normaloff>:/newPrefix/icon/close1.ico</normaloff>:/newPrefix/icon/close1.ico</iconset>
       </property>
       <property name="iconSize">
@@ -244,14 +244,6 @@ border:1px solid rgb(0, 0, 0);
              <string>1</string>
             </property>
            </column>
-           <item>
-            <property name="text">
-             <string>协议控制和转换模块</string>
-            </property>
-            <property name="flags">
-             <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
-            </property>
-           </item>
           </widget>
          </item>
         </layout>
@@ -373,7 +365,7 @@ border:1px solid rgb(0, 0, 0);
   </widget>
  </widget>
  <resources>
-  <include location="iconQrc.qrc"/>
+  <include location="../iconQrc.qrc"/>
  </resources>
  <connections/>
 </ui>

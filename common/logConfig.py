@@ -33,19 +33,20 @@ class Logger:
 
         formatter = logging.Formatter("%(asctime)s %(filename)s %(module)s %(funcName)s %(levelname)s %(message)s")
 
-        if debug_flag:
-            handler = logging.StreamHandler()
-            handler.setLevel(logging.DEBUG)
-            handler.setFormatter(formatter)
-            logger.addHandler(handler)
-        else:
-            log_file_handler = TimedRotatingFileHandler(filename=log_file_directory, when="D", interval=1, backupCount=7)
-            log_file_handler.suffix = "%Y-%m-%d_%H-%M.log"
-            log_file_handler.extMatch = re.compile(r"^\d{4}-\d{2}-\d{2}_\d{2}-\d{2}.log$")
-            log_file_handler.setFormatter(formatter)
-            log_file_handler.setLevel(logging.DEBUG)
+        if not logger.hasHandlers():
+            if debug_flag:
+                handler = logging.StreamHandler()
+                handler.setLevel(logging.INFO)
+                handler.setFormatter(formatter)
+                logger.addHandler(handler)
+            else:
+                log_file_handler = TimedRotatingFileHandler(filename=log_file_directory, when="D", interval=1, backupCount=7)
+                log_file_handler.suffix = "%Y-%m-%d_%H-%M.log"
+                log_file_handler.extMatch = re.compile(r"^\d{4}-\d{2}-\d{2}_\d{2}-\d{2}.log$")
+                log_file_handler.setFormatter(formatter)
+                log_file_handler.setLevel(logging.INFO)
 
-            logger.addHandler(log_file_handler)
+                logger.addHandler(log_file_handler)
         return logger
 
     @classmethod
