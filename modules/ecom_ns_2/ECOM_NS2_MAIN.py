@@ -223,7 +223,7 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         if not temp_flag and self.start_test_flag:
             QMessageBox.information(self,"","测试完成")
             self.start_test_flag = False
-            print(self.test_result)
+            logger.info(str(self.test_result))
 
 
 

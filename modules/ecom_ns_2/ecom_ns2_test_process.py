@@ -6,7 +6,7 @@
 # @Desc    : ecom ns2 switcher test process
 from PyQt5.QtCore import QThread,pyqtSignal
 import time
-
+from renix_py_api import renix
 from common.logConfig import Logger
 
 logger = Logger.module_logger("TestProcessEcomNs2")
@@ -39,6 +39,9 @@ class TestProcessEcomNs2(QThread):
         try:
             logger.info("TestProcessEcomNs2 test start")
             # time.sleep(10)
+            renix.initialize(log=True)
+            time.sleep(2)
+            renix.shutdown()
             test_result = {}
             test_result["lan" + str(self.test_case[0])] = "success"
             test_result["lan" + str(self.test_case[1])] = "success"
