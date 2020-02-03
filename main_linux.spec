@@ -2,9 +2,9 @@
 
 block_cipher = None
 
-src_dir="E:\\tianheng_projects\\54\\54TestFramework\\"
-a = Analysis(['main.py'],
-             pathex=['E:\\tianheng_projects\\54\\54TestFramework'],
+src_dir="/root/source/54testframework/"
+a = Analysis(['main.py','modules/ecom_ns_2/ecom_ns2_test_process.py'],
+             pathex=['/root/source/54testframework'],
              binaries=[],
              datas=[(src_dir+'logs','logs'),(src_dir+'imgs','imgs'),(src_dir+'langs','langs'),(src_dir+'conf','conf')],
              hiddenimports=[],
