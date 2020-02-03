@@ -113,8 +113,8 @@ border:1px solid rgb(0, 0, 0);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>146</width>
-     <height>41</height>
+     <width>151</width>
+     <height>42</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">

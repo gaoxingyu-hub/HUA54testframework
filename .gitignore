@@ -32,4 +32,5 @@ _build
 _static
 _templates
 docs/*
+logs/*
 data.log
