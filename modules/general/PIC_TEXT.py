@@ -30,11 +30,19 @@ class DialogPicText(QDialog, Ui_Dialog):
         self.flag = 1
 
     def set_contents(self,title,contents,img_file_path):
+        """
+        set gui display information
+        :param title: dialog window title
+        :param contents: tips
+        :param img_file_path:image file full path
+        :return: none
+        """
         try:
             self.setWindowTitle(title)
             self.textBrowser_contents.setText(contents)
-            if os.path.isfile(img_file_path) and os.access(img_file_path, os.W_OK):
-                self.label_img.setPixmap(QtGui.QPixmap(img_file_path))
+            if img_file_path and img_file_path != "":
+                if os.path.isfile(img_file_path) and os.access(img_file_path, os.W_OK):
+                    self.label_img.setPixmap(QtGui.QPixmap(img_file_path))
         except:
             pass
         return

@@ -113,3 +113,25 @@ class TestModuleConfigNew(BaseConfig):
         except BaseException as e:
             logger.error(str(e))
         return config_obj
+
+
+class EcomNs1TestModuleConfig(BaseConfig):
+    """
+    Ecom ns 1 switcher test case parameters
+    """
+    def __init__(self,file_name):
+        super(EcomNs1TestModuleConfig,self).__init__(file_name)
+        self.steps = None
+        self.get_test_parameters()
+
+    def get_test_parameters(self):
+        """
+        read the module test log file into database object
+        :return: database dict object
+        """
+        try:
+            config_obj = self.read_config()
+            self.steps = config_obj["steps"]
+        except BaseException as e:
+            logger.error(str(e))
+        return config_obj
