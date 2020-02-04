@@ -21,6 +21,9 @@ from .Ui_ECOM_NS2_MAIN import Ui_Dialog
 from .ECOM_NS2_Ping import EcomNs2Ping
 from .ECOM_NS2_EXECUTE1 import EcomNs2Execute
 from .ecom_ns2_test_data import TestDataEcomNs2
+from modules.general.SIMPLE_TEST_PROCESS_1BTN import DialogSimpleTestProcess1Btn
+from modules.general.SIMPLE_TEST_PROCESS_2BTN import DialogSimpleTestProcess2Btn
+from .ECOM_NS1_KEY_TEST import DialogEcomNs1KeyTest
 
 SETUP_DIR = frozen_dir.app_path()
 
@@ -47,7 +50,7 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         self.current_test_step = 0
 
         self.config_file_path = os.path.join(
-            SETUP_DIR, "conf", "ecom_ns_2_new.json")
+            SETUP_DIR, "conf", "ecom_ns_2.json")
         self.system_config_file_path = os.path.join(
             SETUP_DIR, "conf", "system.json")
         self.test_config = TestModuleConfigNew(self.config_file_path)
@@ -63,6 +66,9 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         self.selected_test_cases = None  # 用来记录选中的测试项目
         self.test_cases_records = None  # 用来记录测试项目的执行测试的进度
         self.current_test_case = None  # 记录当前执行的test case
+
+        self.last_test_case_status = ""
+        self.last_test_case_result = ""
 
         # init tree widget for test case
         self.treeWidget.clear()
@@ -170,7 +176,7 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         action: test execute action "next" or "restart" or "finish"
         """
         try:
-            if action is "next":
+            if action == "next":
                 for case,step in self.test_cases_records.items():
                     if step["current"] > step["max"]:
                         continue
@@ -184,13 +190,40 @@ class EcomNs2Main(QDialog, Ui_Dialog):
 
                             self.current_test_step_dialog = globals()[temp_test_process['module']]()
                             self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
-                            self.current_test_step_dialog.set_contents(temp_test_process['title'],
+
+                            self.pic_file_path = os.path.join(
+                                SETUP_DIR, "imgs", "ecom_ns",self.test_config.test_case_detail[x]["case_name"])
+
+                            if temp_test_process['module'] == "DialogSimpleTestProcess1Btn":
+                                if self.last_test_case_status == "next":
+                                    self.current_test_step_dialog.set_contents(temp_test_process['title'],
+                                                                       temp_test_process['contents'],"")
+                                    self.current_test_step_dialog.set_button_contents("下一步")
+                                    self.current_test_step_dialog.set_msg("next")
+                                else:
+                                    self.current_test_step_dialog\
+                                        .set_contents(temp_test_process['title'][:-2] + "不" + temp_test_process['title'][-2:],
+                                                       temp_test_process['contents'][:-2] + "不" + temp_test_process['contents'][-2:],
+                                                      "")
+                                    self.current_test_step_dialog.set_button_contents("测试结束")
+                                    self.current_test_step_dialog.set_msg("finish")
+                            elif temp_test_process['module'] == "DialogSimpleTestProcess2Btn":
+                                self.current_test_step_dialog.set_button_contents(["是","否"])
+                                self.current_test_step_dialog.set_contents(temp_test_process['title'],
+                                                                           temp_test_process['contents'],
+                                                                           os.path.join(
+                                                                               self.pic_file_path,
+                                                                               temp_test_process['img']))
+                            else:
+                                self.current_test_step_dialog.set_contents(temp_test_process['title'],
                                                                        temp_test_process['contents'],
                                                                        os.path.join(
                                                                            self.pic_file_path,
                                                                            temp_test_process['img']))
                             self.current_test_step_dialog.exec_()
                             break
+            elif action == "finish":
+                pass
         except BaseException as e:
             logger.error(str(e))
 
@@ -205,6 +238,13 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         """
         if self.current_test_step_dialog:
             self.current_test_step_dialog.close()
+            self.last_test_case_status = flag
+            self.last_test_case_result = para
+            if flag == "finish":
+                self.test_process_control("finish")
+                return
+
+
             if flag != "next":
                 for x in range(len(self.test_config.test_case)):
                     for test_step in self.test_config.test_case_detail[x]["steps"]:

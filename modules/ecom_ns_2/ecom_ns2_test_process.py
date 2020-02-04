@@ -39,9 +39,9 @@ class TestProcessEcomNs2(QThread):
         try:
             logger.info("TestProcessEcomNs2 test start")
             # time.sleep(10)
-            renix.initialize(log=True)
+            # renix.initialize(log=True)
             time.sleep(2)
-            renix.shutdown()
+            # renix.shutdown()
             test_result = {}
             test_result["lan" + str(self.test_case[0])] = "success"
             test_result["lan" + str(self.test_case[1])] = "success"
