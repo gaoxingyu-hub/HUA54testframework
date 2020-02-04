@@ -117,7 +117,7 @@ if __name__ == '__main__':
     temp.dutName = "8"
     temp.dutDrawingNbr = "9"
     temp.dutSn = "10"
-    temp.testTime = "2020-01-31 15:00:00"
+    temp.testTime = "2020-02-01 15:00:00"
 
     testvalue1 = TestValue()
     testvalue1.value = "12300"

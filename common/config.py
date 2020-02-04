@@ -1,6 +1,9 @@
 import os
 from pathlib import Path
 import json
+
+from PyQt5.QtWidgets import QMessageBox, QWidget
+
 from common.logConfig import Logger
 import frozen_dir
 
@@ -27,8 +30,12 @@ class BaseConfig:
                 data = json.load(json_file)
         except IOError as e:
             logger.error(str(e))
+            # QMessageBox.warning(self, "标题", "警告框消息正文", QMessageBox.Yes | QMessageBox.No)
+            return
         except BaseException as e1:
             logger.error(str(e1))
+            QMessageBox.warning(QWidget, "标题", "警告框消息正文", QMessageBox.Ok | QMessageBox.Cancel | QMessageBox.Yes)
+            return
         return data
 
 class TestModuleConfig(BaseConfig):

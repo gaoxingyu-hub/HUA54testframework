@@ -1,0 +1,88 @@
+{
+	"title": "路由器测试",
+	"module_name": "ROUTER",
+	"test_case": ["case1","case2"],
+	"test_case_detail": [{
+		"case_name": "case1",
+		"title": "ECOM-RT型路由器",
+		"steps": [{
+			"img": "1.jpg",
+			"title": "路由器测试",
+			"contents": "现在开始测试ECOM-RT型路由器",
+			"module": "DialogPicText",
+			"category": "disassemble"
+		}, {
+			"img": "2.png",
+			"title": "路由器测试",
+			"contents": "被测设备原位固定，按下图进行接线，测试以太网电缆连接XS02和XS03",
+			"module": "DialogPicText",
+			"category": "disassemble"
+		}, {
+			"img": "3.png",
+			"title": "路由器测试",
+			"contents": "被测设备上的接插件位置如下图所示",
+			"module": "DialogPicText",
+			"category": "disassemble"
+		}, {
+			"img": "",
+			"title": "路由器测试",
+			"contents": "打开被测设备和IP误码仪电源开关电源开关",
+			"module": "DialogPicText",
+			"category": "disassemble"
+		}, {
+			"img": "",
+			"title": "路由器测试",
+			"contents": "被测设备正在启动，请稍后……",
+			"module": "DialogPicText",
+			"category": "disassemble"
+		}, {
+			"img": "4.png",
+			"title": "路由器测试",
+			"contents": "观察被测设备前面板指示灯“ALIM”是否常亮？",
+			"module": "DialogPicText",
+			"category": "disassemble"
+		}]
+	}, {
+		"case_name": "case2",
+		"title": "设备网管测试",
+		"steps": [{
+				"img": "1.jpg",
+				"title": "路由器测试",
+				"contents": "拧开四个将设备固定在机柜上的螺钉，将设备从机柜上抽出",
+				"module": "DialogPicText",
+				"category": "disassemble"
+			}
+		]
+	}],
+	"test_source": [{
+			"name": "IP误码仪",
+			"number": "",
+			"count": "1",
+			"note": ""
+		},
+		{
+			"name": "交流电源电缆",
+			"number": "MP-COM-B-003-W001",
+			"count": "1",
+			"note": "为被测设备提供交流电源"
+		},
+		{
+			"name": "管理以太网电缆",
+			"number": "MP-COM-B-003-W002",
+			"count": "1",
+			"note": "将管理信号从被测设备引接至维修车交换机"
+		},
+		{
+			"name": "地线",
+			"number": "MP-COM-B-003-W003",
+			"count": "1",
+			"note": "接地"
+		},
+		{
+			"name": "测试以太网电缆",
+			"number": "MP-COM-B-003-W004",
+			"count": "1",
+			"note": ""
+		}
+	]
+}

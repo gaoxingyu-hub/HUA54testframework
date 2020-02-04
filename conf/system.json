@@ -11,6 +11,7 @@
     "menu2module": {
     "通信分系统:散射高频设备": "HIGH_FREQ_DEVICE",
     "通信分系统:交换机": "EcomDialog",
-    "通信分系统:通信控制设备": "COM_CONTROL_DEVICE"
+    "通信分系统:通信控制设备": "COM_CONTROL_DEVICE",
+    "通信分系统:路由器":"RouterDialog"
     }
 }
