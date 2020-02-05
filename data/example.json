@@ -1,0 +1,58 @@
+{
+"testObjName": "信号处理模块",
+"stationName": "多功能机载雷达干扰站",
+"stationDrawingNbr": "IG2.300.025MX",
+"stationSn": "01201703001",
+"unitName": "信号处理分机",
+"unitDrawingNbr": "IG2.301.001MX",
+"unitSn": "01201701005",
+"dutName": "信号处理模块",
+"dutDrawingNbr": "IG2.305.002MX",
+"dutSn": "01201612002",
+"testTime": "2017-1-1 12:00:01",
+"testItems": [{
+"name": "通信控制",
+"testParams": [{
+"name": "通信功能",
+"isIsolateObj": 0,
+"onlyConclusion": 1,
+"testValues": [{
+"isNormal": 1
+}
+]
+}
+]
+}, {
+"name": "测频精度",
+"testParams": [{
+"name": "频率",
+"isIsolateObj": 0,
+"onlyConclusion": 0,
+"unit": "MHz",
+"criterions": "[800, 1560]",
+"testValues": [{
+"value": "1400.0",
+"isNormal": 1
+}, {
+"value": "1500.0",
+"isNormal": 1
+}, {
+"value": "1600.0",
+"isNormal": 0
+}, {
+"value": "1700.0",
+"isNormal": 0
+}
+]
+}, {
+"name": "晶振Z1",
+"isIsolateObj": 1,
+"drawingNbr": "IG.BM.2019.0213",
+"model": "",
+"faultObjName ": "",
+"positionNbr": "Z1"
+}
+]
+}
+]
+}
