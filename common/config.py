@@ -34,7 +34,7 @@ class BaseConfig:
             return
         except BaseException as e1:
             logger.error(str(e1))
-            QMessageBox.warning(QWidget, "标题", "警告框消息正文", QMessageBox.Ok | QMessageBox.Cancel | QMessageBox.Yes)
+            # QMessageBox.warning(QWidget, "标题", "警告框消息正文", QMessageBox.Ok | QMessageBox.Cancel | QMessageBox.Yes)
             return
         return data
 
