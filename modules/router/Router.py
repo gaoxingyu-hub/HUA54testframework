@@ -9,6 +9,9 @@ from PyQt5 import QtGui
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QDialog
 from modules.general.PIC_TEXT import DialogPicText
+from modules.general.SIMPLE_TEST_PROCESS_1BTN import DialogSimpleTestProcess1Btn
+from modules.general.SIMPLE_TEST_PROCESS_2BTN import DialogSimpleTestProcess2Btn
+from .Router_Lan_test import DialogRouterLanTest
 from PyQt5.QtWidgets import *
 from common.logConfig import Logger
 from modules.info.testInfo import TestInfo
@@ -27,6 +30,7 @@ class RouterDialog(QDialog, Ui_Dialog):
     signalTitle = pyqtSignal(str)
     signalStatus = pyqtSignal(str)
     debug_model = True
+    start_test_flag = False
     """
     Class documentation goes here.
     """
@@ -40,7 +44,7 @@ class RouterDialog(QDialog, Ui_Dialog):
         super(RouterDialog, self).__init__(parent)
         self.setupUi(self)
         self.current_test_step = 0
-
+        # 配置文件路径
         self.config_file_path = os.path.join(
             SETUP_DIR, "conf", "router.json")
         self.system_config_file_path = os.path.join(
@@ -58,6 +62,9 @@ class RouterDialog(QDialog, Ui_Dialog):
         self.selected_test_cases = None  # 用来记录选中的测试项目
         self.test_cases_records = None  # 用来记录测试项目的执行测试的进度
         self.current_test_case = None  # 记录当前执行的test case
+        # 前一次测试的状态与结果
+        self.last_test_case_status = ""
+        self.last_test_case_result = ""
 
         # init tree widget for test case
         self.treeWidget.clear()
@@ -66,20 +73,19 @@ class RouterDialog(QDialog, Ui_Dialog):
         parent.setFlags(parent.flags() | Qt.ItemIsTristate | Qt.ItemIsUserCheckable)
 
         # 加载测试资源
-
         for x in range(len(self.test_config.test_source)):
             # 插入数据,根据temp_length数组的长度插入行数
             self.tableWidget_test_resource.setRowCount(len(self.test_config.test_source))
-
+            # 名称
             item = QTableWidgetItem(str(self.test_config.test_source[x]["name"]))
             self.tableWidget_test_resource.setItem(x, 0, item)
-
+            # 编号/型号
             item = QTableWidgetItem(str(self.test_config.test_source[x]["number"]))
             self.tableWidget_test_resource.setItem(x, 1, item)
-
+            # 数量
             item = QTableWidgetItem(str(self.test_config.test_source[x]["count"]))
             self.tableWidget_test_resource.setItem(x, 2, item)
-
+            # 备注
             item = QTableWidgetItem(str(self.test_config.test_source[x]["note"]))
             self.tableWidget_test_resource.setItem(x, 3, item)
 
@@ -88,7 +94,7 @@ class RouterDialog(QDialog, Ui_Dialog):
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
             child.setText(0, self.test_config.test_case_detail[x]["title"])
             child.setCheckState(0, Qt.Unchecked)
-
+        self.test_result = {}
         logger.info("Router inited")
 
     @pyqtSlot()
@@ -113,7 +119,7 @@ class RouterDialog(QDialog, Ui_Dialog):
 
         if not self.debug_model:
             test = TestInfo()
-            test.setWindowTitle("路由器测试")
+            test.setWindowTitle(self.test_config.title)
             if test.exec_():
                 if test.flag == -1:
                     QMessageBox.warning(self, "警告", "测试参数输入不完整！")
@@ -122,6 +128,7 @@ class RouterDialog(QDialog, Ui_Dialog):
             self.current_test_step = 0
         else:
             self.current_test_step = 1
+        self.start_test_flag = True
         self.start_caculate_test_duration()
         self.test_process_control("next")
         logger.info("router test process start")
@@ -144,7 +151,7 @@ class RouterDialog(QDialog, Ui_Dialog):
         # TODO: not implemented yet
         if not self.debug_model:
             test = TestInfo()
-            test.setWindowTitle("通信控制设备测试")
+            test.setWindowTitle(self.test_config.title)
             if test.exec_():
                 if test.flag == -1:
                     QMessageBox.warning(self, "警告", "测试参数输入不完整！")
@@ -180,55 +187,95 @@ class RouterDialog(QDialog, Ui_Dialog):
 
     def test_process_control(self,action):
         """
-        action: test execute action "next" or "restart"
+        action: test execute action "next"  "restart"  "finish"
         """
-        if action is "next":
-            for case,step in self.test_cases_records.items():
-                if step["current"] > step["max"]:
-                    continue
+        try:
+            if action == "next":
+                for case, step in self.test_cases_records.items():
+                    if step["current"] > step["max"]:
+                        continue
 
-                # get the test case detail parameters
-                for x in range(len(self.test_config.test_case)):
-                    if case in self.test_config.test_case_detail[x]["title"]:
+                    # get the test case detail parameters
+                    for x in range(len(self.test_config.test_case)):
+                        if case in self.test_config.test_case_detail[x]["title"]:
 
-                        temp_test_process = self.test_config.test_case_detail[x]["steps"][step["current"] - 1]
-                        self.current_test_case = case
+                            temp_test_process = self.test_config.test_case_detail[x]["steps"][step["current"] - 1]
+                            self.current_test_case = case
 
-                        self.current_test_step_dialog = globals()[temp_test_process['module']]()
-                        self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
-                        self.current_test_step_dialog.set_contents(temp_test_process['title'],
-                                                                   temp_test_process['contents'],
-                                                                   os.path.join(
-                                                                       self.pic_file_path,
-                                                                       temp_test_process['img']))
-                        self.current_test_step_dialog.exec_()
-                        break
+                            self.current_test_step_dialog = globals()[temp_test_process['module']]()
+                            self.current_test_step_dialog._signalFinish.connect(
+                                self.deal_signal_test_step_finish_emit_slot)
 
-            logger.info("com_control_device test process: next step")
-        elif action is "finish":
-            pass
+                            if temp_test_process['module'] == "DialogSimpleTestProcess1Btn":
+                                if self.last_test_case_status == "next":
+                                    self.current_test_step_dialog.set_contents(temp_test_process['title'],
+                                                                               temp_test_process['contents'], "")
+                                    self.current_test_step_dialog.set_button_contents("下一步")
+                                    self.current_test_step_dialog.set_msg("next")
+                                else:
+                                    self.current_test_step_dialog \
+                                        .set_contents(
+                                        temp_test_process['title'][:-2] + "不" + temp_test_process['title'][-2:],
+                                        temp_test_process['contents'][:-2] + "不" + temp_test_process['contents'][-2:],
+                                        "")
+                                    self.current_test_step_dialog.set_button_contents("测试结束")
+                                    self.current_test_step_dialog.set_msg("finish")
+                            elif temp_test_process['module'] == "DialogSimpleTestProcess2Btn":
+                                self.current_test_step_dialog.set_button_contents(["是", "否"])
+                                self.current_test_step_dialog.set_contents(temp_test_process['title'],
+                                                                           temp_test_process['contents'],
+                                                                           os.path.join(
+                                                                               self.pic_file_path,
+                                                                               temp_test_process['img']))
+                            else:
+                                self.current_test_step_dialog.set_contents(temp_test_process['title'],
+                                                                           temp_test_process['contents'],
+                                                                           os.path.join(
+                                                                               self.pic_file_path,
+                                                                               temp_test_process['img']))
+                            self.current_test_step_dialog.exec_()
+                            break
+            elif action == "finish":
+                pass
+        except BaseException as e:
+            logger.error(str(e))
 
         return
 
 
     def deal_signal_test_step_finish_emit_slot(self, flag,para):
         """
-
+        dialog event process handler
         :param paras:
         :return:
         """
         if self.current_test_step_dialog:
             self.current_test_step_dialog.close()
-            if flag == "step1" or flag == "step2":
-                self.test_cases_records[self.current_test_case]["current"] = \
-                    self.test_cases_records[self.current_test_case]["current"] + 1
-                time.sleep(0.1)
-                self.test_process_control("next")
-            else:
-                self.test_cases_records[self.current_test_case]["current"] = \
-                    self.test_cases_records[self.current_test_case]["current"] + 1
-                time.sleep(0.1)
-                self.test_process_control("next")
+            self.last_test_case_status = flag
+            self.last_test_case_result = para
+            if flag == "finish":
+                self.test_process_control("finish")
+                return
+
+            if flag != "next":
+                for x in range(len(self.test_config.test_case)):
+                    for test_step in self.test_config.test_case_detail[x]["steps"]:
+                        if test_step["title"] == flag and test_step["category"] == "execute":
+                            self.test_result.update(para)
+            self.test_cases_records[self.current_test_case]["current"] = \
+                self.test_cases_records[self.current_test_case]["current"] + 1
+            time.sleep(0.1)
+            self.test_process_control("next")
+
+        temp_flag = False
+        for case, step in self.test_cases_records.items():
+            if step["current"] <= step["max"]:
+                temp_flag = True
+
+        if not temp_flag and self.start_test_flag:
+            QMessageBox.information(self, "", "测试完成")
+            self.start_test_flag = False
+            logger.info(str(self.test_result))
 
     def deal_signal_test_duration_caculate_emit_slot(self, para):
         """
@@ -242,7 +289,7 @@ class RouterDialog(QDialog, Ui_Dialog):
             minutes, seconds = divmod(remainder, 60)
             self.label_test_duration.setText(str(int(hours)) + ":" + str(int(minutes)) + ":" + str(int(seconds)))
         except BaseException as e:
-            logger.info("com_control_device deal_signal_test_duration_caculate_emit_slot fail:" + str(e))
+            logger.info("router deal_signal_test_duration_caculate_emit_slot fail:" + str(e))
 
     def start_caculate_test_duration(self):
         if not self.test_time_update_obj:

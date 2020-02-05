@@ -142,3 +142,21 @@ class EcomNs1TestModuleConfig(BaseConfig):
         except BaseException as e:
             logger.error(str(e))
         return config_obj
+
+
+class RouterLanTestModuleConfig(BaseConfig):
+    """
+    Router config module
+    """
+    def __init__(self, file_name):
+        super(RouterLanTestModuleConfig, self).__init__(file_name)
+        self.steps = None
+        self.get_test_parameters()
+
+    def get_test_parameters(self):
+        try:
+            config_obj = self.read_config()
+            self.steps = config_obj["steps"]
+        except BaseException as e:
+            logger.error(str(e))
+        return config_obj
