@@ -1,6 +1,9 @@
 import os
 from pathlib import Path
 import json
+
+from PyQt5.QtWidgets import QMessageBox, QWidget
+
 from common.logConfig import Logger
 import frozen_dir
 
@@ -27,8 +30,12 @@ class BaseConfig:
                 data = json.load(json_file)
         except IOError as e:
             logger.error(str(e))
+            # QMessageBox.warning(self, "标题", "警告框消息正文", QMessageBox.Yes | QMessageBox.No)
+            return
         except BaseException as e1:
             logger.error(str(e1))
+            # QMessageBox.warning(QWidget, "标题", "警告框消息正文", QMessageBox.Ok | QMessageBox.Cancel | QMessageBox.Yes)
+            return
         return data
 
 class TestModuleConfig(BaseConfig):
@@ -129,6 +136,24 @@ class EcomNs1TestModuleConfig(BaseConfig):
         read the module test log file into database object
         :return: database dict object
         """
+        try:
+            config_obj = self.read_config()
+            self.steps = config_obj["steps"]
+        except BaseException as e:
+            logger.error(str(e))
+        return config_obj
+
+
+class RouterLanTestModuleConfig(BaseConfig):
+    """
+    Router config module
+    """
+    def __init__(self, file_name):
+        super(RouterLanTestModuleConfig, self).__init__(file_name)
+        self.steps = None
+        self.get_test_parameters()
+
+    def get_test_parameters(self):
         try:
             config_obj = self.read_config()
             self.steps = config_obj["steps"]
