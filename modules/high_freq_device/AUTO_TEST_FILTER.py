@@ -58,7 +58,7 @@ class AUTO_TEST_FILTER(QDialog, Ui_Dialog):
         self.test_result=test_results()
         if not self.demo:
             try:
-                self.sa=AgilentN5242.VNA_AgilentN5242(addr_na)
+                self.na=AgilentN5242.VNA_AgilentN5242(addr_na)
             except:
                 QMessageBox.warning(self, "警告", "仪表连接错误！")
                 print('仪表连接错误，请确认！')
@@ -74,7 +74,21 @@ class AUTO_TEST_FILTER(QDialog, Ui_Dialog):
     
     
     def testProcess(self):
-        mres =float(7+ np.random.random(1))
+        if not self.demo:
+            temp =[]
+            self.na.SelectMeas('Tr1')
+            self.na.SetMarkerX(self.freq_na)
+            mTemp1 = self.na.GetMarkerY()
+            mTemp1 = round(mTemp1,3)
+            self.na.SelectMeas('Tr2')
+            self.na.SetMarkerX(self.freq_na)
+            mTemp1 = self.na.GetMarkerY()
+            mTemp2 = round(mTemp1,3)
+            temp.append(mTemp1) 
+            temp.append(mTemp2)
+            mres  = 'S21:'+str(temp[0])+' S11:'+str(temp[1])
+        else:
+            mres =float(7+ np.random.random(1))
         return round(mres,3)
     
 class test_results:
