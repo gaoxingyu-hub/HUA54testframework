@@ -17,7 +17,7 @@ class DialogComControlDeviceExecute3(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
-    _signalFinish = pyqtSignal(str)
+    _signalFinish = pyqtSignal(str,object)
 
     def __init__(self, parent=None):
         """
@@ -61,6 +61,6 @@ class DialogComControlDeviceExecute3(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        self._signalFinish.emit("next",None)
+        self._signalFinish.emit("finish",None)
         self.accept()
         self.close()

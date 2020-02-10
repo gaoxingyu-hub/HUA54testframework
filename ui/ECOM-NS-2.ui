@@ -1323,7 +1323,7 @@ font-family:Microsoft YaHei;
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="iconQrc.qrc">
+     <iconset>
       <normaloff>:/newPrefix/icon/last4.ico</normaloff>:/newPrefix/icon/last4.ico</iconset>
     </property>
     <property name="iconSize">
@@ -1341,7 +1341,7 @@ font-family:Microsoft YaHei;
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="iconQrc.qrc">
+     <iconset>
       <normaloff>:/newPrefix/icon/next4.ico</normaloff>:/newPrefix/icon/next4.ico</iconset>
     </property>
     <property name="iconSize">
@@ -1359,7 +1359,7 @@ font-family:Microsoft YaHei;
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="iconQrc.qrc">
+     <iconset>
       <normaloff>:/newPrefix/icon/close4.ico</normaloff>:/newPrefix/icon/close4.ico</iconset>
     </property>
     <property name="iconSize">
