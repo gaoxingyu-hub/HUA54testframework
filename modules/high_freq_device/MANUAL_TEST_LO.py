@@ -15,6 +15,8 @@ from InstrumentDrivers.VNADriver import AgilentN5242
 from PyQt5.Qt import QMessageBox
 import numpy as np
 
+import json
+
 class MANUAL_TEST_LO(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
@@ -32,7 +34,13 @@ class MANUAL_TEST_LO(QDialog, Ui_Dialog):
         self.setupUi(self)
         self.flag = 1
         self.demo = True
-
+ 
+    
+    def initUi(self,mConfig):
+        maddress= mConfig.test_case_detail[0]["test_para"][1]
+        self.threshold = mConfig.test_case_detail[0]["threshold"][0]
+        self.lineEdit_addr_sa.setText(maddress)
+        
     def set_contents(self,title,contents):
         self.setWindowTitle(title)
 #         self.textBrowser_contents.setText(contents)
@@ -60,7 +68,10 @@ class MANUAL_TEST_LO(QDialog, Ui_Dialog):
         self.test_result.test_item = '收发单元本振测试'
         self.test_result.test_condition = '--'
         self.test_result.test_results=str(self.testProcess())
-        self.test_result.test_conclusion='PASS'
+        if self.test_result.test_results ==self.threshold:
+            self.test_result.test_conclusion='PASS'
+        else:
+            self.test_result.test_conclusion='FAIL'
         self._signalTest.emit("test_lo")
         self.accept()
         self.close()
@@ -76,3 +87,29 @@ class test_results:
         self.test_condition=''
         self.test_results='无本振告警'
         self.test_conclusion='PASS'
+
+class TestResultBase:
+    def __init__(self):
+        self.testObjName: str = ""
+        self.stationName: str = ""
+        self.stationDrawingNbr: str = ""
+        self.stationSn: str = ""
+        self.unitName: str = ""
+        self.unitDrawingNbr: str = ""
+        self.unitSn: str = ""
+        self.dutName: str = ""
+        self.dutDrawingNbr: str = ""
+        self.dutSn: str = ""
+        self.testTime: str = ""
+        self.testItems: test_results = []
+        
+    def toJSON(self):
+        """
+        transfer model to json format
+        :return: json format
+        """
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+    
+    
+    

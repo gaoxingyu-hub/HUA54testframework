@@ -18,7 +18,22 @@ class VNA_AgilentN5242(VNA):
     
     def __init__(self,Addr):
         VNA.__init__(self,Addr)
-       
+    
+    def PeakSearch(self):   
+        self.Write('CALC:MARK:FUNC:EXEC MAX' )
+        temp=self.Ask('CALC:MARKer:FUNC:RESult?')
+        return temp.split(',')
+    
+    def SetMarkerX(self,value):
+        '''
+        起始频率，单位Hz
+        '''
+        cmd='CALC:MARK:X '+str(value)
+        self.Write(cmd)
+    
+    def GetMarkerY(self):
+        temp=self.Ask('CALC:MARK:Y?')
+        return temp
     def GetReturnNumberFromString(self,resultstring):
         '''
         '''
