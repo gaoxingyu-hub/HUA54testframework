@@ -9,7 +9,7 @@ from common.logConfig import Logger
 from common.data_checker import ThDataChecker
 
 logger = Logger.module_logger("ThNetWordTestCase")
-class ThNetWordTestCase:
+class ThNetworkTestCase:
 
     def __init__(self):
         pass

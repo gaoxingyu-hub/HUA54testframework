@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'E:\tianheng_projects\54\54TestFramework\ui\PIC_TEXT.ui'
+# Form implementation generated from reading ui file 'G:\sourcecode\54\54testframework\ui\PIC_TEXT.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.1
+# Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 

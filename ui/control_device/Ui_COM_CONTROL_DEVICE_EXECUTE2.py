@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'E:\tianheng_projects\54\54TestFramework\ui\COM_CONTROL_DEVICE_EXECUTE2.ui'
+# Form implementation generated from reading ui file 'G:\sourcecode\54\54testframework\ui\control_device\COM_CONTROL_DEVICE_EXECUTE2.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.1
+# Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -66,16 +66,16 @@ class Ui_Dialog(object):
         self.groupBox = QtWidgets.QGroupBox(Dialog)
         self.groupBox.setTitle("")
         self.groupBox.setObjectName("groupBox")
-        self.widget = QtWidgets.QWidget(self.groupBox)
-        self.widget.setGeometry(QtCore.QRect(0, 2, 771, 611))
-        self.widget.setObjectName("widget")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.widget)
+        self.layoutWidget = QtWidgets.QWidget(self.groupBox)
+        self.layoutWidget.setGeometry(QtCore.QRect(0, 2, 771, 611))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.textBrowser_contents = QtWidgets.QTextBrowser(self.widget)
+        self.textBrowser_contents = QtWidgets.QTextBrowser(self.layoutWidget)
         self.textBrowser_contents.setObjectName("textBrowser_contents")
         self.verticalLayout.addWidget(self.textBrowser_contents)
-        self.groupBox_2 = QtWidgets.QGroupBox(self.widget)
+        self.groupBox_2 = QtWidgets.QGroupBox(self.layoutWidget)
         self.groupBox_2.setObjectName("groupBox_2")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.groupBox_2)
         self.gridLayout_4.setContentsMargins(-1, 20, -1, -1)
@@ -144,9 +144,9 @@ class Ui_Dialog(object):
         self.lineEdit_local_port.setObjectName("lineEdit_local_port")
         self.gridLayout_11.addWidget(self.lineEdit_local_port, 0, 3, 1, 1)
         self.gridLayout_4.addLayout(self.gridLayout_11, 3, 0, 1, 1)
-        self.pushButton_local_disconnect = QtWidgets.QPushButton(self.groupBox_2)
-        self.pushButton_local_disconnect.setObjectName("pushButton_local_disconnect")
-        self.gridLayout_4.addWidget(self.pushButton_local_disconnect, 3, 1, 1, 1)
+        self.pushButton_test = QtWidgets.QPushButton(self.groupBox_2)
+        self.pushButton_test.setObjectName("pushButton_test")
+        self.gridLayout_4.addWidget(self.pushButton_test, 3, 1, 1, 1)
         self.gridLayout_12 = QtWidgets.QGridLayout()
         self.gridLayout_12.setObjectName("gridLayout_12")
         self.testexecute_page4_label_8 = QtWidgets.QLabel(self.groupBox_2)
@@ -197,7 +197,7 @@ class Ui_Dialog(object):
         self.verticalLayout.addWidget(self.groupBox_2)
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
-        self.pushButton_next = QtWidgets.QPushButton(self.widget)
+        self.pushButton_next = QtWidgets.QPushButton(self.layoutWidget)
         self.pushButton_next.setObjectName("pushButton_next")
         self.gridLayout.addWidget(self.pushButton_next, 0, 1, 1, 1)
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -229,7 +229,7 @@ class Ui_Dialog(object):
         self.testexecute_page4_label_10.setText(_translate("Dialog", "测试配置"))
         self.testexecute_page4_label_6.setText(_translate("Dialog", "本地IP"))
         self.testexecute_page4_label_7.setText(_translate("Dialog", "端口"))
-        self.pushButton_local_disconnect.setText(_translate("Dialog", "断开"))
+        self.pushButton_test.setText(_translate("Dialog", "测试"))
         self.testexecute_page4_label_8.setText(_translate("Dialog", "远程IP"))
         self.testexecute_page4_label_9.setText(_translate("Dialog", "端口"))
         self.pushButton_remote_link.setText(_translate("Dialog", "连接"))

@@ -95,7 +95,7 @@ border:1px solid rgb(0, 0, 0);
           <item row="0" column="0">
            <layout class="QGridLayout" name="gridLayout_4">
             <item row="0" column="0">
-             <widget class="QLabel" name="testexecute_page3_label_3">
+             <widget class="QLabel" name="label_3">
               <property name="font">
                <font>
                 <family>Microsoft YaHei</family>
@@ -119,13 +119,13 @@ border:1px solid rgb(0, 0, 0);
                 <number>20</number>
                </property>
                <item row="0" column="0">
-                <widget class="QTextBrowser" name="testexecute_page3_textBrowser_log"/>
+                <widget class="QTextBrowser" name="textBrowser_log"/>
                </item>
               </layout>
              </widget>
             </item>
             <item row="1" column="0" colspan="2">
-             <widget class="QListWidget" name="testexecute_page3_listWidget_lan">
+             <widget class="QListWidget" name="listWidget_lan">
               <item>
                <property name="text">
                 <string>LAN2</string>
@@ -164,7 +164,7 @@ border:1px solid rgb(0, 0, 0);
              </widget>
             </item>
             <item row="2" column="0">
-             <widget class="QLabel" name="testexecute_page3_label_4">
+             <widget class="QLabel" name="label_4">
               <property name="font">
                <font>
                 <family>Microsoft YaHei</family>
@@ -179,7 +179,7 @@ border:1px solid rgb(0, 0, 0);
              </widget>
             </item>
             <item row="3" column="0">
-             <widget class="QLineEdit" name="testexecute_page3_lineEdit_ip">
+             <widget class="QLineEdit" name="lineEdit_ip">
               <property name="text">
                <string>192.168.1.200</string>
               </property>

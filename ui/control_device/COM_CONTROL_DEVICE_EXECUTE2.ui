@@ -70,7 +70,7 @@ border:1px solid rgb(0, 0, 0);
      <property name="title">
       <string/>
      </property>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -201,9 +201,9 @@ border:1px solid rgb(0, 0, 0);
            </layout>
           </item>
           <item row="3" column="1">
-           <widget class="QPushButton" name="pushButton_local_disconnect">
+           <widget class="QPushButton" name="pushButton_test">
             <property name="text">
-             <string>断开</string>
+             <string>测试</string>
             </property>
            </widget>
           </item>
@@ -330,7 +330,7 @@ border:1px solid rgb(0, 0, 0);
   </layout>
  </widget>
  <resources>
-  <include location="iconQrc.qrc"/>
+  <include location="../iconQrc.qrc"/>
  </resources>
  <connections/>
 </ui>

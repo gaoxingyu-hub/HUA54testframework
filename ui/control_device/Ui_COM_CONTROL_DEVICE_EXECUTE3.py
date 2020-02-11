@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'G:\sourcecode\54\54testframework\ui\control_device\COM_CONTROL_DEVICE_EXECUTE2.ui'
+# Form implementation generated from reading ui file 'G:\sourcecode\54\54testframework\ui\control_device\COM_CONTROL_DEVICE_EXECUTE3.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.0
 #
@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(791, 636)
+        Dialog.resize(792, 636)
         font = QtGui.QFont()
         font.setFamily("Microsoft YaHei")
         font.setPointSize(14)
@@ -213,18 +213,18 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.groupBox_2.setTitle(_translate("Dialog", "协议转换与控制测试：COM1-COM4"))
+        self.groupBox_2.setTitle(_translate("Dialog", "协议转换与控制测试：COM5-COM8"))
         self.testexecute_page3_label_3.setText(_translate("Dialog", "测试端口"))
         __sortingEnabled = self.listWidget_com.isSortingEnabled()
         self.listWidget_com.setSortingEnabled(False)
         item = self.listWidget_com.item(0)
-        item.setText(_translate("Dialog", "COM1"))
+        item.setText(_translate("Dialog", "COM5"))
         item = self.listWidget_com.item(1)
-        item.setText(_translate("Dialog", "COM2"))
+        item.setText(_translate("Dialog", "COM6"))
         item = self.listWidget_com.item(2)
-        item.setText(_translate("Dialog", "COM3"))
+        item.setText(_translate("Dialog", "COM7"))
         item = self.listWidget_com.item(3)
-        item.setText(_translate("Dialog", "COM4"))
+        item.setText(_translate("Dialog", "COM8"))
         self.listWidget_com.setSortingEnabled(__sortingEnabled)
         self.testexecute_page4_label_10.setText(_translate("Dialog", "测试配置"))
         self.testexecute_page4_label_6.setText(_translate("Dialog", "本地IP"))
@@ -235,7 +235,7 @@ class Ui_Dialog(object):
         self.pushButton_remote_link.setText(_translate("Dialog", "连接"))
         self.groupBox_3.setTitle(_translate("Dialog", "测试日志"))
         self.pushButton_next.setText(_translate("Dialog", "下一步"))
-import res.iconQrc_rc
+import iconQrc_rc
 
 
 if __name__ == "__main__":
