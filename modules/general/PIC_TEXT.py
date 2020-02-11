@@ -32,18 +32,32 @@ class DialogPicText(QDialog, Ui_Dialog,QGraphicsView):
         self.flag = 1
         # 图片缩放比例
         self.Scale = 1
+        self.ctrlPressed = False
+
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key_Control:
+            self.ctrlPressed = True
+        return super().keyPressEvent(event)
+
+    def keyReleaseEvent(self, event):
+        if event.key() == QtCore.Qt.Key_Control:
+            self.ctrlPressed = False
+        return super().keyReleaseEvent(event)
 
     def wheelEvent(self, event):
-        # 滚动的数值，单位为1/8度
-        angle = event.angleDelta() / 8
-        angleY = angle.y()
-        # 放大
-        if angleY > 0:
-            self.Scale = self.Scale+0.05
-            self.item.setScale(self.Scale)
-        elif angleY < 0:  # 滚轮下滚
-            self.Scale = self.Scale - 0.05
-            self.item.setScale(self.Scale)
+        if self.ctrlPressed:
+            # 滚动的数值，单位为1/8度
+            angle = event.angleDelta() / 8
+            angleY = angle.y()
+            # 放大
+            if angleY > 0:
+                self.Scale = self.Scale + 0.05
+                self.item.setScale(self.Scale)
+            elif angleY < 0:  # 滚轮下滚
+                self.Scale = self.Scale - 0.05
+                self.item.setScale(self.Scale)
+        else:
+            super().wheelEvent(event)
 
     def set_contents(self, title, contents, img_file_path):
         """

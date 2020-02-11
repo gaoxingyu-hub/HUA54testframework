@@ -8,7 +8,7 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QDialog, QGraphicsItem
 from PyQt5.QtCore import pyqtSignal
-from PyQt5 import QtGui, QtWidgets
+from PyQt5 import QtGui, QtWidgets, QtCore
 import os
 
 from .Ui_SIMPLE_TEST_PROCESS_1BTN import Ui_Dialog
@@ -35,18 +35,33 @@ class DialogSimpleTestProcess1Btn(QDialog, Ui_Dialog):
         self.flag = 1
         # 图片缩放比例
         self.Scale = 1
+        # Key_Control键是否按下
+        self.ctrlPressed = False
+
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key_Control:
+            self.ctrlPressed = True
+        return super().keyPressEvent(event)
+
+    def keyReleaseEvent(self, event):
+        if event.key() == QtCore.Qt.Key_Control:
+            self.ctrlPressed = False
+        return super().keyReleaseEvent(event)
 
     def wheelEvent(self, event):
-        # 滚动的数值，单位为1/8度
-        angle = event.angleDelta() / 8
-        angleY = angle.y()
-        # 放大
-        if angleY > 0:
-            self.Scale = self.Scale+0.05
-            self.item.setScale(self.Scale)
-        elif angleY < 0:  # 滚轮下滚
-            self.Scale = self.Scale - 0.05
-            self.item.setScale(self.Scale)
+        if self.ctrlPressed:
+            # 滚动的数值，单位为1/8度
+            angle = event.angleDelta() / 8
+            angleY = angle.y()
+            # 放大
+            if angleY > 0:
+                self.Scale = self.Scale + 0.05
+                self.item.setScale(self.Scale)
+            elif angleY < 0:  # 滚轮下滚
+                self.Scale = self.Scale - 0.05
+                self.item.setScale(self.Scale)
+        else:
+            super().wheelEvent(event)
     
     @pyqtSlot()
     def on_pushButton_1_clicked(self):
