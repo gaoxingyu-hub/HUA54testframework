@@ -16,6 +16,7 @@ from modules.general.PIC_TEXT import DialogPicText
 import time
 from common.logConfig import Logger
 from common.th_thread_model import ThThreadTimerUpdateTestTime
+from datetime import datetime
 
 from .Ui_COM_CONTROL_DEVICE_PA2 import Ui_Dialog
 from .COM_CONTROL_DEVICE_EXECUTE1 import DialogComControlDeviceExecute1
@@ -25,6 +26,8 @@ from .COM_CONTROL_DEVICE_EXECUTE4 import DialogComControlDeviceExecute4
 from modules.general.SIMPLE_TEST_PROCESS_1BTN import DialogSimpleTestProcess1Btn
 from modules.general.SIMPLE_TEST_PROCESS_2BTN import DialogSimpleTestProcess2Btn
 from .testResult import TestDataProtocolTransferBoard
+from database.data_storage import ThTestResultsStorage
+from database.test_results_model import TestResultBase
 from common.info import Constants
 
 SETUP_DIR = frozen_dir.app_path()
@@ -96,7 +99,6 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
             self.tableWidget_test_resource.setItem(x, 3, item)
 
         for x in range(len(self.test_config.test_case)):
-            print(self.test_config.test_case_detail[x]["title"])
             child = QTreeWidgetItem(parent)
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
             child.setText(0, self.test_config.test_case_detail[x]["title"])
@@ -198,7 +200,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
                                     self.current_test_step_dialog.set_contents(temp_test_process['title'],
                                                                                temp_test_process['contents'], "")
                                     self.current_test_step_dialog.set_button_contents("下一步")
-                                    self.current_test_step_dialog.set_msg("next")
+                                    self.current_test_step_dialog.set_msg(Constants.SIGNAL_NEXT)
                                 else:
                                     self.current_test_step_dialog \
                                         .set_contents(
@@ -206,7 +208,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
                                         temp_test_process['contents'][:-2] + "不" + temp_test_process['contents'][-2:],
                                         "")
                                     self.current_test_step_dialog.set_button_contents("测试结束")
-                                    self.current_test_step_dialog.set_msg("finish")
+                                    self.current_test_step_dialog.set_msg(Constants.SIGNAL_FINISH)
                             elif temp_test_process['module'] == "DialogSimpleTestProcess2Btn":
                                 self.current_test_step_dialog.set_button_contents(["是", "否"])
                                 self.current_test_step_dialog.set_contents(temp_test_process['title'],
@@ -250,6 +252,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
             if flag == "finish":
                 self.test_process_control("finish")
                 logger.info(self.test_result)
+                self.test_result_transform_and_storage()
                 return
 
             if flag != "next":
@@ -314,3 +317,20 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
                 selected_test_cases.append(item.text(0))
 
         return selected_test_cases
+
+
+    def test_result_transform_and_storage(self):
+        """
+        test result transform and combines to TestResultBase Object
+        test result storage
+        :return:
+        """
+        logger.info("test results storage starting.")
+
+        test_result_storage_obj = TestResultBase()
+        for key,value in self.test_result.items():
+            test_result_storage_obj.testItems.append({key:value})
+
+        test_result_storage_obj.testTime = datetime.now().strftime('%Y-%m-%d %H:%H:%S')
+        ThTestResultsStorage.test_case_result_storage(test_result_storage_obj)
+        logger.info("test results storage finish.")

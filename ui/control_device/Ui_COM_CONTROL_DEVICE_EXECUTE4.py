@@ -67,6 +67,8 @@ class Ui_Dialog(object):
         self.groupBox.setTitle("")
         self.groupBox.setObjectName("groupBox")
         self.gridLayout_6 = QtWidgets.QGridLayout(self.groupBox)
+        self.gridLayout_6.setContentsMargins(2, 2, 2, 2)
+        self.gridLayout_6.setSpacing(2)
         self.gridLayout_6.setObjectName("gridLayout_6")
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")

@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(800, 600)
+        Dialog.setFixedSize(800, 600)
         font = QtGui.QFont()
         font.setFamily("Microsoft YaHei")
         font.setPointSize(14)
@@ -67,6 +67,8 @@ class Ui_Dialog(object):
         self.groupBox.setTitle("")
         self.groupBox.setObjectName("groupBox")
         self.gridLayout_6 = QtWidgets.QGridLayout(self.groupBox)
+        self.gridLayout_6.setContentsMargins(2, 2, 2, 2)
+        self.gridLayout_6.setSpacing(2)
         self.gridLayout_6.setObjectName("gridLayout_6")
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")

@@ -22,3 +22,8 @@ class ThCommonNoticeInfo:
 class Constants:
     SIGNAL_TEST_RESULT = "signal_test_result"
     SIGNAL_INFORMATION = "signal_information"
+    SIGNAL_NEXT = "next"
+    SIGNAL_FINISH = "finish"
+    SIGNAL_CASE_FINISH = "case_finish"
+    RESULT_SUCCESS = "success"
+    RESULT_FAIL = "fail"

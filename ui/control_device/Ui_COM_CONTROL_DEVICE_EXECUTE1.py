@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'G:\sourcecode\54\54testframework\ui\COM_CONTROL_DEVICE_EXECUTE1.ui'
+# Form implementation generated from reading ui file 'G:\sourcecode\54\54testframework\ui\control_device\COM_CONTROL_DEVICE_EXECUTE1.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.0
 #
@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(792, 600)
+        Dialog.resize(800, 600)
         font = QtGui.QFont()
         font.setFamily("Microsoft YaHei")
         font.setPointSize(14)
@@ -66,16 +66,16 @@ class Ui_Dialog(object):
         self.groupBox = QtWidgets.QGroupBox(Dialog)
         self.groupBox.setTitle("")
         self.groupBox.setObjectName("groupBox")
-        self.layoutWidget = QtWidgets.QWidget(self.groupBox)
-        self.layoutWidget.setGeometry(QtCore.QRect(0, 1, 771, 581))
-        self.layoutWidget.setObjectName("layoutWidget")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget)
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_6 = QtWidgets.QGridLayout(self.groupBox)
+        self.gridLayout_6.setContentsMargins(2, 2, 2, 2)
+        self.gridLayout_6.setSpacing(2)
+        self.gridLayout_6.setObjectName("gridLayout_6")
+        self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
-        self.textBrowser_contents = QtWidgets.QTextBrowser(self.layoutWidget)
+        self.textBrowser_contents = QtWidgets.QTextBrowser(self.groupBox)
         self.textBrowser_contents.setObjectName("textBrowser_contents")
         self.verticalLayout.addWidget(self.textBrowser_contents)
-        self.groupBox_2 = QtWidgets.QGroupBox(self.layoutWidget)
+        self.groupBox_2 = QtWidgets.QGroupBox(self.groupBox)
         self.groupBox_2.setObjectName("groupBox_2")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.groupBox_2)
         self.gridLayout_5.setContentsMargins(-1, 20, -1, -1)
@@ -136,7 +136,7 @@ class Ui_Dialog(object):
         self.verticalLayout.addWidget(self.groupBox_2)
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
-        self.pushButton_next = QtWidgets.QPushButton(self.layoutWidget)
+        self.pushButton_next = QtWidgets.QPushButton(self.groupBox)
         self.pushButton_next.setObjectName("pushButton_next")
         self.gridLayout.addWidget(self.pushButton_next, 0, 1, 1, 1)
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -144,6 +144,7 @@ class Ui_Dialog(object):
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem1, 0, 0, 1, 1)
         self.verticalLayout.addLayout(self.gridLayout)
+        self.gridLayout_6.addLayout(self.verticalLayout, 0, 0, 1, 1)
         self.gridLayout_2.addWidget(self.groupBox, 0, 0, 1, 1)
 
         self.retranslateUi(Dialog)
