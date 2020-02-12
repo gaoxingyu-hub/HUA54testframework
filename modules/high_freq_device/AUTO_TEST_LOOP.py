@@ -78,7 +78,15 @@ class AUTO_TEST_LOOP(QDialog, Ui_Dialog):
     
     
     def testProcess(self):
-        mres =float(7+ np.random.random(1))
+        if not self.demo:
+            self.sg.SetCentreFreq(self.freq_sg)
+            self.sg.SetOutputPower(self.power_sg)
+            self.sa.SetCentreFreq(self.freq_sa)
+            self.sa.SetSpan(self.bw_sa)
+            self.sa.SetRefLevel(10)
+            mres = self.sa.GetRF_Power()
+        else:
+            mres =float(7+ np.random.random(1))
         return round(mres,3)
     
 class test_results:

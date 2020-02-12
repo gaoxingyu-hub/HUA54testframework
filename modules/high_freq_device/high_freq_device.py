@@ -56,6 +56,7 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         super(HIGH_FREQ_DEVICE, self).__init__(parent)
         self.setupUi(self)
         self.current_test_step = 0
+        
 
         self.config_file_path = os.path.join(
             SETUP_DIR, "conf", "high_freq_device.json")
@@ -97,7 +98,6 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
         self.selected_test_cases = self.get_checked_test_cases()
 
         if len(self.selected_test_cases) == 0:
@@ -133,7 +133,6 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
         if not self.debug_model:
             test = TestInfo()
             test.setWindowTitle("通信控制设备测试")
@@ -175,14 +174,18 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
 
                         self.current_test_step_dialog = globals()[temp_test_process['module']]()
                         if temp_test_process['module'] == 'AUTO_TEST':
+                            self.current_test_step_dialog.initUi(self.test_config)
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_tr)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                         elif temp_test_process['module'] == 'AUTO_TEST_T':
+                            self.current_test_step_dialog.initUi(self.test_config)
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_tr)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                         elif temp_test_process['module'] == 'MANUAL_TEST_LO':
+                            self.current_test_step_dialog.initUi(self.test_config)
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_tr)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
+                            
                         elif temp_test_process['module'] == 'AUTO_TEST_LNA':
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_lna)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])

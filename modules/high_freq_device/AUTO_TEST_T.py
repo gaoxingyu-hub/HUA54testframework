@@ -33,6 +33,20 @@ class AUTO_TEST_T(QDialog, Ui_Dialog):
         self.flag = 1
         self.demo = True
 
+    def initUi(self,mConfig):
+        addr_sg= mConfig.test_case_detail[0]["test_para"][0]
+        addr_sa= mConfig.test_case_detail[0]["test_para"][1]
+        freq_sg= mConfig.test_case_detail[0]["test_para"][6]
+        power_sg= mConfig.test_case_detail[0]["test_para"][7]
+        freq_sa= mConfig.test_case_detail[0]["test_para"][8]
+        bw_sa= mConfig.test_case_detail[0]["test_para"][9]
+        self.lineEdit_addr_sg.setText(addr_sg)
+        self.lineEdit_addr_sa.setText(addr_sa)
+        self.lineEdit_freq_sg.setText(freq_sg)
+        self.lineEdit_power_sg.setText(power_sg)
+        self.lineEdit_freq_sa.setText(freq_sa)
+        self.lineEdit_bw_sa.setText(bw_sa)
+
     def set_contents(self,title,contents):
         self.setWindowTitle(title)
 #         self.textBrowser_contents.setText(contents)
@@ -78,7 +92,15 @@ class AUTO_TEST_T(QDialog, Ui_Dialog):
     
     
     def testProcess(self):
-        mres =float(5+ np.random.random(1))
+        if not self.demo:
+            self.sg.SetCentreFreq(self.freq_sg)
+            self.sg.SetOutputPower(self.power_sg)
+            self.sa.SetCentreFreq(self.freq_sa)
+            self.sa.SetSpan(self.bw_sa)
+            self.sa.SetRefLevel(10)
+            mres = self.sa.GetRF_Power()
+        else:
+            mres =float(5+ np.random.random(1))
         return round(mres,3)
     
 class test_results:
