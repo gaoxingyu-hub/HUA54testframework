@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.setFixedSize(800, 600)
+        Dialog.resize(800, 600)
         font = QtGui.QFont()
         font.setFamily("Microsoft YaHei")
         font.setPointSize(14)
@@ -236,7 +236,7 @@ class Ui_Dialog(object):
         self.pushButton_remote_link.setText(_translate("Dialog", "连接"))
         self.groupBox_3.setTitle(_translate("Dialog", "测试日志"))
         self.pushButton_next.setText(_translate("Dialog", "下一步"))
-import res.iconQrc_rc
+import iconQrc_rc
 
 
 if __name__ == "__main__":

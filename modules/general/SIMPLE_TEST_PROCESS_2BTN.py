@@ -13,6 +13,7 @@ import os
 
 from .Ui_SIMPLE_TEST_PROCESS_2BTN import Ui_Dialog
 from PyQt5.QtCore import pyqtSignal
+from common.info import Constants
 from PyQt5 import QtGui
 from common.logConfig import Logger
 
@@ -26,6 +27,7 @@ class DialogSimpleTestProcess2Btn(QDialog, Ui_Dialog):
         "1": "next",
         "2": "case_finish"
     }
+    test_item = ""
 
     def __init__(self, parent=None):
         """
@@ -75,7 +77,8 @@ class DialogSimpleTestProcess2Btn(QDialog, Ui_Dialog):
         # TODO: not implemented yet
         self.reject()
         self.close()
-        self._signalFinish.emit(self._msg["2"], None)
+        self._signalFinish.emit(Constants.SIGNAL_TEST_RESULT, {self.windowTitle(): Constants.RESULT_FAIL})
+        self._signalFinish.emit(Constants.SIGNAL_CASE_FINISH, None)
     
     @pyqtSlot()
     def on_pushButton_1_clicked(self):
@@ -85,7 +88,8 @@ class DialogSimpleTestProcess2Btn(QDialog, Ui_Dialog):
         # TODO: not implemented yet
         self.reject()
         self.close()
-        self._signalFinish.emit(self._msg["1"], None)
+        self._signalFinish.emit(Constants.SIGNAL_TEST_RESULT, {self.windowTitle():Constants.RESULT_SUCCESS})
+        self._signalFinish.emit(Constants.SIGNAL_NEXT, None)
 
     def set_contents(self,title,contents,img_file_path):
         """

@@ -16,12 +16,19 @@ from modules.general.PIC_TEXT import DialogPicText
 import time
 from common.logConfig import Logger
 from common.th_thread_model import ThThreadTimerUpdateTestTime
+from datetime import datetime
 
 from .Ui_COM_CONTROL_DEVICE_PA2 import Ui_Dialog
 from .COM_CONTROL_DEVICE_EXECUTE1 import DialogComControlDeviceExecute1
 from .COM_CONTROL_DEVICE_EXECUTE2 import DialogComControlDeviceExecute2
 from .COM_CONTROL_DEVICE_EXECUTE3 import DialogComControlDeviceExecute3
-from .testResult import TestData1
+from .COM_CONTROL_DEVICE_EXECUTE4 import DialogComControlDeviceExecute4
+from modules.general.SIMPLE_TEST_PROCESS_1BTN import DialogSimpleTestProcess1Btn
+from modules.general.SIMPLE_TEST_PROCESS_2BTN import DialogSimpleTestProcess2Btn
+from .testResult import TestDataProtocolTransferBoard
+from database.data_storage import ThTestResultsStorage
+from database.test_results_model import TestResultBase
+from common.info import Constants
 
 SETUP_DIR = frozen_dir.app_path()
 
@@ -33,6 +40,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
     signalTitle = pyqtSignal(str)
     signalStatus = pyqtSignal(str)
     debug_model = True
+    test_result = {}
 
     def __init__(self, parent=None):
         """
@@ -52,7 +60,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         self.test_config = TestModuleConfigNew(self.config_file_path)
 
         self.pic_file_path = os.path.join(
-            SETUP_DIR, "imgs", "com_control_device_new")
+            SETUP_DIR, "imgs", self.test_config.module_name)
 
         self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name
@@ -62,6 +70,9 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         self.selected_test_cases = None #用来记录选中的测试项目
         self.test_cases_records = None  #用来记录测试项目的执行测试的进度
         self.current_test_case = None #记录当前执行的test case
+
+        self.last_test_case_status = ""
+        self.last_test_case_result = ""
 
         # init tree widget for test case
         self.treeWidget.clear()
@@ -88,7 +99,6 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
             self.tableWidget_test_resource.setItem(x, 3, item)
 
         for x in range(len(self.test_config.test_case)):
-            print(self.test_config.test_case_detail[x]["title"])
             child = QTreeWidgetItem(parent)
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
             child.setText(0, self.test_config.test_case_detail[x]["title"])
@@ -104,6 +114,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         # TODO: not implemented yet
 
         self.selected_test_cases = self.get_checked_test_cases()
+        self.test_result = {}
 
         if len(self.selected_test_cases) == 0:
             QMessageBox.warning(self, "警告", "请选择测试项目")
@@ -168,61 +179,107 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         """
         action: test execute action "next" or "restart"
         """
-        if action is "next":
-            for case,step in self.test_cases_records.items():
-                if step["current"] > step["max"]:
-                    continue
+        try:
+            if action is "next":
+                for case,step in self.test_cases_records.items():
+                    if step["current"] > step["max"]:
+                        continue
 
-                #get the test case detail parameters
-                for x in range(len(self.test_config.test_case)):
-                    if case in self.test_config.test_case_detail[x]["title"]:
+                    #get the test case detail parameters
+                    for x in range(len(self.test_config.test_case)):
+                        if case in self.test_config.test_case_detail[x]["title"]:
 
-                        temp_test_process = self.test_config.test_case_detail[x]["steps"][step["current"] - 1]
-                        self.current_test_case = case
+                            temp_test_process = self.test_config.test_case_detail[x]["steps"][step["current"] - 1]
+                            self.current_test_case = case
 
-                        self.current_test_step_dialog = globals()[temp_test_process['module']]()
-                        self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
-                        self.current_test_step_dialog.set_contents(temp_test_process['title'],
-                                                                   temp_test_process['contents'],
-                                                                   os.path.join(
-                                                                       self.pic_file_path,
-                                                                       temp_test_process['img']))
-                        self.current_test_step_dialog.exec_()
-                        break
+                            self.current_test_step_dialog = globals()[temp_test_process['module']]()
+                            self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
 
-            logger.info("com_control_device test process: next step")
-        elif action is "finish":
-            pass
+                            if temp_test_process['module'] == "DialogSimpleTestProcess1Btn":
+                                if self.last_test_case_status == "next":
+                                    self.current_test_step_dialog.set_contents(temp_test_process['title'],
+                                                                               temp_test_process['contents'], "")
+                                    self.current_test_step_dialog.set_button_contents("下一步")
+                                    self.current_test_step_dialog.set_msg(Constants.SIGNAL_NEXT)
+                                else:
+                                    self.current_test_step_dialog \
+                                        .set_contents(
+                                        temp_test_process['title'][:-2] + "不" + temp_test_process['title'][-2:],
+                                        temp_test_process['contents'][:-2] + "不" + temp_test_process['contents'][-2:],
+                                        "")
+                                    self.current_test_step_dialog.set_button_contents("测试结束")
+                                    self.current_test_step_dialog.set_msg(Constants.SIGNAL_FINISH)
+                            elif temp_test_process['module'] == "DialogSimpleTestProcess2Btn":
+                                self.current_test_step_dialog.set_button_contents(["是", "否"])
+                                self.current_test_step_dialog.set_contents(temp_test_process['title'],
+                                                                           temp_test_process['contents'],
+                                                                           os.path.join(
+                                                                               self.pic_file_path,
+                                                                               temp_test_process['img']))
+                            else:
+                                self.current_test_step_dialog.set_contents(temp_test_process['title'],
+                                                                           temp_test_process['contents'],
+                                                                           os.path.join(
+                                                                               self.pic_file_path,
+                                                                               temp_test_process['img']))
+                            self.current_test_step_dialog.exec_()
+                            break
+
+                logger.info("test process: next step")
+            elif action is "finish":
+                pass
+        except BaseException as e:
+            logger.error(str(e))
 
         return
 
 
-    def deal_signal_test_step_finish_emit_slot(self, flag,para):
+    def deal_signal_test_step_finish_emit_slot(self,flag,para):
         """
 
         :param paras:
         :return:
         """
+
+        if flag == Constants.SIGNAL_TEST_RESULT:
+            self.test_result.update(para)
+            return
+
         if self.current_test_step_dialog:
             self.current_test_step_dialog.close()
-            if flag == "step1" or flag == "step2":
-                self.test_cases_records[self.current_test_case]["current"] = \
-                    self.test_cases_records[self.current_test_case]["current"] + 1
-                time.sleep(0.1)
-                self.test_process_control("next")
-            else:
-                self.test_cases_records[self.current_test_case]["current"] = \
-                    self.test_cases_records[self.current_test_case]["current"] + 1
-                time.sleep(0.1)
-                self.test_process_control("next")
+            self.last_test_case_status = flag
+            self.last_test_case_result = para
+            if flag == "finish":
+                self.test_process_control("finish")
+                logger.info(self.test_result)
+                self.test_result_transform_and_storage()
+                return
+
+            if flag != "next":
+                for x in range(len(self.test_config.test_case)):
+                    for test_step in self.test_config.test_case_detail[x]["steps"]:
+                        if test_step["title"] == flag and test_step["category"] == "execute":
+                            self.test_result.update(para)
+            self.test_cases_records[self.current_test_case]["current"] = \
+                self.test_cases_records[self.current_test_case]["current"] + 1
+            time.sleep(0.1)
+            self.test_process_control("next")
+
+        temp_flag = False
+        for case, step in self.test_cases_records.items():
+            if step["current"] <= step["max"]:
+                temp_flag = True
+
+        if not temp_flag and self.start_test_flag:
+            QMessageBox.information(self,"","测试完成")
+            self.start_test_flag = False
+            logger.info(str(self.test_result))
 
     def deal_signal_test_duration_caculate_emit_slot(self, para):
         """
-
         :param paras:
         :return:
         """
-
         try:
             hours, remainder = divmod(para, 3600)
             minutes, seconds = divmod(remainder, 60)
@@ -260,3 +317,20 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
                 selected_test_cases.append(item.text(0))
 
         return selected_test_cases
+
+
+    def test_result_transform_and_storage(self):
+        """
+        test result transform and combines to TestResultBase Object
+        test result storage
+        :return:
+        """
+        logger.info("test results storage starting.")
+
+        test_result_storage_obj = TestResultBase()
+        for key,value in self.test_result.items():
+            test_result_storage_obj.testItems.append({key:value})
+
+        test_result_storage_obj.testTime = datetime.now().strftime('%Y-%m-%d %H:%H:%S')
+        ThTestResultsStorage.test_case_result_storage(test_result_storage_obj)
+        logger.info("test results storage finish.")

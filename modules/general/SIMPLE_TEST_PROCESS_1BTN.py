@@ -12,6 +12,7 @@ from PyQt5 import QtGui, QtWidgets, QtCore
 import os
 
 from .Ui_SIMPLE_TEST_PROCESS_1BTN import Ui_Dialog
+from common.info import Constants
 from common.logConfig import Logger
 
 
@@ -21,7 +22,7 @@ class DialogSimpleTestProcess1Btn(QDialog, Ui_Dialog):
     Class documentation goes here.
     """
     _signalFinish = pyqtSignal(str, object)
-    _msg = "next"
+    _msg = Constants.SIGNAL_NEXT
 
     def __init__(self, parent=None):
         """

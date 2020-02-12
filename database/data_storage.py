@@ -10,7 +10,7 @@ import json
 import uuid
 import sqlite3
 from datetime import datetime
-from database.test_results import TestResultBase,TestValue,TestParam,TestItem
+from database.test_results_model import TestResultBase,TestValue,TestParam,TestItem
 
 logger = Logger.module_logger("ThTestResultsStorage")
 SETUP_DIR = frozen_dir.app_path()
