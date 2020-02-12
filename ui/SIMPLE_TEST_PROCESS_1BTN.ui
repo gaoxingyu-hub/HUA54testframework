@@ -70,70 +70,70 @@ border:1px solid rgb(0, 0, 0);
      <property name="title">
       <string/>
      </property>
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QGraphicsView" name="graphicsView">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>771</width>
-        <height>581</height>
+        <x>10</x>
+        <y>100</y>
+        <width>751</width>
+        <height>431</height>
        </rect>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout" stretch="2,14,1">
-       <item>
-        <widget class="QTextBrowser" name="textBrowser_contents"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_img">
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>1</x>
+        <y>547</y>
+        <width>761</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="1">
+        <widget class="QPushButton" name="pushButton_1">
          <property name="text">
-          <string/>
-         </property>
-         <property name="scaledContents">
-          <bool>false</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
+          <string>下一步</string>
          </property>
         </widget>
        </item>
-       <item>
-        <layout class="QGridLayout" name="gridLayout">
-         <item row="0" column="1">
-          <widget class="QPushButton" name="pushButton_1">
-           <property name="text">
-            <string>下一步</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <spacer name="horizontalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="0" column="0">
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
+       <item row="0" column="2">
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="0">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
+     </widget>
+     <widget class="QTextBrowser" name="textBrowser_contents">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>751</width>
+        <height>71</height>
+       </rect>
+      </property>
      </widget>
     </widget>
    </item>

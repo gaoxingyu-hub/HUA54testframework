@@ -4,15 +4,17 @@
 Module implementing PIC_TEXT.
 """
 
-from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import QDialog
-from PyQt5 import QtGui
+from PyQt5.QtCore import pyqtSlot, QPoint, Qt
+from PyQt5.QtGui import QPixmap, QPainter, QColor
+from PyQt5.QtWidgets import QDialog, QGraphicsView, QGraphicsItem
+from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import pyqtSignal
 
 from .Ui_PIC_TEXT import Ui_Dialog
 import os
 
-class DialogPicText(QDialog, Ui_Dialog):
+
+class DialogPicText(QDialog, Ui_Dialog,QGraphicsView):
     """
     Class documentation goes here.
     """
@@ -28,8 +30,36 @@ class DialogPicText(QDialog, Ui_Dialog):
         super(DialogPicText, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
+        # 图片缩放比例
+        self.Scale = 1
+        self.ctrlPressed = False
 
-    def set_contents(self,title,contents,img_file_path):
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key_Control:
+            self.ctrlPressed = True
+        return super().keyPressEvent(event)
+
+    def keyReleaseEvent(self, event):
+        if event.key() == QtCore.Qt.Key_Control:
+            self.ctrlPressed = False
+        return super().keyReleaseEvent(event)
+
+    def wheelEvent(self, event):
+        if self.ctrlPressed:
+            # 滚动的数值，单位为1/8度
+            angle = event.angleDelta() / 8
+            angleY = angle.y()
+            # 放大
+            if angleY > 0:
+                self.Scale = self.Scale + 0.05
+                self.item.setScale(self.Scale)
+            elif angleY < 0:  # 滚轮下滚
+                self.Scale = self.Scale - 0.05
+                self.item.setScale(self.Scale)
+        else:
+            super().wheelEvent(event)
+
+    def set_contents(self, title, contents, img_file_path):
         """
         set gui display information
         :param title: dialog window title
@@ -42,7 +72,15 @@ class DialogPicText(QDialog, Ui_Dialog):
             self.textBrowser_contents.setText(contents)
             if img_file_path and img_file_path != "":
                 if os.path.isfile(img_file_path) and os.access(img_file_path, os.W_OK):
-                    self.label_img.setPixmap(QtGui.QPixmap(img_file_path))
+                    # 载入图片
+                    self.scene = QtWidgets.QGraphicsScene()
+                    self.graphicsView.setScene(self.scene)
+                    self.imgPixmap = QPixmap(img_file_path)
+                    self.item = QtWidgets.QGraphicsPixmapItem(self.imgPixmap)
+                    self.item.setFlags(QGraphicsItem.ItemIsMovable | QGraphicsItem.ItemIsSelectable)
+                    self.scene.addItem(self.item)
+                    # 设置图元初始大小
+                    self.imgPixmap.scaled(600, 800)
         except:
             pass
         return
@@ -55,6 +93,4 @@ class DialogPicText(QDialog, Ui_Dialog):
         # TODO: not implemented yet
         self.reject()
         self.close()
-        self._signalFinish.emit("next",None)
-    
-    
+        self._signalFinish.emit("next", None)
