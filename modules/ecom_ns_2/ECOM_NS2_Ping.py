@@ -14,7 +14,7 @@ import os
 from .Ui_ECOM_NS2_Ping import Ui_Dialog
 from common.logConfig import Logger
 from common.data_checker import ThDataChecker
-from common.network_tools import ThNetWordTestCase
+from common.network_tools import ThNetworkTestCase
 
 logger = Logger.module_logger("EcomNs2Ping")
 class EcomNs2Ping(QDialog, Ui_Dialog):
@@ -48,7 +48,7 @@ class EcomNs2Ping(QDialog, Ui_Dialog):
 
         if self.textBrowser_log.document().blockCount() > 10:
             self.textBrowser_log.clear()
-        result = ThNetWordTestCase.ping(ip, 2, 4)
+        result = ThNetworkTestCase.ping(ip, 2, 4)
         self.test_result[self.windowTitle()] = result[0]
         if result[1] != None:
             self.textBrowser_log.append("")

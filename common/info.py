@@ -16,3 +16,14 @@ class ThCommonNoticeInfo:
     TEST_FAIL = "测试失败"
     DUT = "测试对象"
     UDP_SERVER_IS_RUNNING = "本地Udp Server已启动"
+    WARN = "警告"
+    ILLEGAL_IP_ADDRESS = "不合法IP地址"
+
+class Constants:
+    SIGNAL_TEST_RESULT = "signal_test_result"
+    SIGNAL_INFORMATION = "signal_information"
+    SIGNAL_NEXT = "next"
+    SIGNAL_FINISH = "finish"
+    SIGNAL_CASE_FINISH = "case_finish"
+    RESULT_SUCCESS = "success"
+    RESULT_FAIL = "fail"
