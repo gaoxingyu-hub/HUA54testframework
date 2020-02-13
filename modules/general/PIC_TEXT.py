@@ -6,7 +6,7 @@ Module implementing PIC_TEXT.
 
 from PyQt5.QtCore import pyqtSlot, QPoint, Qt
 from PyQt5.QtGui import QPixmap, QPainter, QColor
-from PyQt5.QtWidgets import QDialog, QGraphicsView, QGraphicsItem
+from PyQt5.QtWidgets import QDialog, QGraphicsView, QGraphicsItem, QScrollArea
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import pyqtSignal
 
@@ -14,7 +14,7 @@ from .Ui_PIC_TEXT import Ui_Dialog
 import os
 
 
-class DialogPicText(QDialog, Ui_Dialog,QGraphicsView):
+class DialogPicText(QDialog, Ui_Dialog, QGraphicsView):
     """
     Class documentation goes here.
     """
@@ -56,8 +56,6 @@ class DialogPicText(QDialog, Ui_Dialog,QGraphicsView):
             elif angleY < 0:  # 滚轮下滚
                 self.Scale = self.Scale - 0.05
                 self.item.setScale(self.Scale)
-        else:
-            super().wheelEvent(event)
 
     def set_contents(self, title, contents, img_file_path):
         """
