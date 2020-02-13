@@ -3,30 +3,29 @@
 """
 Module implementing COM_CONTROL_DEVICE.
 """
-from PyQt5 import QtGui, QtCore
+
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import pyqtSignal, Qt
+from PyQt5.QtWidgets import QDialog,QTreeWidgetItem,QTreeWidget
+from PyQt5.QtCore import pyqtSignal,Qt
 from modules.info.testInfo import TestInfo
 from PyQt5.QtWidgets import QMessageBox
 from common.config import TestModuleConfigNew, SystemConfig
 import os
 import frozen_dir
+
+from PyQt5.QtWidgets import *
 from modules.general.PIC_TEXT import DialogPicText
+from modules.general.AUTO_TEST import AUTO_TEST
 import time
 from common.logConfig import Logger
 from common.th_thread_model import ThThreadTimerUpdateTestTime
 
 from .Ui_COM_CONTROL_DEVICE_PA2 import Ui_Dialog
-from .COM_CONTROL_DEVICE_EXECUTE1 import DialogComControlDeviceExecute1
-from .COM_CONTROL_DEVICE_EXECUTE2 import DialogComControlDeviceExecute2
-from .COM_CONTROL_DEVICE_EXECUTE3 import DialogComControlDeviceExecute3
-from .testResult import TestData1
 
 SETUP_DIR = frozen_dir.app_path()
 
-logger = Logger.module_logger("com_control_device")
-class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
+logger = Logger.module_logger("high_freq_device")
+class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
@@ -37,22 +36,21 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
     def __init__(self, parent=None):
         """
         Constructor
-
+        
         @param parent reference to the parent widget
         @type QWidget
         """
-        super(COM_CONTROL_DEVICE, self).__init__(parent)
+        super(HIGH_FREQ_DEVICE, self).__init__(parent)
         self.setupUi(self)
         self.current_test_step = 0
-
+        self.record_table_init()
         self.config_file_path = os.path.join(
-            SETUP_DIR, "conf", "com_control_device_new.json")
+            SETUP_DIR, "conf", "high_freq_device.json")
         self.system_config_file_path = os.path.join(
             SETUP_DIR, "conf", "system.json")
         self.test_config = TestModuleConfigNew(self.config_file_path)
-
         self.pic_file_path = os.path.join(
-            SETUP_DIR, "imgs", "com_control_device_new")
+            SETUP_DIR, "imgs", "high_freq_device")
 
         self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name
@@ -63,32 +61,13 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         self.test_cases_records = None  #用来记录测试项目的执行测试的进度
         self.current_test_case = None #记录当前执行的test case
 
-        # init tree widget for test case
+        #init tree widget for test case
         self.treeWidget.clear()
         parent = QTreeWidgetItem(self.treeWidget)
         parent.setText(0, self.test_config.title)
         parent.setFlags(parent.flags() | Qt.ItemIsTristate | Qt.ItemIsUserCheckable)
 
-        # 加载测试资源
-
-        for x in range(len(self.test_config.test_source)):
-            # 插入数据,根据temp_length数组的长度插入行数
-            self.tableWidget_test_resource.setRowCount(len(self.test_config.test_source))
-
-            item = QTableWidgetItem(str(self.test_config.test_source[x]["name"]))
-            self.tableWidget_test_resource.setItem(x, 0, item)
-
-            item = QTableWidgetItem(str(self.test_config.test_source[x]["number"]))
-            self.tableWidget_test_resource.setItem(x, 1, item)
-
-            item = QTableWidgetItem(str(self.test_config.test_source[x]["count"]))
-            self.tableWidget_test_resource.setItem(x, 2, item)
-
-            item = QTableWidgetItem(str(self.test_config.test_source[x]["note"]))
-            self.tableWidget_test_resource.setItem(x, 3, item)
-
         for x in range(len(self.test_config.test_case)):
-            print(self.test_config.test_case_detail[x]["title"])
             child = QTreeWidgetItem(parent)
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
             child.setText(0, self.test_config.test_case_detail[x]["title"])
@@ -120,7 +99,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
 
         if not self.debug_model:
             test = TestInfo()
-            test.setWindowTitle("通信控制设备测试")
+            test.setWindowTitle("散射通信高频设备测试")
             if test.exec_():
                 if test.flag == -1:
                     QMessageBox.warning(self, "警告", "测试参数输入不完整！")
@@ -130,8 +109,8 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         else:
             self.current_test_step = 1
         self.start_caculate_test_duration()
-        self.test_process_control("next")
-        logger.info("com_control_device test process start")
+        self.test_process_control("next",None)
+        logger.info("high_freq_device test process start")
     
     @pyqtSlot()
     def on_pushButton_restart_clicked(self):
@@ -150,9 +129,9 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
             self.current_test_step = 0
         else:
             self.current_test_step = 1
-        self.test_process_control("next")
+        self.test_process_control("next",None)
         self.start_caculate_test_duration()
-        logger.info("com_control_device test process restart")
+        logger.info("high_freq_device test process restart")
     
     @pyqtSlot()
     def on_pushButton_close_clicked(self):
@@ -162,9 +141,9 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         # TODO: not implemented yet
         self.signalTitle.emit("close")
         self.close()
-        logger.info("com_control_device test process close")
+        logger.info("high_freq_device test process close")
 
-    def test_process_control(self,action):
+    def test_process_control(self,action,data):
         """
         action: test execute action "next" or "restart"
         """
@@ -176,10 +155,8 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
                 #get the test case detail parameters
                 for x in range(len(self.test_config.test_case)):
                     if case in self.test_config.test_case_detail[x]["title"]:
-
                         temp_test_process = self.test_config.test_case_detail[x]["steps"][step["current"] - 1]
                         self.current_test_case = case
-
                         self.current_test_step_dialog = globals()[temp_test_process['module']]()
                         self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
                         self.current_test_step_dialog.set_contents(temp_test_process['title'],
@@ -190,14 +167,14 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
                         self.current_test_step_dialog.exec_()
                         break
 
-            logger.info("com_control_device test process: next step")
-        elif action is "finish":
-            pass
+            logger.info("high_freq_device test process: next step")
+        elif action is "test":
+            self.test_data_refesh(data)
 
         return
 
 
-    def deal_signal_test_step_finish_emit_slot(self, flag,para):
+    def deal_signal_test_step_finish_emit_slot(self, paras,data):
         """
 
         :param paras:
@@ -205,18 +182,15 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         """
         if self.current_test_step_dialog:
             self.current_test_step_dialog.close()
-            if flag == "step1" or flag == "step2":
-                self.test_cases_records[self.current_test_case]["current"] = \
-                    self.test_cases_records[self.current_test_case]["current"] + 1
-                time.sleep(0.1)
-                self.test_process_control("next")
-            else:
-                self.test_cases_records[self.current_test_case]["current"] = \
-                    self.test_cases_records[self.current_test_case]["current"] + 1
-                time.sleep(0.1)
-                self.test_process_control("next")
+            self.test_cases_records[self.current_test_case]["current"] = \
+                self.test_cases_records[self.current_test_case]["current"] + 1
+            time.sleep(0.1)
+            if paras.find('next')>=0:
+                self.test_process_control("next",None)
+            elif paras.find('test')>=0:
+                self.test_process_control('test',data)
 
-    def deal_signal_test_duration_caculate_emit_slot(self, para):
+    def deal_signal_test_duration_caculate_emit_slot(self, paras):
         """
 
         :param paras:
@@ -224,7 +198,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         """
 
         try:
-            hours, remainder = divmod(para, 3600)
+            hours, remainder = divmod(paras, 3600)
             minutes, seconds = divmod(remainder, 60)
             self.label_test_duration.setText(str(int(hours)) + ":" + str(int(minutes)) + ":" + str(int(seconds)))
         except BaseException as e:
@@ -260,3 +234,30 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
                 selected_test_cases.append(item.text(0))
 
         return selected_test_cases
+
+    def record_table_init(self):
+        self.tableWidget_test_results.clear()
+        self.tableWidget_test_results.setColumnCount(4)
+        self.tableWidget_test_results.setRowCount(0)
+        self.tableWidget_test_results.setHorizontalHeaderLabels(['测试项目', '测试条件', '测试值','测试结论'])
+    def test_data_refesh(self,reuslt):
+        rowCount=self.tableWidget_test_results.rowCount()
+        self.tableWidget_test_results.insertRow(rowCount)
+        current_row=rowCount
+        newItem = QTableWidgetItem(str(reuslt.test_item))
+        self.tableWidget_test_results.setItem(current_row, 0, newItem)
+        newItem = QTableWidgetItem(str(reuslt.test_condition))
+        self.tableWidget_test_results.setItem(current_row, 1, newItem)
+        newItem = QTableWidgetItem(str(reuslt.test_results))
+        self.tableWidget_test_results.setItem(current_row, 2, newItem)
+        newItem = QTableWidgetItem(str(reuslt.test_conclusion))
+        self.tableWidget_test_results.setItem(current_row, 3, newItem)
+
+        # newItem = QTableWidgetItem('收发单元发射通道故障定位')
+        # self.tableWidget_test_results.setItem(current_row, 0, newItem)
+        # newItem = QTableWidgetItem('频率：67MHz，功率：0dBm')
+        # self.tableWidget_test_results.setItem(current_row, 1, newItem)
+        # newItem = QTableWidgetItem('1.5dBm')
+        # self.tableWidget_test_results.setItem(current_row, 2, newItem)
+        # newItem = QTableWidgetItem('PASS')
+        # self.tableWidget_test_results.setItem(current_row, 3, newItem)

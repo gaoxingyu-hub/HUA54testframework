@@ -283,7 +283,8 @@ class SpectrumAnalyzer(PyVisaInstr.pyVisaInstr):
         self.Write('FREQ:STAR '+str(value))
     
     
-    
+    def GetRF_Power(self,value):
+        return self.AskForNumber('MEASure:RFPower?')
     def GetStopFreq(self):
         '''
         读取截止频率的值
