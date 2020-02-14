@@ -2,9 +2,10 @@
 
 block_cipher = None
 
-src_dir="E:\\tianheng_projects\\54\\54TestFramework\\"
+
+src_dir="G:\\sourcecode\\54\\54testframework\\"
 a = Analysis(['main.py'],
-             pathex=['E:\\tianheng_projects\\54\\54TestFramework'],
+             pathex=['G:\\sourcecode\\54\\54testframework'],
              binaries=[],
              datas=[(src_dir+'logs','logs'),(src_dir+'imgs','imgs'),(src_dir+'langs','langs'),(src_dir+'conf','conf')],
              hiddenimports=[],
@@ -35,3 +36,4 @@ coll = COLLECT(exe,
                upx=True,
                upx_exclude=[],
                name='test_system')
+

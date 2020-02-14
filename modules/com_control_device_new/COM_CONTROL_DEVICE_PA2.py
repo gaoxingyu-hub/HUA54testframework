@@ -262,7 +262,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
                             self.test_result.update(para)
             self.test_cases_records[self.current_test_case]["current"] = \
                 self.test_cases_records[self.current_test_case]["current"] + 1
-            time.sleep(0.1)
+            # time.sleep(0.1)
             self.test_process_control("next")
 
         temp_flag = False
