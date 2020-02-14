@@ -32,7 +32,21 @@ class AUTO_TEST_LOOP(QDialog, Ui_Dialog):
         self.setupUi(self)
         self.flag = 1
         self.demo = True
-
+    
+    def initUi(self,mConfig):
+        addr_sg= mConfig.test_source[0]
+        addr_sa= mConfig.test_source[1]
+        freq_sg= mConfig.test_case_detail[3]["test_para"][0]
+        power_sg= mConfig.test_case_detail[3]["test_para"][1]
+        freq_sa= mConfig.test_case_detail[3]["test_para"][2]
+        bw_sa= mConfig.test_case_detail[3]["test_para"][3]
+        self.lineEdit_addr_sg.setText(addr_sg)
+        self.lineEdit_addr_sa.setText(addr_sa)
+        self.lineEdit_freq_sg.setText(freq_sg)
+        self.lineEdit_power_sg.setText(power_sg)
+        self.lineEdit_freq_sa.setText(freq_sa)
+        self.lineEdit_bw_sa.setText(bw_sa)
+    
     def set_contents(self,title,contents):
         self.setWindowTitle(title)
 #         self.textBrowser_contents.setText(contents)

@@ -2,6 +2,7 @@
     "title":"散射高频设备",
     "module_name":"high_freq_device",
     "test_case": ["收发单元","低噪声放大器","功放","自环器","滤波器","波导开关","耦合器","监控模块"],
+    "test_source": ["192.168.1.100","192.168.1.101","192.168.1.102"],
     "test_case_detail":[
 	        {
 	            "case_name": "收发单元",
@@ -23,8 +24,8 @@
 			        {"img":"4.png","title":"散射高频设备-收/发单元发射通道","contents":"打开高频设备开关查看设备的收发频率，工作模式改变到正常工作模式状态","module": "DialogPicText"},
 			        {"img":"","title":"散射高频设备-收/发单元发射通道","contents":"设置信号源和频谱仪相关参数","module": "AUTO_TEST_T"}
 			    ],
-			    "test_para":["192.168.1.100","192.168.1.101","70","-60","70","100","69","0","70","100"],
-			    "threshold":["无本振告警","5","15","2","7"]
+			    "test_para":["70","-60","70","100","69","0","70","100"],
+			    "threshold":["无告警","5","15","2","7"]
 	        },
 	        {
 	            "case_name": "低噪声放大器",
@@ -36,7 +37,9 @@
 			        {"img":"6.png","title":"散射高频设备-低噪声放大器","contents":"按图连接好高频设备内部低噪声放大器的外部接线，低噪声放大器XS1和XS2按照连接到信号源和频谱仪","module": "DialogPicText"},
 			        {"img":"6.png","title":"散射高频设备-低噪声放大器","contents":"打开高频设备开关，确认低噪声放大器VCC处的供电满足+15V","module": "DialogPicText"},
 			        {"img":"","title":"散射高频设备-低噪声放大器","contents":"设置信号源和频谱仪相关参数","module": "AUTO_TEST_LNA"}
-			    ]
+			    ],
+			    "test_para":["4700","-30","4700","100"],
+			    "threshold":["2","8"]
 	        },
 	        {
 	            "case_name": "功放",
@@ -48,7 +51,9 @@
 			        {"img":"8.png","title":"散射高频设备-功放","contents":"按图连接好高频设备外部波导开关的接线，天线接口连接上大功率衰减器，内部功放XS1接口连接到信号源，W07耦合器50dB接口连接到频谱仪","module": "DialogPicText"},
 			        {"img":"8.png","title":"散射高频设备-功放","contents":"打开高频设备开关，确认功放XS2处的供电满足+28V","module": "DialogPicText"},
 			        {"img":"","title":"散射高频设备-功放","contents":"设置信号源和频谱仪相关参数","module": "AUTO_TEST_PA"}
-			    ]
+			    ],
+			    "test_para":["4700","0","4700","100"],
+			    "threshold":["-3","3"]
 	        }, 
 	        {
 	            "case_name": "自环器",
@@ -60,7 +65,9 @@
 			        {"img":"10.png","title":"散射高频设备-自环器","contents":"按图连接好高频设备的外部接线，自环器XS5按照上图连接到环形器的2口，环形器的1口和3口分别接到信号源、频谱仪上","module": "DialogPicText"},
 			        {"img":"10.png","title":"散射高频设备-自环器","contents":"打开高频设备开关查看设备的收发频率","module": "DialogPicText"},
 			        {"img":"","title":"散射高频设备-自环器","contents":"设置信号源和频谱仪相关参数","module": "AUTO_TEST_LOOP"}
-			    ]
+			    ],
+			    "test_para":["4700","10","4700","100"],
+			    "threshold":["-55","-35"]
 	        },
 	        {
 	            "case_name": "滤波器",
@@ -72,7 +79,9 @@
 			        {"img":"12.png","title":"散射高频设备-滤波器","contents":"按图连接好高频设备内部滤波器器的外部接线，滤波器XS1和XS2连接到矢量网络分析仪","module": "DialogPicText"},
 			        {"img":"12.png","title":"散射高频设备-滤波器","contents":"打开高频设备开关，确认高频设备的收发频率","module": "DialogPicText"},
 			        {"img":"","title":"散射高频设备-滤波器","contents":"设置矢量网络分析仪相关参数","module": "AUTO_TEST_FILTER"}
-			    ]
+			    ],
+			    "test_para":["4700","800"],
+			    "threshold":["1","2","-9999","-15"]
 	        },
 	        {
 	            "case_name": "波导开关",
@@ -85,7 +94,8 @@
 			        {"img":"14.png","title":"散射高频设备-波导开关","contents":"如果波导开关有切换动作，并且高频设备可以完成改频，则认为波导开关正常","module": "DialogPicText"},
 			        {"img":"14.png","title":"散射高频设备-波导开关","contents":"如果波导开关没动作，则高频断电，打开波导开关的电机保护罩，手动旋转电机，看看手动是否旋转灵活，如果卡住不能旋转，则断定波导开关故障","module": "DialogPicText"},
 			        {"img":"","title":"散射高频设备-波导开关","contents":"填写波导开关状态","module": "MANUAL_TEST_SWITCH"}
-			    ]
+			    ],
+			    "threshold":["开关正常","开关故障"]
 	        },
 	        {
 	            "case_name": "耦合器",
@@ -96,7 +106,9 @@
 			        {"img":"15.png","title":"散射高频设备-耦合器","contents":"矢量网络分析仪接地，接通电源，选择通道S21，中心频率设置为4700MHz，带宽设置为800MHz，1dB/DIV，REFERENCE VALUE： -40 dB，仪器接SMA电缆进行校准","module": "DialogPicText"},
 			        {"img":"16.png","title":"散射高频设备-耦合器","contents":"按图连接好高频设备天线口和内部耦合器的接线","module": "DialogPicText"},
 			        {"img":"","title":"散射高频设备-耦合器","contents":"设置矢量网络分析仪相关参数","module": "AUTO_TEST_COUPLER"}
-			    ]
+			    ],
+			    "test_para":["4700","800"],
+			    "threshold":["-47","-33"]
 	        },
 	        {
 	            "case_name": "监控模块",
@@ -109,7 +121,8 @@
 			        {"img":"17.png","title":"散射高频设备-监控模块","contents":"观察监控模块发光二极管V3、V4、V5、V6是否闪烁，如果这四个发光二极管都不亮，说明监控单元没有程序运行","module": "DialogPicText"},
 			        {"img":"17.png","title":"散射高频设备-监控模块","contents":"V8、V9、V10、V11、V12、V13是网络连接指示灯，其中：V8是网口物理连接指示灯，物理连接正常指示灯亮起；V13是发数据指示灯，发一组数据亮起一次；V12是收数据指示灯， 收一组数据亮起一次；V11是数据冲突指示灯；V10是全双工和半双工指示灯，全双工工作时亮起；V9是传输速率指示灯，传输100Mbps速率时亮起，10Mbps速率时灭。","module": "DialogPicText"},
 			        {"img":"","title":"散射高频设备-监控模块","contents":"填写监控模块状态","module": "MANUAL_TEST_MONITOR"}
-			    ]
+			    ],
+			    "threshold":["正常","故障"]
 	        }
     ]
 }

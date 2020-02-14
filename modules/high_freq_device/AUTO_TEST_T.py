@@ -34,12 +34,12 @@ class AUTO_TEST_T(QDialog, Ui_Dialog):
         self.demo = True
 
     def initUi(self,mConfig):
-        addr_sg= mConfig.test_case_detail[0]["test_para"][0]
-        addr_sa= mConfig.test_case_detail[0]["test_para"][1]
-        freq_sg= mConfig.test_case_detail[0]["test_para"][6]
-        power_sg= mConfig.test_case_detail[0]["test_para"][7]
-        freq_sa= mConfig.test_case_detail[0]["test_para"][8]
-        bw_sa= mConfig.test_case_detail[0]["test_para"][9]
+        addr_sg= mConfig.test_source[0]
+        addr_sa= mConfig.test_source[1]
+        freq_sg= mConfig.test_case_detail[0]["test_para"][4]
+        power_sg= mConfig.test_case_detail[0]["test_para"][5]
+        freq_sa= mConfig.test_case_detail[0]["test_para"][6]
+        bw_sa= mConfig.test_case_detail[0]["test_para"][7]
         self.lineEdit_addr_sg.setText(addr_sg)
         self.lineEdit_addr_sa.setText(addr_sa)
         self.lineEdit_freq_sg.setText(freq_sg)
@@ -83,7 +83,6 @@ class AUTO_TEST_T(QDialog, Ui_Dialog):
                 return
         self.test_result.test_item = '收发单元发射通道'
         self.test_result.test_condition = '频率:'+self.lineEdit_freq_sg.text()+'MHz，功率:'+self.lineEdit_power_sg.text()+'dBm'
-        mTemp = 5+np.random.random(1)
         self.test_result.test_results=self.testProcess()
         self.test_result.test_conclusion='PASS'
         self._signalTest.emit("test_t")

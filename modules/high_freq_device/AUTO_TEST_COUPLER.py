@@ -33,6 +33,14 @@ class AUTO_TEST_COUPLER(QDialog, Ui_Dialog):
         self.flag = 1
         self.demo = True
 
+    def initUi(self,mConfig):
+        addr_na= mConfig.test_source[2]
+        freq_na= mConfig.test_case_detail[6]["test_para"][0]
+        bw_na= mConfig.test_case_detail[6]["test_para"][1]
+        self.lineEdit_addr_na.setText(addr_na)
+        self.lineEdit_freq_na.setText(freq_na)
+        self.lineEdit_bw_na.setText(bw_na)
+    
     def set_contents(self,title,contents):
         self.setWindowTitle(title)
 #         self.textBrowser_contents.setText(contents)

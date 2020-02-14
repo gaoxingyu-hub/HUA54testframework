@@ -14,8 +14,9 @@ import os
 from InstrumentDrivers.VNADriver import AgilentN5242
 from PyQt5.Qt import QMessageBox
 import numpy as np
-
+from database.data_storage import ThTestResultsStorage
 import json
+from database.test_results import TestResultBase
 
 class MANUAL_TEST_LO(QDialog, Ui_Dialog):
     """
@@ -34,10 +35,11 @@ class MANUAL_TEST_LO(QDialog, Ui_Dialog):
         self.setupUi(self)
         self.flag = 1
         self.demo = True
+        self.testData()
  
     
     def initUi(self,mConfig):
-        maddress= mConfig.test_case_detail[0]["test_para"][1]
+        maddress= mConfig.test_source[1]
         self.threshold = mConfig.test_case_detail[0]["threshold"][0]
         self.lineEdit_addr_sa.setText(maddress)
         
@@ -81,35 +83,33 @@ class MANUAL_TEST_LO(QDialog, Ui_Dialog):
         mres =np.random.choice([u'无告警',u'有告警']) 
         return mres
     
+    def testData(self):
+        temp = TestResultBase()
+        temp.testObjName = "1"
+        temp.stationName = "2"
+        temp.stationDrawingNbr = "3"
+        temp.stationSn = "4"
+        temp.unitName = "5"
+        temp.unitDrawingNbr = "6"
+        temp.unitSn = "7"
+        temp.dutName = "8"
+        temp.dutDrawingNbr = "9"
+        temp.dutSn = "10"
+        temp.testTime = "2020-02-14 12:00:00"
+        
+        temp.testItems = test_results()
+        temp.testItems.test_item = '本振故障定位'
+        temp.testItems.test_condition ='--'    
+        temp.testItems.test_results ='无告警'
+        temp.testItems.test_conclusion='PASS'
+        ThTestResultsStorage.test_case_result_storage(temp)  
+        
 class test_results:
     def __init__(self):
         self.test_item=''
         self.test_condition=''
         self.test_results='无本振告警'
         self.test_conclusion='PASS'
-
-class TestResultBase:
-    def __init__(self):
-        self.testObjName: str = ""
-        self.stationName: str = ""
-        self.stationDrawingNbr: str = ""
-        self.stationSn: str = ""
-        self.unitName: str = ""
-        self.unitDrawingNbr: str = ""
-        self.unitSn: str = ""
-        self.dutName: str = ""
-        self.dutDrawingNbr: str = ""
-        self.dutSn: str = ""
-        self.testTime: str = ""
-        self.testItems: test_results = []
         
-    def toJSON(self):
-        """
-        transfer model to json format
-        :return: json format
-        """
-        return json.dumps(self, default=lambda o: o.__dict__,
-                          sort_keys=True, indent=4)
-    
-    
-    
+
+
