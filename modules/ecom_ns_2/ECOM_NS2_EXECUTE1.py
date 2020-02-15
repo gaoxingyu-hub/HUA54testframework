@@ -11,6 +11,7 @@ from PyQt5.QtCore import pyqtSignal
 from .Ui_ECOM_NS2_EXECUTE1 import Ui_Dialog
 from common.logConfig import Logger
 from .ecom_ns2_test_process import TestProcessEcomNs2
+from common.info import Constants
 
 logger = Logger.module_logger("EcomNs2Execute")
 class EcomNs2Execute(QDialog, Ui_Dialog):
@@ -48,7 +49,9 @@ class EcomNs2Execute(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         if self.current_test_step > self.max_test_steps:
-            self._signalFinish.emit(self.windowTitle(), self.test_result)
+            self._signalFinish.emit(Constants.SIGNAL_TEST_RESULT, self.test_result)
+            self._signalFinish.emit(Constants.SIGNAL_NEXT, "")
+            # self._signalFinish.emit(self.windowTitle(), self.test_result)
             self.accept()
             self.close()
         else:
@@ -60,6 +63,7 @@ class EcomNs2Execute(QDialog, Ui_Dialog):
                 self.test_process_object = TestProcessEcomNs2()
                 self.test_process_object.set_test_para("test.script", self.current_test_case)
                 self.test_process_object._signal.connect(self.slot_test_process)
+                self.test_process_object._signalInfo.connect(self.slot_test_process_information)
                 self.test_process_object.start()
             except BaseException as e:
                 logger.error(str(e))
@@ -79,6 +83,11 @@ class EcomNs2Execute(QDialog, Ui_Dialog):
     def update_test_step_display(self,port1,port2):
         self.listWidget_port1.setCurrentRow(port1 - 1)
         self.listWidget_port2.setCurrentRow(port2 - 1)
+
+    def slot_test_process_information(self,signal,para1):
+        if self.textBrowser_log.document().blockCount() > 10:
+            self.textBrowser_log.clear()
+        self.textBrowser_log.append(para1)
 
 
 
