@@ -9,6 +9,7 @@ import time
 from renix_py_api import renix
 from common.logConfig import Logger
 import random
+from common.info import Constants
 
 logger = Logger.module_logger("TestProcessEcomNs2")
 class TestProcessEcomNs1(QThread):
@@ -16,6 +17,7 @@ class TestProcessEcomNs1(QThread):
     Ecom Ns2 switcher test process thread
     """
     _signal = pyqtSignal(str,object)
+    _signalInfo = pyqtSignal(str, object)
 
     def __init__(self,parent=None):
         super(TestProcessEcomNs1,self).__init__()
@@ -39,6 +41,7 @@ class TestProcessEcomNs1(QThread):
         """
         try:
             logger.info("TestProcessEcomNs1 test start")
+            self._signalInfo.emit(Constants.SIGNAL_INFORMATION,"TestProcessEcomNs1 test start")
             # time.sleep(10)
             # renix.initialize(log=True)
             time.sleep(2)
@@ -52,6 +55,7 @@ class TestProcessEcomNs1(QThread):
                 test_result["lan" + str(self.test_case[1])] = "success"
             self._signal.emit("test case finish",test_result)
             logger.info("TestProcessEcomNs1 test finish")
+            self._signalInfo.emit(Constants.SIGNAL_INFORMATION, "TestProcessEcomNs1 test finish")
         except BaseException as e:
             logger.error(str(e))
 
