@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'D:\code\54testframework\ui\Router.ui'
+# Form implementation generated from reading ui file 'D:\code\54testframework\ui\router\Router.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.0
 #
@@ -14,6 +14,49 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(976, 646)
+        Dialog.setStyleSheet("QDialog{\n"
+"background-color:#D0DAE5;\n"
+"}\n"
+"\n"
+"QTextBrower{\n"
+"background-color:#D0DAE5;\n"
+"}\n"
+"\n"
+"QLineEdit{\n"
+"background-color:#D0DAE5;\n"
+"}\n"
+"\n"
+"QWidget{\n"
+"background-color:#D0DAE5;\n"
+"}\n"
+"\n"
+"QStackedWidget{\n"
+"background-color:#D0DAE5;\n"
+"}\n"
+"\n"
+"QHeaderView{\n"
+"background-color:#D0DAE5;\n"
+"}\n"
+"\n"
+"QLabel{\n"
+"font-size:12px;\n"
+"font-family:Microsoft YaHei;\n"
+"background-color:#D0DAE5;\n"
+"}\n"
+"\n"
+"QPushButton{         /*按钮自适应拉伸背景*/\n"
+"border-width: 2px 15px 2px 15px;\n"
+"background-color:#2884D8;\n"
+"color: #FFFFFF;\n"
+"font-size:12px;\n"
+"font-family:Microsoft YaHei;\n"
+"}\n"
+"\n"
+"QGroupBox{\n"
+"font-size:12px;\n"
+"font-family:Microsoft YaHei;\n"
+"border:1px solid rgb(0, 0, 0); \n"
+"}")
         Dialog.setSizeGripEnabled(True)
         self.layoutWidget = QtWidgets.QWidget(Dialog)
         self.layoutWidget.setGeometry(QtCore.QRect(10, 70, 961, 361))
@@ -124,13 +167,22 @@ class Ui_Dialog(object):
         self.groupBox_test_results.setObjectName("groupBox_test_results")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.groupBox_test_results)
         self.gridLayout_4.setObjectName("gridLayout_4")
-        self.tableWidget_test_results = QtWidgets.QTableWidget(self.groupBox_test_results)
-        self.tableWidget_test_results.setObjectName("tableWidget_test_results")
-        self.tableWidget_test_results.setColumnCount(0)
-        self.tableWidget_test_results.setRowCount(0)
-        self.gridLayout_4.addWidget(self.tableWidget_test_results, 0, 0, 1, 1)
+        self.tabWidget = QtWidgets.QTabWidget(self.groupBox_test_results)
+        self.tabWidget.setObjectName("tabWidget")
+        self.tab = QtWidgets.QWidget()
+        self.tab.setObjectName("tab")
+        self.gridLayout_7 = QtWidgets.QGridLayout(self.tab)
+        self.gridLayout_7.setObjectName("gridLayout_7")
+        self.tableWidget = QtWidgets.QTableWidget(self.tab)
+        self.tableWidget.setObjectName("tableWidget")
+        self.tableWidget.setColumnCount(0)
+        self.tableWidget.setRowCount(0)
+        self.gridLayout_7.addWidget(self.tableWidget, 0, 0, 1, 1)
+        self.tabWidget.addTab(self.tab, "")
+        self.gridLayout_4.addWidget(self.tabWidget, 0, 0, 1, 1)
 
         self.retranslateUi(Dialog)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
@@ -152,7 +204,7 @@ class Ui_Dialog(object):
         item.setText(_translate("Dialog", "编号/型号"))
         item = self.tableWidget_test_resource.horizontalHeaderItem(3)
         item.setText(_translate("Dialog", "数量"))
-import iconQrc_rc
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Dialog", "路由器模块测试"))
 
 
 if __name__ == "__main__":
