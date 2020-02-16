@@ -24,6 +24,10 @@ from .ecom_ns2_test_data import TestDataEcomNs2
 from modules.general.SIMPLE_TEST_PROCESS_1BTN import DialogSimpleTestProcess1Btn
 from modules.general.SIMPLE_TEST_PROCESS_2BTN import DialogSimpleTestProcess2Btn
 from .ECOM_NS1_KEY_TEST import DialogEcomNs1KeyTest
+from common.info import Constants
+from database.data_storage import ThTestResultsStorage
+from database.test_results_model import TestResultBase
+from datetime import datetime
 
 SETUP_DIR = frozen_dir.app_path()
 
@@ -99,6 +103,8 @@ class EcomNs2Main(QDialog, Ui_Dialog):
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
             child.setText(0, self.test_config.test_case_detail[x]["title"])
             child.setCheckState(0, Qt.Unchecked)
+
+        self.treeWidget.itemClicked.connect(self.treeWidget_item_click_slot_test)
 
         # self.test_result = TestDataEcomNs2()
         self.test_result = {}
@@ -223,7 +229,9 @@ class EcomNs2Main(QDialog, Ui_Dialog):
                             self.current_test_step_dialog.exec_()
                             break
             elif action == "finish":
-                pass
+                logger.info(str(self.test_result))
+                self.test_result_transform_and_storage()
+                self.test_result_display()
         except BaseException as e:
             logger.error(str(e))
 
@@ -236,6 +244,10 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         :param para: object parameters
         :return:none
         """
+        if flag == Constants.SIGNAL_TEST_RESULT:
+            self.test_result.update(para)
+            return
+
         if self.current_test_step_dialog:
             self.current_test_step_dialog.close()
             self.last_test_case_status = flag
@@ -244,12 +256,11 @@ class EcomNs2Main(QDialog, Ui_Dialog):
                 self.test_process_control("finish")
                 return
 
-
-            if flag != "next":
-                for x in range(len(self.test_config.test_case)):
-                    for test_step in self.test_config.test_case_detail[x]["steps"]:
-                        if test_step["title"] == flag and test_step["category"] == "execute":
-                            self.test_result.update(para)
+            # if flag != "next":
+            #     for x in range(len(self.test_config.test_case)):
+            #         for test_step in self.test_config.test_case_detail[x]["steps"]:
+            #             if test_step["title"] == flag and test_step["category"] == "execute":
+            #                 self.test_result.update(para)
             self.test_cases_records[self.current_test_case]["current"] = \
                 self.test_cases_records[self.current_test_case]["current"] + 1
             time.sleep(0.1)
@@ -263,8 +274,7 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         if not temp_flag and self.start_test_flag:
             QMessageBox.information(self,"","测试完成")
             self.start_test_flag = False
-            logger.info(str(self.test_result))
-
+            self.test_process_control("finish")
 
 
     def deal_signal_test_duration_caculate_emit_slot(self, para):
@@ -310,3 +320,73 @@ class EcomNs2Main(QDialog, Ui_Dialog):
                 selected_test_cases.append(item.text(0))
 
         return selected_test_cases
+
+    def treeWidget_item_click_slot_test(self,QTreeWidgetItem, index):
+        """
+        set the test case single checked
+        :return: None
+        """
+        for item in self.treeWidget.findItems("", Qt.MatchContains | Qt.MatchRecursive):
+            if item.parent() is None:
+                continue
+            if item.text(0) != QTreeWidgetItem.text(0):
+                item.setCheckState(0, Qt.Unchecked)
+
+
+    def test_result_transform_and_storage(self):
+        """
+        test result transform and combines to TestResultBase Object
+        test result storage
+        :return:
+        """
+        logger.info("test results storage starting.")
+
+        test_result_storage_obj = TestResultBase()
+        for key,value in self.test_result.items():
+            test_result_storage_obj.testItems.append({key:value})
+
+        test_result_storage_obj.testTime = datetime.now().strftime('%Y-%m-%d %H:%H:%S')
+        ThTestResultsStorage.test_case_result_storage(test_result_storage_obj)
+        logger.info("test results storage finish.")
+
+    def test_result_display(self):
+        """
+        display the test result into table widget
+        :return: none
+        """
+        if len(self.selected_test_cases) > 0:
+            test_case_name =  self.selected_test_cases[0]
+            if "ecom_ns_1" in test_case_name:
+                while self.tableWidget_test_results_ecom_ns1.rowCount() > 0:
+                    self.tableWidget_test_results_ecom_ns1.removeRow(0)
+
+                self.tableWidget_test_results_ecom_ns1.setRowCount(len(self.test_result))
+                temp_index = 0
+                for key, value in self.test_result.items():
+                    item = QTableWidgetItem(str(key))
+                    self.tableWidget_test_results_ecom_ns1.setItem(temp_index, 0, item)
+
+                    item = QTableWidgetItem(str(value))
+                    self.tableWidget_test_results_ecom_ns1.setItem(temp_index, 1, item)
+
+                    item = QTableWidgetItem(str(value))
+                    self.tableWidget_test_results_ecom_ns1.setItem(temp_index, 2, item)
+                    temp_index = temp_index + 1
+            else:
+                while self.tableWidget_test_results_ecom_ns2.rowCount() > 0:
+                    self.tableWidget_test_results_ecom_ns2.removeRow(0)
+
+                self.tableWidget_test_results_ecom_ns2.setRowCount(len(self.test_result))
+                temp_index = 0
+                for key, value in self.test_result.items():
+                    item = QTableWidgetItem(str(key))
+                    self.tableWidget_test_results_ecom_ns2.setItem(temp_index, 0, item)
+
+                    item = QTableWidgetItem(str(value))
+                    self.tableWidget_test_results_ecom_ns2.setItem(temp_index, 1, item)
+
+                    item = QTableWidgetItem(str(value))
+                    self.tableWidget_test_results_ecom_ns2.setItem(temp_index, 2, item)
+                    temp_index = temp_index + 1
+
+

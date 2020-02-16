@@ -81,7 +81,6 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         parent.setFlags(parent.flags() | Qt.ItemIsTristate | Qt.ItemIsUserCheckable)
 
         # 加载测试资源
-
         for x in range(len(self.test_config.test_source)):
             # 插入数据,根据temp_length数组的长度插入行数
             self.tableWidget_test_resource.setRowCount(len(self.test_config.test_source))
@@ -253,6 +252,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
                 self.test_process_control("finish")
                 logger.info(self.test_result)
                 self.test_result_transform_and_storage()
+                self.test_result_display()
                 return
 
             if flag != "next":
@@ -262,7 +262,7 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
                             self.test_result.update(para)
             self.test_cases_records[self.current_test_case]["current"] = \
                 self.test_cases_records[self.current_test_case]["current"] + 1
-            time.sleep(0.1)
+            # time.sleep(0.1)
             self.test_process_control("next")
 
         temp_flag = False
@@ -334,3 +334,26 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         test_result_storage_obj.testTime = datetime.now().strftime('%Y-%m-%d %H:%H:%S')
         ThTestResultsStorage.test_case_result_storage(test_result_storage_obj)
         logger.info("test results storage finish.")
+
+
+    def test_result_display(self):
+        """
+        display the test result into table widget
+        :return: none
+        """
+        while self.tableWidget_test_results.rowCount() > 0:
+            self.tableWidget_test_results.removeRow(0)
+
+        self.tableWidget_test_results.setRowCount(len(self.test_result))
+        temp_index = 0
+        for key,value in self.test_result.items():
+            item = QTableWidgetItem(str(key))
+            self.tableWidget_test_results.setItem(temp_index, 0, item)
+
+            item = QTableWidgetItem(str(value))
+            self.tableWidget_test_results.setItem(temp_index, 1, item)
+
+            item = QTableWidgetItem(str(value))
+            self.tableWidget_test_results.setItem(temp_index, 2, item)
+            temp_index = temp_index + 1
+

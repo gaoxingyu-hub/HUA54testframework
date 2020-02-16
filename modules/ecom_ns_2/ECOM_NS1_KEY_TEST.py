@@ -14,6 +14,7 @@ from .Ui_ECOM_NS1_KEY_TEST import Ui_Dialog
 from common.logConfig import Logger
 from .ecom_ns1_test_process import TestProcessEcomNs1
 from common.config import EcomNs1TestModuleConfig
+from common.info import Constants
 
 SETUP_DIR = frozen_dir.app_path()
 logger = Logger.module_logger("EcomNs1Execute")
@@ -62,11 +63,15 @@ class DialogEcomNs1KeyTest(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         if self.current_test_step >= self.max_test_steps:
-            self._signalFinish.emit(self.windowTitle(), self.test_result)
+            self._signalFinish.emit(Constants.SIGNAL_TEST_RESULT, self.test_result)
+            self._signalFinish.emit(Constants.SIGNAL_NEXT, "")
+            # self._signalFinish.emit(self.windowTitle(), self.test_result)
             self.accept()
             self.close()
         elif self.pushButton_process.text() == "测试结束":
-            self._signalFinish.emit(self.windowTitle(), self.test_result)
+            self._signalFinish.emit(Constants.SIGNAL_TEST_RESULT, self.test_result)
+            self._signalFinish.emit(Constants.SIGNAL_NEXT, "")
+            # self._signalFinish.emit(self.windowTitle(), self.test_result)
             self.accept()
             self.close()
         else:
@@ -77,6 +82,7 @@ class DialogEcomNs1KeyTest(QDialog, Ui_Dialog):
                     self.test_process_object = TestProcessEcomNs1()
                     self.test_process_object.set_test_para("test.script", self.current_test_case)
                     self.test_process_object._signal.connect(self.slot_test_process)
+                    self.test_process_object._signalInfo.connect(self.slot_test_process_information)
                     self.test_process_object.start()
                     self.test_step_control("next")
                 except BaseException as e:
@@ -113,6 +119,9 @@ class DialogEcomNs1KeyTest(QDialog, Ui_Dialog):
             if v == "fail":
                 temp_result_flag = False
 
+        if para1 and para2:
+            self.test_result.update(para2)
+
         if not temp_result_flag:
             self.current_test_button_status = "fail"
             self.textBrowser_tips.setText(self.test_config.steps[self.current_test_step - 1]["contents"] + temp_result_str)
@@ -131,4 +140,10 @@ class DialogEcomNs1KeyTest(QDialog, Ui_Dialog):
             self.current_test_button_status = self.test_config.steps[self.current_test_step-1]["status"]
             self.textBrowser_tips.setText(self.test_config.steps[self.current_test_step-1]["contents"])
             self.pushButton_process.setText(self.test_config.steps[self.current_test_step-1]["button"])
+
+    def slot_test_process_information(self,signal,para1):
+        if self.textBrowser_log.document().blockCount() > 10:
+            self.textBrowser_log.clear()
+        self.textBrowser_log.append(para1)
+
 
