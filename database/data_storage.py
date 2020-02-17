@@ -10,7 +10,7 @@ import json
 import uuid
 import sqlite3
 from datetime import datetime
-from database.test_results import TestResultBase,TestValue,TestParam,TestItem
+from database.test_results_model import TestResultBase,TestValue,TestParam,TestItem
 
 logger = Logger.module_logger("ThTestResultsStorage")
 SETUP_DIR = frozen_dir.app_path()
@@ -61,7 +61,7 @@ class ThTestResultsStorage:
         return str(uuid.uuid1())
 
     @staticmethod
-    def save_test_case_record(test_result:TestResultBase, test_result_file_path):
+    def save_test_case_record(test_result: TestResultBase, test_result_file_path):
         """
         store the test case result into sqlite records
         :param test_result: test result data model TestResultBase

@@ -32,4 +32,6 @@ _build
 _static
 _templates
 docs/*
+logs/*
+data/*.json
 data.log

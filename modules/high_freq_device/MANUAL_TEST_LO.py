@@ -16,7 +16,7 @@ from PyQt5.Qt import QMessageBox
 import numpy as np
 from database.data_storage import ThTestResultsStorage
 import json
-from database.test_results import TestResultBase
+from database.test_results_model import TestResultBase
 
 class MANUAL_TEST_LO(QDialog, Ui_Dialog):
     """
