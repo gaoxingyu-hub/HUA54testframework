@@ -173,6 +173,7 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
                         self.current_test_case = case
 
                         self.current_test_step_dialog = globals()[temp_test_process['module']]()
+                        
                         if temp_test_process['module'] == 'AUTO_TEST':
                             self.current_test_step_dialog.initUi(self.test_config)
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_tr)
@@ -187,18 +188,23 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                             
                         elif temp_test_process['module'] == 'AUTO_TEST_LNA':
+                            self.current_test_step_dialog.initUi(self.test_config)
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_lna)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                         elif temp_test_process['module'] == 'AUTO_TEST_PA':
+                            self.current_test_step_dialog.initUi(self.test_config)
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_pa)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                         elif temp_test_process['module'] == 'AUTO_TEST_LOOP':
+                            self.current_test_step_dialog.initUi(self.test_config)
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_loop)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                         elif temp_test_process['module'] == 'AUTO_TEST_FILTER':
+                            self.current_test_step_dialog.initUi(self.test_config)
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_filter)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                         elif temp_test_process['module'] == 'AUTO_TEST_COUPLER':
+                            self.current_test_step_dialog.initUi(self.test_config)
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_coupler)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                         elif temp_test_process['module'] == 'MANUAL_TEST_SWITCH':

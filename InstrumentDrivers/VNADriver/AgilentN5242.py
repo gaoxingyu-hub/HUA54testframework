@@ -34,11 +34,7 @@ class VNA_AgilentN5242(VNA):
     def GetMarkerY(self):
         temp=self.Ask('CALC:MARK:Y?')
         return temp
-    def GetReturnNumberFromString(self,resultstring):
-        '''
-        '''
-        SpaceIndex=re.search(' ',resultstring).start()
-        return string.atof(resultstring[SpaceIndex+1:])
+
     
     def SetStartFreq(self,StartFreq):
         '''
@@ -244,37 +240,7 @@ class VNA_AgilentN5242(VNA):
     def ThoughCal(self):
         self.Write(':SENSe1:CORRection:COLLect:ACQuire:SELected THRough, 1, 2')
         
-    def Port1OpenCal(self):
-        self.Write(':SENSe1:CORRection:COLLect:ACQuire:SELected OPEN, 1')
-        
-    def Port2OpenCal(self):
-        self.Write(':SENSe1:CORRection:COLLect:ACQuire:SELected OPEN, 2')
-        
-    def Port1ShortCal(self):
-        self.Write(':SENSe1:CORRection:COLLect:ACQuire:SELected SHORT, 1')
-        
-    def Port2ShortCal(self):
-        self.Write(':SENSe1:CORRection:COLLect:ACQuire:SELected SHORT, 2')
-        
-    def Port1MathchCal(self):
-        self.Write(':SENSe1:CORRection:COLLect:ACQuire:SELected MATCH, 1')   
-        
-    def Port2MathchCal(self):
-        self.Write(':SENSe1:CORRection:COLLect:ACQuire:SELected MATCH, 2')    
-        
-    def Port1Reflect(self):
-        self.Write(':SENSe1:CORRection:COLLect:ACQuire:SELected REFL, 1')
-        
-    def Port2Reflect(self):
-        self.Write(':SENSe1:CORRection:COLLect:ACQuire:SELected REFL, 2')
-        
-    def LineCal(self):
-        cmd=':SENSe1:CORRection:COLLect:ACQuire:SELected LINE1, 1,2'
-        self.Write(cmd)
     
-    def ApplyCal(self):
-        self.Write(':SENSe1:CORRection:COLLect:SAVE:SELected')
-        
     def StoreCalResult(self,filename):
         cmd=':MMEMORY:STORE:CORRection 1, '+"'"+filename+'.cal'+"'"
         self.Write(cmd)
