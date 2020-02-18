@@ -4,7 +4,7 @@
 Module implementing DialogSimpleTestProcess1Btn.
 """
 
-from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtCore import pyqtSlot, QPoint, Qt
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QDialog, QGraphicsItem
 from PyQt5.QtCore import pyqtSignal
@@ -34,6 +34,7 @@ class DialogSimpleTestProcess1Btn(QDialog, Ui_Dialog):
         super(DialogSimpleTestProcess1Btn, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
+    """
         # 图片缩放比例
         self.Scale = 1
         # Key_Control键是否按下
@@ -63,7 +64,7 @@ class DialogSimpleTestProcess1Btn(QDialog, Ui_Dialog):
                 self.item.setScale(self.Scale)
         else:
             super().wheelEvent(event)
-    
+    """
     @pyqtSlot()
     def on_pushButton_1_clicked(self):
         """
@@ -87,15 +88,10 @@ class DialogSimpleTestProcess1Btn(QDialog, Ui_Dialog):
             self.textBrowser_contents.setText(contents)
             if img_file_path and img_file_path != "":
                 if os.path.isfile(img_file_path) and os.access(img_file_path, os.W_OK):
-                    # 载入图片
-                    self.scene = QtWidgets.QGraphicsScene()
-                    self.graphicsView.setScene(self.scene)
-                    self.imgPixmap = QPixmap(img_file_path)
-                    self.item = QtWidgets.QGraphicsPixmapItem(self.imgPixmap)
-                    self.item.setFlags(QGraphicsItem.ItemIsMovable | QGraphicsItem.ItemIsSelectable)
-                    self.scene.addItem(self.item)
-                    # 设置图元初始大小
-                    self.imgPixmap.scaled(600, 800)
+                    self.pixmap = QtGui.QPixmap(img_file_path)
+                    self.pixmap = self.pixmap.scaled(600, 600,
+                                                     Qt.IgnoreAspectRatio | Qt.SmoothTransformation)
+                    self.label_img.setPixmap(self.pixmap)
         except BaseException as e:
             logger.error(str(e))
         return

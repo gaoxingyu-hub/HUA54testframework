@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'G:\sourcecode\54\54testframework\ui\PIC_TEXT.ui'
+# Form implementation generated from reading ui file 'E:\tianheng_projects\54\54TestFramework\ui\PIC_TEXT.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.0
+# Created by: PyQt5 UI code generator 5.13.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.setFixedSize(800,600)
+        Dialog.resize(750, 610)
         font = QtGui.QFont()
         font.setFamily("Microsoft YaHei")
         font.setPointSize(14)
@@ -66,37 +66,34 @@ class Ui_Dialog(object):
         self.groupBox = QtWidgets.QGroupBox(Dialog)
         self.groupBox.setTitle("")
         self.groupBox.setObjectName("groupBox")
-        self.gridLayout_3 = QtWidgets.QGridLayout(self.groupBox)
-        self.gridLayout_3.setContentsMargins(2, 2, 2, 2)
-        self.gridLayout_3.setSpacing(2)
-        self.gridLayout_3.setObjectName("gridLayout_3")
-        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.layoutWidget = QtWidgets.QWidget(self.groupBox)
+        self.layoutWidget.setGeometry(QtCore.QRect(0, 0, 771, 581))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.textBrowser_contents = QtWidgets.QTextBrowser(self.groupBox)
+        self.textBrowser_contents = QtWidgets.QTextBrowser(self.layoutWidget)
         self.textBrowser_contents.setObjectName("textBrowser_contents")
         self.verticalLayout.addWidget(self.textBrowser_contents)
-        self.graphicsView = QtWidgets.QGraphicsView(self.groupBox)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.graphicsView.sizePolicy().hasHeightForWidth())
-        self.graphicsView.setSizePolicy(sizePolicy)
-        self.graphicsView.setObjectName("graphicsView")
-        self.verticalLayout.addWidget(self.graphicsView)
+        self.label_img = QtWidgets.QLabel(self.layoutWidget)
+        self.label_img.setText("")
+        self.label_img.setScaledContents(False)
+        self.label_img.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_img.setObjectName("label_img")
+        self.verticalLayout.addWidget(self.label_img)
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem, 0, 2, 1, 1)
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem1, 0, 0, 1, 1)
-        self.pushButton_next = QtWidgets.QPushButton(self.groupBox)
+        self.gridLayout.addItem(spacerItem, 0, 0, 1, 1)
+        self.pushButton_next = QtWidgets.QPushButton(self.layoutWidget)
         self.pushButton_next.setObjectName("pushButton_next")
         self.gridLayout.addWidget(self.pushButton_next, 0, 1, 1, 1)
+        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem1, 0, 2, 1, 1)
         self.verticalLayout.addLayout(self.gridLayout)
         self.verticalLayout.setStretch(0, 2)
-        self.verticalLayout.setStretch(1, 10)
+        self.verticalLayout.setStretch(1, 14)
         self.verticalLayout.setStretch(2, 1)
-        self.gridLayout_3.addLayout(self.verticalLayout, 0, 0, 1, 1)
         self.gridLayout_2.addWidget(self.groupBox, 0, 0, 1, 1)
 
         self.retranslateUi(Dialog)
