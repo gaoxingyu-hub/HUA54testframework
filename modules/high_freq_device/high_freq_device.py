@@ -589,13 +589,13 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
 
 
 
-
-if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv)
-    # trans = QtCore.QTranslator()
-    # temp_file_path = os.path.join(SETUP_DIR,"langs","en","main_en.qm")
-    # trans.load(temp_file_path)
-    # app.installTranslator(trans)
-    mTest = HIGH_FREQ_DEVICE()
-    mTest.show()
-    sys.exit(app.exec_())
+# 
+# if __name__ == '__main__':
+#     app = QtWidgets.QApplication(sys.argv)
+#     # trans = QtCore.QTranslator()
+#     # temp_file_path = os.path.join(SETUP_DIR,"langs","en","main_en.qm")
+#     # trans.load(temp_file_path)
+#     # app.installTranslator(trans)
+#     mTest = HIGH_FREQ_DEVICE()
+#     mTest.show()
+#     sys.exit(app.exec_())
