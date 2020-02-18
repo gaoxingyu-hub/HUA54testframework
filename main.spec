@@ -3,9 +3,9 @@
 block_cipher = None
 
 
-src_dir="G:\\sourcecode\\54\\54testframework\\"
+src_dir="E:\\tianheng_projects\\54\\54testframework\\"
 a = Analysis(['main.py'],
-             pathex=['G:\\sourcecode\\54\\54testframework'],
+             pathex=['E:\\tianheng_projects\\54\\54testframework'],
              binaries=[],
              datas=[(src_dir+'logs','logs'),(src_dir+'imgs','imgs'),(src_dir+'langs','langs'),(src_dir+'conf','conf')],
              hiddenimports=[],
