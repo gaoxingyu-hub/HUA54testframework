@@ -86,20 +86,28 @@ class RouterDialog(QDialog, Ui_Dialog):
             item = QTableWidgetItem(str(self.test_config.test_source[x]["name"]))
             self.tableWidget_test_resource.setItem(x, 0, item)
             # 编号/型号
-            item = QTableWidgetItem(str(self.test_config.test_source[x]["number"]))
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["type"]))
             self.tableWidget_test_resource.setItem(x, 1, item)
             # 数量
-            item = QTableWidgetItem(str(self.test_config.test_source[x]["count"]))
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["number"]))
             self.tableWidget_test_resource.setItem(x, 2, item)
             # 备注
-            item = QTableWidgetItem(str(self.test_config.test_source[x]["note"]))
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["count"]))
             self.tableWidget_test_resource.setItem(x, 3, item)
+            # 字体居中
+            for a in range(0, 4):
+                self.tableWidget_test_resource.item(x, a).setTextAlignment(Qt.AlignCenter)
 
         for x in range(len(self.test_config.test_case)):
             child = QTreeWidgetItem(parent)
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
             child.setText(0, self.test_config.test_case_detail[x]["title"])
             child.setCheckState(0, Qt.Unchecked)
+        # table widget 自适应
+        self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                               QHeaderView.Stretch)
+        self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                 QHeaderView.Stretch)
         self.test_result = {}
         logger.info("Router inited")
 

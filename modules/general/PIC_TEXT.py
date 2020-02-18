@@ -30,10 +30,11 @@ class DialogPicText(QDialog, Ui_Dialog, QGraphicsView):
         super(DialogPicText, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
+    """
         # 图片缩放比例
         self.Scale = 1
         self.ctrlPressed = False
-
+    
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_Control:
             self.ctrlPressed = True
@@ -56,6 +57,7 @@ class DialogPicText(QDialog, Ui_Dialog, QGraphicsView):
             elif angleY < 0:  # 滚轮下滚
                 self.Scale = self.Scale - 0.05
                 self.item.setScale(self.Scale)
+    """
 
     def set_contents(self, title, contents, img_file_path):
         """
@@ -70,19 +72,14 @@ class DialogPicText(QDialog, Ui_Dialog, QGraphicsView):
             self.textBrowser_contents.setText(contents)
             if img_file_path and img_file_path != "":
                 if os.path.isfile(img_file_path) and os.access(img_file_path, os.W_OK):
-                    # 载入图片
-                    self.scene = QtWidgets.QGraphicsScene()
-                    self.graphicsView.setScene(self.scene)
-                    self.imgPixmap = QPixmap(img_file_path)
-                    self.item = QtWidgets.QGraphicsPixmapItem(self.imgPixmap)
-                    self.item.setFlags(QGraphicsItem.ItemIsMovable | QGraphicsItem.ItemIsSelectable)
-                    self.scene.addItem(self.item)
-                    # 设置图元初始大小
-                    self.imgPixmap.scaled(600, 800)
+                    self.pixmap = QtGui.QPixmap(img_file_path)
+                    self.pixmap = self.pixmap.scaled(600, 600,
+                                                     Qt.IgnoreAspectRatio | Qt.SmoothTransformation)
+                    self.label_img.setPixmap(self.pixmap)
         except:
             pass
         return
-    
+
     @pyqtSlot()
     def on_pushButton_next_clicked(self):
         """
