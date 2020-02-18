@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project test -->
-<!-- Saved: 2020-02-12, 17:29:57 -->
+<!-- Saved: 2020-02-16, 15:34:11 -->
 <!-- Copyright (C) 2020 ,  -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -27,6 +27,7 @@
     <Source>control_device/Ui_COM_CONTROL_DEVICE_EXECUTE3.py</Source>
     <Source>control_device/Ui_COM_CONTROL_DEVICE_EXECUTE4.py</Source>
     <Source>iconQrc_rc.py</Source>
+    <Source>router/Ui_Router.py</Source>
   </Sources>
   <Forms>
     <Form>AUTO_TEST.ui</Form>
@@ -45,6 +46,8 @@
     <Form>control_device/COM_CONTROL_DEVICE_PA2.ui</Form>
     <Form>high_freq_device.ui</Form>
     <Form>module.ui</Form>
+    <Form>router/Router.ui</Form>
+    <Form>router/Router_Lan_test.ui</Form>
     <Form>testInfo.ui</Form>
     <Form>testPA4.ui</Form>
   </Forms>

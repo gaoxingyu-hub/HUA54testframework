@@ -3,11 +3,17 @@
 """
 Module implementing RouterDialog.
 """
+import datetime
 import os
+import time
 
 from PyQt5 import QtGui
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QDialog
+
+from common.info import Constants
+from database.data_storage import ThTestResultsStorage
+from database.test_results_model import TestResultBase
 from modules.general.PIC_TEXT import DialogPicText
 from modules.general.SIMPLE_TEST_PROCESS_1BTN import DialogSimpleTestProcess1Btn
 from modules.general.SIMPLE_TEST_PROCESS_2BTN import DialogSimpleTestProcess2Btn
@@ -17,7 +23,7 @@ from common.logConfig import Logger
 from modules.info.testInfo import TestInfo
 from common.th_thread_model import ThThreadTimerUpdateTestTime
 import frozen_dir
-import time
+from datetime import datetime
 from .Ui_Router import Ui_Dialog
 from common.config import TestModuleConfigNew, SystemConfig
 from PyQt5.QtCore import pyqtSignal, Qt
@@ -129,7 +135,7 @@ class RouterDialog(QDialog, Ui_Dialog):
         else:
             self.current_test_step = 1
         self.start_test_flag = True
-        self.start_caculate_test_duration()
+        self.start_calculate_test_duration()
         self.test_process_control("next")
         logger.info("router test process start")
 
@@ -161,7 +167,7 @@ class RouterDialog(QDialog, Ui_Dialog):
         else:
             self.current_test_step = 1
         self.test_process_control("next")
-        self.start_caculate_test_duration()
+        self.start_calculate_test_duration()
         logger.info("router test process restart")
 
     def get_checked_test_cases(self):
@@ -236,12 +242,13 @@ class RouterDialog(QDialog, Ui_Dialog):
                             self.current_test_step_dialog.exec_()
                             break
             elif action == "finish":
-                pass
+                logger.info(str(self.test_result))
+                self.test_data_storage()
+                self.test_data_display()
         except BaseException as e:
             logger.error(str(e))
 
         return
-
 
     def deal_signal_test_step_finish_emit_slot(self, flag,para):
         """
@@ -249,6 +256,10 @@ class RouterDialog(QDialog, Ui_Dialog):
         :param paras:
         :return:
         """
+        if flag == Constants.SIGNAL_TEST_RESULT:
+            self.test_result.update(para)
+            return
+
         if self.current_test_step_dialog:
             self.current_test_step_dialog.close()
             self.last_test_case_status = flag
@@ -257,11 +268,11 @@ class RouterDialog(QDialog, Ui_Dialog):
                 self.test_process_control("finish")
                 return
 
-            if flag != "next":
-                for x in range(len(self.test_config.test_case)):
-                    for test_step in self.test_config.test_case_detail[x]["steps"]:
-                        if test_step["title"] == flag and test_step["category"] == "execute":
-                            self.test_result.update(para)
+            #if flag != "next":
+            #    for x in range(len(self.test_config.test_case)):
+            #        for test_step in self.test_config.test_case_detail[x]["steps"]:
+            #            if test_step["title"] == flag and test_step["category"] == "execute":
+            #                self.test_result.update(para)
             self.test_cases_records[self.current_test_case]["current"] = \
                 self.test_cases_records[self.current_test_case]["current"] + 1
             time.sleep(0.1)
@@ -275,23 +286,17 @@ class RouterDialog(QDialog, Ui_Dialog):
         if not temp_flag and self.start_test_flag:
             QMessageBox.information(self, "", "测试完成")
             self.start_test_flag = False
-            logger.info(str(self.test_result))
+            self.test_process_control("finish")
 
     def deal_signal_test_duration_caculate_emit_slot(self, para):
-        """
-
-        :param paras:
-        :return:
-        """
-
         try:
             hours, remainder = divmod(para, 3600)
             minutes, seconds = divmod(remainder, 60)
             self.label_test_duration.setText(str(int(hours)) + ":" + str(int(minutes)) + ":" + str(int(seconds)))
         except BaseException as e:
-            logger.info("router deal_signal_test_duration_caculate_emit_slot fail:" + str(e))
+            logger.info("router deal_signal_test_duration_calculate_emit_slot fail:" + str(e))
 
-    def start_caculate_test_duration(self):
+    def start_calculate_test_duration(self):
         if not self.test_time_update_obj:
             self.test_time_update_obj = ThThreadTimerUpdateTestTime()
 
@@ -299,3 +304,43 @@ class RouterDialog(QDialog, Ui_Dialog):
         self.test_time_update_obj._signal.connect(self.deal_signal_test_duration_caculate_emit_slot)
         if not self.test_time_update_obj.thread_status:
             self.test_time_update_obj.start()
+
+    def treeWidget_item_click_slot_test(self,QTreeWidgetItem, index):
+        """
+        set the test case single checked
+        :return: None
+        """
+        for item in self.treeWidget.findItems("", Qt.MatchContains | Qt.MatchRecursive):
+            if item.parent() is None:
+                continue
+            if item.text(0) != QTreeWidgetItem.text(0):
+                item.setCheckState(0, Qt.Unchecked)
+
+    def test_data_storage(self):
+        logger.info("test results storage starting.")
+
+        test_result_storage_obj = TestResultBase()
+        for key, value in self.test_result.items():
+            test_result_storage_obj.testItems.append({key: value})
+
+        test_result_storage_obj.testTime = datetime.now().strftime('%Y-%m-%d %H:%H:%S')
+        ThTestResultsStorage.test_case_result_storage(test_result_storage_obj)
+        logger.info("router test results storage finish.")
+
+    def test_data_display(self):
+        """
+        展示路由器测试数据
+        :return:
+        """
+        self.tableWidget.setRowCount(len(self.test_result))
+        temp_index = 0
+        for key, value in self.test_result.items():
+            item = QTableWidgetItem(str(key))
+            self.tableWidget.setItem(temp_index, 0, item)
+
+            item = QTableWidgetItem(str(value))
+            self.tableWidget.setItem(temp_index, 1, item)
+
+            item = QTableWidgetItem(str(value))
+            self.tableWidget.setItem(temp_index, 2, item)
+            temp_index = temp_index + 1
