@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'G:\sourcecode\54\54testframework\ui\control_device\COM_CONTROL_DEVICE_PA2.ui'
+# Form implementation generated from reading ui file 'G:\sourcecode\54\54testframework\ui\mv_com_device\MV_COM_DEVICE_MAIN.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.0
 #
@@ -266,7 +266,7 @@ class Ui_Dialog(object):
         item = self.tableWidget_test_results.horizontalHeaderItem(2)
         item.setText(_translate("Dialog", "测试结论"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Dialog", "模块测试"))
-import res.iconQrc_rc
+import iconQrc_rc
 
 
 if __name__ == "__main__":

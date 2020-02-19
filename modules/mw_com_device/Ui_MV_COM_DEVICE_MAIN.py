@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'G:\sourcecode\54\54testframework\ui\control_device\COM_CONTROL_DEVICE_PA2.ui'
+# Form implementation generated from reading ui file 'G:\sourcecode\54\54testframework\ui\mv_com_device\MV_COM_DEVICE_MAIN.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.0
 #

@@ -80,22 +80,25 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         parent.setText(0, self.test_config.title)
         parent.setFlags(parent.flags() | Qt.ItemIsTristate | Qt.ItemIsUserCheckable)
 
+        # 插入数据,根据temp_length数组的长度插入行数
+        self.tableWidget_test_resource.setRowCount(len(self.test_config.test_source))
         # 加载测试资源
         for x in range(len(self.test_config.test_source)):
-            # 插入数据,根据temp_length数组的长度插入行数
-            self.tableWidget_test_resource.setRowCount(len(self.test_config.test_source))
-
+            # 名称
             item = QTableWidgetItem(str(self.test_config.test_source[x]["name"]))
             self.tableWidget_test_resource.setItem(x, 0, item)
-
-            item = QTableWidgetItem(str(self.test_config.test_source[x]["number"]))
+            # 编号/型号
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["type"]))
             self.tableWidget_test_resource.setItem(x, 1, item)
-
-            item = QTableWidgetItem(str(self.test_config.test_source[x]["count"]))
+            # 数量
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["number"]))
             self.tableWidget_test_resource.setItem(x, 2, item)
-
-            item = QTableWidgetItem(str(self.test_config.test_source[x]["note"]))
+            # 备注
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["count"]))
             self.tableWidget_test_resource.setItem(x, 3, item)
+            # 字体居中
+            for a in range(0, 4):
+                self.tableWidget_test_resource.item(x, a).setTextAlignment(Qt.AlignCenter)
 
         for x in range(len(self.test_config.test_case)):
             child = QTreeWidgetItem(parent)
@@ -110,8 +113,6 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
-
         self.selected_test_cases = self.get_checked_test_cases()
         self.test_result = {}
 
@@ -148,7 +149,6 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
         if not self.debug_model:
             test = TestInfo()
             test.setWindowTitle("通信控制设备测试")
@@ -169,7 +169,6 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
         self.signalTitle.emit("close")
         self.close()
         logger.info("com_control_device test process close")
