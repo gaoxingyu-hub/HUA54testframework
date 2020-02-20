@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-"""
-Module implementing DialogEcomNs2Main.
-"""
 
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtCore import pyqtSignal, Qt
@@ -17,22 +14,20 @@ from common.logConfig import Logger
 import time
 
 from modules.general.PIC_TEXT import DialogPicText
-from .Ui_ECOM_NS2_MAIN import Ui_Dialog
-from .ECOM_NS2_Ping import EcomNs2Ping
-from .ECOM_NS2_EXECUTE1 import EcomNs2Execute
-from .ecom_ns2_test_data import TestDataEcomNs2
+from .Ui_ECOM_NS1_MAIN import Ui_Dialog
 from modules.general.SIMPLE_TEST_PROCESS_1BTN import DialogSimpleTestProcess1Btn
 from modules.general.SIMPLE_TEST_PROCESS_2BTN import DialogSimpleTestProcess2Btn
+from .ECOM_NS1_KEY_TEST import DialogEcomNs1KeyTest
 from common.info import Constants
 from database.data_storage import ThTestResultsStorage
 from database.test_results_model import TestResultBase
 from datetime import datetime
 
 SETUP_DIR = frozen_dir.app_path()
-logger = Logger.module_logger("ecom_ns_2")
+logger = Logger.module_logger("ecom_ns_1")
 
 
-class EcomNs2Main(QDialog, Ui_Dialog):
+class EcomNs1Main(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
@@ -48,19 +43,19 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         @param parent reference to the parent widget
         @type QWidget
         """
-        super(EcomNs2Main, self).__init__(parent)
+        super(EcomNs1Main, self).__init__(parent)
         self.setupUi(self)
 
         self.current_test_step = 0
 
         self.config_file_path = os.path.join(
-            SETUP_DIR, "conf", "ecom_ns_2.json")
+            SETUP_DIR, "conf", "ecom_ns_1.json")
         self.system_config_file_path = os.path.join(
             SETUP_DIR, "conf", "system.json")
         self.test_config = TestModuleConfigNew(self.config_file_path)
 
         self.pic_file_path = os.path.join(
-            SETUP_DIR, "imgs", "ecom_ns_2")
+            SETUP_DIR, "imgs", "ecom_ns_1")
 
         self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name
@@ -106,18 +101,15 @@ class EcomNs2Main(QDialog, Ui_Dialog):
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
             child.setText(0, self.test_config.test_case_detail[x]["title"])
             child.setCheckState(0, Qt.Unchecked)
-
         # table widget 自适应
         self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
                                                                                QHeaderView.Stretch)
-        self.tableWidget_test_results_ecom_ns2.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+        self.tableWidget_test_results_ecom_ns1.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
                                                                                        QHeaderView.Stretch)
         # 设置treeWidget单选
         # self.treeWidget.itemClicked.connect(self.treeWidget_item_click_slot_test)
-
-        # self.test_result = TestDataEcomNs2()
         self.test_result = {}
-        logger.info("ecom_ns_2 inited")
+        logger.info("ecom_ns_1 inited")
     
     @pyqtSlot()
     def on_pushButton_start_clicked(self):
@@ -153,14 +145,13 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         self.start_test_flag = True
         self.start_caculate_test_duration()
         self.test_process_control("next")
-        logger.info("ecom ns2 test process start")
+        logger.info("ecom ns1 test process start")
     
     @pyqtSlot()
     def on_pushButton_restart_clicked(self):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
         if not self.debug_model:
             test = TestInfo()
             test.setWindowTitle(self.test_config.title)
@@ -174,17 +165,16 @@ class EcomNs2Main(QDialog, Ui_Dialog):
             self.current_test_step = 1
         self.test_process_control("next")
         self.start_caculate_test_duration()
-        logger.info("ecom ns2 test process restart")
+        logger.info("ecom ns1 test process restart")
     
     @pyqtSlot()
     def on_pushButton_close_clicked(self):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
         self.signalTitle.emit("close")
         self.close()
-        logger.info("ecom_ns_2 test process close")
+        logger.info("ecom_ns_1 test process close")
 
     def test_process_control(self, action):
         """
@@ -192,10 +182,9 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         """
         try:
             if action == "next":
-                for case,step in self.test_cases_records.items():
+                for case, step in self.test_cases_records.items():
                     if step["current"] > step["max"]:
                         continue
-
                     # get the test case detail parameters
                     for x in range(len(self.test_config.test_case)):
                         if case in self.test_config.test_case_detail[x]["title"]:
@@ -281,7 +270,7 @@ class EcomNs2Main(QDialog, Ui_Dialog):
                 temp_flag = True
 
         if not temp_flag and self.start_test_flag:
-            QMessageBox.information(self, "", "测试完成")
+            QMessageBox.information(self,"","测试完成")
             self.start_test_flag = False
             self.test_process_control("finish")
 
@@ -296,7 +285,7 @@ class EcomNs2Main(QDialog, Ui_Dialog):
             minutes, seconds = divmod(remainder, 60)
             self.label_test_duration.setText(str(int(hours)) + ":" + str(int(minutes)) + ":" + str(int(seconds)))
         except BaseException as e:
-            logger.info("ecom ns2 deal_signal_test_duration_caculate_emit_slot fail:" + str(e))
+            logger.info("ecom ns1 deal_signal_test_duration_caculate_emit_slot fail:" + str(e))
 
     def start_caculate_test_duration(self):
         if not self.test_time_update_obj:
@@ -339,7 +328,6 @@ class EcomNs2Main(QDialog, Ui_Dialog):
             if item.text(0) != QTreeWidgetItem.text(0):
                 item.setCheckState(0, Qt.Unchecked)
     """
-
     def test_result_transform_and_storage(self):
         """
         test result transform and combines to TestResultBase Object
@@ -349,7 +337,7 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         logger.info("test results storage starting.")
 
         test_result_storage_obj = TestResultBase()
-        for key, value in self.test_result.items():
+        for key,value in self.test_result.items():
             test_result_storage_obj.testItems.append({key: value})
 
         test_result_storage_obj.testTime = datetime.now().strftime('%Y-%m-%d %H:%H:%S')
@@ -361,21 +349,18 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         display the test result into table widget
         :return: none
         """
-        while self.tableWidget_test_results_ecom_ns2.rowCount() > 0:
-            self.tableWidget_test_results_ecom_ns2.removeRow(0)
-
-        self.tableWidget_test_results_ecom_ns2.setRowCount(len(self.test_result))
+        while self.tableWidget_test_results_ecom_ns1.rowCount() > 0:
+            self.tableWidget_test_results_ecom_ns1.removeRow(0)
+        self.tableWidget_test_results_ecom_ns1.setRowCount(len(self.test_result))
         temp_index = 0
         for key, value in self.test_result.items():
             item = QTableWidgetItem(str(key))
-            self.tableWidget_test_results_ecom_ns2.setItem(temp_index, 0, item)
+            self.tableWidget_test_results_ecom_ns1.setItem(temp_index, 0, item)
 
             item = QTableWidgetItem(str(value))
-            self.tableWidget_test_results_ecom_ns2.setItem(temp_index, 1, item)
+            self.tableWidget_test_results_ecom_ns1.setItem(temp_index, 1, item)
 
             item = QTableWidgetItem(str(value))
-            self.tableWidget_test_results_ecom_ns2.setItem(temp_index, 2, item)
+            self.tableWidget_test_results_ecom_ns1.setItem(temp_index, 2, item)
             temp_index = temp_index + 1
-
-
 

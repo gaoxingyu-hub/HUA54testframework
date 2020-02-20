@@ -77,11 +77,12 @@ class RouterDialog(QDialog, Ui_Dialog):
         parent = QTreeWidgetItem(self.treeWidget)
         parent.setText(0, self.test_config.title)
         parent.setFlags(parent.flags() | Qt.ItemIsTristate | Qt.ItemIsUserCheckable)
+        # 插入数据,根据temp_length数组的长度插入行数
+        length = len(self.test_config.test_source)
+        self.tableWidget_test_resource.setRowCount(length)
 
         # 加载测试资源
-        for x in range(len(self.test_config.test_source)):
-            # 插入数据,根据temp_length数组的长度插入行数
-            self.tableWidget_test_resource.setRowCount(len(self.test_config.test_source))
+        for x in range(length):
             # 名称
             item = QTableWidgetItem(str(self.test_config.test_source[x]["name"]))
             self.tableWidget_test_resource.setItem(x, 0, item)
