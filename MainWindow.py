@@ -5,7 +5,7 @@ Module implementing MainWindow.
 """
 
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import QMainWindow,QTreeWidgetItem,QMessageBox
+from PyQt5.QtWidgets import QMainWindow,QTreeWidgetItem,QMessageBox,QDesktopWidget
 # 使用反射时，需要提前引入该modules
 from modules.ecom_ns_2.ECOM_NS2_MAIN import EcomNs2Main
 from modules.test.module import TestModule
@@ -16,6 +16,7 @@ from modules.test.module import TestModule
 from modules.com_control_device_new.COM_CONTROL_DEVICE_PA2 import COM_CONTROL_DEVICE
 from modules.high_freq_device.high_freq_device import HIGH_FREQ_DEVICE
 from modules.ecom_ns_2.ECOM_NS2_MAIN import EcomNs2Main
+from modules.mw_com_device.MV_COM_DEVICE_MAIN import DialogMvComDevice
 from PyQt5.QtCore import pyqtSignal
 from PyQt5 import QtCore
 from common.logConfig import Logger
@@ -42,6 +43,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
+        self.dislay_in_center()
         self.child = None
 
         self.system_config_file_path = os.path.join(
@@ -113,6 +115,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         :return: None
         """
         self.statusbar.showMessage(paras)
+
+
+    def dislay_in_center(self):
+        """
+        set mainwindows display in center screen
+        :return:
+        """
+        screen = QDesktopWidget().screenGeometry()
+        size = self.geometry()
+        self.setGeometry((screen.width() - size.width()) / 2 + screen.left(),(screen.height() - size.height()) / 2,size.width(), size.height())
+
 
 
 class StatusCleanerThread(QtCore.QThread):
