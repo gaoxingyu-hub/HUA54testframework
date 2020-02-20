@@ -87,7 +87,12 @@ color:#666666</string>
       </item>
       <item>
        <property name="text">
-        <string>交换机</string>
+        <string>ECOM_NS_1型交换机</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ECOM_NS_2型交换机</string>
        </property>
       </item>
       <item>
