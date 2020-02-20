@@ -6,7 +6,6 @@ Module implementing MainWindow.
 
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QMainWindow,QTreeWidgetItem,QMessageBox,QDesktopWidget
-# 使用反射时，需要提前引入该modules
 from modules.ecom_ns_2.ECOM_NS2_MAIN import EcomNs2Main
 from modules.test.module import TestModule
 from modules.com_control_device_new.COM_CONTROL_DEVICE_PA2 import COM_CONTROL_DEVICE
@@ -21,6 +20,7 @@ from PyQt5.QtCore import pyqtSignal
 from PyQt5 import QtCore
 from common.logConfig import Logger
 from common.config import SystemConfig
+from common.info import MainWindowConstants,Constants
 import time
 import frozen_dir
 import os
@@ -69,7 +69,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         # TODO: not implemented yet
         if self.gridLayout.count() >= 1:
-            QMessageBox.warning(self, "警告", "请关闭当前测试模块！")
+            QMessageBox.warning(self,MainWindowConstants.QMESSAGEBOX_WARN,
+                                MainWindowConstants.QMESSAGEBOX_WARN_CLOSE_CURRENT_MODULE)
             return
 
         if item.parent() != None:
@@ -79,11 +80,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.child.signalTitle.connect(self.deal_signal_title_emit_slot)
                 self.child.signalStatus.connect(self.deal_signal_status_emit_slot)
                 self.gridLayout.addWidget(self.child)
-                self.groupBox.setTitle("测试项目:" + item.parent().text(0) + "-" + item.text(0))
+                self.groupBox.setTitle(MainWindowConstants.CONTENTS_TEST_CASE +
+                                       ":" + item.parent().text(0) + "-" + item.text(0))
                 logger.info("test module start:" + tempStr)
                     
             else:
-                QMessageBox.warning(self, "警告", "测试模块不存在！")
+                QMessageBox.warning(self, MainWindowConstants.QMESSAGEBOX_WARN,
+                                    MainWindowConstants.QMESSAGEBOX_WARN_MODULE_NOT_EXISTED)
         return
 
     def closeEvent(self, event):
@@ -103,9 +106,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         :param paras: emit parameters
         :return: None
         """
-        if paras == "close":
+        if paras == Constants.SIGNAL_CLOSE:
             self.gridLayout.removeWidget(self.child)
-            self.groupBox.setTitle("测试项目:")
+            self.groupBox.setTitle(MainWindowConstants.CONTENTS_TEST_CASE + ":")
 
     # @delay_seconds_clean_status_bar(5)
     def deal_signal_status_emit_slot(self, paras):
