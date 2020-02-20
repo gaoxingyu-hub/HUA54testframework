@@ -25,37 +25,37 @@
             "name": "电源线",
             "number": "ECOM-CCU-W001",
             "count": "1",
-            "note": ""
+            "type": "配件"
         },
         {
             "name": "通用网口测试线",
             "number": "ECOM-CCU-W002",
             "count": "1",
-            "note": "项目通用"
+            "type": "配件"
         },
         {
             "name": "232自环头-1",
             "number": "ECOM-CCU-W003",
             "count": "1",
-            "note": ""
+            "type": "配件"
         },
         {
             "name": "422自环头",
             "number": "ECOM-CCU-W004",
             "count": "1",
-            "note": ""
+            "type": "配件"
         },
         {
             "name": "232自环头-2",
             "number": "ECOM-CCU-W005",
             "count": "1",
-            "note": ""
+            "type": "配件"
         },
         {
             "name": "485测试电缆",
             "number": "ECOM-CCU-W006",
             "count": "1",
-            "note": ""
+            "type": "配件"
         }
     ]
 }

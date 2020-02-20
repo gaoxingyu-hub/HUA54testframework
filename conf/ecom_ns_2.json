@@ -57,37 +57,37 @@
             "name": "IP误码仪",
             "number": "",
             "count": "1",
-            "note": ""
+            "type": ""
         },
         {
             "name": "交流电源电缆",
             "number": "MP-COM-B-003-W001",
             "count": "1",
-            "note": "为被测设备提供交流电源"
+            "type": "配件"
         },
         {
             "name": "管理以太网电缆",
             "number": "MP-COM-B-003-W002",
             "count": "1",
-            "note": "将管理信号从被测设备引接至维修车交换机"
+            "type": "配件"
         },
         {
             "name": "地线",
             "number": "MP-COM-B-003-W003",
             "count": "1",
-            "note": "接地"
+            "type": "配件"
         },
         {
             "name": "测试以太网电缆",
             "number": "MP-COM-B-003-W004",
             "count": "1",
-            "note": "将以太网信号从被测设备引接至维修车IP误码仪"
+            "type": "配件"
         },
         {
             "name": "测试以太网电缆",
             "number": "MP-COM-B-003-W005",
             "count": "1",
-            "note": "将以太网信号从被测设备引接至维修车IP误码仪"
+            "type": "配件"
         }
     ]
 }
