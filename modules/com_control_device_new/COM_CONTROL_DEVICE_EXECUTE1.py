@@ -17,6 +17,7 @@ from common.data_checker import ThDataChecker
 from common.network_tools import ThNetworkTestCase
 from common.logConfig import Logger
 from common.info import Constants
+from .com_control_device_constant import ModuleConstants
 
 logger = Logger.module_logger("DialogComControlDeviceExecute1")
 class DialogComControlDeviceExecute1(QDialog, Ui_Dialog):
@@ -60,7 +61,8 @@ class DialogComControlDeviceExecute1(QDialog, Ui_Dialog):
         """
         ip = self.lineEdit_ip.text()
         if not ThDataChecker.is_ip(ip):
-            QMessageBox.warning(self, "警告", "输入IP地址有误!")
+            QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN,
+                                ModuleConstants.QMESSAGEBOX_WARN_IP_NOT_VALID)
             return
         try:
             if self.textBrowser_log.document().blockCount() > 10:
@@ -91,6 +93,6 @@ class DialogComControlDeviceExecute1(QDialog, Ui_Dialog):
         temp = temp.to_list()
 
         self._signalFinish.emit(Constants.SIGNAL_TEST_RESULT,temp)
-        self._signalFinish.emit("next",temp)
+        self._signalFinish.emit(ModuleConstants.PROCESS_CONTROL_NEXT,temp)
         self.accept()
         self.close()

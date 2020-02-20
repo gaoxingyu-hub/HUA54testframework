@@ -27,6 +27,7 @@ from .testResult import TestDataProtocolTransferBoard
 from database.data_storage import ThTestResultsStorage
 from database.test_results_model import TestResultBase
 from common.info import Constants
+from .mw_com_device_constant import ModuleConstants
 
 SETUP_DIR = frozen_dir.app_path()
 
@@ -112,13 +113,14 @@ class DialogMvComDevice(QDialog, Ui_Dialog):
     @pyqtSlot()
     def on_pushButton_start_clicked(self):
         """
-        Slot documentation goes here.
+        start button click event handler
         """
         self.selected_test_cases = self.get_checked_test_cases()
         self.test_result = {}
 
         if len(self.selected_test_cases) == 0:
-            QMessageBox.warning(self, "警告", "请选择测试项目")
+            QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN,
+                                ModuleConstants.QMESSAGEBOX_WARN_SELECTED_TEST)
             return
 
         self.test_cases_records = {}
@@ -132,50 +134,55 @@ class DialogMvComDevice(QDialog, Ui_Dialog):
 
         if not self.debug_model:
             test = TestInfo()
-            test.setWindowTitle("通信控制设备测试")
+            test.setWindowTitle(ModuleConstants.WINDOW_TITLE_MAIN)
             if test.exec_():
                 if test.flag == -1:
-                    QMessageBox.warning(self, "警告", "测试参数输入不完整！")
+                    QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN,
+                                        ModuleConstants.QMESSAGEBOX_WARN_INPUT_PARAMETER_NOT_ENOUGH)
             else:
-                QMessageBox.warning(self, "警告", "测试参数输入不完整！")
+                QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN,
+                                    ModuleConstants.QMESSAGEBOX_WARN_INPUT_PARAMETER_NOT_ENOUGH)
             self.current_test_step = 0
         else:
             self.current_test_step = 1
         self.start_caculate_test_duration()
-        self.test_process_control("next")
+        self.test_process_control(ModuleConstants.PROCESS_CONTROL_NEXT)
         logger.info("mv_com_device test process start")
     
     @pyqtSlot()
     def on_pushButton_restart_clicked(self):
         """
-        Slot documentation goes here.
+        restart button click event handler
         """
         if not self.debug_model:
             test = TestInfo()
-            test.setWindowTitle("通信控制设备测试")
+            test.setWindowTitle(ModuleConstants.WINDOW_TITLE_MAIN)
             if test.exec_():
                 if test.flag == -1:
-                    QMessageBox.warning(self, "警告", "测试参数输入不完整！")
+                    QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN,
+                                        ModuleConstants.QMESSAGEBOX_WARN_INPUT_PARAMETER_NOT_ENOUGH)
             else:
-                QMessageBox.warning(self, "警告", "测试参数输入不完整！")
+                QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN,
+                                    ModuleConstants.QMESSAGEBOX_WARN_INPUT_PARAMETER_NOT_ENOUGH)
             self.current_test_step = 0
         else:
             self.current_test_step = 1
-        self.test_process_control("next")
+        self.test_process_control(ModuleConstants.PROCESS_CONTROL_NEXT)
         self.start_caculate_test_duration()
         logger.info("mv_com_device test process restart")
     
     @pyqtSlot()
     def on_pushButton_close_clicked(self):
         """
-        Slot documentation goes here.
+        close button click event handler
         """
-        self.signalTitle.emit("close")
+        self.signalTitle.emit(Constants.SIGNAL_CLOSE)
         self.close()
         logger.info("mv_com_device test process close")
 
     def test_process_control(self,action):
         """
+        test process control
         action: test execute action "next" or "restart"
         """
         try:
@@ -194,25 +201,28 @@ class DialogMvComDevice(QDialog, Ui_Dialog):
 
                             self.current_test_step_dialog = globals()[temp_test_process['module']]()
                             self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
-                            if temp_test_process['module'] == "stop":
-                                break
 
                             if temp_test_process['module'] == "DialogSimpleTestProcess1Btn":
                                 if self.last_test_case_status == "next":
                                     self.current_test_step_dialog.set_contents(temp_test_process['title'],
                                                                                temp_test_process['contents'], "")
-                                    self.current_test_step_dialog.set_button_contents("下一步")
-                                    self.current_test_step_dialog.set_msg(Constants.SIGNAL_NEXT)
+                                    if temp_test_process["category"] == "execute_finish":
+                                        self.current_test_step_dialog.set_button_contents(ModuleConstants.BUTTON_CONTENTS_FINISH)
+                                        self.current_test_step_dialog.set_msg(Constants.SIGNAL_FINISH)
+                                    else:
+                                        self.current_test_step_dialog.set_button_contents(ModuleConstants.BUTTON_CONTENTS_NEXT)
+                                        self.current_test_step_dialog.set_msg(Constants.SIGNAL_NEXT)
                                 else:
                                     self.current_test_step_dialog \
                                         .set_contents(
                                         temp_test_process['title'][:-2] + "不" + temp_test_process['title'][-2:],
                                         temp_test_process['contents'][:-2] + "不" + temp_test_process['contents'][-2:],
                                         "")
-                                    self.current_test_step_dialog.set_button_contents("测试结束")
+                                    self.current_test_step_dialog.set_button_contents(ModuleConstants.BUTTON_CONTENTS_FINISH)
                                     self.current_test_step_dialog.set_msg(Constants.SIGNAL_FINISH)
                             elif temp_test_process['module'] == "DialogSimpleTestProcess2Btn":
-                                self.current_test_step_dialog.set_button_contents(["是", "否"])
+                                self.current_test_step_dialog.set_button_contents([ModuleConstants.CONTENTS_YES,
+                                                                                   ModuleConstants.CONTENTS_NO])
                                 self.current_test_step_dialog.set_contents(temp_test_process['title'],
                                                                            temp_test_process['contents'],
                                                                            os.path.join(
@@ -227,7 +237,6 @@ class DialogMvComDevice(QDialog, Ui_Dialog):
                             self.current_test_step_dialog.exec_()
                             break
 
-
                 logger.info("test process: next step")
             elif action is "finish":
                 logger.info(self.test_result)
@@ -241,11 +250,11 @@ class DialogMvComDevice(QDialog, Ui_Dialog):
 
     def deal_signal_test_step_finish_emit_slot(self,flag,para):
         """
-
-        :param paras:
+        handler the sub-test case dialog or process signal
+        :param flag: signal type
+        :param para: parameters from signal
         :return:
         """
-
         if flag == Constants.SIGNAL_TEST_RESULT:
             self.test_result.update(para)
             return
@@ -255,18 +264,18 @@ class DialogMvComDevice(QDialog, Ui_Dialog):
             self.last_test_case_status = flag
             self.last_test_case_result = para
             if flag == "finish":
-                self.test_process_control("finish")
+                self.test_process_control(ModuleConstants.PROCESS_CONTROL_FINISH)
                 return
 
-            if flag != "next":
-                for x in range(len(self.test_config.test_case)):
-                    for test_step in self.test_config.test_case_detail[x]["steps"]:
-                        if test_step["title"] == flag and test_step["category"] == "execute":
-                            self.test_result.update(para)
+            # if flag != "next":
+            #     for x in range(len(self.test_config.test_case)):
+            #         for test_step in self.test_config.test_case_detail[x]["steps"]:
+            #             if test_step["title"] == flag and test_step["category"] == "execute":
+            #                 self.test_result.update(para)
             self.test_cases_records[self.current_test_case]["current"] = \
                 self.test_cases_records[self.current_test_case]["current"] + 1
             # time.sleep(0.1)
-            self.test_process_control("next")
+            self.test_process_control(ModuleConstants.PROCESS_CONTROL_NEXT)
 
         temp_flag = False
         for case, step in self.test_cases_records.items():
@@ -274,14 +283,15 @@ class DialogMvComDevice(QDialog, Ui_Dialog):
                 temp_flag = True
 
         if not temp_flag and self.start_test_flag:
-            QMessageBox.information(self,"","测试完成")
+            QMessageBox.information(self,"",ModuleConstants.QMESSAGEBOX_CONTENTS_TEST_FINISH)
             self.start_test_flag = False
             logger.info(str(self.test_result))
 
 
     def deal_signal_test_duration_caculate_emit_slot(self, para):
         """
-        :param paras:
+        test time caculator timer event handler
+        :param paras: str, parameter
         :return:
         """
         try:
@@ -305,12 +315,10 @@ class DialogMvComDevice(QDialog, Ui_Dialog):
         """
         get the tree widget checked test cases
         all the checked item are child nodes,not parent node
-
-        :return:
+        :return: None
         """
         selected_test_cases = []
         for item in self.treeWidget.findItems("", Qt.MatchContains | Qt.MatchRecursive):
-
             # excludes the parent node
             if item.parent() is None:
                 continue
@@ -327,7 +335,7 @@ class DialogMvComDevice(QDialog, Ui_Dialog):
         """
         test result transform and combines to TestResultBase Object
         test result storage
-        :return:
+        :return: None
         """
         logger.info("test results storage starting.")
 
