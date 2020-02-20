@@ -6,6 +6,7 @@ Module implementing MainWindow.
 
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QMainWindow,QTreeWidgetItem,QMessageBox,QDesktopWidget
+from modules.ecom_ns_1.ECOM_NS1_MAIN import EcomNs1Main
 from modules.ecom_ns_2.ECOM_NS2_MAIN import EcomNs2Main
 from modules.test.module import TestModule
 from modules.com_control_device_new.COM_CONTROL_DEVICE_PA2 import COM_CONTROL_DEVICE
@@ -30,6 +31,7 @@ from Ui_MainWindow import Ui_MainWindow
 logger = Logger.module_logger("main")
 SETUP_DIR = frozen_dir.app_path()
 
+
 class MainWindow(QMainWindow, Ui_MainWindow):
     """
     Class documentation goes here.
@@ -44,6 +46,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
         self.dislay_in_center()
+        self.treeWidget.expandAll()
         self.child = None
 
         self.system_config_file_path = os.path.join(
@@ -119,7 +122,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         self.statusbar.showMessage(paras)
 
-
     def dislay_in_center(self):
         """
         set mainwindows display in center screen
@@ -127,8 +129,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         screen = QDesktopWidget().screenGeometry()
         size = self.geometry()
-        self.setGeometry((screen.width() - size.width()) / 2 + screen.left(),(screen.height() - size.height()) / 2,size.width(), size.height())
-
+        self.setGeometry((screen.width() - size.width()) / 2 + screen.left(), (screen.height() - size.height()) / 2,
+                         size.width(), size.height())
 
 
 class StatusCleanerThread(QtCore.QThread):
