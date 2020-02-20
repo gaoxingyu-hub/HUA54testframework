@@ -18,6 +18,7 @@ import time
 
 from modules.general.PIC_TEXT import DialogPicText
 from .Ui_ECOM_NS2_MAIN import Ui_Dialog
+from .ECOM_NS_2_CONSTANT import ModuleConstants
 from .ECOM_NS2_Ping import EcomNs2Ping
 from .ECOM_NS2_EXECUTE1 import EcomNs2Execute
 from .ecom_ns2_test_data import TestDataEcomNs2
@@ -127,7 +128,7 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         self.selected_test_cases = self.get_checked_test_cases()
 
         if len(self.selected_test_cases) == 0:
-            QMessageBox.warning(self, "警告", "请选择测试项目")
+            QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN, ModuleConstants.QMESSAGEBOX_WARN_SELECTED_TEST)
             return
 
         self.test_cases_records = {}
@@ -141,18 +142,20 @@ class EcomNs2Main(QDialog, Ui_Dialog):
 
         if not self.debug_model:
             test = TestInfo()
-            test.setWindowTitle(self.test_config.title)
+            test.setWindowTitle(ModuleConstants.WINDOW_TITLE_MAIN)
             if test.exec_():
                 if test.flag == -1:
-                    QMessageBox.warning(self, "警告", "测试参数输入不完整！")
+                    QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN,
+                                        ModuleConstants.QMESSAGEBOX_WARN_INPUT_PARAMETER_NOT_ENOUGH)
             else:
-                QMessageBox.warning(self, "警告", "测试参数输入不完整！")
+                QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN,
+                                    ModuleConstants.QMESSAGEBOX_WARN_INPUT_PARAMETER_NOT_ENOUGH)
             self.current_test_step = 0
         else:
             self.current_test_step = 1
         self.start_test_flag = True
         self.start_caculate_test_duration()
-        self.test_process_control("next")
+        self.test_process_control(ModuleConstants.PROCESS_CONTROL_NEXT)
         logger.info("ecom ns2 test process start")
     
     @pyqtSlot()
@@ -163,16 +166,18 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         # TODO: not implemented yet
         if not self.debug_model:
             test = TestInfo()
-            test.setWindowTitle(self.test_config.title)
+            test.setWindowTitle(ModuleConstants.WINDOW_TITLE_MAIN)
             if test.exec_():
                 if test.flag == -1:
-                    QMessageBox.warning(self, "警告", "测试参数输入不完整！")
+                    QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN,
+                                        ModuleConstants.QMESSAGEBOX_WARN_INPUT_PARAMETER_NOT_ENOUGH)
             else:
-                QMessageBox.warning(self, "警告", "测试参数输入不完整！")
+                QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN,
+                                    ModuleConstants.QMESSAGEBOX_WARN_INPUT_PARAMETER_NOT_ENOUGH)
             self.current_test_step = 0
         else:
             self.current_test_step = 1
-        self.test_process_control("next")
+        self.test_process_control(ModuleConstants.PROCESS_CONTROL_NEXT)
         self.start_caculate_test_duration()
         logger.info("ecom ns2 test process restart")
     
@@ -213,17 +218,22 @@ class EcomNs2Main(QDialog, Ui_Dialog):
                                 if self.last_test_case_status == "next":
                                     self.current_test_step_dialog.set_contents(temp_test_process['title'],
                                                                        temp_test_process['contents'], "")
-                                    self.current_test_step_dialog.set_button_contents("下一步")
-                                    self.current_test_step_dialog.set_msg("next")
+                                    self.current_test_step_dialog.set_button_contents(ModuleConstants.
+                                                                                      BUTTON_CONTENTS_NEXT)
+                                    self.current_test_step_dialog.set_msg(Constants.SIGNAL_NEXT)
                                 else:
                                     self.current_test_step_dialog\
-                                        .set_contents(temp_test_process['title'][:-2] + "不" + temp_test_process['title'][-2:],
-                                                       temp_test_process['contents'][:-2] + "不" + temp_test_process['contents'][-2:],
+                                        .set_contents(temp_test_process['title'][:-2] + ModuleConstants.CONTENTS_NOT +
+                                                      temp_test_process['title'][-2:],
+                                                      temp_test_process['contents'][:-2] + ModuleConstants.CONTENTS_NOT
+                                                      + temp_test_process['contents'][-2:],
                                                       "")
-                                    self.current_test_step_dialog.set_button_contents("测试结束")
-                                    self.current_test_step_dialog.set_msg("finish")
+                                    self.current_test_step_dialog.set_button_contents(ModuleConstants.
+                                                                                      BUTTON_CONTENTS_FINISH)
+                                    self.current_test_step_dialog.set_msg(Constants.SIGNAL_FINISH)
                             elif temp_test_process['module'] == "DialogSimpleTestProcess2Btn":
-                                self.current_test_step_dialog.set_button_contents(["是", "否"])
+                                self.current_test_step_dialog.set_button_contents([ModuleConstants.CONTENTS_YES,
+                                                                                   ModuleConstants.CONTENTS_NO])
                                 self.current_test_step_dialog.set_contents(temp_test_process['title'],
                                                                            temp_test_process['contents'],
                                                                            os.path.join(
@@ -237,7 +247,7 @@ class EcomNs2Main(QDialog, Ui_Dialog):
                                                                            temp_test_process['img']))
                             self.current_test_step_dialog.exec_()
                             break
-            elif action == "finish":
+            elif action == ModuleConstants.PROCESS_CONTROL_FINISH:
                 logger.info(str(self.test_result))
                 self.test_result_transform_and_storage()
                 self.test_result_display()
@@ -261,19 +271,19 @@ class EcomNs2Main(QDialog, Ui_Dialog):
             self.current_test_step_dialog.close()
             self.last_test_case_status = flag
             self.last_test_case_result = para
-            if flag == "finish":
-                self.test_process_control("finish")
+            if flag == ModuleConstants.PROCESS_CONTROL_FINISH:
+                self.test_process_control(ModuleConstants.PROCESS_CONTROL_FINISH)
                 return
 
-            # if flag != "next":
-            #     for x in range(len(self.test_config.test_case)):
-            #         for test_step in self.test_config.test_case_detail[x]["steps"]:
-            #             if test_step["title"] == flag and test_step["category"] == "execute":
-            #                 self.test_result.update(para)
+            if flag != ModuleConstants.PROCESS_CONTROL_NEXT:
+                for x in range(len(self.test_config.test_case)):
+                    for test_step in self.test_config.test_case_detail[x]["steps"]:
+                        if test_step["title"] == flag and test_step["category"] == "execute":
+                            self.test_result.update(para)
             self.test_cases_records[self.current_test_case]["current"] = \
                 self.test_cases_records[self.current_test_case]["current"] + 1
-            time.sleep(0.1)
-            self.test_process_control("next")
+            # time.sleep(0.1)
+            self.test_process_control(ModuleConstants.PROCESS_CONTROL_NEXT)
 
         temp_flag = False
         for case, step in self.test_cases_records.items():
@@ -281,9 +291,9 @@ class EcomNs2Main(QDialog, Ui_Dialog):
                 temp_flag = True
 
         if not temp_flag and self.start_test_flag:
-            QMessageBox.information(self, "", "测试完成")
+            QMessageBox.information(self, "", ModuleConstants.QMESSAGEBOX_CONTENTS_TEST_FINISH)
             self.start_test_flag = False
-            self.test_process_control("finish")
+            self.test_process_control(ModuleConstants.PROCESS_CONTROL_FINISH)
 
     def deal_signal_test_duration_caculate_emit_slot(self, para):
         """
