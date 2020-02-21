@@ -31,6 +31,6 @@ class Constants:
 
 class MainWindowConstants:
     QMESSAGEBOX_WARN = "警告"
-    QMESSAGEBOX_WARN_CLOSE_CURRENT_MODULE = "请选择测试项目"
+    QMESSAGEBOX_WARN_CLOSE_CURRENT_MODULE = "请关闭当前测试项目"
     QMESSAGEBOX_WARN_MODULE_NOT_EXISTED = "测试模块不存在"
     CONTENTS_TEST_CASE = "测试项目"
