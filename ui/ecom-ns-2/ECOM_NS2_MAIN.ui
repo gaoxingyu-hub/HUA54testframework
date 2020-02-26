@@ -250,11 +250,6 @@ border:1px solid rgb(0, 0, 0);
            </row>
            <column>
             <property name="text">
-             <string/>
-            </property>
-           </column>
-           <column>
-            <property name="text">
              <string>名称</string>
             </property>
            </column>
@@ -280,7 +275,7 @@ border:1px solid rgb(0, 0, 0);
            </item>
            <item row="0" column="1">
             <property name="text">
-             <string>1</string>
+             <string>2</string>
             </property>
            </item>
            <item row="0" column="2">
@@ -289,11 +284,6 @@ border:1px solid rgb(0, 0, 0);
             </property>
            </item>
            <item row="0" column="3">
-            <property name="text">
-             <string>2</string>
-            </property>
-           </item>
-           <item row="0" column="4">
             <property name="text">
              <string>1</string>
             </property>
@@ -314,11 +304,6 @@ border:1px solid rgb(0, 0, 0);
             </property>
            </item>
            <item row="1" column="3">
-            <property name="text">
-             <string>2</string>
-            </property>
-           </item>
-           <item row="1" column="4">
             <property name="text">
              <string>2</string>
             </property>

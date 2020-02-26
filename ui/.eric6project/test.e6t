@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
+<!-- eric6 tasks file for project test -->
+<!-- Saved: 2020-02-20, 14:51:18 -->
+<Tasks version="6.0">
+  <ProjectScanFilter></ProjectScanFilter>
+  <Task priority="1" completed="False" type="1" uid="{469e9689-6a16-4a6d-8be3-cebc0f161072}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2020-02-20, 10:17:02</Created>
+    <Resource>
+      <Filename>PIC_TEXT.py</Filename>
+      <Linenumber>32</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{5ebe095c-ea29-42e0-b43f-916bc4897123}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2020-02-20, 10:17:02</Created>
+    <Resource>
+      <Filename>TEST_PROCEDURE_CONTROL.py</Filename>
+      <Linenumber>32</Linenumber>
+    </Resource>
+  </Task>
+</Tasks>

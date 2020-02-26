@@ -10,6 +10,7 @@ from common.info import Constants
 from PyQt5.QtCore import pyqtSignal
 from PyQt5 import QtCore
 
+from .com_control_device_constant import ModuleConstants
 from common.logConfig import Logger
 logger = Logger.module_logger("ThComControlDeviceTestProcess")
 class ThComControlDeviceTestProcess:
@@ -20,7 +21,7 @@ class ThComControlDeviceTestProcess:
     def __init__(self):
         self.udp_remote_client = None
         self.udp_local_server = None
-        self.com_contents = "test"
+        self.com_contents = ModuleConstants.UDP_SEND_CONTENTS
         self.udp_test_result = False
         self.local_udp_server_alive = True
 
@@ -43,7 +44,7 @@ class ThComControlDeviceTestProcess:
         except BaseException as e:
             logger.error(str(e))
 
-    def udp_send(self,host,port,contents="test"):
+    def udp_send(self,host,port,contents=ModuleConstants.UDP_SEND_CONTENTS):
         """
         udp sends method
         :param host: str,ip address

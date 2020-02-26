@@ -17,6 +17,7 @@ from .testResult import TestDataProtocolTransferAndControl3
 from .test_process import ThComControlDeviceTestProcess,UdpServerThread
 from common.data_checker import ThDataChecker
 from common.logConfig import Logger
+from .com_control_device_constant import ModuleConstants
 
 logger = Logger.module_logger("DialogComControlDeviceExecute4")
 class DialogComControlDeviceExecute4(QDialog, Ui_Dialog):
@@ -76,7 +77,7 @@ class DialogComControlDeviceExecute4(QDialog, Ui_Dialog):
         if not ThDataChecker.is_ip(self.local_ip) or not ThDataChecker.is_ip(self.remote_ip):
             QMessageBox.warning(self, ThCommonNoticeInfo.WARN, ThCommonNoticeInfo.ILLEGAL_IP_ADDRESS)
             return
-        self.udp_server = UdpServerThread(self.local_ip, self.local_port, "test")
+        self.udp_server = UdpServerThread(self.local_ip, self.local_port, ModuleConstants.UDP_SEND_CONTENTS)
         self.udp_server._signalInfo.connect(self.signal_slot)
         self.udp_server.start()
     
@@ -89,7 +90,7 @@ class DialogComControlDeviceExecute4(QDialog, Ui_Dialog):
         temp.com9 = "succcess"
         temp = temp.to_list()
         self._signalFinish.emit(Constants.SIGNAL_TEST_RESULT, temp)
-        self._signalFinish.emit("finish", temp)
+        self._signalFinish.emit(ModuleConstants.PROCESS_CONTROL_FINISH, temp)
         self.accept()
         self.close()
 
