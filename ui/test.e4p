@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project test -->
-<!-- Saved: 2020-02-16, 15:34:11 -->
+<!-- Saved: 2020-02-27, 21:15:06 -->
 <!-- Copyright (C) 2020 ,  -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -38,6 +38,7 @@
     <Form>SIMPLE_TEST_PROCESS_1BTN.ui</Form>
     <Form>SIMPLE_TEST_PROCESS_2BTN.ui</Form>
     <Form>TEST_PROCEDURE_CONTROL.ui</Form>
+    <Form>VHF_Test.ui</Form>
     <Form>control_device/COM_CONTROL_DEVICE.ui</Form>
     <Form>control_device/COM_CONTROL_DEVICE_EXECUTE1.ui</Form>
     <Form>control_device/COM_CONTROL_DEVICE_EXECUTE2.ui</Form>
