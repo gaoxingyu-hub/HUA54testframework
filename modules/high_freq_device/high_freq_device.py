@@ -589,7 +589,7 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
 
 
 
-
+# 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     # trans = QtCore.QTranslator()
