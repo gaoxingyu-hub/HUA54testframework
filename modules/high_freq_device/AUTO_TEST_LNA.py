@@ -8,10 +8,11 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QDialog
 from PyQt5 import QtGui
 from PyQt5.QtCore import pyqtSignal
-
+import time
 from .Ui_AUTO_TEST_LNA import Ui_Dialog
 import os
-from InstrumentDrivers.VNADriver import AgilentN5242
+from InstrumentDrivers.SignalGeneratorDriver import SignalGenerator
+from InstrumentDrivers.SpectrumAnalyzerDriver import SpectrumAnalyzer
 from PyQt5.Qt import QMessageBox
 import numpy as np
 
@@ -31,7 +32,7 @@ class AUTO_TEST_LNA(QDialog, Ui_Dialog):
         super(AUTO_TEST_LNA, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
-        self.demo = True
+        self.demo = False
     
     def initUi(self,mConfig):
         addr_sg= mConfig.test_source[0]
@@ -46,6 +47,8 @@ class AUTO_TEST_LNA(QDialog, Ui_Dialog):
         self.lineEdit_power_sg.setText(power_sg)
         self.lineEdit_freq_sa.setText(freq_sa)
         self.lineEdit_bw_sa.setText(bw_sa)
+        self.thresholdL = float(mConfig.test_case_detail[1]["threshold"][0])
+        self.thresholdH = float(mConfig.test_case_detail[1]["threshold"][1])
     
     def set_contents(self,title,contents):
         self.setWindowTitle(title)
@@ -75,8 +78,8 @@ class AUTO_TEST_LNA(QDialog, Ui_Dialog):
         self.test_result=test_results()
         if not self.demo:
             try:
-                self.sa=AgilentN5242.VNA_AgilentN5242(addr_sa)
-                self.sg = AgilentN5242.VNA_AgilentN5242(addr_sg)
+                self.sa=SpectrumAnalyzer.SpectrumAnalyzer(addr_sa)
+                self.sg = SignalGenerator.SignalGenerator(addr_sg)
             except:
                 QMessageBox.warning(self, "警告", "仪表连接错误！")
                 print('仪表连接错误，请确认！')
@@ -85,7 +88,11 @@ class AUTO_TEST_LNA(QDialog, Ui_Dialog):
         self.test_result.test_condition = '频率:'+self.lineEdit_freq_sg.text()+'MHz，功率:'+self.lineEdit_power_sg.text()+'dBm'
  
         self.test_result.test_results=self.testProcess()
-        self.test_result.test_conclusion='PASS'
+        if self.thresholdL<self.test_result.test_results <self.thresholdH:
+            self.test_result.test_conclusion='PASS'
+        else:
+            self.test_result.test_conclusion='FAIL'
+
         self._signalTest.emit("test")
         self.accept()
         self.close()
@@ -93,15 +100,23 @@ class AUTO_TEST_LNA(QDialog, Ui_Dialog):
     
     def testProcess(self):
         if not self.demo:
-            self.sg.SetCentreFreq(self.freq_sg)
-            self.sg.SetOutputPower(self.power_sg)
-            self.sa.SetCentreFreq(self.freq_sa)
+            self.sg.SetFrequency(self.freq_sg)
+            self.sg.SetRFPower(self.power_sg)
+            self.sg.SetModeState(0)
+            self.sg.SetOutputState(1)
+            self.sa.SetCenterFrequency(self.freq_sa)
             self.sa.SetSpan(self.bw_sa)
-            self.sa.SetRefLevel(10)
-            mres = self.sa.GetRF_Power()
+            self.sa.AutoRefLevel()
+            self.sa.SetMarkerMode('POS')
+            self.sa.SetMarkerFreq(self.freq_sa)
+            mres=self.sa.GetMarkerValueViaIndex(1)
+            time.sleep(0.5)
+            self.sa.Preset()
+            self.sg.Preset()
+
         else:
-            mres =float(7+ np.random.random(1))
-        return round(mres,3)
+            mres =float(2+ np.random.random(1))
+        return round(float(mres),3)
     
 class test_results:
     def __init__(self):
