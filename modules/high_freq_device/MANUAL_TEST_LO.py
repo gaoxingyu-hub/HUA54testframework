@@ -34,7 +34,7 @@ class MANUAL_TEST_LO(QDialog, Ui_Dialog):
         super(MANUAL_TEST_LO, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
-        self.demo = True
+        self.demo = False
         self.testData()
  
     
@@ -80,7 +80,10 @@ class MANUAL_TEST_LO(QDialog, Ui_Dialog):
     
     
     def testProcess(self):
-        mres =np.random.choice([u'无告警',u'有告警']) 
+        if self.demo:
+            mres =np.random.choice([u'无告警',u'有告警']) 
+        else:
+            mres = str(self.comboBox_sg_addr.currentText())
         return mres
     
     def testData(self):
