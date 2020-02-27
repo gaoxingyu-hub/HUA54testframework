@@ -2,6 +2,9 @@ from PyQt5.QtCore import QThread, pyqtSignal
 from common.logConfig import Logger
 import random
 import time
+
+from modules.general.frame_loss import Frame_loss
+
 logger = Logger.module_logger("TestProcessRouterLan")
 
 
@@ -22,14 +25,16 @@ class TestProcessRouterLan(QThread):
     def run(self):
         try:
             logger.info("TestProcessRouterLan test start")
-            time.sleep(2)
             test_result = {}
-            if random.randint(0, 9) == 5:
-                test_result["lan" + str(self.test_case[0])] = "fail"
-                test_result["lan" + str(self.test_case[1])] = "fail"
-            else:
-                test_result["lan" + str(self.test_case[0])] = "success"
-                test_result["lan" + str(self.test_case[1])] = "success"
+            # 端口lan1~lan16
+            # self.test_case[0]与self.test_case[1] = [1,2]
+            temp = '//192.168.1.23/2/'
+            port1 = temp+str(self.test_case[0])
+            port2 = temp+str(self.test_case[1])
+            port_location = [port1, port2]
+            loss = Frame_loss()
+            loss.change_port(port_location)
+            loss.start_test()
             self._signal.emit("test case finish", test_result)
             logger.info("TestProcessRouterLan test finish")
         except BaseException as e:

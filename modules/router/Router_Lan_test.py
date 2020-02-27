@@ -82,6 +82,7 @@ class DialogRouterLanTest(QDialog, Ui_Dialog):
                     # QThread模拟测试过程
                     self.test_process_object = TestProcessRouterLan()
                     # 设置测试参数
+                    print(self.current_test_case)
                     self.test_process_object.set_test_para("test.script", self.current_test_case)
                     # 设置信号槽
                     self.test_process_object.signal.connect(self.slot_test_process)
