@@ -11,7 +11,6 @@ from PyQt5.QtCore import pyqtSignal
 
 from .Ui_AUTO_TEST_PA import Ui_Dialog
 import os
-from InstrumentDrivers.VNADriver import AgilentN5242
 from PyQt5.Qt import QMessageBox
 import numpy as np
 from InstrumentDrivers.SignalGeneratorDriver import SignalGenerator

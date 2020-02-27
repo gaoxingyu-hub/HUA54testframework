@@ -6,6 +6,7 @@ Created on 2015年5月14日
 '''
 from InstrumentDrivers import PyVisaInstr
 import string
+import visa
 class SignalGenerator(PyVisaInstr.pyVisaInstr):
     '''
             信号源的基类，基本连接，读写操作和一般驱动,底层驱动基于Agilent 8257模拟信号源
@@ -14,8 +15,14 @@ class SignalGenerator(PyVisaInstr.pyVisaInstr):
         '''
                         初始化频谱仪，根据给定的地址进行初始化，并获得操作句柄
         '''
-        PyVisaInstr.pyVisaInstr.__init__(self, Addr)
-        self.SG=self.instr
+#         PyVisaInstr.pyVisaInstr.__init__(self, Addr)
+#         self.SG=self.instr
+        rm=visa.ResourceManager('@py')
+        try:
+            self.instr = rm.open_resource(Addr)
+            self.SG=self.instr
+        except Exception as ex:
+            print(ex)
     def Ask(self,cmd):
         '''
         重写Ask，加入询问OPC操作
