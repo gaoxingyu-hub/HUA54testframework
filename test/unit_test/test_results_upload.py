@@ -16,7 +16,7 @@ if __name__ == '__main__':
     full_config_file = os.path.join(SETUP_DIR, "data", "example.json")
     with open(full_config_file, encoding='utf-8') as json_file:
         data = json.load(json_file)
-        upload = TaskDataResultUpload("https://a326f99c-879d-4253-897e-29a7a1e7efd1.mock.pstmn.io/54/tptestre",data)
+        upload = TaskDataResultUpload("http://uop.ch722-9.com/api/LK-0508101/LK101/tdapi/insertJson", data)
         upload.start()
         upload.wait(5000)
         print(upload.get_result())
