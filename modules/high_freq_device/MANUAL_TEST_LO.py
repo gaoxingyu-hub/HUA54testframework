@@ -17,6 +17,8 @@ import numpy as np
 from database.data_storage import ThTestResultsStorage
 import json
 from database.test_results_model import TestResultBase
+from InstrumentDrivers.SignalGeneratorDriver import SignalGenerator
+from InstrumentDrivers.SpectrumAnalyzerDriver import SpectrumAnalyzer
 
 class MANUAL_TEST_LO(QDialog, Ui_Dialog):
     """
@@ -62,7 +64,7 @@ class MANUAL_TEST_LO(QDialog, Ui_Dialog):
         addr_sa = "TCPIP0::" + addr_sa + "::inst0::INSTR"
         if not self.demo:
             try:
-                self.sa=AgilentN5242.VNA_AgilentN5242(addr_sa)
+                self.sa=SpectrumAnalyzer.SpectrumAnalyzer(addr_sa)
             except:
                 QMessageBox.warning(self, "警告", "仪表连接错误！")
                 print('仪表连接错误，请确认！')

@@ -4,10 +4,10 @@ Created on 2015年5月14日
 
 @author: SYH
 '''
-from InstrumentDrivers import PyVisaInstr
 import string
+from visa import *
 
-class SpectrumAnalyzer(PyVisaInstr.pyVisaInstr):
+class SpectrumAnalyzer():
     '''
             频谱仪的基类，基本连接，读写操作和一般驱动,底层驱动基于FSW43
     '''
@@ -34,19 +34,34 @@ class SpectrumAnalyzer(PyVisaInstr.pyVisaInstr):
     
         
     
+#     def __init__(self,Addr):
+#         '''
+#                         初始化频谱仪，根据给定的地址进行初始化，并获得操作句柄
+#         '''
+#         PyVisaInstr.pyVisaInstr.__init__(self,Addr)  
+#         self.SA=self.instr
+# #         self.SA='test'
     def __init__(self,Addr):
         '''
                         初始化频谱仪，根据给定的地址进行初始化，并获得操作句柄
         '''
-        PyVisaInstr.pyVisaInstr.__init__(self,Addr)  
-        self.SA=self.instr
-#         self.SA='test'
-        def Ask(self,cmd):
+#         PyVisaInstr.pyVisaInstr.__init__(self,Addr)  
+#         self.SA=self.instr
+        rm=ResourceManager('@py')
+        print("connection....")
+        try:
+            self.instr = rm.open_resource(Addr)
+            self.SA=self.instr
+        except Exception as ex:
+            print(ex)
+        
+        
+    def Ask(self,cmd):
         '''
         重写Ask，加入询问OPC操作
         '''
-        result=self.instr.ask(str(cmd))
-        self.instr.ask('*OPC?')
+        result=self.instr.query(str(cmd))
+        self.instr.query('*OPC?')
         return result
       
     def Write(self,cmd):
@@ -54,14 +69,14 @@ class SpectrumAnalyzer(PyVisaInstr.pyVisaInstr):
         加入询问OPC操作
         '''
         self.instr.write(str(cmd))
-        self.instr.ask('*OPC?')
+        self.instr.query('*OPC?')
       
     def Read(self):
         '''
         加入询问OPC操作
         '''
         result=self.instr.read()
-        self.instr.ask('*OPC?')
+        self.instr.query('*OPC?')
         return result
          
     def AskForNumber(self,cmd):
@@ -457,9 +472,9 @@ class SpectrumAnalyzer(PyVisaInstr.pyVisaInstr):
         
     def SetMarkerMode(self,value):
         self.Write('CALC:MARK1:MODE '+str(value))
-# mins = SpectrumAnalyzer('TCPIP0::192.168.1.222::inst0::INSTR')
-# mins.SetMarkerMode('POS')
-# mins.SetMarkerFreq(700000000)
+#mins = SpectrumAnalyzer('TCPIP0::192.168.1.222::inst0::INSTR')
+#print(mins.GetIdn())
+#mins.SetCenterFrequency(700000000)
 
 
 
