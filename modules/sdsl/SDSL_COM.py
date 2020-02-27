@@ -14,7 +14,9 @@ from common.logConfig import Logger
 from common.serial_port_utility import ThSerialPortUtility
 from .SDSL_CONSTANT import ModuleConstants
 import serial
+import serial.threaded
 import time
+from common.info import Constants
 
 logger = Logger.module_logger("sdsl com test")
 class DialogSdslCom(QDialog, Ui_Dialog):
@@ -72,6 +74,7 @@ class DialogSdslCom(QDialog, Ui_Dialog):
         """
         Slot documentation goes here.
         """
+        self._signalFinish.emit(Constants.SIGNAL_TEST_RESULT, {self.windowTitle(): Constants.RESULT_SUCCESS})
         self._signalFinish.emit(self.windowTitle(), self.test_result)
         self.accept()
         self.close()

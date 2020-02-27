@@ -16,7 +16,7 @@
                 {"img":"",
                     "title":"网络测试",
                     "contents":"网络测试包含了交换板与DSL主板，因此按照指导要求，用被复线将两台SDSL设备连接，两台分别接网线以及串口线，然后SDSL设备开机，两台设备的ALIM灯常亮，FON灯慢闪，且直到两台SDSL设备DSL指示下的LINK指示灯常亮(DONNEES为DSL有数据则亮，没数据则灭)。分别将笔记本计算机1网口连接至SDSL设备1的LAN口，将笔记本计算机2的网口连接至SDSL设备2的LAN口，等待指示灯常亮。",
-                    "module": "DialogPicText",
+                    "module": "DialogSdslPing",
                     "category": "execute"},
                 {"img":"","title":"串口测试","contents":"将串口232接到SDSL设备的串口接口上","module": "DialogSdslCom","category": "execute"}
             ]

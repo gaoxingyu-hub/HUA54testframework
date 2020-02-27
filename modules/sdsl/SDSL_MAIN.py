@@ -19,6 +19,7 @@ from .SDSL_CONSTANT import ModuleConstants
 from .SDSL_COM import DialogSdslCom
 from modules.general.SIMPLE_TEST_PROCESS_1BTN import DialogSimpleTestProcess1Btn
 from modules.general.SIMPLE_TEST_PROCESS_2BTN import DialogSimpleTestProcess2Btn
+from .SDSL_Ping import DialogSdslPing
 from common.info import Constants
 from database.data_storage import ThTestResultsStorage
 from database.test_results_model import TestResultBase
