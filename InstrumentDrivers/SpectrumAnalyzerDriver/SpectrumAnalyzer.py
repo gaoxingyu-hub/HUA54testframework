@@ -69,14 +69,14 @@ class SpectrumAnalyzer(PyVisaInstr.pyVisaInstr):
                         功  能同Ask，但将返回值转成数字 
         '''
         result=self.Ask(str(cmd))
-        return string.atof(result)
+        return result
          
     def ReadForNumber(self):
         '''
                         功能同Read，但将返回值转成数字 
         ''' 
         result=self.Read()
-        return string.atof(result)   
+        return result   
    
     def GetCenterFrequency(self):
         '''
@@ -443,8 +443,26 @@ class SpectrumAnalyzer(PyVisaInstr.pyVisaInstr):
     def MarkerToCenter(self):
         self.Write('CALC:MARK:FUNC:CENT')
       
-        
+    def GetIdn(self):
+        return self.Ask('*IDN?')
     
-# mins = SpectrumAnalyzer('TCPIP0::192.168.1.6::inst0::INSTR')
-# res = mins.GetTraceYvalueString()
-# print res
+    def SetMarkerState(self,value):
+        self.Write('CALC:MARK1 '+str(value))
+        
+    def SetMarkerFreq(self,value):
+        self.Write('CALC:MARK1:X '+str(value))
+        
+    def SetMarkerDisp(self):
+        self.Write('DISP:MTAB ON')
+        
+    def SetMarkerMode(self,value):
+        self.Write('CALC:MARK1:MODE '+str(value))
+# mins = SpectrumAnalyzer('TCPIP0::192.168.1.222::inst0::INSTR')
+# mins.SetMarkerMode('POS')
+# mins.SetMarkerFreq(700000000)
+
+
+
+
+
+

@@ -31,7 +31,7 @@ class AUTO_TEST_FILTER(QDialog, Ui_Dialog):
         super(AUTO_TEST_FILTER, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
-        self.demo = True
+        self.demo = False
     
     def initUi(self,mConfig):
         addr_na= mConfig.test_source[2]
@@ -40,6 +40,10 @@ class AUTO_TEST_FILTER(QDialog, Ui_Dialog):
         self.lineEdit_addr_na.setText(addr_na)
         self.lineEdit_freq_na.setText(freq_na)
         self.lineEdit_bw_na.setText(bw_na)
+        self.thresholdL_1 = float(mConfig.test_case_detail[4]["threshold"][0])
+        self.thresholdH_1 = float(mConfig.test_case_detail[4]["threshold"][1])
+        self.thresholdL_2 = float(mConfig.test_case_detail[4]["threshold"][2])
+        self.thresholdH_2 = float(mConfig.test_case_detail[4]["threshold"][3])
 
     def set_contents(self,title,contents):
         self.setWindowTitle(title)
@@ -73,31 +77,37 @@ class AUTO_TEST_FILTER(QDialog, Ui_Dialog):
                 return
         self.test_result.test_item = '滤波器'
         self.test_result.test_condition = '频率:'+self.lineEdit_freq_na.text()+'MHz，带宽:'+self.lineEdit_bw_na.text()+'MHz'
- 
-        self.test_result.test_results=self.testProcess()
-        self.test_result.test_conclusion='PASS'
+        mTemp=self.testProcess()
+        self.test_result.test_results='S11: '+str(mTemp[0])+' S21: '+str(mTemp[1])
+        if self.thresholdL_1<mTemp[0]<self.thresholdH_1 and self.thresholdL_2<mTemp[1]<self.thresholdH_2:
+            self.test_result.test_conclusion='PASS'
+        else:
+            self.test_result.test_conclusion='FAIL'
         self._signalTest.emit("test")
         self.accept()
         self.close()
     
     
     def testProcess(self):
+        temp =[]
         if not self.demo:
-            temp =[]
-            self.na.SelectMeas('Tr1')
+            self.na.SetCentreFreq(self.freq_na)
+            self.na.SetSpan(self.bw_na)
+            self.na.SelectMeas('1')
+            self.na.SetMarkerMode('NORM')
             self.na.SetMarkerX(self.freq_na)
-            mTemp1 = self.na.GetMarkerY()
+            mTemp1 = float(self.na.GetMarkerY())
             mTemp1 = round(mTemp1,3)
-            self.na.SelectMeas('Tr2')
+            self.na.SelectMeas('2')
             self.na.SetMarkerX(self.freq_na)
-            mTemp1 = self.na.GetMarkerY()
-            mTemp2 = round(mTemp1,3)
+            mTemp2 = float(self.na.GetMarkerY())
+            mTemp2 = round(mTemp2,3)
             temp.append(mTemp1) 
             temp.append(mTemp2)
-            mres  = 'S21:'+str(temp[0])+' S11:'+str(temp[1])
+            
         else:
-            mres =float(7+ np.random.random(1))
-        return round(mres,3)
+            temp.append(float(7+ np.random.random(1)))
+        return temp
     
 class test_results:
     def __init__(self):

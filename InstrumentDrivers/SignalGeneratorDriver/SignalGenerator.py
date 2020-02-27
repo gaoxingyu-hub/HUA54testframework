@@ -10,14 +10,12 @@ class SignalGenerator(PyVisaInstr.pyVisaInstr):
     '''
             信号源的基类，基本连接，读写操作和一般驱动,底层驱动基于Agilent 8257模拟信号源
     '''
-    def __init__(self,Addr,protectValue):
+    def __init__(self,Addr):
         '''
                         初始化频谱仪，根据给定的地址进行初始化，并获得操作句柄
         '''
-        PyVisaInstr.pyVisaInstr.__init__(self, Addr)       
+        PyVisaInstr.pyVisaInstr.__init__(self, Addr)
         self.SG=self.instr
-        
-        self.PortectValue=protectValue#射频激励保护功率，初始化信号源的时候应进行赋值
     def Ask(self,cmd):
         '''
         重写Ask，加入询问OPC操作
@@ -55,11 +53,7 @@ class SignalGenerator(PyVisaInstr.pyVisaInstr):
         result=self.Read()
         return string.atof(result)  
     
-    def SetRFPowerProctectionValue(self,value):
-        '''
-        修改射频保护功率门限，不建议频繁设置，在初始化的阶段赋值即可
-        '''
-        self.PortectValue=value
+    
           
     def ReadOutputState(self): 
         '''
@@ -87,10 +81,7 @@ class SignalGenerator(PyVisaInstr.pyVisaInstr):
         '''
         写信号源输出功率
         '''
-        if value>=self.PortectValue:
-            value=self.PortectValue
-        if value!=self.GetRFPower():
-            self.Write(":SOURce:POWer:LEVel:IMMediate:AMPLitude "+str(value))
+        self.Write(":SOURce:POWer:LEVel:IMMediate:AMPLitude "+str(value))
     
     def GetAmpOffset(self):
         '''
@@ -122,8 +113,12 @@ class SignalGenerator(PyVisaInstr.pyVisaInstr):
     def SetFM_ModState(self,state):
         self.Write("FM:STAT "+state)
         
-    def SetModeState(self,state):
-        self.Write("MOD:STAT "+state)
+    def SetModeState(self,value):
+        if value==0:
+            cmd="OFF"
+        else:
+            cmd="ON"
+        self.Write("MOD:STAT "+cmd)
         
     def Preset(self):
         '''
@@ -131,8 +126,12 @@ class SignalGenerator(PyVisaInstr.pyVisaInstr):
         '''
         self.Write('*RST')
         
-    
-    
-    
+    def GetIdn(self):
+        return self.Ask('*IDN?')
+# mSG=SignalGenerator('TCPIP::192.168.1.221::INSTR"')
+# mSG.SetFrequency(30000000)
+# midn=mSG.GetIdn()
+# print(midn) 
+# mSG.Preset()
     
       

@@ -4,11 +4,17 @@
 # @File    : test_results.py
 # @User    : yangchuan
 # @Desc    :
-from database.test_results import TestResultBase,TestValue,TestParam,TestItem
+# from database.test_results import TestResultBase,TestValue,TestParam,TestItem
 from database.data_storage import ThTestResultsStorage
 from renix_py_api import renix
+for i in range(5):
+    print("-----%d-----" %i)
+    for j in range(5):
+        if j > 3:
+            break
+        print(j)
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
     # ThTestResultsStorage.create_tables()
     # temp = TestResultBase()
     # temp.testObjName = "1"
@@ -42,7 +48,7 @@ if __name__ == '__main__':
     # # print(temp.dutDrawingNbr)
     # ThTestResultsStorage.test_case_result_storage(temp)
     # ThTestResultsStorage.save_test_case_record(test_data)
-    renix.initialize()
-    print("1")
-    renix.shutdown()
+#     renix.initialize()
+#     print("1")
+#     renix.shutdown()
 
