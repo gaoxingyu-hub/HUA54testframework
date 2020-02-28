@@ -1,9 +1,14 @@
 from PyQt5.QtCore import QThread, pyqtSignal
-from common.logConfig import Logger
-import random
-import time
 
-from modules.general.frame_loss import Frame_loss
+from modules.general.frame_loss import start_test, logging
+from renix_py_api.renix_common_api import get_sys_entry
+from renix_py_api.renix import *
+import logging, time
+from renix_py_api.api_gen import *
+from renix_py_api.core import EnumRelationDirection
+from renix_py_api.rom_manager import *
+
+from common.logConfig import Logger
 
 logger = Logger.module_logger("TestProcessRouterLan")
 
@@ -26,17 +31,12 @@ class TestProcessRouterLan(QThread):
         try:
             logger.info("TestProcessRouterLan test start")
             test_result = {}
-            # 端口lan1~lan16
-            # self.test_case[0]与self.test_case[1] = [1,2]
-            temp = '//192.168.1.23/2/'
-            port1 = temp+str(self.test_case[0])
-            port2 = temp+str(self.test_case[1])
-            port_location = [port1, port2]
-            loss = Frame_loss()
-            loss.change_port(port_location)
-            result = loss.start_test()
+            initialize()
+            sys_entry = get_sys_entry()
+            result = start_test(sys_entry)
             test_result["lan" + str(self.test_case[0])] = result
             test_result["lan" + str(self.test_case[1])] = result
+            shutdown()
             self._signal.emit("test case finish", test_result)
             logger.info("TestProcessRouterLan test finish")
         except BaseException as e:

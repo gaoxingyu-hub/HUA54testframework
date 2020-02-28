@@ -8,8 +8,15 @@ import time
 from PyQt5.QtCore import pyqtSlot, pyqtSignal
 from PyQt5.QtWidgets import QDialog
 
+from modules.general.frame_loss import start_test
+from renix_py_api.renix_common_api import get_sys_entry
+from renix_py_api.renix import *
+from renix_py_api.api_gen import *
+from renix_py_api.core import EnumRelationDirection
+from renix_py_api.rom_manager import *
+
 from common.logConfig import Logger
-from modules.general.frame_loss import Frame_loss
+from renix_py_api.renix import initialize
 from .Ui_TestProcess import Ui_Dialog
 
 logger = Logger.module_logger("TestProcess")
@@ -31,7 +38,6 @@ class DialogTestProcess(QDialog, Ui_Dialog):
         """
         super(DialogTestProcess, self).__init__(parent)
         self.setupUi(self)
-        self.port_location = ['//192.168.1.23/2/1', '//192.168.1.23/2/2']
         self.result = 'fail'
 
 
@@ -40,19 +46,15 @@ class DialogTestProcess(QDialog, Ui_Dialog):
         """
         Slot documentation goes here.
         """
-        loss = Frame_loss()
-        loss.change_port(self.port_location)
-        # TODO 发生异常处理
-        try:
-            result = loss.start_test()
-        except Exception as ex:
-            logger.error(ex)
-
+        initialize()
+        sys_entry = get_sys_entry()
+        self.result = start_test(sys_entry)
         if self.result == 'pass':
             # IP数据加解密
             self.test_result["IP数据加解密"] = "正常"
         else:
             self.test_result["IP数据加解密"] = "不正常"
+        shutdown()
         self._signalFinish.emit(self.windowTitle(), self.test_result)
         self.accept()
         self.close()

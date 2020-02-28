@@ -33,8 +33,5 @@ _static
 _templates
 docs/*
 logs/*
-data/*.*
-ui/.eric6project/*.*
-ui/.*
-ui/*.e4p
-ui/__pycache__
+data/*.json
+data.log
