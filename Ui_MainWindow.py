@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'G:\sourcecode\54\54testframework\ui\MainWindow.ui'
+# Form implementation generated from reading ui file 'E:\tianheng_projects\54\54TestFramework\ui\MainWindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.0
+# Created by: PyQt5 UI code generator 5.13.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1250, 980)
+        MainWindow.setFixedSize(1280, 1024)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -45,6 +45,7 @@ class Ui_MainWindow(object):
         self.treeWidget.setHeaderHidden(True)
         self.treeWidget.setObjectName("treeWidget")
         item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget)
+        item_1 = QtWidgets.QTreeWidgetItem(item_0)
         item_1 = QtWidgets.QTreeWidgetItem(item_0)
         item_1 = QtWidgets.QTreeWidgetItem(item_0)
         item_1 = QtWidgets.QTreeWidgetItem(item_0)
@@ -87,15 +88,15 @@ class Ui_MainWindow(object):
         self.treeWidget.topLevelItem(0).setText(0, _translate("MainWindow", "通信分系统"))
         self.treeWidget.topLevelItem(0).child(0).setText(0, _translate("MainWindow", "散射高频设备"))
         self.treeWidget.topLevelItem(0).child(1).setText(0, _translate("MainWindow", "MW-1500微波电台"))
-        self.treeWidget.topLevelItem(0).child(2).setText(0, _translate("MainWindow", "交换机"))
-        self.treeWidget.topLevelItem(0).child(3).setText(0, _translate("MainWindow", "VHF电台"))
-        self.treeWidget.topLevelItem(0).child(4).setText(0, _translate("MainWindow", "自组网微波通信设备"))
-        self.treeWidget.topLevelItem(0).child(5).setText(0, _translate("MainWindow", "SDSL设备"))
-        self.treeWidget.topLevelItem(0).child(6).setText(0, _translate("MainWindow", "IP保密机"))
-        self.treeWidget.topLevelItem(0).child(7).setText(0, _translate("MainWindow", "通信控制设备"))
-        self.treeWidget.topLevelItem(0).child(8).setText(0, _translate("MainWindow", "路由器"))
+        self.treeWidget.topLevelItem(0).child(2).setText(0, _translate("MainWindow", "ECOM_NS_1型交换机"))
+        self.treeWidget.topLevelItem(0).child(3).setText(0, _translate("MainWindow", "ECOM_NS_2型交换机"))
+        self.treeWidget.topLevelItem(0).child(4).setText(0, _translate("MainWindow", "VHF电台"))
+        self.treeWidget.topLevelItem(0).child(5).setText(0, _translate("MainWindow", "自组网微波通信设备"))
+        self.treeWidget.topLevelItem(0).child(6).setText(0, _translate("MainWindow", "SDSL设备"))
+        self.treeWidget.topLevelItem(0).child(7).setText(0, _translate("MainWindow", "IP保密机"))
+        self.treeWidget.topLevelItem(0).child(8).setText(0, _translate("MainWindow", "通信控制设备"))
+        self.treeWidget.topLevelItem(0).child(9).setText(0, _translate("MainWindow", "路由器"))
         self.treeWidget.setSortingEnabled(__sortingEnabled)
-        self.treeWidget.expandAll()
         self.groupBox.setTitle(_translate("MainWindow", "测试项目"))
 import res.iconQrc_rc
 
