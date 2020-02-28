@@ -15,6 +15,7 @@ from .Ui_ECOM_NS2_Ping import Ui_Dialog
 from common.logConfig import Logger
 from common.data_checker import ThDataChecker
 from common.network_tools import ThNetworkTestCase
+from common.info import Constants
 
 logger = Logger.module_logger("EcomNs2Ping")
 class EcomNs2Ping(QDialog, Ui_Dialog):
@@ -62,8 +63,7 @@ class EcomNs2Ping(QDialog, Ui_Dialog):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
-        data = None
+        self._signalFinish.emit(Constants.SIGNAL_TEST_RESULT, self.test_result)
         self._signalFinish.emit(self.windowTitle(), self.test_result)
         self.accept()
         self.close()

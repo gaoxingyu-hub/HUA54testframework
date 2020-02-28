@@ -53,13 +53,13 @@ class DialogSdslPing(QDialog, Ui_Dialog):
             for item in result[1]:
                 self.textBrowser_log.append(str(item))
         self.textBrowser_log.append("ping test:" + str(result[0]))
-        self._signalFinish.emit(Constants.SIGNAL_TEST_RESULT, self.test_result)
-    
+
     @pyqtSlot()
     def on_pushButton_next_clicked(self):
         """
         Slot documentation goes here.
         """
+        self._signalFinish.emit(Constants.SIGNAL_TEST_RESULT, self.test_result)
         self._signalFinish.emit(self.windowTitle(), self.test_result)
         self.accept()
         self.close()
