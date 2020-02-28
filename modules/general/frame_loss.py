@@ -68,6 +68,7 @@ class Frame_loss:
             return False
 
     def start_test(self):
+        # TODO 异常处理
         errInfo = []
         # reserve port
         port1, port2 = self.__create_ports(sys_entry, self.port_location)

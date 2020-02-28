@@ -34,7 +34,9 @@ class TestProcessRouterLan(QThread):
             port_location = [port1, port2]
             loss = Frame_loss()
             loss.change_port(port_location)
-            loss.start_test()
+            result = loss.start_test()
+            test_result["lan" + str(self.test_case[0])] = result
+            test_result["lan" + str(self.test_case[1])] = result
             self._signal.emit("test case finish", test_result)
             logger.info("TestProcessRouterLan test finish")
         except BaseException as e:
