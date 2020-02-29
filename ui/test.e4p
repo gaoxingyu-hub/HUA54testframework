@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project test -->
-<!-- Saved: 2020-02-16, 15:34:11 -->
+<!-- Saved: 2020-02-28, 11:14:30 -->
 <!-- Copyright (C) 2020 ,  -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -28,6 +28,10 @@
     <Source>control_device/Ui_COM_CONTROL_DEVICE_EXECUTE4.py</Source>
     <Source>iconQrc_rc.py</Source>
     <Source>router/Ui_Router.py</Source>
+    <Source>security_machine/SecurityMain.py</Source>
+    <Source>security_machine/TestProcess.py</Source>
+    <Source>security_machine/Ui_TestProcess.py</Source>
+    <Source>security_machine/__init__.py</Source>
   </Sources>
   <Forms>
     <Form>AUTO_TEST.ui</Form>
@@ -38,6 +42,7 @@
     <Form>SIMPLE_TEST_PROCESS_1BTN.ui</Form>
     <Form>SIMPLE_TEST_PROCESS_2BTN.ui</Form>
     <Form>TEST_PROCEDURE_CONTROL.ui</Form>
+    <Form>VHF_Test.ui</Form>
     <Form>control_device/COM_CONTROL_DEVICE.ui</Form>
     <Form>control_device/COM_CONTROL_DEVICE_EXECUTE1.ui</Form>
     <Form>control_device/COM_CONTROL_DEVICE_EXECUTE2.ui</Form>
@@ -48,6 +53,8 @@
     <Form>module.ui</Form>
     <Form>router/Router.ui</Form>
     <Form>router/Router_Lan_test.ui</Form>
+    <Form>security_machine/TestProcess.ui</Form>
+    <Form>security_machine/security.ui</Form>
     <Form>testInfo.ui</Form>
     <Form>testPA4.ui</Form>
   </Forms>

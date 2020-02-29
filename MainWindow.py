@@ -12,12 +12,9 @@ from modules.test.module import TestModule
 from modules.com_control_device_new.COM_CONTROL_DEVICE_PA2 import COM_CONTROL_DEVICE
 from modules.high_freq_device.high_freq_device import HIGH_FREQ_DEVICE
 from modules.router.Router import RouterDialog
-from modules.test.module import TestModule
-from modules.com_control_device_new.COM_CONTROL_DEVICE_PA2 import COM_CONTROL_DEVICE
-from modules.high_freq_device.high_freq_device import HIGH_FREQ_DEVICE
-from modules.ecom_ns_2.ECOM_NS2_MAIN import EcomNs2Main
 from modules.mw_com_device.MV_COM_DEVICE_MAIN import DialogMvComDevice
 from modules.sdsl.SDSL_MAIN import DialogSdslMain
+from modules.security_machine.SecurityMain import DialogSecurityMain
 from PyQt5.QtCore import pyqtSignal
 from PyQt5 import QtCore
 from common.logConfig import Logger
@@ -71,7 +68,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         @param column DESCRIPTION
         @type int
         """
-        # TODO: not implemented yet
         if self.gridLayout.count() >= 1:
             QMessageBox.warning(self,MainWindowConstants.QMESSAGEBOX_WARN,
                                 MainWindowConstants.QMESSAGEBOX_WARN_CLOSE_CURRENT_MODULE)
