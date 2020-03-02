@@ -33,7 +33,7 @@ class AUTO_TEST_PA(QDialog, Ui_Dialog):
         super(AUTO_TEST_PA, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
-        self.demo = False
+        self.demo = True
 
     def initUi(self,mConfig):
         addr_sg= mConfig.test_source[0]

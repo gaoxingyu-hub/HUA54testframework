@@ -227,9 +227,8 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
 
             logger.info("high_freq_device test process: next step")
         elif action is "finish":
-            pass
-
-        return
+            logger.info("high_freq_device test process: next step")
+#         return
 
 
     def deal_signal_test_step_finish_emit_slot(self, flag,para):
@@ -261,7 +260,9 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
     def processStep(self,flag):
         if self.current_test_step_dialog:
             self.current_test_step_dialog.close()
-            if flag == "step1":
+            if flag == 'finish':
+                self.test_process_control('finish')
+            elif flag == "step1":
                 self.test_cases_records[self.current_test_case]["current"] = \
                     self.test_cases_records[self.current_test_case]["current"] + 1
                 time.sleep(0.1)

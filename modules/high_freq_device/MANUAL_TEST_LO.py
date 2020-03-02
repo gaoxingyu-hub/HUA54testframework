@@ -36,8 +36,8 @@ class MANUAL_TEST_LO(QDialog, Ui_Dialog):
         super(MANUAL_TEST_LO, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
-        self.demo = False
-        self.testData()
+        self.demo = True
+#         self.testData()
  
     
     def initUi(self,mConfig):

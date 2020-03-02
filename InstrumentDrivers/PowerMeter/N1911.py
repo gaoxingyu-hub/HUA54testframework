@@ -6,7 +6,7 @@ Created on 2017年4月13日
 '''
 
 from InstrumentDrivers.PowerMeter import PowerMeter
-from renix_py_api.api_gen.ROMEnum_Autogen import EnumIgmpMulticastVersion
+
 class N1911(PowerMeter.PowerMeter):
     '''
     classdocs
@@ -83,14 +83,18 @@ class N1911(PowerMeter.PowerMeter):
     def GetPower(self):
         temp = self.Ask('FETC?')
         return temp
+    def GetIdn(self):
+        return self.Ask('*IDN?')
         
-mPM=N1911('TCPIP0::192.168.1.145::inst0::INSTR')
-mPM.SetAvgState('ON')
-mPM.SetRangeAuto('ON')
-
-mval=mPM.GetPower()
-
-print(mval)
+# mPM=N1911('TCPIP0::192.168.1.145::inst0::INSTR')
+# mPM.SetAvgState('ON')
+# mPM.SetRangeAuto('ON')
+#  
+# mval=mPM.GetPower()
+# mIDN= mPM.GetIdn()
+#  
+# print(mval)
+# print(mIDN)
 
         
         

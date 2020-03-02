@@ -33,7 +33,7 @@ class AUTO_TEST(QDialog, Ui_Dialog):
         super(AUTO_TEST, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
-        self.demo = False
+        self.demo = True
         
     def initUi(self,mConfig):
         addr_sg= mConfig.test_source[0]
@@ -50,6 +50,8 @@ class AUTO_TEST(QDialog, Ui_Dialog):
         self.lineEdit_bw_sa.setText(bw_sa)
         self.thresholdL = float(mConfig.test_case_detail[0]["threshold"][1])
         self.thresholdH = float(mConfig.test_case_detail[0]["threshold"][2])
+        self.lineEdit_addr_sg.hide()
+        self.lineEdit_addr_sa.hide()
 
     def set_contents(self,title,contents):
         self.setWindowTitle(title)
@@ -89,14 +91,34 @@ class AUTO_TEST(QDialog, Ui_Dialog):
         self.test_result.test_condition = '频率:'+self.lineEdit_freq_sg.text()+'MHz，功率:'+self.lineEdit_power_sg.text()+'dBm'
         self.test_result.test_results=self.testProcess()
         if self.thresholdL<self.test_result.test_results <self.thresholdH:
+            QMessageBox.information(self,u"提示",u"测试正常",QMessageBox.Ok)
             self.test_result.test_conclusion='PASS'
         else:
+            QMessageBox.information(self,u"提示",u"收发单元接收通道故障",QMessageBox.Ok)
             self.test_result.test_conclusion='FAIL'
 
         self._signalTest.emit("test")
         self.accept()
         self.close()
     
+#     def closeEvent(self, event):
+#         """
+#         """
+#         try:
+#             self._signalTest.emit("finish")
+#             self.accept()
+#             self.close()
+#         except:
+#             pass
+#         
+#     @pyqtSlot()
+#     def closeEvent(self, QCloseEvent):
+#         '''
+#         '''
+#         self._signalTest.emit("next")
+#         self.accept()
+#         self.close()
+
     
     def testProcess(self):
         if not self.demo:

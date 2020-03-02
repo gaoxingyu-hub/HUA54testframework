@@ -31,7 +31,7 @@ class AUTO_TEST_COUPLER(QDialog, Ui_Dialog):
         super(AUTO_TEST_COUPLER, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
-        self.demo = False
+        self.demo = True
 
     def initUi(self,mConfig):
         addr_na= mConfig.test_source[2]
@@ -110,6 +110,8 @@ class AUTO_TEST_COUPLER(QDialog, Ui_Dialog):
             temp.append(mTemp2)
             temp.append(mTemp3)
         else:
+            temp.append(float(7+ np.random.random(1)))
+            temp.append(float(7+ np.random.random(1)))
             temp.append(float(7+ np.random.random(1)))
         return temp
     
