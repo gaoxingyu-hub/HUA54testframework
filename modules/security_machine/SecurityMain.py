@@ -1,39 +1,32 @@
 # -*- coding: utf-8 -*-
 
 """
-Module implementing DialogEcomNs2Main.
+Module implementing DialogSecurityMain.
 """
 
-from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtCore import pyqtSignal, Qt
-from PyQt5.QtWidgets import QDialog
-from PyQt5.QtWidgets import *
-from common.config import TestModuleConfigNew, SystemConfig
-from common.th_thread_model import ThThreadTimerUpdateTestTime
-from modules.info.testInfo import TestInfo
+from PyQt5.QtCore import pyqtSlot, pyqtSignal, Qt
+from PyQt5.QtWidgets import QDialog, QTreeWidgetItem, QTableWidgetItem, QHeaderView, QMessageBox
 import os
+from datetime import datetime
 import frozen_dir
-from common.logConfig import Logger
-import time
-
-from modules.general.PIC_TEXT import DialogPicText
-from .Ui_ECOM_NS2_MAIN import Ui_Dialog
-from .ECOM_NS_2_CONSTANT import ModuleConstants
-from .ECOM_NS2_Ping import EcomNs2Ping
-from .ECOM_NS2_KEY_TEST import DialogEcomNs2KeyTest
-from .ecom_ns2_test_data import TestDataEcomNs2
-from modules.general.SIMPLE_TEST_PROCESS_1BTN import DialogSimpleTestProcess1Btn
-from modules.general.SIMPLE_TEST_PROCESS_2BTN import DialogSimpleTestProcess2Btn
+from common.config import TestModuleConfigNew, SystemConfig
 from common.info import Constants
+from common.logConfig import Logger
+from common.th_thread_model import ThThreadTimerUpdateTestTime
 from database.data_storage import ThTestResultsStorage
 from database.test_results_model import TestResultBase
-from datetime import datetime
-
+from modules.info.testInfo import TestInfo
+from modules.security_machine.Security_CONSTANT import ModuleConstants
+from .Ui_security import Ui_Dialog
+from modules.general.PIC_TEXT import DialogPicText
+from modules.general.SIMPLE_TEST_PROCESS_1BTN import DialogSimpleTestProcess1Btn
+from modules.general.SIMPLE_TEST_PROCESS_2BTN import DialogSimpleTestProcess2Btn
+from modules.security_machine.TestProcess import DialogTestProcess
 SETUP_DIR = frozen_dir.app_path()
-logger = Logger.module_logger("ecom_ns_2")
+logger = Logger.module_logger("IP Security Machine")
 
 
-class EcomNs2Main(QDialog, Ui_Dialog):
+class DialogSecurityMain(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
@@ -49,19 +42,18 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         @param parent reference to the parent widget
         @type QWidget
         """
-        super(EcomNs2Main, self).__init__(parent)
+        super(DialogSecurityMain, self).__init__(parent)
         self.setupUi(self)
-
         self.current_test_step = 0
-
+        # 配置文件路径
         self.config_file_path = os.path.join(
-            SETUP_DIR, "conf", "ecom_ns_2.json")
+            SETUP_DIR, "conf", "security.json")
         self.system_config_file_path = os.path.join(
             SETUP_DIR, "conf", "system.json")
         self.test_config = TestModuleConfigNew(self.config_file_path)
 
         self.pic_file_path = os.path.join(
-            SETUP_DIR, "imgs", "ecom_ns_2")
+            SETUP_DIR, "imgs", "security_machine")
 
         self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name
@@ -71,7 +63,7 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         self.selected_test_cases = None  # 用来记录选中的测试项目
         self.test_cases_records = None  # 用来记录测试项目的执行测试的进度
         self.current_test_case = None  # 记录当前执行的test case
-
+        # 前一次测试的状态与结果
         self.last_test_case_status = ""
         self.last_test_case_result = ""
 
@@ -80,12 +72,12 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         parent = QTreeWidgetItem(self.treeWidget)
         parent.setText(0, self.test_config.title)
         parent.setFlags(parent.flags() | Qt.ItemIsTristate | Qt.ItemIsUserCheckable)
-
         # 插入数据,根据temp_length数组的长度插入行数
-        self.tableWidget_test_resource.setRowCount(len(self.test_config.test_source))
+        length = len(self.test_config.test_source)
+        self.tableWidget_test_resource.setRowCount(length)
 
         # 加载测试资源
-        for x in range(len(self.test_config.test_source)):
+        for x in range(length):
             # 名称
             item = QTableWidgetItem(str(self.test_config.test_source[x]["name"]))
             self.tableWidget_test_resource.setItem(x, 0, item)
@@ -107,26 +99,21 @@ class EcomNs2Main(QDialog, Ui_Dialog):
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
             child.setText(0, self.test_config.test_case_detail[x]["title"])
             child.setCheckState(0, Qt.Unchecked)
-
         # table widget 自适应
         self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
                                                                                QHeaderView.Stretch)
-        self.tableWidget_test_results_ecom_ns2.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
-                                                                                       QHeaderView.Stretch)
-        # 设置treeWidget单选
-        # self.treeWidget.itemClicked.connect(self.treeWidget_item_click_slot_test)
-
-        # self.test_result = TestDataEcomNs2()
+        self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                 QHeaderView.Stretch)
         self.test_result = {}
-        logger.info("ecom_ns_2 inited")
+        logger.info("IP Security Machine inited")
     
     @pyqtSlot()
     def on_pushButton_start_clicked(self):
         """
         Slot documentation goes here.
         """
+        # TODO: not implemented yet
         self.selected_test_cases = self.get_checked_test_cases()
-
         if len(self.selected_test_cases) == 0:
             QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN, ModuleConstants.QMESSAGEBOX_WARN_SELECTED_TEST)
             return
@@ -142,7 +129,7 @@ class EcomNs2Main(QDialog, Ui_Dialog):
 
         if not self.debug_model:
             test = TestInfo()
-            test.setWindowTitle(ModuleConstants.WINDOW_TITLE_MAIN)
+            test.setWindowTitle(self.test_config.title)
             if test.exec_():
                 if test.flag == -1:
                     QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN,
@@ -154,9 +141,19 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         else:
             self.current_test_step = 1
         self.start_test_flag = True
-        self.start_caculate_test_duration()
+        self.start_calculate_test_duration()
         self.test_process_control(ModuleConstants.PROCESS_CONTROL_NEXT)
-        logger.info("ecom ns2 test process start")
+        logger.info("IP Security Machine  test process start")
+    
+    @pyqtSlot()
+    def on_pushButton_close_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        self.signalTitle.emit("close")
+        self.close()
+        logger.info("IP Security Machine test close")
     
     @pyqtSlot()
     def on_pushButton_restart_clicked(self):
@@ -178,26 +175,37 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         else:
             self.current_test_step = 1
         self.test_process_control(ModuleConstants.PROCESS_CONTROL_NEXT)
-        self.start_caculate_test_duration()
-        logger.info("ecom ns2 test process restart")
-    
-    @pyqtSlot()
-    def on_pushButton_close_clicked(self):
-        """
-        Slot documentation goes here.
-        """
-        # TODO: not implemented yet
-        self.signalTitle.emit("close")
-        self.close()
-        logger.info("ecom_ns_2 test process close")
+        self.start_calculate_test_duration()
+        logger.info("router test process restart")
 
-    def test_process_control(self, action):
+    def get_checked_test_cases(self):
         """
-        action: test execute action "next" or "restart" or "finish"
+        get the tree widget checked test cases
+        all the checked item are child nodes,not parent node
+
+        :return:
+        """
+        selected_test_cases = []
+        for item in self.treeWidget.findItems("", Qt.MatchContains | Qt.MatchRecursive):
+
+            # excludes the parent node
+            if item.parent() is None:
+                continue
+
+            # check the child node whether checked,if it had checked,
+            # the checkState value greater than 0
+            if item.checkState(0) > 0:
+                selected_test_cases.append(item.text(0))
+
+        return selected_test_cases
+
+    def test_process_control(self,action):
+        """
+        action: test execute action "next"  "restart"  "finish"
         """
         try:
             if action == "next":
-                for case,step in self.test_cases_records.items():
+                for case, step in self.test_cases_records.items():
                     if step["current"] > step["max"]:
                         continue
 
@@ -209,27 +217,22 @@ class EcomNs2Main(QDialog, Ui_Dialog):
                             self.current_test_case = case
 
                             self.current_test_step_dialog = globals()[temp_test_process['module']]()
-                            self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
-
-                            self.pic_file_path = os.path.join(
-                                SETUP_DIR, "imgs", "ecom_ns", self.test_config.test_case_detail[x]["case_name"])
+                            self.current_test_step_dialog._signalFinish.connect(
+                                self.deal_signal_test_step_finish_emit_slot)
 
                             if temp_test_process['module'] == "DialogSimpleTestProcess1Btn":
-                                if self.last_test_case_status == "next":
+                                if self.last_test_case_status == ModuleConstants.PROCESS_CONTROL_NEXT:
                                     self.current_test_step_dialog.set_contents(temp_test_process['title'],
-                                                                       temp_test_process['contents'], "")
-                                    self.current_test_step_dialog.set_button_contents(ModuleConstants.
-                                                                                      BUTTON_CONTENTS_NEXT)
+                                                                               temp_test_process['contents'], "")
+                                    self.current_test_step_dialog.set_button_contents(ModuleConstants.BUTTON_CONTENTS_NEXT)
                                     self.current_test_step_dialog.set_msg(Constants.SIGNAL_NEXT)
                                 else:
-                                    self.current_test_step_dialog\
-                                        .set_contents(temp_test_process['title'][:-2] + ModuleConstants.CONTENTS_NOT +
-                                                      temp_test_process['title'][-2:],
-                                                      temp_test_process['contents'][:-2] + ModuleConstants.CONTENTS_NOT
-                                                      + temp_test_process['contents'][-2:],
-                                                      "")
-                                    self.current_test_step_dialog.set_button_contents(ModuleConstants.
-                                                                                      BUTTON_CONTENTS_FINISH)
+                                    self.current_test_step_dialog \
+                                        .set_contents(
+                                        temp_test_process['title'][:-2] + ModuleConstants.CONTENTS_NOT + temp_test_process['title'][-2:],
+                                        temp_test_process['contents'][:-2] + ModuleConstants.CONTENTS_NOT + temp_test_process['contents'][-2:],
+                                        "")
+                                    self.current_test_step_dialog.set_button_contents(ModuleConstants.BUTTON_CONTENTS_FINISH)
                                     self.current_test_step_dialog.set_msg(Constants.SIGNAL_FINISH)
                             elif temp_test_process['module'] == "DialogSimpleTestProcess2Btn":
                                 self.current_test_step_dialog.set_button_contents([ModuleConstants.CONTENTS_YES,
@@ -241,27 +244,26 @@ class EcomNs2Main(QDialog, Ui_Dialog):
                                                                                temp_test_process['img']))
                             else:
                                 self.current_test_step_dialog.set_contents(temp_test_process['title'],
-                                                                       temp_test_process['contents'],
-                                                                       os.path.join(
-                                                                           self.pic_file_path,
-                                                                           temp_test_process['img']))
+                                                                           temp_test_process['contents'],
+                                                                           os.path.join(
+                                                                               self.pic_file_path,
+                                                                               temp_test_process['img']))
                             self.current_test_step_dialog.exec_()
                             break
             elif action == ModuleConstants.PROCESS_CONTROL_FINISH:
                 logger.info(str(self.test_result))
-                self.test_result_transform_and_storage()
-                self.test_result_display()
+                self.test_data_storage()
+                self.test_data_display()
         except BaseException as e:
             logger.error(str(e))
 
         return
 
-    def deal_signal_test_step_finish_emit_slot(self, flag, para):
+    def deal_signal_test_step_finish_emit_slot(self, flag,para):
         """
-        child dialog event process handler
-        :param flag: string event information
-        :param para: object parameters
-        :return:none
+        dialog event process handler
+        :param paras:
+        :return:
         """
         if flag == Constants.SIGNAL_TEST_RESULT:
             self.test_result.update(para)
@@ -296,19 +298,14 @@ class EcomNs2Main(QDialog, Ui_Dialog):
             self.test_process_control(ModuleConstants.PROCESS_CONTROL_FINISH)
 
     def deal_signal_test_duration_caculate_emit_slot(self, para):
-        """
-        test case running duration signal process
-        :param paras: none
-        :return:none
-        """
         try:
             hours, remainder = divmod(para, 3600)
             minutes, seconds = divmod(remainder, 60)
             self.label_test_duration.setText(str(int(hours)) + ":" + str(int(minutes)) + ":" + str(int(seconds)))
         except BaseException as e:
-            logger.info("ecom ns2 deal_signal_test_duration_caculate_emit_slot fail:" + str(e))
+            logger.info("router deal_signal_test_duration_calculate_emit_slot fail:" + str(e))
 
-    def start_caculate_test_duration(self):
+    def start_calculate_test_duration(self):
         if not self.test_time_update_obj:
             self.test_time_update_obj = ThThreadTimerUpdateTestTime()
 
@@ -317,45 +314,18 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         if not self.test_time_update_obj.thread_status:
             self.test_time_update_obj.start()
 
-    def get_checked_test_cases(self):
+    def treeWidget_item_click_slot_test(self,QTreeWidgetItem, index):
         """
-        get the tree widget checked test cases
-        all the checked item are child nodes,not parent node
-        :return:
-        """
-        selected_test_cases = []
-        for item in self.treeWidget.findItems("", Qt.MatchContains | Qt.MatchRecursive):
-
-            # excludes the parent node
-            if item.parent() is None:
-                continue
-
-            # check the child node whether checked,if it had checked,
-            # the checkState value greater than 0
-            if item.checkState(0) > 0:
-                selected_test_cases.append(item.text(0))
-
-        return selected_test_cases
-
-    """
-    def treeWidget_item_click_slot_test(self, QTreeWidgetItem, index):
-        
         set the test case single checked
         :return: None
-        
+        """
         for item in self.treeWidget.findItems("", Qt.MatchContains | Qt.MatchRecursive):
             if item.parent() is None:
                 continue
             if item.text(0) != QTreeWidgetItem.text(0):
                 item.setCheckState(0, Qt.Unchecked)
-    """
 
-    def test_result_transform_and_storage(self):
-        """
-        test result transform and combines to TestResultBase Object
-        test result storage
-        :return:
-        """
+    def test_data_storage(self):
         logger.info("test results storage starting.")
 
         test_result_storage_obj = TestResultBase()
@@ -364,28 +334,24 @@ class EcomNs2Main(QDialog, Ui_Dialog):
 
         test_result_storage_obj.testTime = datetime.now().strftime('%Y-%m-%d %H:%H:%S')
         ThTestResultsStorage.test_case_result_storage(test_result_storage_obj)
-        logger.info("test results storage finish.")
+        logger.info("router test results storage finish.")
 
-    def test_result_display(self):
+    def test_data_display(self):
         """
-        display the test result into table widget
-        :return: none
+        展示路由器测试数据
+        :return:
         """
-        while self.tableWidget_test_results_ecom_ns2.rowCount() > 0:
-            self.tableWidget_test_results_ecom_ns2.removeRow(0)
-
-        self.tableWidget_test_results_ecom_ns2.setRowCount(len(self.test_result))
+        while self.tableWidget.rowCount() > 0:
+            self.tableWidget.removeRow(0)
+        self.tableWidget.setRowCount(len(self.test_result))
         temp_index = 0
         for key, value in self.test_result.items():
             item = QTableWidgetItem(str(key))
-            self.tableWidget_test_results_ecom_ns2.setItem(temp_index, 0, item)
+            self.tableWidget.setItem(temp_index, 0, item)
 
             item = QTableWidgetItem(str(value))
-            self.tableWidget_test_results_ecom_ns2.setItem(temp_index, 1, item)
+            self.tableWidget.setItem(temp_index, 1, item)
 
             item = QTableWidgetItem(str(value))
-            self.tableWidget_test_results_ecom_ns2.setItem(temp_index, 2, item)
+            self.tableWidget.setItem(temp_index, 2, item)
             temp_index = temp_index + 1
-
-
-

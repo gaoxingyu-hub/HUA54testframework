@@ -20,10 +20,10 @@ from renix_py_api.core import EnumRelationDirection
 from renix_py_api.rom_manager import *
 
 
-logger = Logger.module_logger("TestProcessEcomNs1")
+logger = Logger.module_logger("TestProcessRouter")
 
 
-class TestProcessEcomNs1(QThread):
+class TestProcessRouter(QThread):
     """
     Ecom Ns2 switcher test process thread
     """
@@ -33,7 +33,7 @@ class TestProcessEcomNs1(QThread):
     port2 =""
 
     def __init__(self,parent=None):
-        super(TestProcessEcomNs1,self).__init__()
+        super(TestProcessRouter,self).__init__()
         self.test_case = None
 
     def set_test_para(self,para):
@@ -55,8 +55,8 @@ class TestProcessEcomNs1(QThread):
         :return:
         """
         try:
-            logger.info("TestProcessEcomNs1 test start")
-            self._signalInfo.emit(Constants.SIGNAL_INFORMATION,"TestProcessEcomNs1 test start:"
+            logger.info("TestProcessEcomNs2 test start")
+            self._signalInfo.emit(Constants.SIGNAL_INFORMATION,"TestProcessEcomNs2 test start:"
                                   + str(self.port1) + " " + str(self.port2))
             test_result = {}
             initialize()
@@ -90,8 +90,8 @@ class TestProcessEcomNs1(QThread):
                                   ":" + test_result["lan" + str(self.test_case[1])])
 
             # self._signal.emit(Constants.SIGNAL_NEXT, test_result)
-            logger.info("TestProcessEcomNs1 test finish")
-            self._signalInfo.emit(Constants.SIGNAL_INFORMATION, "TestProcessEcomNs1 test finish:"+
+            logger.info("TestProcessEcomNs2 test finish")
+            self._signalInfo.emit(Constants.SIGNAL_INFORMATION, "TestProcessEcomNs2 test finish:"+
                                   str(self.port1) + " " +str(self.port2))
         except BaseException as e:
             logger.error(str(e))

@@ -14,10 +14,10 @@ from .Ui_ECOM_NS1_KEY_TEST import Ui_Dialog
 from common.logConfig import Logger
 from .ecom_ns1_test_process import TestProcessEcomNs1
 from common.config import EcomNs1TestModuleConfig
-from common.info import Constants
+from common.info import Constants,ThCommonNoticeInfo
 
 SETUP_DIR = frozen_dir.app_path()
-logger = Logger.module_logger("EcomNs1Execute")
+logger = Logger.module_logger("DialogEcomNs1KeyTest")
 class DialogEcomNs1KeyTest(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
@@ -44,6 +44,7 @@ class DialogEcomNs1KeyTest(QDialog, Ui_Dialog):
         self.current_test_step = 1
         self.current_test_item = 1
         self.max_test_steps = 24
+        self.test_process_object = None
 
         self.config_file_path = os.path.join(
             SETUP_DIR, "conf", "ecom_ns_1_cases.json")
@@ -79,10 +80,11 @@ class DialogEcomNs1KeyTest(QDialog, Ui_Dialog):
             if self.current_test_button_status == "before":
                 try:
                     self.pushButton_process.setVisible(False)
-                    self.test_process_object = TestProcessEcomNs1()
-                    self.test_process_object.set_test_para("test.script", self.current_test_case)
-                    self.test_process_object._signal.connect(self.slot_test_process)
-                    self.test_process_object._signalInfo.connect(self.slot_test_process_information)
+                    if not self.test_process_object:
+                        self.test_process_object = TestProcessEcomNs1()
+                        self.test_process_object._signal.connect(self.slot_test_process)
+                        self.test_process_object._signalInfo.connect(self.slot_test_process_information)
+                    self.test_process_object.set_test_para(self.current_test_case)
                     self.test_process_object.start()
                     self.test_step_control("next")
                 except BaseException as e:
@@ -115,8 +117,8 @@ class DialogEcomNs1KeyTest(QDialog, Ui_Dialog):
         temp_result_flag = True
         temp_result_str = ""
         for k,v in para2.items():
-            temp_result_str += str(k) + ":" + str(v)
-            if v == "fail":
+            temp_result_str += "\n" + str(k) + ":" + str(v)
+            if v == Constants.NETWORK_PORT_TEST_ABNORMAL:
                 temp_result_flag = False
 
         if para1 and para2:
@@ -124,12 +126,15 @@ class DialogEcomNs1KeyTest(QDialog, Ui_Dialog):
 
         if not temp_result_flag:
             self.current_test_button_status = "fail"
-            self.textBrowser_tips.setText(self.test_config.steps[self.current_test_step - 1]["contents"] + temp_result_str)
-            self.pushButton_process.setText("测试结束")
+            self.textBrowser_tips.setText(self.test_config.steps[self.current_test_step - 1]["contents"]
+                                          + "\n" + temp_result_str)
+            self.pushButton_process.setText(ThCommonNoticeInfo.FINISH_TEST)
         else:
             self.current_test_button_status = self.test_config.steps[self.current_test_step - 1]["status"]
-            self.textBrowser_tips.setText(self.test_config.steps[self.current_test_step - 1]["contents"] + temp_result_str)
+            self.textBrowser_tips.setText(self.test_config.steps[self.current_test_step - 1]["contents"]
+                                          + "\n" + temp_result_str)
             self.pushButton_process.setText(self.test_config.steps[self.current_test_step - 1]["button"])
+        # self.test_step_control("next")
 
     def update_test_step_display(self,port1,port2):
         self.listWidget_port1.setCurrentRow(port1 - 1)
@@ -142,8 +147,12 @@ class DialogEcomNs1KeyTest(QDialog, Ui_Dialog):
             self.pushButton_process.setText(self.test_config.steps[self.current_test_step-1]["button"])
 
     def slot_test_process_information(self,signal,para1):
-        if self.textBrowser_log.document().blockCount() > 10:
+        self.update_display_log(para1)
+
+    def update_display_log(self,contents):
+        if self.textBrowser_log.document().blockCount() > 50:
             self.textBrowser_log.clear()
-        self.textBrowser_log.append(para1)
+        self.textBrowser_log.append(contents)
+
 
 
