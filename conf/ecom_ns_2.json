@@ -24,7 +24,7 @@
                 {"img":"","title":"电源部分正常","contents":"电源部分正常","module": "DialogSimpleTestProcess1Btn","category": "execute"},
                 {"img":"","title":"Ping测试-设备CTRL口","contents":"将笔记本计算机网口连接至设备CTRL口，将笔记本计算机的ip地址设置为192.168.1.10/24，输入192.168.1.205，点击ping按钮","module": "EcomNs2Ping","category": "execute"},
                 {"img":"","title":"Ping测试-设备LAN16","contents":"将笔记本计算机网口连接至设备LAN16，将笔记本计算机的ip地址设置为192.168.1.10/24，输入192.168.1.205，点击ping按钮","module": "EcomNs2Ping","category": "execute"},
-                {"img":"","title":"IP误码仪测试-以太网接口","contents":"使用网线连接设备LAN1至IP误码仪测试端口1，使用网线连接设备LAN2至IP误码仪测试端口2","module": "EcomNs2Execute","category": "execute"}
+                {"img":"","title":"IP误码仪测试-以太网接口","contents":"使用网线连接设备LAN1至IP误码仪测试端口1，使用网线连接设备LAN2至IP误码仪测试端口2","module": "DialogEcomNs2KeyTest","category": "execute"}
             ]
         }
     ],

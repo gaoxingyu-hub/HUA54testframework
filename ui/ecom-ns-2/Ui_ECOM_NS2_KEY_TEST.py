@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'G:\sourcecode\54\54testframework\ui\ecom-ns-2\ECOM_NS2_EXECUTE1.ui'
+# Form implementation generated from reading ui file 'E:\tianheng_projects\54\54TestFramework\ui\ecom-ns-2\ECOM_NS2_KEY_TEST.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.0
+# Created by: PyQt5 UI code generator 5.13.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -191,9 +191,9 @@ class Ui_Dialog(object):
         self.gridLayout.setObjectName("gridLayout")
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem, 0, 2, 1, 1)
-        self.pushButton_next = QtWidgets.QPushButton(self.groupBox)
-        self.pushButton_next.setObjectName("pushButton_next")
-        self.gridLayout.addWidget(self.pushButton_next, 0, 1, 1, 1)
+        self.pushButton_process = QtWidgets.QPushButton(self.groupBox)
+        self.pushButton_process.setObjectName("pushButton_process")
+        self.gridLayout.addWidget(self.pushButton_process, 0, 1, 1, 1)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem1, 0, 0, 1, 1)
         self.gridLayout_7.addLayout(self.gridLayout, 2, 0, 1, 3)
@@ -285,8 +285,8 @@ class Ui_Dialog(object):
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.groupBox_2.setTitle(_translate("Dialog", "提示信息"))
-        self.pushButton_next.setText(_translate("Dialog", "下一步"))
-import res.iconQrc_rc
+        self.pushButton_process.setText(_translate("Dialog", "下一步"))
+import iconQrc_rc
 
 
 if __name__ == "__main__":

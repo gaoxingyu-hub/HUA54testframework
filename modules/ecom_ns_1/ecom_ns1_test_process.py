@@ -29,12 +29,14 @@ class TestProcessEcomNs1(QThread):
     """
     _signal = pyqtSignal(str,object)
     _signalInfo = pyqtSignal(str, object)
+    port1 = ""
+    port2 =""
 
     def __init__(self,parent=None):
         super(TestProcessEcomNs1,self).__init__()
         self.test_case = None
 
-    def set_test_para(self,script,para):
+    def set_test_para(self,para):
         """
         test parameter set method
         :param script:
@@ -42,6 +44,8 @@ class TestProcessEcomNs1(QThread):
         :return:
         """
         self.test_case = para
+        self.port1 = para[0]
+        self.port2 = para[1]
         return
 
     def run(self):
@@ -52,17 +56,43 @@ class TestProcessEcomNs1(QThread):
         """
         try:
             logger.info("TestProcessEcomNs1 test start")
-            self._signalInfo.emit(Constants.SIGNAL_INFORMATION,"TestProcessEcomNs1 test start")
+            self._signalInfo.emit(Constants.SIGNAL_INFORMATION,"TestProcessEcomNs1 test start:"
+                                  + str(self.port1) + " " + str(self.port2))
             test_result = {}
             initialize()
             sys_entry = get_sys_entry()
             result = start_test(sys_entry)
-            test_result["lan" + str(self.test_case[0])] = result
-            test_result["lan" + str(self.test_case[1])] = result
             shutdown()
-            self._signal.emit("test case finish",test_result)
+            if result:
+                for k,v in result.items():
+                    self._signalInfo.emit(Constants.SIGNAL_INFORMATION, k + ":" + str(v))
+
+                if "uplink_loss_frames" in result:
+                    if result["uplink_loss_frames"] < 100:
+                        test_result["lan" + str(self.test_case[1])] = Constants.NETWORK_PORT_TEST_NORMAL
+                    else:
+                        test_result["lan" + str(self.test_case[1])] = Constants.NETWORK_PORT_TEST_ABNORMAL
+                else:
+                    test_result["lan" + str(self.test_case[1])] = Constants.NETWORK_PORT_TEST_ABNORMAL
+
+                if "downlink_loss_frames" in result:
+                    if result["downlink_loss_frames"] < 100:
+                        test_result["lan" + str(self.test_case[0])] = Constants.NETWORK_PORT_TEST_NORMAL
+                    else:
+                        test_result["lan" + str(self.test_case[0])] = Constants.NETWORK_PORT_TEST_ABNORMAL
+                else:
+                    test_result["lan" + str(self.test_case[0])] = Constants.NETWORK_PORT_TEST_ABNORMAL
+            self._signal.emit(Constants.SIGNAL_TEST_RESULT,test_result)
+
+            self._signalInfo.emit(Constants.SIGNAL_INFORMATION, "lan " + str(self.test_case[0]) +
+                                  ":" + test_result["lan" + str(self.test_case[0])])
+            self._signalInfo.emit(Constants.SIGNAL_INFORMATION, "lan " + str(self.test_case[1]) +
+                                  ":" + test_result["lan" + str(self.test_case[1])])
+
+            # self._signal.emit(Constants.SIGNAL_NEXT, test_result)
             logger.info("TestProcessEcomNs1 test finish")
-            self._signalInfo.emit(Constants.SIGNAL_INFORMATION, "TestProcessEcomNs1 test finish")
+            self._signalInfo.emit(Constants.SIGNAL_INFORMATION, "TestProcessEcomNs1 test finish:"+
+                                  str(self.port1) + " " +str(self.port2))
         except BaseException as e:
             logger.error(str(e))
 

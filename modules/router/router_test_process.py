@@ -20,10 +20,10 @@ from renix_py_api.core import EnumRelationDirection
 from renix_py_api.rom_manager import *
 
 
-logger = Logger.module_logger("TestProcessEcomNs2")
+logger = Logger.module_logger("TestProcessRouter")
 
 
-class TestProcessEcomNs2(QThread):
+class TestProcessRouter(QThread):
     """
     Ecom Ns2 switcher test process thread
     """
@@ -33,7 +33,7 @@ class TestProcessEcomNs2(QThread):
     port2 =""
 
     def __init__(self,parent=None):
-        super(TestProcessEcomNs2,self).__init__()
+        super(TestProcessRouter,self).__init__()
         self.test_case = None
 
     def set_test_para(self,para):
