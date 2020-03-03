@@ -41,9 +41,9 @@ class MANUAL_TEST_LO(QDialog, Ui_Dialog):
  
     
     def initUi(self,mConfig):
-        maddress= mConfig.test_source[1]
+        self.maddress= mConfig.test_source[1]
         self.threshold = mConfig.test_case_detail[0]["threshold"][0]
-        self.lineEdit_addr_sa.setText(maddress)
+#         self.lineEdit_addr_sa.setText(maddress)
         
     def set_contents(self,title,contents):
         self.setWindowTitle(title)
@@ -60,7 +60,7 @@ class MANUAL_TEST_LO(QDialog, Ui_Dialog):
         # TODO: not implemented yet
 
         self.test_result=test_results()
-        addr_sa=str(self.lineEdit_addr_sa.text())
+        addr_sa=str(self.maddress)
         addr_sa = "TCPIP0::" + addr_sa + "::inst0::INSTR"
         if not self.demo:
             try:
@@ -73,8 +73,10 @@ class MANUAL_TEST_LO(QDialog, Ui_Dialog):
         self.test_result.test_condition = '--'
         self.test_result.test_results=str(self.testProcess())
         if self.test_result.test_results ==self.threshold:
+            QMessageBox.information(self,u"提示",u"测试正常",QMessageBox.Ok)
             self.test_result.test_conclusion='PASS'
         else:
+            QMessageBox.information(self,u"提示",u"收发单元本振故障",QMessageBox.Ok)
             self.test_result.test_conclusion='FAIL'
         self._signalTest.emit("test_lo")
         self.accept()
@@ -82,10 +84,8 @@ class MANUAL_TEST_LO(QDialog, Ui_Dialog):
     
     
     def testProcess(self):
-        if self.demo:
-            mres =np.random.choice([u'无告警',u'有告警']) 
-        else:
-            mres = str(self.comboBox_sg_addr.currentText())
+        
+        mres = str(self.comboBox_sg_addr.currentText())
         return mres
     
     def testData(self):

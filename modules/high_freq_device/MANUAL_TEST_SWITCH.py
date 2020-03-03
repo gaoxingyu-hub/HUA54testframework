@@ -11,7 +11,6 @@ from PyQt5.QtCore import pyqtSignal
 
 from .Ui_SWITCH_TEST import Ui_Dialog
 import os
-from InstrumentDrivers.VNADriver import AgilentN5242
 from PyQt5.Qt import QMessageBox
 import numpy as np
 
@@ -32,7 +31,10 @@ class MANUAL_TEST_SWITCH(QDialog, Ui_Dialog):
         self.setupUi(self)
         self.flag = 1
         self.demo = True
-
+    
+    def initUi(self,mConfig):
+        self.threshold = mConfig.test_case_detail[5]["threshold"][0]
+    
     def set_contents(self,title,contents):
         self.setWindowTitle(title)
 #         self.textBrowser_contents.setText(contents)
@@ -52,14 +54,20 @@ class MANUAL_TEST_SWITCH(QDialog, Ui_Dialog):
         self.test_result.test_item = '波导开关'
         self.test_result.test_condition = '--'
         self.test_result.test_results=str(self.testProcess())
-        self.test_result.test_conclusion='PASS'
+        if self.test_result.test_results ==self.threshold:
+            QMessageBox.information(self,u"提示",u"测试正常",QMessageBox.Ok)
+            self.test_result.test_conclusion='PASS'
+        else:
+            QMessageBox.information(self,u"提示",u"波导开关故障",QMessageBox.Ok)
+            self.test_result.test_conclusion='FAIL'
+
         self._signalTest.emit("test_switch")
         self.accept()
         self.close()
     
     
     def testProcess(self):
-        mres =np.random.choice([u'无告警',u'有告警']) 
+        mres = str(self.comboBox_sg_addr.currentText())
         return mres
     
 class test_results:

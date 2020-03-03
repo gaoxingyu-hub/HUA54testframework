@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project test -->
-<!-- Saved: 2020-02-16, 15:34:11 -->
+<!-- Saved: 2020-03-02, 12:03:01 -->
 <!-- Copyright (C) 2020 ,  -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -16,12 +16,22 @@
     <Source>PIC_TEXT.py</Source>
     <Source>TEST_PROCEDURE_CONTROL.py</Source>
     <Source>Ui_AUTO_TEST.py</Source>
+    <Source>Ui_AUTO_TEST_COUPLER.py</Source>
+    <Source>Ui_AUTO_TEST_FILTER.py</Source>
+    <Source>Ui_AUTO_TEST_LNA.py</Source>
+    <Source>Ui_AUTO_TEST_LOOP.py</Source>
+    <Source>Ui_AUTO_TEST_PA.py</Source>
+    <Source>Ui_AUTO_TEST_T.py</Source>
+    <Source>Ui_ECOM-NS-2.py</Source>
+    <Source>Ui_LO_TEST.py</Source>
+    <Source>Ui_MONITOR_TEST.py</Source>
     <Source>Ui_MainWindow.py</Source>
     <Source>Ui_PIC_TEXT.py</Source>
     <Source>Ui_SIMPLE_TEST_PROCESS_1BTN.py</Source>
     <Source>Ui_SIMPLE_TEST_PROCESS_2BTN.py</Source>
     <Source>Ui_TEST_PROCEDURE_CONTROL.py</Source>
     <Source>Ui_high_freq_device.py</Source>
+    <Source>control_device/Ui_COM_CONTROL_DEVICE.py</Source>
     <Source>control_device/Ui_COM_CONTROL_DEVICE_EXECUTE1.py</Source>
     <Source>control_device/Ui_COM_CONTROL_DEVICE_EXECUTE2.py</Source>
     <Source>control_device/Ui_COM_CONTROL_DEVICE_EXECUTE3.py</Source>
@@ -31,13 +41,17 @@
   </Sources>
   <Forms>
     <Form>AUTO_TEST.ui</Form>
-    <Form>Demo.ui</Form>
+    <Form>AUTO_TEST_COUPLER.ui</Form>
+    <Form>AUTO_TEST_FILTER.ui</Form>
+    <Form>AUTO_TEST_LNA.ui</Form>
+    <Form>AUTO_TEST_LOOP.ui</Form>
+    <Form>AUTO_TEST_PA.ui</Form>
+    <Form>AUTO_TEST_T.ui</Form>
     <Form>ECOM-NS-2.ui</Form>
+    <Form>LO_TEST.ui</Form>
+    <Form>MONITOR_TEST.ui</Form>
     <Form>MainWindow.ui</Form>
     <Form>PIC_TEXT.ui</Form>
-    <Form>SIMPLE_TEST_PROCESS_1BTN.ui</Form>
-    <Form>SIMPLE_TEST_PROCESS_2BTN.ui</Form>
-    <Form>TEST_PROCEDURE_CONTROL.ui</Form>
     <Form>control_device/COM_CONTROL_DEVICE.ui</Form>
     <Form>control_device/COM_CONTROL_DEVICE_EXECUTE1.ui</Form>
     <Form>control_device/COM_CONTROL_DEVICE_EXECUTE2.ui</Form>
@@ -45,7 +59,6 @@
     <Form>control_device/COM_CONTROL_DEVICE_EXECUTE4.ui</Form>
     <Form>control_device/COM_CONTROL_DEVICE_PA2.ui</Form>
     <Form>high_freq_device.ui</Form>
-    <Form>module.ui</Form>
     <Form>router/Router.ui</Form>
     <Form>router/Router_Lan_test.ui</Form>
     <Form>testInfo.ui</Form>

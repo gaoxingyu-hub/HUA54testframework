@@ -116,16 +116,7 @@ border:1px solid rgb(0, 0, 0);
            <string>矢量网络分析仪</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_5">
-           <item row="0" column="2">
-            <widget class="QComboBox" name="comboBox_na_addr">
-             <item>
-              <property name="text">
-               <string>LAN</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="1" column="0">
+           <item row="0" column="0">
             <widget class="QLabel" name="label_7">
              <property name="text">
               <string>频率</string>
@@ -133,28 +124,9 @@ border:1px solid rgb(0, 0, 0);
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QLineEdit" name="lineEdit_freq_na"/>
-           </item>
-           <item row="1" column="2">
-            <widget class="QComboBox" name="comboBox_na_freq">
-             <item>
-              <property name="text">
-               <string>MHz</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="label_8">
-             <property name="text">
-              <string>带宽</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
             <widget class="QLineEdit" name="lineEdit_bw_na"/>
            </item>
-           <item row="2" column="2">
+           <item row="1" column="2">
             <widget class="QComboBox" name="comboBox_sa_bw">
              <item>
               <property name="text">
@@ -164,13 +136,22 @@ border:1px solid rgb(0, 0, 0);
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLineEdit" name="lineEdit_addr_na"/>
+            <widget class="QLineEdit" name="lineEdit_freq_na"/>
            </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_9">
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_8">
              <property name="text">
-              <string>地址</string>
+              <string>带宽</string>
              </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QComboBox" name="comboBox_na_freq">
+             <item>
+              <property name="text">
+               <string>MHz</string>
+              </property>
+             </item>
             </widget>
            </item>
           </layout>

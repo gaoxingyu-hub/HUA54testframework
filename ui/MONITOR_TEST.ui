@@ -70,7 +70,7 @@ border:1px solid rgb(0, 0, 0);
      <property name="title">
       <string/>
      </property>
-     <layout class="QGridLayout" name="gridLayout_3">
+     <layout class="QGridLayout" name="gridLayout_3" rowstretch="1,3,0">
       <item row="0" column="0">
        <widget class="QGroupBox" name="groupBox_2">
         <property name="title">
@@ -78,120 +78,84 @@ border:1px solid rgb(0, 0, 0);
         </property>
         <layout class="QGridLayout" name="gridLayout_2">
          <item row="0" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1">
-           <item>
-            <widget class="QLabel" name="label_5">
-             <property name="text">
-              <string>监控模块状态</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="comboBox_sg_addr">
-             <item>
-              <property name="text">
-               <string>监控模块正常</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>供电不正常</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>没有程序运行</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>网络物理连接不正常</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>发数据不正常</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>收数据不正常</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>数据冲突</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-          </layout>
+          <widget class="QCheckBox" name="checkBox_v2">
+           <property name="text">
+            <string>V2指示灯亮起</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QCheckBox" name="checkBox_v3">
+           <property name="text">
+            <string>V3指示灯闪烁</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QCheckBox" name="checkBox_v4">
+           <property name="text">
+            <string>V4指示灯闪烁</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QCheckBox" name="checkBox_v5">
+           <property name="text">
+            <string>V5指示灯闪烁</string>
+           </property>
+          </widget>
          </item>
          <item row="1" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,1">
-           <item>
-            <widget class="QLabel" name="label_6">
-             <property name="text">
-              <string>双工状态      </string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="comboBox_sg_addr_2">
-             <item>
-              <property name="text">
-               <string>全双工</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>半双工</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-          </layout>
+          <widget class="QCheckBox" name="checkBox_v6">
+           <property name="text">
+            <string>V6指示灯闪烁</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QCheckBox" name="checkBox_v8">
+           <property name="text">
+            <string>V8指示灯亮起</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QCheckBox" name="checkBox_v9">
+           <property name="text">
+            <string>V9指示灯亮起</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QCheckBox" name="checkBox_v10">
+           <property name="text">
+            <string>V10指示灯亮起</string>
+           </property>
+          </widget>
          </item>
          <item row="2" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,1">
-           <item>
-            <widget class="QLabel" name="label_7">
-             <property name="text">
-              <string>传输速率      </string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="comboBox_sg_addr_3">
-             <item>
-              <property name="text">
-               <string>100Mbps</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>10Mbps</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-          </layout>
+          <widget class="QCheckBox" name="checkBox_v11">
+           <property name="text">
+            <string>V11指示灯亮起</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QCheckBox" name="checkBox_v12">
+           <property name="text">
+            <string>V12指示灯闪烁</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QCheckBox" name="checkBox_v13">
+           <property name="text">
+            <string>V13指示灯闪烁</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
-      </item>
-      <item row="1" column="0">
-       <spacer name="verticalSpacer">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
       </item>
       <item row="2" column="0">
        <layout class="QGridLayout" name="gridLayout">
@@ -229,6 +193,19 @@ border:1px solid rgb(0, 0, 0);
          </spacer>
         </item>
        </layout>
+      </item>
+      <item row="1" column="0">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </widget>
