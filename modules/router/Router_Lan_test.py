@@ -79,9 +79,7 @@ class DialogRouterLanTest(QDialog, Ui_Dialog):
                 try:
                     # 设置process button 不可见
                     self.pushButton_process.setVisible(False)
-                    # QThread模拟测试过程
                     self.test_process_object = TestProcessRouterLan()
-                    # 设置测试参数
                     self.test_process_object.set_test_para("test.script", self.current_test_case)
                     # 设置信号槽
                     self.test_process_object.signal.connect(self.slot_test_process)

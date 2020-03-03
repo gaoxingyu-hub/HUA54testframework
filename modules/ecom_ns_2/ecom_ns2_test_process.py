@@ -6,11 +6,22 @@
 # @Desc    : ecom ns2 switcher test process
 from PyQt5.QtCore import QThread,pyqtSignal
 import time
+
+from modules.general.frame_loss import start_test
 from renix_py_api import renix
 from common.logConfig import Logger
 from common.info import Constants
 
+from renix_py_api.renix_common_api import get_sys_entry
+from renix_py_api.renix import *
+import logging, time
+from renix_py_api.api_gen import *
+from renix_py_api.core import EnumRelationDirection
+from renix_py_api.rom_manager import *
+
 logger = Logger.module_logger("TestProcessEcomNs2")
+
+
 class TestProcessEcomNs2(QThread):
     """
     Ecom Ns2 switcher test process thread
@@ -19,7 +30,7 @@ class TestProcessEcomNs2(QThread):
     _signalInfo = pyqtSignal(str, object)
 
     def __init__(self,parent=None):
-        super(TestProcessEcomNs2,self).__init__()
+        super(TestProcessEcomNs2, self).__init__()
         self.test_case = None
 
     def set_test_para(self,script,para):
@@ -40,18 +51,20 @@ class TestProcessEcomNs2(QThread):
         """
         try:
             logger.info("TestProcessEcomNs2 test start")
-            self._signalInfo.emit(Constants.SIGNAL_INFORMATION, "TestProcessEcomNs2 test start")
-            # time.sleep(10)
-            # renix.initialize(log=True)
-            time.sleep(2)
-            # renix.shutdown()
+            self._signalInfo.emit(Constants.SIGNAL_INFORMATION, "TestProcessEcomNs1 test start")
             test_result = {}
-            test_result["lan" + str(self.test_case[0])] = "success"
-            test_result["lan" + str(self.test_case[1])] = "success"
+            initialize()
+            sys_entry = get_sys_entry()
+            result = start_test(sys_entry)
+            test_result["lan" + str(self.test_case[0])] = result
+            test_result["lan" + str(self.test_case[1])] = result
+            shutdown()
             self._signal.emit("test case finish",test_result)
             logger.info("TestProcessEcomNs2 test finish")
-            self._signalInfo.emit(Constants.SIGNAL_INFORMATION, "TestProcessEcomNs2 test finish")
+            self._signal.emit(Constants.SIGNAL_INFORMATION, "TestProcessEcomNs2 test finish")
         except BaseException as e:
             logger.error(str(e))
 
-
+    @property
+    def signal(self):
+        return self._signal

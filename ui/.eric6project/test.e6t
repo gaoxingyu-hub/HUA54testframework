@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project test -->
+<<<<<<< HEAD
 <!-- Saved: 2020-03-02, 12:03:01 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
@@ -8,18 +9,61 @@
     <Summary>TODO: not implemented yet</Summary>
     <Description></Description>
     <Created>2020-03-02, 11:48:20</Created>
+=======
+<!-- Saved: 2020-02-28, 12:25:25 -->
+<Tasks version="6.0">
+  <ProjectScanFilter></ProjectScanFilter>
+  <Task priority="1" completed="False" type="1" uid="{80619180-a523-4bc8-80de-597fd5a54185}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2020-02-28, 12:06:41</Created>
+>>>>>>> remotes/origin/master
     <Resource>
       <Filename>PIC_TEXT.py</Filename>
       <Linenumber>32</Linenumber>
     </Resource>
   </Task>
+<<<<<<< HEAD
   <Task priority="1" completed="False" type="1" uid="{40247d1f-51cf-4842-b751-b51dae57f698}">
     <Summary>TODO: not implemented yet</Summary>
     <Description></Description>
     <Created>2020-03-02, 11:48:20</Created>
+=======
+  <Task priority="1" completed="False" type="1" uid="{e8c5222a-5ba8-46fd-b908-1c2c4a77ff72}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2020-02-28, 12:06:41</Created>
+>>>>>>> remotes/origin/master
     <Resource>
       <Filename>TEST_PROCEDURE_CONTROL.py</Filename>
       <Linenumber>32</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{a81b981e-2044-4733-9e95-23ca661bbd6b}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2020-02-28, 12:06:41</Created>
+    <Resource>
+      <Filename>security_machine/SecurityMain.py</Filename>
+      <Linenumber>32</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{437dcb7c-b1be-4143-8ea3-bd05914ba8c5}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2020-02-28, 12:06:41</Created>
+    <Resource>
+      <Filename>security_machine/SecurityMain.py</Filename>
+      <Linenumber>40</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{16e4bb43-7cd8-48cf-bce8-8f11228afd92}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2020-02-28, 12:06:41</Created>
+    <Resource>
+      <Filename>security_machine/SecurityMain.py</Filename>
+      <Linenumber>48</Linenumber>
     </Resource>
   </Task>
 </Tasks>
