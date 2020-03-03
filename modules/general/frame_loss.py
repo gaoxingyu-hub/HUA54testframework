@@ -3,8 +3,11 @@ import logging, time
 from renix_py_api.api_gen import *
 from renix_py_api.core import EnumRelationDirection
 from renix_py_api.rom_manager import *
+from common.logConfig import Logger
+from common.info import TestParameters
 
 
+logger = Logger.module_logger("network com frame loss test")
 def add_statistic(stream, rxPort, mode=EnumRxPortSelectMode.ONE_TO_ONE):
     streamHandleList = stream.handle
     rxPortHandleList = rxPort.handle
@@ -37,7 +40,7 @@ def create_stream(port, packet_length=128):
     create_stream_header_cmd.execute()
     if len(create_stream_header_cmd.HeaderNames) != 3:
         raise Exception('{} create EthernetII and IPv4 header failed'.format(stream.handle))
-    stream.FixedLength = packet_length
+    stream.FixedLength = TestParameters.FRAME_LOSS_TEST_PACKET_LENGTH
     stream.get()
     return stream
 
@@ -61,15 +64,12 @@ def wait_port_online(port, times=10):
 
 
 def start_test(sys_entry):
-
-    errInfo = []
-    verdict = 'pass'
     # reserve port
-    port_location = ('//192.168.1.23/2/1', '//192.168.1.23/2/2')
+    port_location = ('//192.168.253.24/2/1', '//192.168.253.24/2/2')
     port1, port2 = create_ports(sys_entry, port_location)
     stream_port_cfg = port1.get_children(StreamPortConfig.cls_name())[0]
     inter_frame_gap_cfg = stream_port_cfg.get_children(InterFrameGapProfile.cls_name())[0]
-    inter_frame_gap_cfg.edit(Rate=100)
+    inter_frame_gap_cfg.edit(Rate=TestParameters.FRAME_LOSS_TEST_PACKET_RATE)
 
     # create stream
     stream1_2 = create_stream(port1)
@@ -105,7 +105,7 @@ def start_test(sys_entry):
     # Start stream
     startallstream = StartAllStreamCommand()
     startallstream.execute()
-    time.sleep(10)
+    time.sleep(TestParameters.FRAME_LOSS_TEST_TIME_SECS)
     stopallstream = StopAllStreamCommand()
     stopallstream.execute()
 
@@ -115,59 +115,51 @@ def start_test(sys_entry):
     stream1_2_stats = result_query.get_children('StreamBlockStats')[0]
     stream2_1_stats = result_query.get_children('StreamBlockStats')[1]
 
+    results = {}
     # check rx equal to tx
     if stream1_2_stats.TxStreamFrames != stream1_2_stats.RxStreamFrames:
-        verdict = 'fail'
-        errInfo.append(
+        logger.info(
             '[Test Fail] Stream1_2 tx packet ({}) is NOT equal to rx packets ({})'.format(stream1_2_stats.TxStreamFrames,
                                                                                           stream1_2_stats.RxStreamFrames))
     else:
-        print('[Test Pass] Stream1_2 tx packet ({}) is equal to rx packets ({})'.format(stream1_2_stats.TxStreamFrames,
+        logger.info('[Test Pass] Stream1_2 tx packet ({}) is equal to rx packets ({})'.format(stream1_2_stats.TxStreamFrames,
                                                                                         stream1_2_stats.RxStreamFrames))
 
+    results["Stream1_2_tx_frames"] = stream1_2_stats.TxStreamFrames
+    results["Stream1_2_rx_frames"] = stream1_2_stats.RxStreamFrames
+
     if stream2_1_stats.TxStreamFrames != stream2_1_stats.RxStreamFrames:
-        verdict = 'fail'
-        errInfo.append(
+        logger.info(
             '[Test Fail] stream2_1 tx packet ({}) is NOT equal to rx packets ({})'.format(stream2_1_stats.TxStreamFrames,
                                                                                           stream2_1_stats.RxStreamFrames))
     else:
-        print('[Test Pass] stream2_1 tx packet ({}) is equal to rx packets ({})'.format(stream2_1_stats.TxStreamFrames,
+        logger.info('[Test Pass] stream2_1 tx packet ({}) is equal to rx packets ({})'.format(stream2_1_stats.TxStreamFrames,
                                                                                         stream2_1_stats.RxStreamFrames))
+
+    results["stream2_1_tx_frames"] = stream2_1_stats.TxStreamFrames
+    results["stream2_1_rx_frames"] = stream2_1_stats.RxStreamFrames
 
     # check no loss packet
     if stream1_2_stats.RxLossStreamFrames != 0:
-        verdict = 'fail'
-        errInfo.append(
+        logger.info(
             '[Test Fail] Stream1_2 realtime loss packet ({}) is NOT equal to 0'.format(stream1_2_stats.RxLossStreamFrames))
     else:
-        print('[Test Pass] Stream1_2 realtime loss packet ({}) is equal to 0'.format(stream1_2_stats.RxLossStreamFrames))
+        logger.info('[Test Pass] Stream1_2 realtime loss packet ({}) is equal to 0'.format(stream1_2_stats.RxLossStreamFrames))
+
+    results["uplink_loss_frames"] = stream1_2_stats.RxLossStreamFrames
 
     if stream2_1_stats.RxLossStreamFrames != 0:
-        verdict = 'fail'
-        errInfo.append(
+        logger.info(
             '[Test Fail] stream2_1 realtime loss packet ({}) is NOT equal to 0'.format(stream2_1_stats.RxLossStreamFrames))
     else:
-        print('[Test Pass] stream2_1 realtime loss packet ({}) is equal to 0'.format(stream2_1_stats.RxLossStreamFrames))
+        logger.info('[Test Pass] stream2_1 realtime loss packet ({}) is equal to 0'.format(stream2_1_stats.RxLossStreamFrames))
 
-    # check no sequence error
-    if stream1_2_stats.RxSeqErr != 0:
-        verdict = 'fail'
-        errInfo.append(
-            '[Test Fail] Stream1_2 sequence error packet ({}) is NOT equal to 0'.format(stream1_2_stats.RxSeqErr))
-    else:
-        print('[Test Pass] Stream1_2 sequence error packet ({}) is equal to 0'.format(stream1_2_stats.RxSeqErr))
+    results["downlink_loss_frames"] = stream2_1_stats.RxLossStreamFrames
 
-    if stream2_1_stats.RxSeqErr != 0:
-        verdict = 'fail'
-        errInfo.append(
-            '[Test Fail] stream2_1 sequence error packet ({}) is NOT equal to 0'.format(stream2_1_stats.RxSeqErr))
-    else:
-        print('[Test Pass] stream2_1 sequence error packet ({}) is equal to 0'.format(stream2_1_stats.RxSeqErr))
-
-    return verdict
+    return results
 
 
-if __name__ == '__main__':
-    initialize()
-    sys_entry = get_sys_entry()
-    result = start_test(sys_entry)
+# if __name__ == '__main__':
+#     initialize()
+#     sys_entry = get_sys_entry()
+#     result = start_test(sys_entry)
