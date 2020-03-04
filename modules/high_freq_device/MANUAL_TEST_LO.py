@@ -14,6 +14,11 @@ import os
 from InstrumentDrivers.VNADriver import AgilentN5242
 from PyQt5.Qt import QMessageBox
 import numpy as np
+from database.data_storage import ThTestResultsStorage
+import json
+from database.test_results_model import TestResultBase
+from InstrumentDrivers.SignalGeneratorDriver import SignalGenerator
+from InstrumentDrivers.SpectrumAnalyzerDriver import SpectrumAnalyzer
 
 class MANUAL_TEST_LO(QDialog, Ui_Dialog):
     """
@@ -32,7 +37,14 @@ class MANUAL_TEST_LO(QDialog, Ui_Dialog):
         self.setupUi(self)
         self.flag = 1
         self.demo = True
-
+#         self.testData()
+ 
+    
+    def initUi(self,mConfig):
+        self.maddress= mConfig.test_source[1]
+        self.threshold = mConfig.test_case_detail[0]["threshold"][0]
+#         self.lineEdit_addr_sa.setText(maddress)
+        
     def set_contents(self,title,contents):
         self.setWindowTitle(title)
 #         self.textBrowser_contents.setText(contents)
@@ -48,11 +60,11 @@ class MANUAL_TEST_LO(QDialog, Ui_Dialog):
         # TODO: not implemented yet
 
         self.test_result=test_results()
-        addr_sa=str(self.lineEdit_addr_sa.text())
+        addr_sa=str(self.maddress)
         addr_sa = "TCPIP0::" + addr_sa + "::inst0::INSTR"
         if not self.demo:
             try:
-                self.sa=AgilentN5242.VNA_AgilentN5242(addr_sa)
+                self.sa=SpectrumAnalyzer.SpectrumAnalyzer(addr_sa)
             except:
                 QMessageBox.warning(self, "警告", "仪表连接错误！")
                 print('仪表连接错误，请确认！')
@@ -60,19 +72,49 @@ class MANUAL_TEST_LO(QDialog, Ui_Dialog):
         self.test_result.test_item = '收发单元本振测试'
         self.test_result.test_condition = '--'
         self.test_result.test_results=str(self.testProcess())
-        self.test_result.test_conclusion='PASS'
+        if self.test_result.test_results ==self.threshold:
+            QMessageBox.information(self,u"提示",u"测试正常",QMessageBox.Ok)
+            self.test_result.test_conclusion='PASS'
+        else:
+            QMessageBox.information(self,u"提示",u"收发单元本振故障",QMessageBox.Ok)
+            self.test_result.test_conclusion='FAIL'
         self._signalTest.emit("test_lo")
         self.accept()
         self.close()
     
     
     def testProcess(self):
-        mres =np.random.choice([u'无告警',u'有告警']) 
+        
+        mres = str(self.comboBox_sg_addr.currentText())
         return mres
     
+    def testData(self):
+        temp = TestResultBase()
+        temp.testObjName = "1"
+        temp.stationName = "2"
+        temp.stationDrawingNbr = "3"
+        temp.stationSn = "4"
+        temp.unitName = "5"
+        temp.unitDrawingNbr = "6"
+        temp.unitSn = "7"
+        temp.dutName = "8"
+        temp.dutDrawingNbr = "9"
+        temp.dutSn = "10"
+        temp.testTime = "2020-02-14 12:00:00"
+        
+        temp.testItems = test_results()
+        temp.testItems.test_item = '本振故障定位'
+        temp.testItems.test_condition ='--'    
+        temp.testItems.test_results ='无告警'
+        temp.testItems.test_conclusion='PASS'
+        ThTestResultsStorage.test_case_result_storage(temp)  
+        
 class test_results:
     def __init__(self):
         self.test_item=''
         self.test_condition=''
         self.test_results='无本振告警'
         self.test_conclusion='PASS'
+        
+
+

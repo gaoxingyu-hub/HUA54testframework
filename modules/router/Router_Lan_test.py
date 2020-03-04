@@ -10,8 +10,9 @@ import os
 import frozen_dir
 from common.config import RouterLanTestModuleConfig
 from common.logConfig import Logger
-from .TestProcessRouterLan import TestProcessRouterLan
+from .router_test_process import TestProcessRouter
 from ui.router.Ui_Router_Lan_test import Ui_Dialog
+from common.info import Constants,ThCommonNoticeInfo
 
 SETUP_DIR = frozen_dir.app_path()
 logger = Logger.module_logger("RouterLanTest")
@@ -44,6 +45,7 @@ class DialogRouterLanTest(QDialog, Ui_Dialog):
         self.current_test_step = 1
         self.current_test_item = 1
         self.max_test_steps = 24
+        self.test_process_object = None
         # IP误码仪测试步骤配置文件
         self.config_file_path = os.path.join(
             SETUP_DIR, "conf", "router_lan_test.json")
@@ -65,26 +67,26 @@ class DialogRouterLanTest(QDialog, Ui_Dialog):
         """
         # 当前测试step大于最大测试step时(目前是24) 测试结束
         if self.current_test_step >= self.max_test_steps:
-            self._signalFinish.emit(self.windowTitle(), self.test_result)
+            self._signalFinish.emit(Constants.SIGNAL_TEST_RESULT, self.test_result)
+            self._signalFinish.emit(Constants.SIGNAL_NEXT, "")
             self.accept()
             self.close()
         # 测试结束
         elif self.pushButton_process.text() == "测试结束":
-            self._signalFinish.emit(self.windowTitle(), self.test_result)
+            self._signalFinish.emit(Constants.SIGNAL_TEST_RESULT, self.test_result)
+            self._signalFinish.emit(Constants.SIGNAL_NEXT, "")
             self.accept()
             self.close()
         else:
             self.current_test_step = self.current_test_step + 1
             if self.current_test_button_status == "before":
                 try:
-                    # 设置process button 不可见
                     self.pushButton_process.setVisible(False)
-                    # QThread模拟测试过程
-                    self.test_process_object = TestProcessRouterLan()
-                    # 设置测试参数
-                    self.test_process_object.set_test_para("test.script", self.current_test_case)
-                    # 设置信号槽
-                    self.test_process_object.signal.connect(self.slot_test_process)
+                    if not self.test_process_object:
+                        self.test_process_object = TestProcessRouter()
+                        self.test_process_object._signal.connect(self.slot_test_process)
+                        self.test_process_object._signalInfo.connect(self.slot_test_process_information)
+                    self.test_process_object.set_test_para(self.current_test_case)
                     self.test_process_object.start()
                     self.test_step_control("next")
                 except BaseException as e:
@@ -128,17 +130,28 @@ class DialogRouterLanTest(QDialog, Ui_Dialog):
         temp_result_flag = True
         temp_result_str = ""
         for k, v in para2.items():
-            temp_result_str += str(k) + ":" + str(v)
-            if v == "fail":
+            temp_result_str += "\n" + str(k) + ":" + str(v)
+            if v == Constants.NETWORK_PORT_TEST_ABNORMAL:
                 temp_result_flag = False
+
+        if para1 and para2:
+            self.test_result.update(para2)
 
         if not temp_result_flag:
             self.current_test_button_status = "fail"
-            self.textBrowser_tips.setText(self.test_config.steps[self.current_test_step - 1]["contents"] +
-                                          temp_result_str)
-            self.pushButton_process.setText("测试结束")
+            self.textBrowser_tips.setText(self.test_config.steps[self.current_test_step - 1]["contents"]
+                                          + "\n" + temp_result_str)
+            self.pushButton_process.setText(ThCommonNoticeInfo.FINISH_TEST)
         else:
             self.current_test_button_status = self.test_config.steps[self.current_test_step - 1]["status"]
-            self.textBrowser_tips.setText(self.test_config.steps[self.current_test_step - 1]["contents"] +
-                                          temp_result_str)
+            self.textBrowser_tips.setText((self.test_config.steps[self.current_test_step - 1]["contents"]
+                                           + "\n" + str(temp_result_str)))
             self.pushButton_process.setText(self.test_config.steps[self.current_test_step - 1]["button"])
+
+    def slot_test_process_information(self,signal,para1):
+        self.update_display_log(para1)
+
+    def update_display_log(self,contents):
+        if self.textBrowser_log.document().blockCount() > 50:
+            self.textBrowser_log.clear()
+        self.textBrowser_log.append(contents)

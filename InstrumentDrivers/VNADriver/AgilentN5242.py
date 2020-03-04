@@ -5,7 +5,8 @@ Created on 2015.10.14
 @author: Penghan Xie
 '''
 
-from .VectorNetworkAnalyzer import VNA
+
+from InstrumentDrivers.VNADriver.VectorNetworkAnalyzer import VNA
 import re,string
 
 
@@ -18,12 +19,23 @@ class VNA_AgilentN5242(VNA):
     
     def __init__(self,Addr):
         VNA.__init__(self,Addr)
-       
-    def GetReturnNumberFromString(self,resultstring):
+    
+    def PeakSearch(self):   
+        self.Write('CALC:MARK:FUNC:EXEC MAX' )
+        temp=self.Ask('CALC:MARKer:FUNC:RESult?')
+        return temp.split(',')
+    
+    def SetMarkerX(self,value):
         '''
+        起始频率，单位Hz
         '''
-        SpaceIndex=re.search(' ',resultstring).start()
-        return string.atof(resultstring[SpaceIndex+1:])
+        cmd='CALC:MARK:X '+str(value)
+        self.Write(cmd)
+    
+    def GetMarkerY(self):
+        temp=self.Ask('CALC:MARK:Y?')
+        return temp.split(',')[0]
+
     
     def SetStartFreq(self,StartFreq):
         '''
@@ -176,7 +188,7 @@ class VNA_AgilentN5242(VNA):
         self.Write(cmd)
         
     def SelectMeas(self,TraceName):
-        cmd = 'CALC:PAR:SEL'+"'"+TraceName+"'"
+        cmd = 'CALC:PAR'+str(TraceName)+':SEL'
         self.Write(cmd)
         
     def DeletAllMeas(self):
@@ -229,37 +241,7 @@ class VNA_AgilentN5242(VNA):
     def ThoughCal(self):
         self.Write(':SENSe1:CORRection:COLLect:ACQuire:SELected THRough, 1, 2')
         
-    def Port1OpenCal(self):
-        self.Write(':SENSe1:CORRection:COLLect:ACQuire:SELected OPEN, 1')
-        
-    def Port2OpenCal(self):
-        self.Write(':SENSe1:CORRection:COLLect:ACQuire:SELected OPEN, 2')
-        
-    def Port1ShortCal(self):
-        self.Write(':SENSe1:CORRection:COLLect:ACQuire:SELected SHORT, 1')
-        
-    def Port2ShortCal(self):
-        self.Write(':SENSe1:CORRection:COLLect:ACQuire:SELected SHORT, 2')
-        
-    def Port1MathchCal(self):
-        self.Write(':SENSe1:CORRection:COLLect:ACQuire:SELected MATCH, 1')   
-        
-    def Port2MathchCal(self):
-        self.Write(':SENSe1:CORRection:COLLect:ACQuire:SELected MATCH, 2')    
-        
-    def Port1Reflect(self):
-        self.Write(':SENSe1:CORRection:COLLect:ACQuire:SELected REFL, 1')
-        
-    def Port2Reflect(self):
-        self.Write(':SENSe1:CORRection:COLLect:ACQuire:SELected REFL, 2')
-        
-    def LineCal(self):
-        cmd=':SENSe1:CORRection:COLLect:ACQuire:SELected LINE1, 1,2'
-        self.Write(cmd)
     
-    def ApplyCal(self):
-        self.Write(':SENSe1:CORRection:COLLect:SAVE:SELected')
-        
     def StoreCalResult(self,filename):
         cmd=':MMEMORY:STORE:CORRection 1, '+"'"+filename+'.cal'+"'"
         self.Write(cmd)
@@ -269,10 +251,20 @@ class VNA_AgilentN5242(VNA):
         self.Write(cmd)
         
         
+    def GetIdn(self):
+        return self.Ask('*IDN?')
         
-        
-# inst=VNA_AgilentN5242("TCPIP::169.254.254.254::INSTR")
-# print inst.Ask("*IDN?")
+    def SetMarkerMode(self,value):
+        self.Write('CALC:MARK1 '+str(value))
+# inst=VNA_AgilentN5242("TCPIP::192.168.1.223::INSTR")
+# print (inst.Ask("*IDN?"))
+# inst.SetMarkerMode('NORM')
+# inst.SetMarkerX(1000000000)
+# mres1 = inst.GetMarkerY()
+# print(mres1)
+# inst.SelectMeas('2')
+# mres2 = inst.GetMarkerY()
+# print(mres2)
 # inst.Write("*RST")
 # inst.Write(":CHANNEL1:DISPLAY ON")
 # inst.Write(":TIMebase:SCALe 1e-8")
