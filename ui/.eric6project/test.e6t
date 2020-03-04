@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project test -->
+<<<<<<< HEAD
+<!-- Saved: 2020-03-02, 12:03:01 -->
+<Tasks version="6.0">
+  <ProjectScanFilter></ProjectScanFilter>
+  <Task priority="1" completed="False" type="1" uid="{df8ad39f-57e4-43df-94e3-580dc1ab5300}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2020-03-02, 11:48:20</Created>
+=======
 <!-- Saved: 2020-02-28, 12:25:25 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
@@ -8,15 +17,23 @@
     <Summary>TODO: not implemented yet</Summary>
     <Description></Description>
     <Created>2020-02-28, 12:06:41</Created>
+>>>>>>> remotes/origin/master
     <Resource>
       <Filename>PIC_TEXT.py</Filename>
       <Linenumber>32</Linenumber>
     </Resource>
   </Task>
+<<<<<<< HEAD
+  <Task priority="1" completed="False" type="1" uid="{40247d1f-51cf-4842-b751-b51dae57f698}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2020-03-02, 11:48:20</Created>
+=======
   <Task priority="1" completed="False" type="1" uid="{e8c5222a-5ba8-46fd-b908-1c2c4a77ff72}">
     <Summary>TODO: not implemented yet</Summary>
     <Description></Description>
     <Created>2020-02-28, 12:06:41</Created>
+>>>>>>> remotes/origin/master
     <Resource>
       <Filename>TEST_PROCEDURE_CONTROL.py</Filename>
       <Linenumber>32</Linenumber>

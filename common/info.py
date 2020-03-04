@@ -11,7 +11,7 @@ class ThCommonNoticeInfo:
     software common notice information text
     """
     START_TEST = "开始测试"
-    FINISH_TEST = "完成测试"
+    FINISH_TEST = "测试结束"
     TEST_SUCCESS = "测试成功"
     TEST_FAIL = "测试失败"
     DUT = "测试对象"
@@ -28,9 +28,17 @@ class Constants:
     SIGNAL_CLOSE = "close"
     RESULT_SUCCESS = "success"
     RESULT_FAIL = "fail"
+    NETWORK_PORT_TEST_NORMAL = "normal"
+    NETWORK_PORT_TEST_ABNORMAL = "abnormal"
+
 
 class MainWindowConstants:
     QMESSAGEBOX_WARN = "警告"
     QMESSAGEBOX_WARN_CLOSE_CURRENT_MODULE = "请关闭当前测试项目"
     QMESSAGEBOX_WARN_MODULE_NOT_EXISTED = "测试模块不存在"
     CONTENTS_TEST_CASE = "测试项目"
+
+class TestParameters:
+    FRAME_LOSS_TEST_PACKET_LENGTH = 128
+    FRAME_LOSS_TEST_PACKET_RATE = 100
+    FRAME_LOSS_TEST_TIME_SECS = 10

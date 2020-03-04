@@ -20,7 +20,7 @@ from modules.general.PIC_TEXT import DialogPicText
 from .Ui_ECOM_NS2_MAIN import Ui_Dialog
 from .ECOM_NS_2_CONSTANT import ModuleConstants
 from .ECOM_NS2_Ping import EcomNs2Ping
-from .ECOM_NS2_EXECUTE1 import EcomNs2Execute
+from .ECOM_NS2_KEY_TEST import DialogEcomNs2KeyTest
 from .ecom_ns2_test_data import TestDataEcomNs2
 from modules.general.SIMPLE_TEST_PROCESS_1BTN import DialogSimpleTestProcess1Btn
 from modules.general.SIMPLE_TEST_PROCESS_2BTN import DialogSimpleTestProcess2Btn

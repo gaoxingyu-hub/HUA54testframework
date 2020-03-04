@@ -33,23 +33,24 @@ class AUTO_TEST(QDialog, Ui_Dialog):
         super(AUTO_TEST, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
-        self.demo = False
+        self.demo = True
         
     def initUi(self,mConfig):
-        addr_sg= mConfig.test_source[0]
-        addr_sa= mConfig.test_source[1]
+        self.addr_sg= mConfig.test_source[0]
+        self.addr_sa= mConfig.test_source[1]
         freq_sg= mConfig.test_case_detail[0]["test_para"][0]
         power_sg= mConfig.test_case_detail[0]["test_para"][1]
         freq_sa= mConfig.test_case_detail[0]["test_para"][2]
         bw_sa= mConfig.test_case_detail[0]["test_para"][3]
-        self.lineEdit_addr_sg.setText(addr_sg)
-        self.lineEdit_addr_sa.setText(addr_sa)
+#         self.lineEdit_addr_sg.setText(addr_sg)
+#         self.lineEdit_addr_sa.setText(addr_sa)
         self.lineEdit_freq_sg.setText(freq_sg)
         self.lineEdit_power_sg.setText(power_sg)
         self.lineEdit_freq_sa.setText(freq_sa)
         self.lineEdit_bw_sa.setText(bw_sa)
         self.thresholdL = float(mConfig.test_case_detail[0]["threshold"][1])
         self.thresholdH = float(mConfig.test_case_detail[0]["threshold"][2])
+
 
     def set_contents(self,title,contents):
         self.setWindowTitle(title)
@@ -69,8 +70,8 @@ class AUTO_TEST(QDialog, Ui_Dialog):
             self.power_sg=float(self.lineEdit_power_sg.text())
             self.freq_sa=float(self.lineEdit_freq_sa.text())*1e6
             self.bw_sa=float(self.lineEdit_bw_sa.text())*1e6
-            addr_sg=str(self.lineEdit_addr_sg.text())
-            addr_sa=str(self.lineEdit_addr_sa.text())
+            addr_sg=str(self.addr_sg)
+            addr_sa=str(self.addr_sa)
         except:
             QMessageBox.warning(self, "警告", "测试参数输入不完整或格式不正确！")
             return
@@ -89,14 +90,36 @@ class AUTO_TEST(QDialog, Ui_Dialog):
         self.test_result.test_condition = '频率:'+self.lineEdit_freq_sg.text()+'MHz，功率:'+self.lineEdit_power_sg.text()+'dBm'
         self.test_result.test_results=self.testProcess()
         if self.thresholdL<self.test_result.test_results <self.thresholdH:
+            QMessageBox.information(self,u"提示",u"测试正常",QMessageBox.Ok)
             self.test_result.test_conclusion='PASS'
         else:
+            QMessageBox.information(self,u"提示",u"收发单元接收通道故障",QMessageBox.Ok)
             self.test_result.test_conclusion='FAIL'
-
+        if not self.demo:
+            self.sa.Preset()
+            self.sg.Preset()
         self._signalTest.emit("test")
         self.accept()
         self.close()
     
+#     def closeEvent(self, event):
+#         """
+#         """
+#         try:
+#             self._signalTest.emit("finish")
+#             self.accept()
+#             self.close()
+#         except:
+#             pass
+#         
+#     @pyqtSlot()
+#     def closeEvent(self, QCloseEvent):
+#         '''
+#         '''
+#         self._signalTest.emit("next")
+#         self.accept()
+#         self.close()
+
     
     def testProcess(self):
         if not self.demo:
@@ -111,8 +134,7 @@ class AUTO_TEST(QDialog, Ui_Dialog):
             self.sa.SetMarkerFreq(self.freq_sa)
             mres=self.sa.GetMarkerValueViaIndex(1)
             time.sleep(0.5)
-            self.sa.Preset()
-            self.sg.Preset()
+            
 
         else:
             mres =float(2+ np.random.random(1))

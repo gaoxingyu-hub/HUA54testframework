@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'E:\tianheng_projects\54\54TestFramework\ui\COM_CONTROL_DEVICE.ui'
+# Form implementation generated from reading ui file 'E:\autoTest\54testframework\ui\control_device\COM_CONTROL_DEVICE.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.1
+# Created by: PyQt5 UI code generator 5.14.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -939,7 +939,7 @@ class Ui_Dialog(object):
         self.pushButton_close.setObjectName("pushButton_close")
 
         self.retranslateUi(Dialog)
-        self.stackedWidget_testexecute.setCurrentIndex(3)
+        self.stackedWidget_testexecute.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):

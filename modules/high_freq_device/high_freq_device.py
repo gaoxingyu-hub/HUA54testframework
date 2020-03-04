@@ -31,7 +31,7 @@ from common.logConfig import Logger
 from common.th_thread_model import ThThreadTimerUpdateTestTime
 
 from ui.Ui_high_freq_device import Ui_Dialog
-from asyncio.tasks import sleep
+
 #test
 import sys
 from PyQt5 import QtWidgets,QtCore
@@ -208,9 +208,11 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_coupler)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                         elif temp_test_process['module'] == 'MANUAL_TEST_SWITCH':
+                            self.current_test_step_dialog.initUi(self.test_config)
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_switch)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                         elif temp_test_process['module'] == 'MANUAL_TEST_MONITOR':
+                            
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_monitor)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
 
@@ -227,9 +229,8 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
 
             logger.info("high_freq_device test process: next step")
         elif action is "finish":
-            pass
-
-        return
+            logger.info("high_freq_device test process: next step")
+#         return
 
 
     def deal_signal_test_step_finish_emit_slot(self, flag,para):
@@ -261,7 +262,9 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
     def processStep(self,flag):
         if self.current_test_step_dialog:
             self.current_test_step_dialog.close()
-            if flag == "step1":
+            if flag == 'finish':
+                self.test_process_control('finish')
+            elif flag == "step1":
                 self.test_cases_records[self.current_test_case]["current"] = \
                     self.test_cases_records[self.current_test_case]["current"] + 1
                 time.sleep(0.1)
@@ -518,28 +521,29 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         print('更新结果monitor')
         self.tabWidget.setCurrentIndex(7)
         self.table = self.tableWidget_test_results_monitor
-        rowCount=self.table.rowCount()
-        self.table.insertRow(rowCount)
-        current_row=rowCount
-        mItem = self.current_test_step_dialog.test_result.test_item
-        newItem = QTableWidgetItem(mItem)
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
-        self.table.setItem(current_row, 0, newItem)
-        
-        mItem = self.current_test_step_dialog.test_result.test_condition
-        newItem = QTableWidgetItem(mItem)
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
-        self.table.setItem(current_row, 1, newItem)
-        
-        mItem = str(self.current_test_step_dialog.test_result.test_results)
-        newItem = QTableWidgetItem(mItem)
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
-        self.table.setItem(current_row, 2, newItem)
-        
-        mItem = self.current_test_step_dialog.test_result.test_conclusion
-        newItem = QTableWidgetItem(mItem)
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
-        self.table.setItem(current_row, 3, newItem)
+        for i in range(len(self.current_test_step_dialog.test_result.test_results)):
+            rowCount=self.table.rowCount()
+            self.table.insertRow(rowCount)
+            current_row=rowCount
+            mItem = self.current_test_step_dialog.test_result.test_item
+            newItem = QTableWidgetItem(mItem)
+            newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+            self.table.setItem(current_row, 0, newItem)
+            
+            mItem = self.current_test_step_dialog.test_result.test_condition
+            newItem = QTableWidgetItem(mItem)
+            newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+            self.table.setItem(current_row, 1, newItem)
+            
+            mItem = str(self.current_test_step_dialog.test_result.test_results[i])
+            newItem = QTableWidgetItem(mItem)
+            newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+            self.table.setItem(current_row, 2, newItem)
+            
+            mItem = str(self.current_test_step_dialog.test_result.test_conclusion[i])
+            newItem = QTableWidgetItem(mItem)
+            newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+            self.table.setItem(current_row, 3, newItem)
         
         self.processStep(flag)
     def start_caculate_test_duration(self):
