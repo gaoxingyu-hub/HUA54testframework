@@ -11,7 +11,6 @@ from PyQt5.QtCore import pyqtSignal
 
 from .Ui_MONITOR_TEST import Ui_Dialog
 import os
-from InstrumentDrivers.VNADriver import AgilentN5242
 from PyQt5.Qt import QMessageBox
 import numpy as np
 
@@ -31,8 +30,7 @@ class MANUAL_TEST_MONITOR(QDialog, Ui_Dialog):
         super(MANUAL_TEST_MONITOR, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
-        self.demo = True
-
+    
     def set_contents(self,title,contents):
         self.setWindowTitle(title)
 #         self.textBrowser_contents.setText(contents)
@@ -51,16 +49,67 @@ class MANUAL_TEST_MONITOR(QDialog, Ui_Dialog):
 
         self.test_result.test_item = '监控模块'
         self.test_result.test_condition = '--'
-        self.test_result.test_results=str(self.testProcess())
-        self.test_result.test_conclusion='PASS'
+        mTemp=self.testProcess()
+        self.test_result.test_results=mTemp
+        self.test_result.test_conclusion=mTemp
         self._signalTest.emit("test_monitor")
+        if (self.checkBox_v2.isChecked() == True and 
+            self.checkBox_v3.isChecked() == True and
+            self.checkBox_v4.isChecked() == True and
+            self.checkBox_v5.isChecked() == True and
+            self.checkBox_v6.isChecked() == True and 
+            self.checkBox_v8.isChecked() == True and
+            self.checkBox_v9.isChecked() == True and
+            self.checkBox_v10.isChecked() == True and
+            self.checkBox_v11.isChecked() == True and
+            self.checkBox_v12.isChecked() == True and
+            self.checkBox_v13.isChecked() == True):
+            QMessageBox.information(self,u"提示",u"测试正常",QMessageBox.Ok)
+        else:
+            QMessageBox.information(self,u"提示",u"监控模块故障",QMessageBox.Ok)
         self.accept()
         self.close()
     
     
     def testProcess(self):
-        mres =np.random.choice([u'无告警',u'有告警']) 
-        return mres
+        temp =[]
+        if self.checkBox_v2.isChecked() == True:
+            temp.append('监控供电正常')
+        else:
+            temp.append('监控供电异常，需要排查监控+5V供电情况')
+        if (self.checkBox_v3.isChecked() == False and
+            self.checkBox_v4.isChecked() == False and
+            self.checkBox_v5.isChecked() == False and
+            self.checkBox_v6.isChecked() == False):
+            temp.append('监控单元没有程序运行')
+        else:
+            temp.append('监控单元程序运行正常')
+        if(self.checkBox_v8.isChecked() == False):
+            temp.append('物理连接正常')
+        else:
+            temp.append('物理连接异常')
+        if(self.checkBox_v9.isChecked() == False):
+            temp.append('100Mbps传输速率')
+        else:
+            temp.append('10Mbps传输速率')
+        if(self.checkBox_v10.isChecked() == False):
+            temp.append('全双工')
+        else:
+            temp.append('半双工')
+        if(self.checkBox_v11.isChecked() == False):
+            temp.append('数据冲突')
+        else:
+            temp.append('数据正常')
+        if(self.checkBox_v12.isChecked() == False):
+            temp.append('收数据正常')
+        else:
+            temp.append('收数据异常')
+        if(self.checkBox_v13.isChecked() == False):
+            temp.append('发数据正常')
+        else:
+            temp.append('发数据异常')
+            
+        return temp
     
 class test_results:
     def __init__(self):
