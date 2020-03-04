@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project test -->
-<!-- Saved: 2020-02-28, 11:14:30 -->
+<!-- Saved: 2020-03-03, 19:53:22 -->
 <!-- Copyright (C) 2020 ,  -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -26,6 +26,8 @@
     <Source>control_device/Ui_COM_CONTROL_DEVICE_EXECUTE2.py</Source>
     <Source>control_device/Ui_COM_CONTROL_DEVICE_EXECUTE3.py</Source>
     <Source>control_device/Ui_COM_CONTROL_DEVICE_EXECUTE4.py</Source>
+    <Source>ecom-ns-2/ECOM_NS2_KEY_TEST.py</Source>
+    <Source>ecom-ns-2/Ui_ECOM_NS2_KEY_TEST.py</Source>
     <Source>iconQrc_rc.py</Source>
     <Source>router/Ui_Router.py</Source>
     <Source>security_machine/SecurityMain.py</Source>
@@ -49,6 +51,10 @@
     <Form>control_device/COM_CONTROL_DEVICE_EXECUTE3.ui</Form>
     <Form>control_device/COM_CONTROL_DEVICE_EXECUTE4.ui</Form>
     <Form>control_device/COM_CONTROL_DEVICE_PA2.ui</Form>
+    <Form>ecom-ns-2/ECOM_NS2_EXECUTE1.ui</Form>
+    <Form>ecom-ns-2/ECOM_NS2_KEY_TEST.ui</Form>
+    <Form>ecom-ns-2/ECOM_NS2_MAIN.ui</Form>
+    <Form>ecom-ns-2/ECOM_NS2_Ping.ui</Form>
     <Form>high_freq_device.ui</Form>
     <Form>module.ui</Form>
     <Form>router/Router.ui</Form>
