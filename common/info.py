@@ -42,3 +42,9 @@ class TestParameters:
     FRAME_LOSS_TEST_PACKET_LENGTH = 128
     FRAME_LOSS_TEST_PACKET_RATE = 100
     FRAME_LOSS_TEST_TIME_SECS = 10
+
+class SystemLanguage:
+    ZH_CN ="zh_CN"
+    en_US = "en_US"
+    fr_FR = "fr_FR"
+    LANGUAGE = ZH_CN

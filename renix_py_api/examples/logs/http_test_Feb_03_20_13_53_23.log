@@ -1,6 +1,0 @@
-[INFO] 2020-02-03 13:53:33,877  Receive Msg: listen_port 9002
-
-[INFO] 2020-02-03 13:53:34,041  Renix api initialization finished
-[ERROR] 2020-02-03 13:53:59,799  Failed to read data from CL, close connection to CL.
-[INFO] 2020-02-03 13:53:59,800  close connection to CL
-[INFO] 2020-02-03 13:53:59,804  close connection to CL
