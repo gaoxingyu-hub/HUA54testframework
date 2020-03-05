@@ -80,6 +80,7 @@ class SystemConfig(BaseConfig):
         self.step2name = config_obj["step2name"]
         self.menu = config_obj["menu"]
         self.menu2module = config_obj["menu2module"]
+        self.menuindex2module = config_obj["menuindex2module"]
         return
 
     def get_system_parameters(self):
