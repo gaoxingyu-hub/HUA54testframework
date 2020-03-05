@@ -13,9 +13,8 @@
     "通信分系统:路由器":"RouterDialog",
     "通信分系统:ECOM_NS_1型交换机": "EcomNs1Main",
     "通信分系统:ECOM_NS_2型交换机": "EcomNs2Main",
+    "通信分系统:VHF电台": "VHF_RADIO",
     "通信分系统:通信控制设备": "COM_CONTROL_DEVICE",
-    "通信分系统:自组网微波通信设备": "DialogMvComDevice",
-    "通信分系统:SDSL设备": "DialogSdslMain",
-    "通信分系统:IP保密机": "DialogSecurityMain"
+    "通信分系统:自组网微波通信设备": "DialogMvComDevice"
     }
 }
