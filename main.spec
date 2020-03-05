@@ -3,7 +3,7 @@
 block_cipher = None
 
 
-src_dir="E:\\autoTest\\54testframework\\"
+src_dir="E:\\tianheng_projects\\54\\54testframework\\"
 a = Analysis(['main.py'],
              pathex=['E:\\tianheng_projects\\54\\54testframework'],
              binaries=[],

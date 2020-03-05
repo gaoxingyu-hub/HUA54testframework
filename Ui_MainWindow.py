@@ -8,8 +8,11 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from common.info import SystemLanguage
+import frozen_dir
+import os
 
-
+SETUP_DIR = frozen_dir.app_path()
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")

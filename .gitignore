@@ -37,3 +37,4 @@ data/*.json
 data.log
 ui/.eric6project/*.*
 ui/test.e4p
+*.log

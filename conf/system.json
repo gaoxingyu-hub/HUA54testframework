@@ -16,5 +16,16 @@
     "通信分系统:VHF电台": "VHF_RADIO",
     "通信分系统:通信控制设备": "COM_CONTROL_DEVICE",
     "通信分系统:自组网微波通信设备": "DialogMvComDevice"
+    },
+    "menuindex2module": {
+        "0": "HIGH_FREQ_DEVICE",
+        "2": "EcomNs1Main",
+        "3": "EcomNs2Main",
+        "4": "VHF_RADIO",
+        "5": "DialogMvComDevice",
+        "6": "DialogSdslMain",
+        "7": "DialogSecurityMain",
+        "8": "COM_CONTROL_DEVICE",
+        "9":"RouterDialog"
     }
 }
