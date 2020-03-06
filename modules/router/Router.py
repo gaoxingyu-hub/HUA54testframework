@@ -96,9 +96,14 @@ class RouterDialog(QDialog, Ui_Dialog):
             # 备注
             item = QTableWidgetItem(str(self.test_config.test_source[x]["count"]))
             self.tableWidget_test_resource.setItem(x, 3, item)
+            # 设置tablewidget 序号居中
+            item = QTableWidgetItem(str(x+1))
+            self.tableWidget_test_resource.setVerticalHeaderItem(x, item)
+            self.tableWidget_test_resource.verticalHeaderItem(x).setTextAlignment(Qt.AlignCenter)
             # 字体居中
             for a in range(0, 4):
                 self.tableWidget_test_resource.item(x, a).setTextAlignment(Qt.AlignCenter)
+
 
         for x in range(len(self.test_config.test_case)):
             child = QTreeWidgetItem(parent)
@@ -360,4 +365,15 @@ class RouterDialog(QDialog, Ui_Dialog):
 
             item = QTableWidgetItem(str(value))
             self.tableWidget.setItem(temp_index, 2, item)
+
+            for a in range(0, 3):
+                self.tableWidget.item(temp_index, a).setTextAlignment(Qt.AlignCenter)
+
+            # 设置tablewidget 序号居中
+            item = QTableWidgetItem(str(temp_index + 1))
+            self.tableWidget.setVerticalHeaderItem(temp_index, item)
+            self.tableWidget.verticalHeaderItem(temp_index).setTextAlignment(Qt.AlignCenter)
+
             temp_index = temp_index + 1
+
+
