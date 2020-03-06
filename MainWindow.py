@@ -16,6 +16,7 @@ from modules.mw_com_device.MV_COM_DEVICE_MAIN import DialogMvComDevice
 from modules.sdsl.SDSL_MAIN import DialogSdslMain
 from modules.security_machine.SecurityMain import DialogSecurityMain
 from modules.VHF_radio.VHF_RADIO_TEST import VHF_RADIO
+from modules.mw1500_device.mw1500_device import MW1500_DEVICE
 from PyQt5.QtCore import pyqtSignal
 from PyQt5 import QtCore
 from common.logConfig import Logger
