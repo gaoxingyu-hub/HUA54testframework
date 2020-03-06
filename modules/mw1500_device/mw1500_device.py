@@ -14,31 +14,23 @@ from PyQt5.QtWidgets import *
 import os
 import frozen_dir
 from modules.general.PIC_TEXT import DialogPicText
-from modules.high_freq_device.MANUAL_TEST_LO import MANUAL_TEST_LO
-from modules.high_freq_device.AUTO_TEST import AUTO_TEST
-from modules.high_freq_device.AUTO_TEST_T import AUTO_TEST_T
-from modules.high_freq_device.AUTO_TEST_LNA import AUTO_TEST_LNA
-from modules.high_freq_device.AUTO_TEST_PA import AUTO_TEST_PA
-from modules.high_freq_device.AUTO_TEST_LOOP import AUTO_TEST_LOOP
-from modules.high_freq_device.AUTO_TEST_FILTER import AUTO_TEST_FILTER
-from modules.high_freq_device.AUTO_TEST_COUPLER import AUTO_TEST_COUPLER
-from modules.high_freq_device.MANUAL_TEST_SWITCH import MANUAL_TEST_SWITCH
-from modules.high_freq_device.MANUAL_TEST_MONITOR import MANUAL_TEST_MONITOR
-
-
+from modules.mw1500_device.AUTO_TEST_TR_T import AUTO_TEST_TR_T
+from modules.mw1500_device.AUTO_TEST_TR_R import AUTO_TEST_TR_R
 import time
 from common.logConfig import Logger
 from common.th_thread_model import ThThreadTimerUpdateTestTime
 
-from ui.Ui_high_freq_device import Ui_Dialog
+
+from ui.mw1500_device.Ui_mw1500_device import Ui_Dialog
 
 #test
 import sys
 from PyQt5 import QtWidgets,QtCore
 
 SETUP_DIR = frozen_dir.app_path()
-logger = Logger.module_logger("high_freq_device")
-class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
+logger = Logger.module_logger("mw1500_device")
+
+class MW1500_DEVICE(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
@@ -53,19 +45,18 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         @param parent reference to the parent widget
         @type QWidget
         """
-        super(HIGH_FREQ_DEVICE, self).__init__(parent)
+        super(MW1500_DEVICE, self).__init__(parent)
         self.setupUi(self)
         self.current_test_step = 0
-        
 
         self.config_file_path = os.path.join(
-            SETUP_DIR, "conf", "high_freq_device.json")
+            SETUP_DIR, "conf", "mw1500_device.json")
         self.system_config_file_path = os.path.join(
             SETUP_DIR, "conf", "system.json")
         self.test_config = TestModuleConfigNew(self.config_file_path)
 
         self.pic_file_path = os.path.join(
-            SETUP_DIR, "imgs", "high_freq_device")
+            SETUP_DIR, "imgs", "mw1500_device")
 
         self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name
@@ -88,7 +79,7 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
             child.setText(0, self.test_config.test_case_detail[x]["title"])
             child.setCheckState(0, Qt.Unchecked)
 
-        logger.info("high_freq_device inited")
+        logger.info("mw1500_device inited")
         self.tabWidget.setCurrentIndex(0)
         self.record_table_init()
 
@@ -125,7 +116,7 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
 #             self.current_test_step = 1
         self.start_caculate_test_duration()
         self.test_process_control("next")
-        logger.info("high_freq_device test process start")
+        logger.info("mw1500_device test process start")
 
     
     @pyqtSlot()
@@ -156,23 +147,23 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         self.close()
         return
 
-    def test_process_control(self,action,action2=''):
+    def test_process_control(self,action,action2 = ''):
         """
         action: test execute action "next" or "restart"
         """
+        
         if action is "next":
-           
+            
             for case,step in self.test_cases_records.items():
+                if action2 == 'finish':
+                    step["current"] = step["max"]+1
+                    self.test_config.test_case= None
                 if step["current"] > step["max"]:
                     continue
-                if action2 == 'finish':
-                    self.test_cases_records = ''
-                    self.test_config.test_case = ''
-                    
+             
                 #get the test case detail parameters
                 for x in range(len(self.test_config.test_case)):
-                    if action2 == 'finish':
-                        self.test_config = ''
+                    
                     if case in self.test_config.test_case_detail[x]["title"]:
 
                         temp_test_process = self.test_config.test_case_detail[x]["steps"][step["current"] - 1]
@@ -180,13 +171,15 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
 
                         self.current_test_step_dialog = globals()[temp_test_process['module']]()
                         
-                        if temp_test_process['module'] == 'AUTO_TEST':
+                        if temp_test_process['module'] == 'AUTO_TEST_TR_T':
                             self.current_test_step_dialog.initUi(self.test_config)
-                            self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_tr)
+                            self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_tr_t)
+                            self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
-                        elif temp_test_process['module'] == 'AUTO_TEST_T':
+                        elif temp_test_process['module'] == 'AUTO_TEST_TR_R':
                             self.current_test_step_dialog.initUi(self.test_config)
-                            self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_tr)
+                            self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_tr_r)
+                            self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                         elif temp_test_process['module'] == 'MANUAL_TEST_LO':
                             self.current_test_step_dialog.initUi(self.test_config)
@@ -229,13 +222,22 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
                                                                        os.path.join(
                                                                            self.pic_file_path,
                                                                            temp_test_process['img']))
+                            
                         self.current_test_step_dialog.exec_()
+                        
                         step["current"] = step["max"]+1 #解决测试过程中，点击关闭窗口，一直循环下去的问题
                         break
-
-            logger.info("high_freq_device test process: next step")
+                
+            logger.info("mw1500_device test process: next step")
+            
         elif action is "finish":
-            logger.info("high_freq_device test process: next step")
+            self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
+            self.current_test_step_dialog.set_contents(temp_test_process['title'],
+                                                       temp_test_process['contents'],
+                                                       os.path.join(
+                                                           self.pic_file_path,
+                                                           temp_test_process['img']))
+            
 #         return
 
 
@@ -247,7 +249,9 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         """
         if self.current_test_step_dialog:
             self.current_test_step_dialog.close()
-            if flag == "step1":
+            if flag == 'finish':
+                self.test_process_control('next','finish')
+            elif flag == "step1":
                 self.test_cases_records[self.current_test_case]["current"] = \
                     self.test_cases_records[self.current_test_case]["current"] + 1
                 time.sleep(0.1)
@@ -269,7 +273,7 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         if self.current_test_step_dialog:
             self.current_test_step_dialog.close()
             if flag == 'finish':
-                self.test_process_control('next','finish')
+                self.test_process_control('finish')
             elif flag == "step1":
                 self.test_cases_records[self.current_test_case]["current"] = \
                     self.test_cases_records[self.current_test_case]["current"] + 1
@@ -282,10 +286,8 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
                 self.test_process_control("next")
                 
     def record_table_init(self):
-        table_names=['tableWidget_test_results_tr','tableWidget_test_results_lna',
-                     'tableWidget_test_results_pa','tableWidget_test_results_sc',
-                     'tableWidget_test_results_filter','tableWidget_test_results_wg',
-                     'tableWidget_test_results_coupler','tableWidget_test_results_monitor']  
+        table_names=['tableWidget_test_results_tr_t','tableWidget_test_results_lna',
+                     'tableWidget_test_results_tr_r']  
         for table in table_names:
             self.table = getattr(self, table)
             self.table.clear()
@@ -295,33 +297,33 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
             self.table.horizontalHeader().setSectionResizeMode (1)  
 
         
-    def test_data_refesh_tr(self,flag):
-        print('更新结果tr')
+    def test_data_refesh_tr_t(self,flag):
+        print('更新结果tr_t')
         self.tabWidget.setCurrentIndex(0)
-        self.table = self.tableWidget_test_results_tr
-        rowCount=self.table.rowCount()
-        self.table.insertRow(rowCount)
-        current_row=rowCount
-        
-        mItem = self.current_test_step_dialog.test_result.test_item
-        newItem = QTableWidgetItem(mItem)
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
-        self.table.setItem(current_row, 0, newItem)
-        
-        mItem = self.current_test_step_dialog.test_result.test_condition
-        newItem = QTableWidgetItem(mItem)
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
-        self.table.setItem(current_row, 1, newItem)
-        
-        mItem = str(self.current_test_step_dialog.test_result.test_results)
-        newItem = QTableWidgetItem(mItem)
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
-        self.table.setItem(current_row, 2, newItem)
-        
-        mItem = self.current_test_step_dialog.test_result.test_conclusion
-        newItem = QTableWidgetItem(mItem)
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
-        self.table.setItem(current_row, 3, newItem)
+        self.table = self.tableWidget_test_results_tr_t
+        for i in range(len(self.current_test_step_dialog.test_result.test_results)):
+            rowCount=self.table.rowCount()
+            self.table.insertRow(rowCount)
+            current_row=rowCount
+            mItem = self.current_test_step_dialog.test_result.test_item
+            newItem = QTableWidgetItem(mItem)
+            newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+            self.table.setItem(current_row, 0, newItem)
+            
+            mItem = self.current_test_step_dialog.test_result.test_condition[i]
+            newItem = QTableWidgetItem(mItem)
+            newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+            self.table.setItem(current_row, 1, newItem)
+            
+            mItem = str(self.current_test_step_dialog.test_result.test_results[i])
+            newItem = QTableWidgetItem(mItem)
+            newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+            self.table.setItem(current_row, 2, newItem)
+            
+            mItem = str(self.current_test_step_dialog.test_result.test_conclusion[i])
+            newItem = QTableWidgetItem(mItem)
+            newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+            self.table.setItem(current_row, 3, newItem)
 
         self.processStep(flag)
 #         if self.current_test_step_dialog:
@@ -336,7 +338,37 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
 #                     self.test_cases_records[self.current_test_case]["current"] + 1
 #                 time.sleep(0.1)
 #                 self.test_process_control("next")
-                
+    
+    def test_data_refesh_tr_r(self,flag):
+        print('更新结果tr_r')
+        self.tabWidget.setCurrentIndex(1)
+        self.table = self.tableWidget_test_results_tr_r
+        for i in range(len(self.current_test_step_dialog.test_result.test_results)):
+            rowCount=self.table.rowCount()
+            self.table.insertRow(rowCount)
+            current_row=rowCount
+            mItem = self.current_test_step_dialog.test_result.test_item
+            newItem = QTableWidgetItem(mItem)
+            newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+            self.table.setItem(current_row, 0, newItem)
+            
+            mItem = self.current_test_step_dialog.test_result.test_condition[i]
+            newItem = QTableWidgetItem(mItem)
+            newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+            self.table.setItem(current_row, 1, newItem)
+            
+            mItem = str(self.current_test_step_dialog.test_result.test_results[i])
+            newItem = QTableWidgetItem(mItem)
+            newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+            self.table.setItem(current_row, 2, newItem)
+            
+            mItem = str(self.current_test_step_dialog.test_result.test_conclusion[i])
+            newItem = QTableWidgetItem(mItem)
+            newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+            self.table.setItem(current_row, 3, newItem)
+
+        self.processStep(flag)
+               
     def test_data_refesh_lna(self,flag):
         print('更新结果lna')
         self.tabWidget.setCurrentIndex(1)
@@ -595,7 +627,7 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
             minutes, seconds = divmod(remainder, 60)
             self.label_test_duration.setText(str(int(hours)) + ":" + str(int(minutes)) + ":" + str(int(seconds)))
         except BaseException as e:
-            logger.info("high_freq_device deal_signal_test_duration_caculate_emit_slot fail:" + str(e))
+            logger.info("mw1500_device deal_signal_test_duration_caculate_emit_slot fail:" + str(e))
 
 
 
@@ -606,6 +638,6 @@ if __name__ == '__main__':
     # temp_file_path = os.path.join(SETUP_DIR,"langs","en","main_en.qm")
     # trans.load(temp_file_path)
     # app.installTranslator(trans)
-    mTest = HIGH_FREQ_DEVICE()
+    mTest = MW1500_DEVICE()
     mTest.show()
     sys.exit(app.exec_())

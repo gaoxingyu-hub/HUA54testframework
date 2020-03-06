@@ -152,7 +152,7 @@ class Ui_Dialog(object):
         self.label_8.setText(_translate("Dialog", "带宽"))
         self.comboBox_sa_bw.setItemText(0, _translate("Dialog", "MHz"))
         self.comboBox_sa_freq.setItemText(0, _translate("Dialog", "MHz"))
-import res.iconQrc_rc
+import iconQrc_rc
 
 
 if __name__ == "__main__":
