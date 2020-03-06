@@ -101,7 +101,11 @@ class EcomNs2Main(QDialog, Ui_Dialog):
             # 字体居中
             for a in range(0, 4):
                 self.tableWidget_test_resource.item(x, a).setTextAlignment(Qt.AlignCenter)
-
+            # set vertical header center
+            item = QTableWidgetItem(str(x + 1))
+            self.tableWidget_test_resource.setVerticalHeaderItem(x, item)
+            self.tableWidget_test_resource.verticalHeaderItem(x).setTextAlignment(Qt.AlignCenter)
+            
         for x in range(len(self.test_config.test_case)):
             child = QTreeWidgetItem(parent)
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
@@ -391,6 +395,11 @@ class EcomNs2Main(QDialog, Ui_Dialog):
 
             item = QTableWidgetItem(str(value))
             self.tableWidget_test_results_ecom_ns2.setItem(temp_index, 2, item)
+
+            item = QTableWidgetItem(str(temp_index + 1))
+            self.tableWidget_test_results_ecom_ns2.setVerticalHeaderItem(temp_index, item)
+            self.tableWidget_test_results_ecom_ns2.verticalHeaderItem(temp_index).setTextAlignment(Qt.AlignCenter)
+
             temp_index = temp_index + 1
 
 

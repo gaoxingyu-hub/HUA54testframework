@@ -8,6 +8,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import Qt
 
 
 class Ui_Dialog(object):
@@ -18,49 +19,6 @@ class Ui_Dialog(object):
         font.setFamily("Microsoft YaHei")
         font.setPointSize(14)
         Dialog.setFont(font)
-        Dialog.setStyleSheet("QDialog{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QTextBrower{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QLineEdit{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QWidget{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QStackedWidget{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QHeaderView{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QLabel{\n"
-"font-size:12px;\n"
-"font-family:Microsoft YaHei;\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QPushButton{         /*按钮自适应拉伸背景*/\n"
-"border-width: 2px 15px 2px 15px;\n"
-"background-color:#2884D8;\n"
-"color: #FFFFFF;\n"
-"font-size:12px;\n"
-"font-family:Microsoft YaHei;\n"
-"}\n"
-"\n"
-"QGroupBox{\n"
-"font-size:12px;\n"
-"font-family:Microsoft YaHei;\n"
-"border:1px solid rgb(0, 0, 0); \n"
-"}")
         self.gridLayout_8 = QtWidgets.QGridLayout(Dialog)
         self.gridLayout_8.setObjectName("gridLayout_8")
         self.gridLayout = QtWidgets.QGridLayout()
@@ -157,36 +115,10 @@ class Ui_Dialog(object):
         self.tableWidget_test_resource.setObjectName("tableWidget_test_resource")
         self.tableWidget_test_resource.setColumnCount(4)
         self.tableWidget_test_resource.setRowCount(15)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(4, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(5, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(6, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(7, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(8, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(9, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(10, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(11, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(12, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(13, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(14, item)
+        for temp in range(0, 15):
+            item = QtWidgets.QTableWidgetItem()
+            self.tableWidget_test_resource.setVerticalHeaderItem(temp, item)
+            self.tableWidget_test_resource.verticalHeaderItem(temp).setTextAlignment(Qt.AlignCenter)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -667,6 +599,9 @@ class Ui_Dialog(object):
         item = self.tableWidget_test_resource.item(14, 3)
         item.setText(_translate("Dialog", "1个"))
         self.tableWidget_test_resource.setSortingEnabled(__sortingEnabled)
+        for temp in range(0, 15):
+            self.tableWidget_test_resource.verticalHeaderItem(temp).setTextAlignment(Qt.AlignCenter)
+
         item = self.tableWidget_test_results_tr.horizontalHeaderItem(0)
         item.setText(_translate("Dialog", "测试项"))
         item = self.tableWidget_test_results_tr.horizontalHeaderItem(1)

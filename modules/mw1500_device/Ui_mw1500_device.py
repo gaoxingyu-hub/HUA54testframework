@@ -8,6 +8,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import Qt
 
 
 class Ui_Dialog(object):
@@ -18,49 +19,6 @@ class Ui_Dialog(object):
         font.setFamily("Microsoft YaHei")
         font.setPointSize(14)
         Dialog.setFont(font)
-        Dialog.setStyleSheet("QDialog{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QTextBrower{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QLineEdit{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QWidget{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QStackedWidget{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QHeaderView{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QLabel{\n"
-"font-size:12px;\n"
-"font-family:Microsoft YaHei;\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QPushButton{         /*按钮自适应拉伸背景*/\n"
-"border-width: 2px 15px 2px 15px;\n"
-"background-color:#2884D8;\n"
-"color: #FFFFFF;\n"
-"font-size:12px;\n"
-"font-family:Microsoft YaHei;\n"
-"}\n"
-"\n"
-"QGroupBox{\n"
-"font-size:12px;\n"
-"font-family:Microsoft YaHei;\n"
-"border:1px solid rgb(0, 0, 0); \n"
-"}")
         self.gridLayout_8 = QtWidgets.QGridLayout(Dialog)
         self.gridLayout_8.setObjectName("gridLayout_8")
         self.gridLayout = QtWidgets.QGridLayout()
@@ -126,7 +84,8 @@ class Ui_Dialog(object):
         self.treeWidget.setObjectName("treeWidget")
         item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget)
         item_0.setCheckState(0, QtCore.Qt.Checked)
-        item_0.setFlags(QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsEditable|QtCore.Qt.ItemIsDragEnabled|QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
+        item_0.setFlags(QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsEditable|QtCore.Qt.ItemIsDragEnabled|
+                        QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
         item_1 = QtWidgets.QTreeWidgetItem(item_0)
         item_1.setCheckState(0, QtCore.Qt.Checked)
         item_1 = QtWidgets.QTreeWidgetItem(item_0)
@@ -521,15 +480,20 @@ class Ui_Dialog(object):
         self.treeWidget.setSortingEnabled(__sortingEnabled)
         self.groupBox_test_resource.setTitle(_translate("Dialog", "测试资源"))
         item = self.tableWidget_test_resource.verticalHeaderItem(0)
+        item.setTextAlignment(Qt.AlignCenter)
         item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_resource.verticalHeaderItem(1)
         item.setText(_translate("Dialog", "2"))
+        item.setTextAlignment(Qt.AlignCenter)
         item = self.tableWidget_test_resource.verticalHeaderItem(2)
         item.setText(_translate("Dialog", "3"))
+        item.setTextAlignment(Qt.AlignCenter)
         item = self.tableWidget_test_resource.verticalHeaderItem(3)
         item.setText(_translate("Dialog", "4"))
+        item.setTextAlignment(Qt.AlignCenter)
         item = self.tableWidget_test_resource.verticalHeaderItem(4)
         item.setText(_translate("Dialog", "5"))
+        item.setTextAlignment(Qt.AlignCenter)
         item = self.tableWidget_test_resource.verticalHeaderItem(5)
         item.setText(_translate("Dialog", "6"))
         item = self.tableWidget_test_resource.verticalHeaderItem(6)
@@ -690,6 +654,7 @@ class Ui_Dialog(object):
         item.setText(_translate("Dialog", "TA005/(SMA-K/K)"))
         item = self.tableWidget_test_resource.item(15, 3)
         item.setText(_translate("Dialog", "1个"))
+        self.tableWidget_test_resource.verticalHeaderItem(0).setTextAlignment(Qt.AlignCenter)
         self.tableWidget_test_resource.setSortingEnabled(__sortingEnabled)
         item = self.tableWidget_test_results_tr_t.horizontalHeaderItem(0)
         item.setText(_translate("Dialog", "测试项"))
@@ -763,7 +728,9 @@ class Ui_Dialog(object):
         item = self.tableWidget_test_results_monitor.horizontalHeaderItem(3)
         item.setText(_translate("Dialog", "测试结论"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_8), _translate("Dialog", "监控模块"))
-import iconQrc_rc
+
+        self.tableWidget_test_resource.verticalHeaderItem(0).setTextAlignment(Qt.AlignCenter)
+import res.iconQrc_rc
 
 
 if __name__ == "__main__":
