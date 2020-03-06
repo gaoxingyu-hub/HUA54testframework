@@ -156,17 +156,23 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         self.close()
         return
 
-    def test_process_control(self,action):
+    def test_process_control(self,action,action2=''):
         """
         action: test execute action "next" or "restart"
         """
         if action is "next":
+           
             for case,step in self.test_cases_records.items():
                 if step["current"] > step["max"]:
                     continue
-
+                if action2 == 'finish':
+                    self.test_cases_records = ''
+                    self.test_config.test_case = ''
+                    
                 #get the test case detail parameters
                 for x in range(len(self.test_config.test_case)):
+                    if action2 == 'finish':
+                        self.test_config = ''
                     if case in self.test_config.test_case_detail[x]["title"]:
 
                         temp_test_process = self.test_config.test_case_detail[x]["steps"][step["current"] - 1]
@@ -263,7 +269,7 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         if self.current_test_step_dialog:
             self.current_test_step_dialog.close()
             if flag == 'finish':
-                self.test_process_control('finish')
+                self.test_process_control('next','finish')
             elif flag == "step1":
                 self.test_cases_records[self.current_test_case]["current"] = \
                     self.test_cases_records[self.current_test_case]["current"] + 1

@@ -140,6 +140,17 @@ class AUTO_TEST(QDialog, Ui_Dialog):
             mres =float(2+ np.random.random(1))
         return round(float(mres),3)
     
+    @pyqtSlot()
+    def closeEvent(self, QCloseEvent):
+        """
+        action before close event trigger
+        :param event: main window close action
+        :return: None
+        """
+        self._signalTest.emit("test")
+        self.accept()
+        self.close()
+    
 class test_results:
     def __init__(self):
         self.test_item=''
