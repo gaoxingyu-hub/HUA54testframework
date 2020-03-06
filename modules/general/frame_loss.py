@@ -159,7 +159,8 @@ def start_test(sys_entry):
     return results
 
 
-# if __name__ == '__main__':
-#     initialize()
-#     sys_entry = get_sys_entry()
-#     result = start_test(sys_entry)
+if __name__ == '__main__':
+    initialize()
+    sys_entry = get_sys_entry()
+    result = start_test(sys_entry)
+    shutdown()
