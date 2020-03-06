@@ -2,13 +2,13 @@
 
 block_cipher = None
 
-src_dir="/root/桌面/54/"
+src_dir="/root/projects/54testframework/"
 a = Analysis(['main.py','modules/ecom_ns_2/ecom_ns2_test_process.py','InstrumentDrivers/SAbyPyvisa.py',
             'InstrumentDrivers/VNADriver/AgilentN5242.py'],
-             pathex=['/root/桌面/54'],
+             pathex=['/root/projects/54testframework'],
              binaries=[],
-             datas=[(src_dir+'logs','logs'),(src_dir+'imgs','imgs'),(src_dir+'langs','langs'),(src_dir+'conf','conf')],
-             hiddenimports=['pyvisa','visa','pyvisa-py'],
+             datas=[(src_dir+'logs','logs'),(src_dir+'imgs','imgs'),(src_dir+'langs','langs'),(src_dir+'conf','conf'),(src_dir+'data','data'),(src_dir+'langs','langs')],
+             hiddenimports=['pyvisa','visa','pyvisa-py','renix_py_api'],
              hookspath=[],
              runtime_hooks=[],
              excludes=[],
