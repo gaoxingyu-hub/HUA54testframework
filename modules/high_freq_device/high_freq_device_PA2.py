@@ -73,6 +73,9 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
             child.setText(0, self.test_config.test_case_detail[x]["title"])
             child.setCheckState(0, Qt.Unchecked)
 
+        # remove grid
+        self.tableWidget_test_resource.setShowGrid(False)
+        self.tableWidget_test_results.setShowGrid(False)
         logger.info("com_control_device inited")
     
     @pyqtSlot()

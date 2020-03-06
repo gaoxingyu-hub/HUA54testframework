@@ -73,6 +73,18 @@ class MW1500_DEVICE(QDialog, Ui_Dialog):
         parent.setText(0, self.test_config.title)
         parent.setFlags(parent.flags() | Qt.ItemIsTristate | Qt.ItemIsUserCheckable)
 
+        # remove grid
+        self.tableWidget_test_resource.setShowGrid(False)
+        self.tableWidget_test_results_coupler.setShowGrid(False)
+        # set alter color
+        self.tableWidget_test_resource.setAlternatingRowColors(True)
+        self.tableWidget_test_results_coupler.setAlternatingRowColors(True)
+
+        self.tableWidget_test_results_coupler.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                               QHeaderView.Stretch)
+        self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                               QHeaderView.Stretch)
+
         for x in range(len(self.test_config.test_case)):
             child = QTreeWidgetItem(parent)
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)

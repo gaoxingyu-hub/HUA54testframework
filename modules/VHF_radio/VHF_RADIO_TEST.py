@@ -81,6 +81,30 @@ class VHF_RADIO(QDialog, Ui_Dialog):
             child.setText(0, self.test_config.test_case_detail[x]['title'])
             child.setCheckState(0, Qt.Unchecked)
 
+        # remove grid
+        self.tableWidget_test_resource.setShowGrid(False)
+        self.tableWidget_high_power.setShowGrid(False)
+        self.tableWidget_IB.setShowGrid(False)
+        self.tableWidget_low_power.setShowGrid(False)
+        self.tableWidget_VF_IF.setShowGrid(False)
+
+        # set alter color
+        self.tableWidget_test_resource.setAlternatingRowColors(True)
+        self.tableWidget_high_power.setAlternatingRowColors(True)
+        self.tableWidget_IB.setAlternatingRowColors(True)
+        self.tableWidget_low_power.setAlternatingRowColors(True)
+        self.tableWidget_VF_IF.setAlternatingRowColors(True)
+
+        self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                               QHeaderView.Stretch)
+        self.tableWidget_high_power.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                               QHeaderView.Stretch)
+        self.tableWidget_IB.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                               QHeaderView.Stretch)
+        self.tableWidget_low_power.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                               QHeaderView.Stretch)
+        self.tableWidget_VF_IF.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                               QHeaderView.Stretch)
         logger.info('com_control_device inited')
 
     @pyqtSlot()

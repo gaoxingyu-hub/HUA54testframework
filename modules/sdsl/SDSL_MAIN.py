@@ -111,6 +111,10 @@ class DialogSdslMain(QDialog, Ui_Dialog):
         # self.treeWidget.itemClicked.connect(self.treeWidget_item_click_slot_test)
 
         # self.test_result = TestDataEcomNs2()
+
+        # remove
+        self.tableWidget_test_resource.setShowGrid(False)
+
         self.test_result = {}
         logger.info("sdsl inited")
     

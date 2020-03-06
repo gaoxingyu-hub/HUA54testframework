@@ -105,6 +105,15 @@ class DialogSecurityMain(QDialog, Ui_Dialog):
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
                                                                  QHeaderView.Stretch)
         self.test_result = {}
+        # remove grid
+        self.tableWidget_test_resource.setShowGrid(False)
+        self.tableWidget.setShowGrid(False)
+
+        # set alter color
+        self.tableWidget_test_resource.setAlternatingRowColors(True)
+        self.tableWidget.setAlternatingRowColors(True)
+
+
         logger.info("IP Security Machine inited")
     
     @pyqtSlot()

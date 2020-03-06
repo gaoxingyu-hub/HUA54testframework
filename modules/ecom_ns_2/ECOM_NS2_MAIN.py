@@ -117,6 +117,12 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         # self.treeWidget.itemClicked.connect(self.treeWidget_item_click_slot_test)
 
         # self.test_result = TestDataEcomNs2()
+        # remove grid
+        self.tableWidget_test_resource.setShowGrid(False)
+        self.tableWidget_test_results_ecom_ns2.setShowGrid(False)
+        # set alter color
+        self.tableWidget_test_resource.setAlternatingRowColors(True)
+        self.tableWidget_test_results_ecom_ns2.setAlternatingRowColors(True)
         self.test_result = {}
         logger.info("ecom_ns_2 inited")
     

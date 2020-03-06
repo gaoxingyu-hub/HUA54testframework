@@ -108,6 +108,19 @@ class DialogMvComDevice(QDialog, Ui_Dialog):
             child.setText(0, self.test_config.test_case_detail[x]["title"])
             child.setCheckState(0, Qt.Unchecked)
 
+        # remove show grid
+        self.tableWidget_test_resource.setShowGrid(False)
+        self.tableWidget_test_results.setShowGrid(False)
+
+        # set alter color
+        self.tableWidget_test_resource.setAlternatingRowColors(True)
+        self.tableWidget_test_results.setAlternatingRowColors(True)
+
+        self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                               QHeaderView.Stretch)
+        self.tableWidget_test_results.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                               QHeaderView.Stretch)
+
         logger.info("mv_com_device inited")
     
     @pyqtSlot()

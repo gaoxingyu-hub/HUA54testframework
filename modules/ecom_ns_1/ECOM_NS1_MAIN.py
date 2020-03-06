@@ -109,6 +109,12 @@ class EcomNs1Main(QDialog, Ui_Dialog):
                                                                                        QHeaderView.Stretch)
         # 设置treeWidget单选
         # self.treeWidget.itemClicked.connect(self.treeWidget_item_click_slot_test)
+        # remove grid
+        self.tableWidget_test_resource.setShowGrid(False)
+        self.tableWidget_test_results_ecom_ns1.setShowGrid(False)
+        # set alter color
+        self.tableWidget_test_resource.setAlternatingRowColors(True)
+        self.tableWidget_test_results_ecom_ns1.setAlternatingRowColors(True)
         self.test_result = {}
         logger.info("ecom_ns_1 inited")
     
