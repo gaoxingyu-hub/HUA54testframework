@@ -117,6 +117,7 @@ class AUTO_TEST_T(QDialog, Ui_Dialog):
             mres =float(2+ np.random.random(1))
         return round(float(mres),3)
     
+
 class test_results:
     def __init__(self):
         self.test_item=''
