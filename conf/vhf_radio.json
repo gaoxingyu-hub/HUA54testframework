@@ -1,6 +1,7 @@
 {
     "title":"VHF电台",
     "module_name":"vhf_radio",
+    "test_ip": ["192.168.1.8"],
     "test_case": ["调谐/音频/中频模块","频率合成/滤波器/功放模块","50W滤波器/50W功放"],
     "test_case_detail":[
         {

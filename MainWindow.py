@@ -73,11 +73,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         @param column DESCRIPTION
         @type int
         """
+        if item.parent() is None:
+            return
+
         if self.gridLayout.count() >= 1:
             QMessageBox.warning(self,MainWindowConstants.QMESSAGEBOX_WARN,
                                 MainWindowConstants.QMESSAGEBOX_WARN_CLOSE_CURRENT_MODULE)
             return
         current_tree_item_index = str(self.treeWidget.currentIndex().row())
+
         if current_tree_item_index:
             if current_tree_item_index in self.menuindex2module:
                 self.child = globals()[self.menuindex2module[current_tree_item_index]]()

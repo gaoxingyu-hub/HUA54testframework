@@ -2,6 +2,7 @@
 	"title": "IP保密机测试",
 	"module_name": "SECURITY",
 	"test_case": ["case1"],
+	"test_ip": ["192.168.1.8"],
 	"test_case_detail": [{
 		"case_name": "case1",
 		"title": "IP保密机",

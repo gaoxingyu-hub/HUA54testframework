@@ -51,7 +51,7 @@ class RouterDialog(QDialog, Ui_Dialog):
         super(RouterDialog, self).__init__(parent)
         self.setupUi(self)
         self.current_test_step = 0
-        # 配置文件路径
+        # config file
         self.config_file_path = os.path.join(
             SETUP_DIR, "conf", "router.json")
         self.system_config_file_path = os.path.join(
@@ -66,10 +66,10 @@ class RouterDialog(QDialog, Ui_Dialog):
 
         self.test_time_update_obj = ThThreadTimerUpdateTestTime()
 
-        self.selected_test_cases = None  # 用来记录选中的测试项目
-        self.test_cases_records = None  # 用来记录测试项目的执行测试的进度
-        self.current_test_case = None  # 记录当前执行的test case
-        # 前一次测试的状态与结果
+        self.selected_test_cases = None  # record test cases
+        self.test_cases_records = None
+        self.current_test_case = None
+        # salve last test status
         self.last_test_case_status = ""
         self.last_test_case_result = ""
 
@@ -78,29 +78,30 @@ class RouterDialog(QDialog, Ui_Dialog):
         parent = QTreeWidgetItem(self.treeWidget)
         parent.setText(0, self.test_config.title)
         parent.setFlags(parent.flags() | Qt.ItemIsTristate | Qt.ItemIsUserCheckable)
-        # 插入数据,根据temp_length数组的长度插入行数
+        # insert test resource data
+        self.test_config.get_test_parameters()
         length = len(self.test_config.test_source)
         self.tableWidget_test_resource.setRowCount(length)
 
-        # 加载测试资源
+        # load test resource
         for x in range(length):
-            # 名称
+            # name
             item = QTableWidgetItem(str(self.test_config.test_source[x]["name"]))
             self.tableWidget_test_resource.setItem(x, 0, item)
-            # 编号/型号
+            # type
             item = QTableWidgetItem(str(self.test_config.test_source[x]["type"]))
             self.tableWidget_test_resource.setItem(x, 1, item)
-            # 数量
+            # number
             item = QTableWidgetItem(str(self.test_config.test_source[x]["number"]))
             self.tableWidget_test_resource.setItem(x, 2, item)
-            # 备注
+            # count
             item = QTableWidgetItem(str(self.test_config.test_source[x]["count"]))
             self.tableWidget_test_resource.setItem(x, 3, item)
-            # 设置tablewidget 序号居中
+            # set tablewidget vertical header center
             item = QTableWidgetItem(str(x+1))
             self.tableWidget_test_resource.setVerticalHeaderItem(x, item)
             self.tableWidget_test_resource.verticalHeaderItem(x).setTextAlignment(Qt.AlignCenter)
-            # 字体居中
+            # set font center
             for a in range(0, 4):
                 self.tableWidget_test_resource.item(x, a).setTextAlignment(Qt.AlignCenter)
 
@@ -110,7 +111,6 @@ class RouterDialog(QDialog, Ui_Dialog):
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
             child.setText(0, self.test_config.test_case_detail[x]["title"])
             child.setCheckState(0, Qt.Unchecked)
-        # table widget 自适应
         self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
                                                                                QHeaderView.Stretch)
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
@@ -123,7 +123,6 @@ class RouterDialog(QDialog, Ui_Dialog):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
         self.selected_test_cases = self.get_checked_test_cases()
         if len(self.selected_test_cases) == 0:
             QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN, ModuleConstants.QMESSAGEBOX_WARN_SELECTED_TEST)
@@ -161,7 +160,6 @@ class RouterDialog(QDialog, Ui_Dialog):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
         self.signalTitle.emit("close")
         self.close()
         logger.info("router test close")
@@ -171,7 +169,6 @@ class RouterDialog(QDialog, Ui_Dialog):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
         if not self.debug_model:
             test = TestInfo()
             test.setWindowTitle(ModuleConstants.WINDOW_TITLE_MAIN)
@@ -349,7 +346,7 @@ class RouterDialog(QDialog, Ui_Dialog):
 
     def test_data_display(self):
         """
-        展示路由器测试数据
+        display router data
         :return:
         """
         while self.tableWidget.rowCount() > 0:
@@ -369,7 +366,7 @@ class RouterDialog(QDialog, Ui_Dialog):
             for a in range(0, 3):
                 self.tableWidget.item(temp_index, a).setTextAlignment(Qt.AlignCenter)
 
-            # 设置tablewidget 序号居中
+            # set tablewidget vertical header center
             item = QTableWidgetItem(str(temp_index + 1))
             self.tableWidget.setVerticalHeaderItem(temp_index, item)
             self.tableWidget.verticalHeaderItem(temp_index).setTextAlignment(Qt.AlignCenter)

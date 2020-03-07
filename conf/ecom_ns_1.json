@@ -2,6 +2,7 @@
     "title":"切换(交换)模块(主控板)",
     "module_name":"ecom_ns_1",
     "test_case": ["ecom_ns_1"],
+    "test_ip": ["192.168.1.8"],
     "test_case_detail":[
         {
             "case_name": "ecom_ns_1",
