@@ -38,7 +38,7 @@ class AUTO_TEST_TR_T(QDialog, Ui_Dialog):
 
     def initUi(self,mConfig):
         
-        self.addr_pm= mConfig.test_source[3]
+        self.addr_pm= mConfig.test_ip[3]
         self.freq_H= str(self.comboBox_freq_H.currentText())
         self.freq_M= str(self.comboBox_freq_M.currentText())
         self.freq_L= str(self.comboBox_freq_L.currentText())

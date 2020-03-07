@@ -106,6 +106,7 @@ class TestModuleConfigNew(BaseConfig):
         self.test_case = None
         self.test_source = None
         self.test_case_detail = None
+        self.test_ip = None
         self.get_test_parameters()
 
         return
@@ -114,6 +115,7 @@ class TestModuleConfigNew(BaseConfig):
         try:
             config_obj = self.read_config()
             self.title = config_obj["title"]
+            self.test_ip = config_obj["test_ip"]
             self.module_name = config_obj["module_name"]
             self.test_case = config_obj["test_case"]
             self.test_case_detail = config_obj["test_case_detail"]

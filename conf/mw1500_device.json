@@ -2,7 +2,88 @@
     "title":"MW-1500微波通信设备",
     "module_name":"mw1500_device",
     "test_case": ["收发信机单元/发信机","收发信机单元/收信机","低噪声放大器","功放","自环器","滤波器","波导开关","耦合器","监控模块"],
-    "test_source": ["192.168.1.141","192.168.1.142","192.168.1.143","192.168.1.145"],
+    "test_source": [{
+			"name": "信号源",
+			"number": "keysight E8257D",
+			"count": "1",
+			"type": "仪器仪表"
+	},{
+			"name": "频谱仪",
+			"number": "keysight N9030B",
+			"count": "1",
+			"type": "仪器仪表"
+	},{
+			"name": "功率计",
+			"number": "keysight N1911A",
+			"count": "1",
+			"type": "仪器仪表"
+	},{
+			"name": "万用表",
+			"number": "keysight DSOX3012A",
+			"count": "1",
+			"type": "仪器仪表"
+	},{
+			"name": "电源线",
+			"number": "W001/220V",
+			"count": "1",
+			"type": "测试附件"
+	},{
+			"name": "电源线",
+			"number": "W002/数据线",
+			"count": "1",
+			"type": "测试附件"
+	},{
+			"name": "射频电缆",
+			"number": "W003/(N/SMA-J/J)",
+			"count": "1",
+			"type": "测试附件"
+	},{
+			"name": "射频电缆",
+			"number": "W004/(N/SMA-J/J)",
+			"count": "1",
+			"type": "测试附件"
+	},{
+			"name": "射频电缆",
+			"number": "W005/(SMA/SMA-J/J)",
+			"count": "1",
+			"type": "测试附件"
+	},{
+			"name": "射频电缆",
+			"number": "W006/(SMA/SMA-J/J)",
+			"count": "1",
+			"type": "测试附件"
+	},{
+			"name": "射频电缆",
+			"number": "W007/(SMA/SMA-J/J)",
+			"count": "1",
+			"type": "测试附件"
+	},{
+			"name": "射频电缆",
+			"number": "W008/(SMA/SMA-J/J)",
+			"count": "1",
+			"type": "测试附件"
+	},{
+			"name": "测试台",
+			"number": "TA001",
+			"count": "1",
+			"type": "测试附件"
+	},{
+			"name": "衰减器",
+			"number": "TA002",
+			"count": "1",
+			"type": "测试附件"
+	},{
+			"name": "N转换",
+			"number": "TA004/(N/N-K/K)",
+			"count": "1",
+			"type": "测试附件"
+	},{
+			"name": "SMA转换",
+			"number": "TA005/(SMA-K/K)",
+			"count": "1",
+			"type": "测试附件"
+	}],
+	"test_ip": ["192.168.1.141","192.168.1.142","192.168.1.143","192.168.1.145"],
     "test_case_detail":[
 	        {
 	            "case_name": "收发信机单元/发信机",

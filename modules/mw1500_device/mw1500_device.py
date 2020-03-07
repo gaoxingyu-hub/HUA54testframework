@@ -73,6 +73,30 @@ class MW1500_DEVICE(QDialog, Ui_Dialog):
         parent.setText(0, self.test_config.title)
         parent.setFlags(parent.flags() | Qt.ItemIsTristate | Qt.ItemIsUserCheckable)
 
+        # Load test resource
+        length = len(self.test_config.test_source)
+        self.tableWidget_test_resource.setRowCount(length)
+        for x in range(length):
+            # name
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["name"]))
+            self.tableWidget_test_resource.setItem(x, 0, item)
+            # number
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["type"]))
+            self.tableWidget_test_resource.setItem(x, 1, item)
+            # count
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["number"]))
+            self.tableWidget_test_resource.setItem(x, 2, item)
+            # note
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["count"]))
+            self.tableWidget_test_resource.setItem(x, 3, item)
+            # set tablewidget vertical header font center
+            item = QTableWidgetItem(str(x + 1))
+            self.tableWidget_test_resource.setVerticalHeaderItem(x, item)
+            self.tableWidget_test_resource.verticalHeaderItem(x).setTextAlignment(Qt.AlignCenter)
+            # set font center
+            for a in range(0, 4):
+                self.tableWidget_test_resource.item(x, a).setTextAlignment(Qt.AlignCenter)
+
         # remove grid
         self.tableWidget_test_resource.setShowGrid(False)
         self.tableWidget_test_results_coupler.setShowGrid(False)
