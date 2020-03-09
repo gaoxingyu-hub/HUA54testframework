@@ -8,7 +8,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import Qt
 
 
 class Ui_MainWindow(object):
@@ -109,6 +108,7 @@ class Ui_MainWindow(object):
         self.action_help.setObjectName("action_help")
         self.toolBar.addAction(self.action_about)
         self.toolBar.addAction(self.action_help)
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -137,7 +137,7 @@ class Ui_MainWindow(object):
         self.action_about.setToolTip(_translate("MainWindow", "<html><head/><body><p><img src=\":/newPrefix/icon/start1.ico\"/></p></body></html>"))
         self.action_help.setText(_translate("MainWindow", "帮助"))
         self.action_help.setToolTip(_translate("MainWindow", "<html><head/><body><p><img src=\":/newPrefix/icon/start1.ico\"/></p></body></html>"))
-import res.iconQrc_rc
+import iconQrc_rc
 
 
 if __name__ == "__main__":

@@ -46,12 +46,24 @@ QPushButton:hover{
 QPushButton:pressed{
     background-color:#2376C1;
 }
-
+QMainWindow{
+   background-color:#D0DAE5;
+}
+QToolBar{
+background-color:#172545;
+height:30px;
+border:None;
+padding:1px;
+}
+QDialog{
+margin-top:10px;
+}
 /****QTreeWidget****/
 QTreeWidget{
  background-color:#E3EAF4;
  padding-top:20px;
  padding-left:10px;
+ margin-top:20px;
 }
 QTreeView::item{
  font: 14px;

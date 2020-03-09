@@ -19,61 +19,59 @@ class Ui_Dialog(object):
         font.setPointSize(14)
         Dialog.setFont(font)
         Dialog.setStyleSheet("QDialog{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QTextBrower{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QLineEdit{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QWidget{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QStackedWidget{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QHeaderView{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QLabel{\n"
-"font-size:12px;\n"
-"font-family:Microsoft YaHei;\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QPushButton{         /*按钮自适应拉伸背景*/\n"
-"border-width: 2px 15px 2px 15px;\n"
-"background-color:#2884D8;\n"
-"color: #FFFFFF;\n"
-"font-size:12px;\n"
-"font-family:Microsoft YaHei;\n"
-"}\n"
-"\n"
-"QGroupBox{\n"
-"font-size:12px;\n"
-"font-family:Microsoft YaHei;\n"
-"border:1px solid rgb(0, 0, 0); \n"
-"}")
-        self.layoutWidget = QtWidgets.QWidget(Dialog)
-        self.layoutWidget.setGeometry(QtCore.QRect(0, 0, 971, 971))
-        self.layoutWidget.setObjectName("layoutWidget")
-        self.gridLayout_10 = QtWidgets.QGridLayout(self.layoutWidget)
-        self.gridLayout_10.setContentsMargins(0, 0, 0, 0)
+                             "background-color:#D0DAE5;\n"
+                             "}\n"
+                             "\n"
+                             "QTextBrower{\n"
+                             "background-color:#D0DAE5;\n"
+                             "}\n"
+                             "\n"
+                             "QLineEdit{\n"
+                             "background-color:#D0DAE5;\n"
+                             "}\n"
+                             "\n"
+                             "QWidget{\n"
+                             "background-color:#D0DAE5;\n"
+                             "}\n"
+                             "\n"
+                             "QStackedWidget{\n"
+                             "background-color:#D0DAE5;\n"
+                             "}\n"
+                             "\n"
+                             "QHeaderView{\n"
+                             "background-color:#D0DAE5;\n"
+                             "}\n"
+                             "\n"
+                             "QLabel{\n"
+                             "font-size:12px;\n"
+                             "font-family:Microsoft YaHei;\n"
+                             "background-color:#D0DAE5;\n"
+                             "}\n"
+                             "\n"
+                             "QPushButton{         /*按钮自适应拉伸背景*/\n"
+                             "border-width: 2px 15px 2px 15px;\n"
+                             "background-color:#2884D8;\n"
+                             "color: #FFFFFF;\n"
+                             "font-size:12px;\n"
+                             "font-family:Microsoft YaHei;\n"
+                             "}\n"
+                             "\n"
+                             "QGroupBox{\n"
+                             "font-size:12px;\n"
+                             "font-family:Microsoft YaHei;\n"
+                             "border:1px solid rgb(0, 0, 0); \n"
+                             "}")
+        self.gridLayout_11 = QtWidgets.QGridLayout(Dialog)
+        self.gridLayout_11.setObjectName("gridLayout_11")
+        self.gridLayout_10 = QtWidgets.QGridLayout()
         self.gridLayout_10.setObjectName("gridLayout_10")
         self.gridLayout_7 = QtWidgets.QGridLayout()
         self.gridLayout_7.setObjectName("gridLayout_7")
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
-        self.pushButton_start = QtWidgets.QPushButton(self.layoutWidget)
+        self.pushButton_start = QtWidgets.QPushButton(Dialog)
         self.pushButton_start.setStyleSheet("background-color:rgb(255, 255, 255);\n"
-"")
+                                            "")
         self.pushButton_start.setText("")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/newPrefix/icon/start1.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -81,7 +79,7 @@ class Ui_Dialog(object):
         self.pushButton_start.setIconSize(QtCore.QSize(32, 31))
         self.pushButton_start.setObjectName("pushButton_start")
         self.gridLayout.addWidget(self.pushButton_start, 0, 0, 1, 1)
-        self.pushButton_restart = QtWidgets.QPushButton(self.layoutWidget)
+        self.pushButton_restart = QtWidgets.QPushButton(Dialog)
         self.pushButton_restart.setStyleSheet("background-color:rgb(255, 255, 255);")
         self.pushButton_restart.setText("")
         icon1 = QtGui.QIcon()
@@ -90,7 +88,7 @@ class Ui_Dialog(object):
         self.pushButton_restart.setIconSize(QtCore.QSize(32, 31))
         self.pushButton_restart.setObjectName("pushButton_restart")
         self.gridLayout.addWidget(self.pushButton_restart, 0, 1, 1, 1)
-        self.pushButton_close = QtWidgets.QPushButton(self.layoutWidget)
+        self.pushButton_close = QtWidgets.QPushButton(Dialog)
         self.pushButton_close.setStyleSheet("background-color:rgb(255, 255, 255);")
         self.pushButton_close.setText("")
         icon2 = QtGui.QIcon()
@@ -105,7 +103,7 @@ class Ui_Dialog(object):
         self.gridLayout_10.addLayout(self.gridLayout_7, 0, 0, 1, 1)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.groupBox_test_modules = QtWidgets.QGroupBox(self.layoutWidget)
+        self.groupBox_test_modules = QtWidgets.QGroupBox(Dialog)
         self.groupBox_test_modules.setObjectName("groupBox_test_modules")
         self.gridLayout_6 = QtWidgets.QGridLayout(self.groupBox_test_modules)
         self.gridLayout_6.setContentsMargins(-1, 20, -1, -1)
@@ -136,7 +134,7 @@ class Ui_Dialog(object):
         self.gridLayout_3.setRowStretch(1, 3)
         self.gridLayout_6.addLayout(self.gridLayout_3, 0, 0, 1, 1)
         self.horizontalLayout.addWidget(self.groupBox_test_modules)
-        self.groupBox_test_resource = QtWidgets.QGroupBox(self.layoutWidget)
+        self.groupBox_test_resource = QtWidgets.QGroupBox(Dialog)
         self.groupBox_test_resource.setObjectName("groupBox_test_resource")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.groupBox_test_resource)
         self.gridLayout_5.setContentsMargins(-1, 20, -1, -1)
@@ -180,7 +178,7 @@ class Ui_Dialog(object):
         self.horizontalLayout.addWidget(self.groupBox_test_resource)
         self.horizontalLayout.setStretch(1, 2)
         self.gridLayout_10.addLayout(self.horizontalLayout, 1, 0, 1, 1)
-        self.groupBox_test_results = QtWidgets.QGroupBox(self.layoutWidget)
+        self.groupBox_test_results = QtWidgets.QGroupBox(Dialog)
         self.groupBox_test_results.setTitle("")
         self.groupBox_test_results.setObjectName("groupBox_test_results")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.groupBox_test_results)
@@ -205,8 +203,10 @@ class Ui_Dialog(object):
         self.tableWidget_test_results_ecom_ns1.horizontalHeader().setDefaultSectionSize(228)
         self.gridLayout_8.addWidget(self.tableWidget_test_results_ecom_ns1, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab, "")
+
         self.gridLayout_4.addWidget(self.tabWidget, 0, 0, 1, 1)
         self.gridLayout_10.addWidget(self.groupBox_test_results, 2, 0, 1, 1)
+        self.gridLayout_11.addLayout(self.gridLayout_10, 0, 0, 1, 1)
 
         self.retranslateUi(Dialog)
         self.tabWidget.setCurrentIndex(1)
