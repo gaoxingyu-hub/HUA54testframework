@@ -26,8 +26,5 @@ class PIC_TEXT(QDialog, Ui_Dialog):
     
     @pyqtSlot()
     def on_pushButton_next_clicked(self):
-        """
-        Slot documentation goes here.
-        """
-        # TODO: not implemented yet
-        raise NotImplementedError
+
+        pass

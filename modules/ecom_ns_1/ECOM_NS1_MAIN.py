@@ -97,6 +97,11 @@ class EcomNs1Main(QDialog, Ui_Dialog):
             for a in range(0, 4):
                 self.tableWidget_test_resource.item(x, a).setTextAlignment(Qt.AlignCenter)
 
+            # set vertical header center
+            item = QTableWidgetItem(str(x + 1))
+            self.tableWidget_test_resource.setVerticalHeaderItem(x, item)
+            self.tableWidget_test_resource.verticalHeaderItem(x).setTextAlignment(Qt.AlignCenter)
+
         for x in range(len(self.test_config.test_case)):
             child = QTreeWidgetItem(parent)
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
@@ -109,6 +114,12 @@ class EcomNs1Main(QDialog, Ui_Dialog):
                                                                                        QHeaderView.Stretch)
         # 设置treeWidget单选
         # self.treeWidget.itemClicked.connect(self.treeWidget_item_click_slot_test)
+        # remove grid
+        self.tableWidget_test_resource.setShowGrid(False)
+        self.tableWidget_test_results_ecom_ns1.setShowGrid(False)
+        # set alter color
+        self.tableWidget_test_resource.setAlternatingRowColors(True)
+        self.tableWidget_test_results_ecom_ns1.setAlternatingRowColors(True)
         self.test_result = {}
         logger.info("ecom_ns_1 inited")
     
@@ -371,5 +382,10 @@ class EcomNs1Main(QDialog, Ui_Dialog):
 
             item = QTableWidgetItem(str(value))
             self.tableWidget_test_results_ecom_ns1.setItem(temp_index, 2, item)
+
+            item = QTableWidgetItem(str(temp_index + 1))
+            self.tableWidget_test_results_ecom_ns1.setVerticalHeaderItem(temp_index, item)
+            self.tableWidget_test_results_ecom_ns1.verticalHeaderItem(temp_index).setTextAlignment(Qt.AlignCenter)
+
             temp_index = temp_index + 1
 

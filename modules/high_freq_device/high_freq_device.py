@@ -88,6 +88,16 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
             child.setText(0, self.test_config.test_case_detail[x]["title"])
             child.setCheckState(0, Qt.Unchecked)
 
+        # remove grid
+        self.tableWidget_test_resource.setShowGrid(False)
+        self.tableWidget_test_results_coupler.setShowGrid(False)
+        self.tableWidget_test_results_coupler.setAlternatingRowColors(True)
+        self.tableWidget_test_resource.setAlternatingRowColors(True)
+
+        self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                               QHeaderView.Stretch)
+        self.tableWidget_test_results_coupler.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                               QHeaderView.Stretch)
         logger.info("high_freq_device inited")
         self.tabWidget.setCurrentIndex(0)
         self.record_table_init()
