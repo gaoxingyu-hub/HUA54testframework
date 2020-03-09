@@ -2,7 +2,6 @@
     "title":"数据和线路模块",
     "module_name":"sdsl",
     "test_case": ["sdsl"],
-    "test_ip": ["192.168.1.8"],
     "test_case_detail":[
         {
             "case_name": "sdsl",

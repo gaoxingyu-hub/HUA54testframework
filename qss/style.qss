@@ -24,36 +24,30 @@ font-family:Microsoft YaHei;
 background-color:#E3EAF4;
 }
 
-QPushButton{
-border-width: 2px 15px 2px 15px;
-background-color:#E3EAF4;
-color: #FFFFFF;
-font-size:14px;
-font-family:Microsoft YaHei;
-}
-
 QGroupBox{
 font-size:14px;
 font-family:Microsoft YaHei;
 border:1px solid rgb(0, 0, 0);
 }
 
-QPushButton#pushButton_close{
- background-color: #2884D8;
+/****QPushButton****/
+QPushButton{
+border-width: 2px 15px 2px 15px;
+background-color:#2884D8;
+color: #FFFFFF;
+font-size:14px;
+font-family:Microsoft YaHei;
 }
 
-QPushButton#pushButton_start{
- background-color: #2884D8;
+QPushButton:hover{
+    background-color:#3D90DB;
+    cursor:pointer;
+}
+QPushButton:pressed{
+    background-color:#2376C1;
 }
 
-QPushButton#pushButton_restart{
- background-color: #2884D8;
-}
-
-
-
-
-/*******/
+/****QTreeWidget****/
 QTreeWidget{
  background-color:#E3EAF4;
  padding-top:20px;
@@ -82,7 +76,7 @@ QTreeView::branch:open:has-children:has-siblings  {
         image: url(imgs/common/Minus.png);
 }
 
-/*******/
+/****QTableWidget****/
 QTableWidget{
     outline: none;
     selection-color:#666666;

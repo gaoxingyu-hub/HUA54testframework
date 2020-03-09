@@ -2,7 +2,6 @@
     "title":"通信控制设备测试",
     "module_name":"com_control_device_new",
     "test_case": ["com_control_device"],
-    "test_ip": ["192.168.1.8"],
     "test_case_detail":[
         {
             "case_name": "com_control_device",
