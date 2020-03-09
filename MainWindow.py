@@ -16,6 +16,7 @@ from modules.mw_com_device.MV_COM_DEVICE_MAIN import DialogMvComDevice
 from modules.sdsl.SDSL_MAIN import DialogSdslMain
 from modules.security_machine.SecurityMain import DialogSecurityMain
 from modules.VHF_radio.VHF_RADIO_TEST import VHF_RADIO
+from modules.mw1500_device.mw1500_device import MW1500_DEVICE
 from PyQt5.QtCore import pyqtSignal
 from PyQt5 import QtCore
 from common.logConfig import Logger
@@ -72,11 +73,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         @param column DESCRIPTION
         @type int
         """
+        if item.parent() is None:
+            return
+
         if self.gridLayout.count() >= 1:
             QMessageBox.warning(self,MainWindowConstants.QMESSAGEBOX_WARN,
                                 MainWindowConstants.QMESSAGEBOX_WARN_CLOSE_CURRENT_MODULE)
             return
         current_tree_item_index = str(self.treeWidget.currentIndex().row())
+
         if current_tree_item_index:
             if current_tree_item_index in self.menuindex2module:
                 self.child = globals()[self.menuindex2module[current_tree_item_index]]()

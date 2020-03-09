@@ -72,6 +72,11 @@ class VHF_RADIO(QDialog, Ui_Dialog):
             self.tableWidget_test_resource.setItem(x, 2, item)
             item = QTableWidgetItem(str(self.test_config.test_source[x]['count']))
             self.tableWidget_test_resource.setItem(x, 3, item)
+            # set vertical header center
+            item = QTableWidgetItem(str(x + 1))
+            self.tableWidget_test_resource.setVerticalHeaderItem(x, item)
+            self.tableWidget_test_resource.verticalHeaderItem(x).setTextAlignment(Qt.AlignCenter)
+
             for a in range(0, 4):
                 self.tableWidget_test_resource.item(x, a).setTextAlignment(Qt.AlignCenter)
 
@@ -81,6 +86,30 @@ class VHF_RADIO(QDialog, Ui_Dialog):
             child.setText(0, self.test_config.test_case_detail[x]['title'])
             child.setCheckState(0, Qt.Unchecked)
 
+        # remove grid
+        self.tableWidget_test_resource.setShowGrid(False)
+        self.tableWidget_high_power.setShowGrid(False)
+        self.tableWidget_IB.setShowGrid(False)
+        self.tableWidget_low_power.setShowGrid(False)
+        self.tableWidget_VF_IF.setShowGrid(False)
+
+        # set alter color
+        self.tableWidget_test_resource.setAlternatingRowColors(True)
+        self.tableWidget_high_power.setAlternatingRowColors(True)
+        self.tableWidget_IB.setAlternatingRowColors(True)
+        self.tableWidget_low_power.setAlternatingRowColors(True)
+        self.tableWidget_VF_IF.setAlternatingRowColors(True)
+
+        self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                               QHeaderView.Stretch)
+        self.tableWidget_high_power.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                               QHeaderView.Stretch)
+        self.tableWidget_IB.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                               QHeaderView.Stretch)
+        self.tableWidget_low_power.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                               QHeaderView.Stretch)
+        self.tableWidget_VF_IF.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                               QHeaderView.Stretch)
         logger.info('com_control_device inited')
 
     @pyqtSlot()

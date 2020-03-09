@@ -98,6 +98,11 @@ class DialogMvComDevice(QDialog, Ui_Dialog):
             # 备注
             item = QTableWidgetItem(str(self.test_config.test_source[x]["count"]))
             self.tableWidget_test_resource.setItem(x, 3, item)
+            # set vertical header center
+            item = QTableWidgetItem(str(x + 1))
+            self.tableWidget_test_resource.setVerticalHeaderItem(x, item)
+            self.tableWidget_test_resource.verticalHeaderItem(x).setTextAlignment(Qt.AlignCenter)
+
             # 字体居中
             for a in range(0, 4):
                 self.tableWidget_test_resource.item(x, a).setTextAlignment(Qt.AlignCenter)
@@ -107,6 +112,19 @@ class DialogMvComDevice(QDialog, Ui_Dialog):
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
             child.setText(0, self.test_config.test_case_detail[x]["title"])
             child.setCheckState(0, Qt.Unchecked)
+
+        # remove show grid
+        self.tableWidget_test_resource.setShowGrid(False)
+        self.tableWidget_test_results.setShowGrid(False)
+
+        # set alter color
+        self.tableWidget_test_resource.setAlternatingRowColors(True)
+        self.tableWidget_test_results.setAlternatingRowColors(True)
+
+        self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                               QHeaderView.Stretch)
+        self.tableWidget_test_results.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
+                                                                               QHeaderView.Stretch)
 
         logger.info("mv_com_device inited")
     

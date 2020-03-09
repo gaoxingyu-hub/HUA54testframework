@@ -8,6 +8,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import Qt
 
 
 class Ui_Dialog(object):
@@ -18,49 +19,6 @@ class Ui_Dialog(object):
         font.setFamily("Microsoft YaHei")
         font.setPointSize(14)
         Dialog.setFont(font)
-        Dialog.setStyleSheet("QDialog{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QTextBrower{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QLineEdit{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QWidget{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QStackedWidget{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QHeaderView{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QLabel{\n"
-"font-size:12px;\n"
-"font-family:Microsoft YaHei;\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QPushButton{         /*按钮自适应拉伸背景*/\n"
-"border-width: 2px 15px 2px 15px;\n"
-"background-color:#2884D8;\n"
-"color: #FFFFFF;\n"
-"font-size:12px;\n"
-"font-family:Microsoft YaHei;\n"
-"}\n"
-"\n"
-"QGroupBox{\n"
-"font-size:12px;\n"
-"font-family:Microsoft YaHei;\n"
-"border:1px solid rgb(0, 0, 0); \n"
-"}")
         self.gridLayout_8 = QtWidgets.QGridLayout(Dialog)
         self.gridLayout_8.setObjectName("gridLayout_8")
         self.gridLayout = QtWidgets.QGridLayout()
@@ -126,7 +84,8 @@ class Ui_Dialog(object):
         self.treeWidget.setObjectName("treeWidget")
         item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget)
         item_0.setCheckState(0, QtCore.Qt.Checked)
-        item_0.setFlags(QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsEditable|QtCore.Qt.ItemIsDragEnabled|QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
+        item_0.setFlags(QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsEditable|QtCore.Qt.ItemIsDragEnabled|
+                        QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
         item_1 = QtWidgets.QTreeWidgetItem(item_0)
         item_1.setCheckState(0, QtCore.Qt.Checked)
         item_1 = QtWidgets.QTreeWidgetItem(item_0)
@@ -520,38 +479,6 @@ class Ui_Dialog(object):
         self.treeWidget.topLevelItem(0).child(7).setText(0, _translate("Dialog", "监控设备"))
         self.treeWidget.setSortingEnabled(__sortingEnabled)
         self.groupBox_test_resource.setTitle(_translate("Dialog", "测试资源"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(0)
-        item.setText(_translate("Dialog", "1"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(1)
-        item.setText(_translate("Dialog", "2"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(2)
-        item.setText(_translate("Dialog", "3"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(3)
-        item.setText(_translate("Dialog", "4"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(4)
-        item.setText(_translate("Dialog", "5"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(5)
-        item.setText(_translate("Dialog", "6"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(6)
-        item.setText(_translate("Dialog", "7"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(7)
-        item.setText(_translate("Dialog", "8"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(8)
-        item.setText(_translate("Dialog", "9"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(9)
-        item.setText(_translate("Dialog", "10"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(10)
-        item.setText(_translate("Dialog", "11"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(11)
-        item.setText(_translate("Dialog", "12"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(12)
-        item.setText(_translate("Dialog", "13"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(13)
-        item.setText(_translate("Dialog", "14"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(14)
-        item.setText(_translate("Dialog", "15"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(15)
-        item.setText(_translate("Dialog", "16"))
         item = self.tableWidget_test_resource.horizontalHeaderItem(0)
         item.setText(_translate("Dialog", "名称"))
         item = self.tableWidget_test_resource.horizontalHeaderItem(1)
@@ -562,134 +489,7 @@ class Ui_Dialog(object):
         item.setText(_translate("Dialog", "备注"))
         __sortingEnabled = self.tableWidget_test_resource.isSortingEnabled()
         self.tableWidget_test_resource.setSortingEnabled(False)
-        item = self.tableWidget_test_resource.item(0, 0)
-        item.setText(_translate("Dialog", "信号源"))
-        item = self.tableWidget_test_resource.item(0, 1)
-        item.setText(_translate("Dialog", "仪器仪表"))
-        item = self.tableWidget_test_resource.item(0, 2)
-        item.setText(_translate("Dialog", "keysight E8257D"))
-        item = self.tableWidget_test_resource.item(0, 3)
-        item.setText(_translate("Dialog", "1台"))
-        item = self.tableWidget_test_resource.item(1, 0)
-        item.setText(_translate("Dialog", "频谱仪"))
-        item = self.tableWidget_test_resource.item(1, 1)
-        item.setText(_translate("Dialog", "仪器仪表"))
-        item = self.tableWidget_test_resource.item(1, 2)
-        item.setText(_translate("Dialog", "keysight N9030B"))
-        item = self.tableWidget_test_resource.item(1, 3)
-        item.setText(_translate("Dialog", "1台"))
-        item = self.tableWidget_test_resource.item(2, 0)
-        item.setText(_translate("Dialog", "功率计"))
-        item = self.tableWidget_test_resource.item(2, 1)
-        item.setText(_translate("Dialog", "仪器仪表"))
-        item = self.tableWidget_test_resource.item(2, 2)
-        item.setText(_translate("Dialog", "keysight N1911A"))
-        item = self.tableWidget_test_resource.item(2, 3)
-        item.setText(_translate("Dialog", "1台"))
-        item = self.tableWidget_test_resource.item(3, 0)
-        item.setText(_translate("Dialog", "万用表"))
-        item = self.tableWidget_test_resource.item(3, 1)
-        item.setText(_translate("Dialog", "仪器仪表"))
-        item = self.tableWidget_test_resource.item(3, 2)
-        item.setText(_translate("Dialog", "keysight DSOX3012A"))
-        item = self.tableWidget_test_resource.item(3, 3)
-        item.setText(_translate("Dialog", "1台"))
-        item = self.tableWidget_test_resource.item(4, 0)
-        item.setText(_translate("Dialog", "电源线"))
-        item = self.tableWidget_test_resource.item(4, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(4, 2)
-        item.setText(_translate("Dialog", "W001/220V"))
-        item = self.tableWidget_test_resource.item(4, 3)
-        item.setText(_translate("Dialog", "2m，1根"))
-        item = self.tableWidget_test_resource.item(5, 0)
-        item.setText(_translate("Dialog", "电源线"))
-        item = self.tableWidget_test_resource.item(5, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(5, 2)
-        item.setText(_translate("Dialog", "W002/数据线"))
-        item = self.tableWidget_test_resource.item(5, 3)
-        item.setText(_translate("Dialog", "2m，1根"))
-        item = self.tableWidget_test_resource.item(6, 0)
-        item.setText(_translate("Dialog", "射频电缆"))
-        item = self.tableWidget_test_resource.item(6, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(6, 2)
-        item.setText(_translate("Dialog", "W003/(N/SMA-J/J)"))
-        item = self.tableWidget_test_resource.item(6, 3)
-        item.setText(_translate("Dialog", "2m，1根"))
-        item = self.tableWidget_test_resource.item(7, 0)
-        item.setText(_translate("Dialog", "射频电缆"))
-        item = self.tableWidget_test_resource.item(7, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(7, 2)
-        item.setText(_translate("Dialog", "W004/(N/SMA-J/J)"))
-        item = self.tableWidget_test_resource.item(7, 3)
-        item.setText(_translate("Dialog", "2m，1根"))
-        item = self.tableWidget_test_resource.item(8, 0)
-        item.setText(_translate("Dialog", "射频电缆"))
-        item = self.tableWidget_test_resource.item(8, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(8, 2)
-        item.setText(_translate("Dialog", "W005/(SMA/SMA-J/J)"))
-        item = self.tableWidget_test_resource.item(8, 3)
-        item.setText(_translate("Dialog", "2m，1根"))
-        item = self.tableWidget_test_resource.item(9, 0)
-        item.setText(_translate("Dialog", "射频电缆"))
-        item = self.tableWidget_test_resource.item(9, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(9, 2)
-        item.setText(_translate("Dialog", "W006/(SMA/SMA-J/J)"))
-        item = self.tableWidget_test_resource.item(9, 3)
-        item.setText(_translate("Dialog", "2m，1根"))
-        item = self.tableWidget_test_resource.item(10, 0)
-        item.setText(_translate("Dialog", "射频电缆"))
-        item = self.tableWidget_test_resource.item(10, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(10, 2)
-        item.setText(_translate("Dialog", "W007/(N/N-J/J)"))
-        item = self.tableWidget_test_resource.item(10, 3)
-        item.setText(_translate("Dialog", "2m，1根"))
-        item = self.tableWidget_test_resource.item(11, 0)
-        item.setText(_translate("Dialog", "射频电缆"))
-        item = self.tableWidget_test_resource.item(11, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(11, 2)
-        item.setText(_translate("Dialog", "W008/(N/N-J/J)"))
-        item = self.tableWidget_test_resource.item(11, 3)
-        item.setText(_translate("Dialog", "2m，1根"))
-        item = self.tableWidget_test_resource.item(12, 0)
-        item.setText(_translate("Dialog", "测试台"))
-        item = self.tableWidget_test_resource.item(12, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(12, 2)
-        item.setText(_translate("Dialog", "TA001"))
-        item = self.tableWidget_test_resource.item(12, 3)
-        item.setText(_translate("Dialog", "1个"))
-        item = self.tableWidget_test_resource.item(13, 0)
-        item.setText(_translate("Dialog", "衰减器"))
-        item = self.tableWidget_test_resource.item(13, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(13, 2)
-        item.setText(_translate("Dialog", "TA002"))
-        item = self.tableWidget_test_resource.item(13, 3)
-        item.setText(_translate("Dialog", "1个，功率>40W"))
-        item = self.tableWidget_test_resource.item(14, 0)
-        item.setText(_translate("Dialog", "N转换"))
-        item = self.tableWidget_test_resource.item(14, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(14, 2)
-        item.setText(_translate("Dialog", "TA004/(N/N-K/K)"))
-        item = self.tableWidget_test_resource.item(14, 3)
-        item.setText(_translate("Dialog", "1个，400W"))
-        item = self.tableWidget_test_resource.item(15, 0)
-        item.setText(_translate("Dialog", "SMA转换"))
-        item = self.tableWidget_test_resource.item(15, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(15, 2)
-        item.setText(_translate("Dialog", "TA005/(SMA-K/K)"))
-        item = self.tableWidget_test_resource.item(15, 3)
-        item.setText(_translate("Dialog", "1个"))
+        self.tableWidget_test_resource.verticalHeaderItem(0).setTextAlignment(Qt.AlignCenter)
         self.tableWidget_test_resource.setSortingEnabled(__sortingEnabled)
         item = self.tableWidget_test_results_tr_t.horizontalHeaderItem(0)
         item.setText(_translate("Dialog", "测试项"))
@@ -763,7 +563,9 @@ class Ui_Dialog(object):
         item = self.tableWidget_test_results_monitor.horizontalHeaderItem(3)
         item.setText(_translate("Dialog", "测试结论"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_8), _translate("Dialog", "监控模块"))
-import iconQrc_rc
+
+        self.tableWidget_test_resource.verticalHeaderItem(0).setTextAlignment(Qt.AlignCenter)
+import res.iconQrc_rc
 
 
 if __name__ == "__main__":

@@ -2,6 +2,7 @@
     "title":"自组网微波通信设备",
     "module_name":"mw_com_device",
     "test_case": ["outer_unit"],
+    "test_ip": ["192.168.1.8"],
     "test_case_detail":[
         {
             "case_name": "outer_unit",

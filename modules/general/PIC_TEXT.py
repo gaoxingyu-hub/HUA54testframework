@@ -6,7 +6,7 @@ Module implementing PIC_TEXT.
 
 from PyQt5.QtCore import pyqtSlot, QPoint, Qt
 from PyQt5.QtGui import QPixmap, QPainter, QColor
-from PyQt5.QtWidgets import QDialog, QGraphicsView, QGraphicsItem, QScrollArea
+from PyQt5.QtWidgets import QDialog, QGraphicsItem, QScrollArea
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import pyqtSignal
 
@@ -14,7 +14,7 @@ from .Ui_PIC_TEXT import Ui_Dialog
 import os
 
 
-class DialogPicText(QDialog, Ui_Dialog, QGraphicsView):
+class DialogPicText(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
@@ -23,7 +23,6 @@ class DialogPicText(QDialog, Ui_Dialog, QGraphicsView):
     def __init__(self, parent=None):
         """
         Constructor
-        
         @param parent reference to the parent widget
         @type QWidget
         """
@@ -73,7 +72,7 @@ class DialogPicText(QDialog, Ui_Dialog, QGraphicsView):
             if img_file_path and img_file_path != "":
                 if os.path.isfile(img_file_path) and os.access(img_file_path, os.W_OK):
                     self.pixmap = QtGui.QPixmap(img_file_path)
-                    self.pixmap = self.pixmap.scaled(600, 600,
+                    self.pixmap = self.pixmap.scaled(750, 600,
                                                      Qt.IgnoreAspectRatio | Qt.SmoothTransformation)
                     self.label_img.setPixmap(self.pixmap)
         except:
@@ -85,7 +84,6 @@ class DialogPicText(QDialog, Ui_Dialog, QGraphicsView):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
         self.reject()
         self.close()
         self._signalFinish.emit("next", None)

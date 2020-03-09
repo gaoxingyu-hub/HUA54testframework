@@ -1,0 +1,120 @@
+QDialog{
+background-color:#E3EAF4;
+}
+
+QTextBrower{
+background-color:#E3EAF4;
+}
+
+QLineEdit{
+background-color:#E3EAF4;
+}
+
+QWidget{
+background-color:#E3EAF4;
+}
+
+QStackedWidget{
+background-color:#E3EAF4;
+}
+
+QLabel{
+font-size:14px;
+font-family:Microsoft YaHei;
+background-color:#E3EAF4;
+}
+
+QGroupBox{
+font-size:14px;
+font-family:Microsoft YaHei;
+border:1px solid rgb(0, 0, 0);
+}
+
+/****QPushButton****/
+QPushButton{
+border-width: 2px 15px 2px 15px;
+background-color:#2884D8;
+color: #FFFFFF;
+font-size:14px;
+font-family:Microsoft YaHei;
+}
+
+QPushButton:hover{
+    background-color:#3D90DB;
+    cursor:pointer;
+}
+QPushButton:pressed{
+    background-color:#2376C1;
+}
+
+/****QTreeWidget****/
+QTreeWidget{
+ background-color:#E3EAF4;
+ padding-top:20px;
+ padding-left:10px;
+}
+QTreeView::item{
+ font: 14px;
+}
+QTreeView::item:selected{
+    selection-color: #1F95FF;
+}
+
+QTreeView::item:hover{
+ background-color:#D0DAE5;
+}
+
+QTreeView::branch:has-children:!has-siblings:closed,
+QTreeView::branch:closed:has-children:has-siblings {
+        border-image: none;
+        image: url(imgs/common/plus.png);
+}
+
+QTreeView::branch:open:has-children:!has-siblings,
+QTreeView::branch:open:has-children:has-siblings  {
+        border-image: none;
+        image: url(imgs/common/Minus.png);
+}
+
+/****QTableWidget****/
+QTableWidget{
+    outline: none;
+    selection-color:#666666;
+    alternate-background-color:#F9FAFC;
+}
+QTableCornerButton::section{
+    background: #EDF2F8;
+}
+QTableWidget::item{
+    font-size:14px;
+    line-height:30px;
+    border:1px solid #D2D2D2;
+}
+
+QTableWidget::item:hover{
+    background-color:#EAF7FF;
+}
+
+/*QHeaderView*/
+QHeaderView::section:vertical {
+	color: #666666;
+	text-align:center;
+	font: 14px Arial;
+	border:1px solid #D2D2D2;
+	background: #F9FBFD;
+        width: 40px;
+        height:30px;
+}
+QHeaderView::section:horizontal {
+	color: #666666;
+	font: 14px Microsoft YaHei;
+	padding: 0px 1px 0 1px;
+	text-align:center;
+	border:1px solid #D2D2D2;
+	background: #EDF2F8;
+        height: 30px;
+}
+/*QScrollBar*/
+QScrollBar:vertical{
+    border: 5px solid #D5D5D5;
+}

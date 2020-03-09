@@ -6,16 +6,15 @@ Module implementing mw1500-tr-r-test.
 
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QDialog
-from PyQt5 import QtGui
 from PyQt5.QtCore import pyqtSignal
 import time
 
 from .Ui_AUTO_TEST_TR_R import Ui_Dialog
-import os
 from InstrumentDrivers.SignalGeneratorDriver import SignalGenerator
 from InstrumentDrivers.SpectrumAnalyzerDriver import SpectrumAnalyzer
 from PyQt5.Qt import QMessageBox
 import numpy as np
+
 
 class AUTO_TEST_TR_R(QDialog, Ui_Dialog):
     """
@@ -37,8 +36,8 @@ class AUTO_TEST_TR_R(QDialog, Ui_Dialog):
         self.demo = True
         
     def initUi(self,mConfig):
-        self.addr_sg= mConfig.test_source[0]
-        self.addr_sa= mConfig.test_source[1]
+        self.addr_sg= "192.168.1.141"
+        self.addr_sa= "192.168.1.142"
         self.freq_H= str(self.comboBox_freq_H.currentText())
         self.freq_M= str(self.comboBox_freq_M.currentText())
         self.freq_L= str(self.comboBox_freq_L.currentText())

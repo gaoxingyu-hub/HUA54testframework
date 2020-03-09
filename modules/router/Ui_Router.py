@@ -8,12 +8,16 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import Qt
+
+from qss.load_qss import LoadQSS
 
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(980, 980)
+        """
         Dialog.setStyleSheet("QDialog{\n"
 "background-color:#D0DAE5;\n"
 "}\n"
@@ -57,6 +61,7 @@ class Ui_Dialog(object):
 "font-family:Microsoft YaHei;\n"
 "border:1px solid rgb(0, 0, 0); \n"
 "}")
+        """
         Dialog.setSizeGripEnabled(True)
         self.layoutWidget = QtWidgets.QWidget(Dialog)
         self.layoutWidget.setGeometry(QtCore.QRect(0, 0, 981, 971))
@@ -157,6 +162,7 @@ class Ui_Dialog(object):
         self.tableWidget_test_resource.setHorizontalHeaderItem(3, item)
         self.tableWidget_test_resource.horizontalHeader().setCascadingSectionResizes(True)
         self.tableWidget_test_resource.horizontalHeader().setDefaultSectionSize(120)
+        self.tableWidget_test_resource.setShowGrid(False)
         self.gridLayout_5.addWidget(self.tableWidget_test_resource, 0, 0, 1, 1)
         self.horizontalLayout.addWidget(self.groupBox_test_resource)
         self.horizontalLayout.setStretch(1, 2)
@@ -184,12 +190,14 @@ class Ui_Dialog(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(2, item)
         self.tableWidget.horizontalHeader().setDefaultSectionSize(240)
+        self.tableWidget_test_resource.setAlternatingRowColors(True)
+        self.tableWidget.setAlternatingRowColors(True)
         self.gridLayout_7.addWidget(self.tableWidget, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab, "")
         self.gridLayout_4.addWidget(self.tabWidget, 0, 0, 1, 1)
         self.verticalLayout.addWidget(self.groupBox_test_results)
         self.verticalLayout_2.addLayout(self.verticalLayout)
-
+        self.tableWidget.setShowGrid(False)
         self.retranslateUi(Dialog)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -220,7 +228,9 @@ class Ui_Dialog(object):
         item.setText(_translate("Dialog", "测试结果"))
         item = self.tableWidget.horizontalHeaderItem(2)
         item.setText(_translate("Dialog", "测试结论"))
-
+        # Dialog.setStyleSheet(LoadQSS.load())
+        self.tableWidget_test_resource.setAlternatingRowColors(True)
+        self.tableWidget.setAlternatingRowColors(True)
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Dialog", "路由器模块测试"))
 
 

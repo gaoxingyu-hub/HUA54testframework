@@ -117,7 +117,7 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.pushButton_next.setText(_translate("Dialog", "下一步"))
-import res.iconQrc_rc
+import iconQrc_rc
 
 
 if __name__ == "__main__":

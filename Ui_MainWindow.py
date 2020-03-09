@@ -8,15 +8,14 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from common.info import SystemLanguage
-import frozen_dir
-import os
 
-SETUP_DIR = frozen_dir.app_path()
+from qss.load_qss import LoadQSS
+
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1250, 800)
+        MainWindow.resize(1250, 1020)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -25,17 +24,6 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         MainWindow.setFont(font)
-        MainWindow.setStyleSheet("QGroupBox{\n"
-"font-size:14px;\n"
-"font-family:Microsoft YaHei;\n"
-"}\n"
-"\n"
-"QMainWindow::title{\n"
-"background-color:rgb(0, 85, 255);\n"
-"font-color:rgb(255, 255, 255);\n"
-"}\n"
-"\n"
-"")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.groupBoxMenu = QtWidgets.QGroupBox(self.centralwidget)
@@ -101,6 +89,7 @@ class Ui_MainWindow(object):
         self.treeWidget.topLevelItem(0).child(9).setText(0, _translate("MainWindow", "路由器"))
         self.treeWidget.setSortingEnabled(__sortingEnabled)
         self.groupBox.setTitle(_translate("MainWindow", "测试项目"))
+        MainWindow.setStyleSheet(LoadQSS.load())
 import res.iconQrc_rc
 
 
