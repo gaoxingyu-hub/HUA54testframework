@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project ui -->
-<!-- Saved: 2020-03-05, 14:30:32 -->
+<!-- Saved: 2020-03-09, 17:02:25 -->
 <!-- Copyright (C) 2020 ,  -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -13,6 +13,7 @@
   <Email></Email>
   <Eol index="0"/>
   <Sources>
+    <Source>MainWindowAction.py</Source>
     <Source>PIC_TEXT.py</Source>
     <Source>Router.py</Source>
     <Source>SIMPLE_TEST_PROCESS_1BTN.py</Source>
@@ -28,6 +29,7 @@
     <Source>Ui_Demo.py</Source>
     <Source>Ui_LO_TEST.py</Source>
     <Source>Ui_MONITOR_TEST.py</Source>
+    <Source>Ui_MainWindow.py</Source>
     <Source>Ui_Router.py</Source>
     <Source>Ui_SIMPLE_TEST_PROCESS_1BTN.py</Source>
     <Source>Ui_SIMPLE_TEST_PROCESS_2BTN.py</Source>
@@ -126,11 +128,6 @@
     <Form>vhf_radio/VHF_Test.ui</Form>
     <Form>vhf_radio/VHF_Test_result_confirm.ui</Form>
   </Forms>
-  <Translations>
-    <Translation>E:/tianheng_projects/54/54testframework/internation/mainwindow/en_US.ts</Translation>
-    <Translation>E:/tianheng_projects/54/54testframework/internation/mainwindow/fr_FR.ts</Translation>
-    <Translation>E:/tianheng_projects/54/54testframework/internation/mainwindow/zh_CN.ts</Translation>
-  </Translations>
   <Resources>
     <Resource>iconQrc.qrc</Resource>
   </Resources>
