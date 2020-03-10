@@ -17,14 +17,15 @@ import numpy as np
 from database.data_storage import ThTestResultsStorage
 import json
 from database.test_results_model import TestResultBase
-from InstrumentDrivers.SignalGeneratorDriver import SignalGenerator
 from InstrumentDrivers.SpectrumAnalyzerDriver import SpectrumAnalyzer
+from .high_freq_constant import ModuleConstants
 
 class MANUAL_TEST_LO(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
     _signalTest = pyqtSignal(str)
+    _signalFinish = pyqtSignal(str,object)
 
     def __init__(self, parent=None):
         """
@@ -37,11 +38,12 @@ class MANUAL_TEST_LO(QDialog, Ui_Dialog):
         self.setupUi(self)
         self.flag = 1
         self.demo = True
+        self.action = 'finish_all'
 #         self.testData()
  
     
     def initUi(self,mConfig):
-        self.maddress= mConfig.test_source[1]
+        self.maddress= ModuleConstants.IP_SA
         self.threshold = mConfig.test_case_detail[0]["threshold"][0]
 #         self.lineEdit_addr_sa.setText(maddress)
         
@@ -66,18 +68,19 @@ class MANUAL_TEST_LO(QDialog, Ui_Dialog):
             try:
                 self.sa=SpectrumAnalyzer.SpectrumAnalyzer(addr_sa)
             except:
-                QMessageBox.warning(self, "警告", "仪表连接错误！")
-                print('仪表连接错误，请确认！')
+                QMessageBox.warning(self,ModuleConstants.QMESSAGEBOX_WARN, 
+                                    ModuleConstants.QMESSAGEBOX_WARN_INSTR_NOT_VALID)
                 return
-        self.test_result.test_item = '收发单元本振测试'
+        self.test_result.test_item = ModuleConstants.TESTITEM_TR_LO
         self.test_result.test_condition = '--'
         self.test_result.test_results=str(self.testProcess())
         if self.test_result.test_results ==self.threshold:
-            QMessageBox.information(self,u"提示",u"测试正常",QMessageBox.Ok)
-            self.test_result.test_conclusion='PASS'
+            QMessageBox.information(self,ModuleConstants.QMESSAGEBOX_INFO,ModuleConstants.QMESSAGEBOX_CONTENTS_TEST_NORMAL,QMessageBox.Ok)
+            self.test_result.test_conclusion=ModuleConstants.TESTRESULT_PASS
         else:
-            QMessageBox.information(self,u"提示",u"收发单元本振故障",QMessageBox.Ok)
-            self.test_result.test_conclusion='FAIL'
+            QMessageBox.information(self,ModuleConstants.QMESSAGEBOX_INFO,ModuleConstants.TESTITEM_TR_LO+
+                                    ModuleConstants.QMESSAGEBOX_CONTENTS_TEST_ABNORMAL,QMessageBox.Ok)
+            self.test_result.test_conclusion=ModuleConstants.TESTRESULT_FAIL
         self._signalTest.emit("test_lo")
         self.accept()
         self.close()
@@ -108,6 +111,32 @@ class MANUAL_TEST_LO(QDialog, Ui_Dialog):
         temp.testItems.test_results ='无告警'
         temp.testItems.test_conclusion='PASS'
         ThTestResultsStorage.test_case_result_storage(temp)  
+    
+    
+#     @pyqtSlot()
+#     def closeEvent(self, event, mAction = ''):
+#         
+#         self._signalFinish.emit('finish', None)
+#         
+#         event.accept()
+    
+    @pyqtSlot()
+    def closeEvent(self, event):
+        if self.action == 'finish_all':
+            self._signalFinish.emit('finish', None)
+        event.accept()
+#         reply = QMessageBox.information(self,                         #使用infomation信息框  
+#                                     u"正在测试中！",  
+#                                     u"请确认是否退出后续所有测试",  
+#                                     QMessageBox.Yes | QMessageBox.No)
+#         if reply == QMessageBox.Yes:
+#             self._signalFinish.emit('finish', None)
+#             event.accept()
+# #                 sys.exit(app.exec_())
+#         else:
+#             self._signalFinish.emit('next', None)
+#             event.ignore()
+        
         
 class test_results:
     def __init__(self):

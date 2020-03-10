@@ -19,9 +19,10 @@ from modules.mw1500_device.AUTO_TEST_TR_R import AUTO_TEST_TR_R
 import time
 from common.logConfig import Logger
 from common.th_thread_model import ThThreadTimerUpdateTestTime
-
+from modules.mw1500_device.mw1500_constant import ModuleConstants
 
 from ui.mw1500_device.Ui_mw1500_device import Ui_Dialog
+
 
 #test
 import sys
@@ -126,7 +127,7 @@ class MW1500_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         self.selected_test_cases = self.get_checked_test_cases()
-
+        self.test_config = TestModuleConfigNew(self.config_file_path)
         if len(self.selected_test_cases) == 0:
             QMessageBox.warning(self, "警告", "请选择测试项目")
             return
@@ -267,12 +268,7 @@ class MW1500_DEVICE(QDialog, Ui_Dialog):
             logger.info("mw1500_device test process: next step")
             
         elif action is "finish":
-            self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
-            self.current_test_step_dialog.set_contents(temp_test_process['title'],
-                                                       temp_test_process['contents'],
-                                                       os.path.join(
-                                                           self.pic_file_path,
-                                                           temp_test_process['img']))
+            pass
             
 #         return
 
@@ -307,10 +303,9 @@ class MW1500_DEVICE(QDialog, Ui_Dialog):
 
     def processStep(self,flag):
         if self.current_test_step_dialog:
+            self.current_test_step_dialog.action = 'next'
             self.current_test_step_dialog.close()
-            if flag == 'finish':
-                self.test_process_control('finish')
-            elif flag == "step1":
+            if flag == "step1":
                 self.test_cases_records[self.current_test_case]["current"] = \
                     self.test_cases_records[self.current_test_case]["current"] + 1
                 time.sleep(0.1)
@@ -329,7 +324,8 @@ class MW1500_DEVICE(QDialog, Ui_Dialog):
             self.table.clear()
             self.table.setColumnCount(4)
             self.table.setRowCount(0)
-            self.table.setHorizontalHeaderLabels(['测试项目', '测试条件', '测试值','测试结论'])
+            self.table.setHorizontalHeaderLabels([ModuleConstants.TESTTABLE_ITEM, ModuleConstants.TESTTABLE_COND, 
+                                                  ModuleConstants.TESTTABLE_VALUE,ModuleConstants.TESTTABLE_CONCLU])
             self.table.horizontalHeader().setSectionResizeMode (1)  
 
         

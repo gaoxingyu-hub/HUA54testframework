@@ -14,6 +14,7 @@ import os
 from InstrumentDrivers.PowerMeter import N1911
 from PyQt5.Qt import QMessageBox
 import numpy as np
+from .mw1500_constant import ModuleConstants
 
 
 class AUTO_TEST_TR_T(QDialog, Ui_Dialog):
@@ -35,10 +36,11 @@ class AUTO_TEST_TR_T(QDialog, Ui_Dialog):
         self.setupUi(self)
         self.flag = 1
         self.demo = True
+        self.action = 'finish_all'
 
     def initUi(self,mConfig):
         
-        self.addr_pm= "192.168.1.145"
+        self.addr_pm= ModuleConstants.IP_PM
         self.freq_H= str(self.comboBox_freq_H.currentText())
         self.freq_M= str(self.comboBox_freq_M.currentText())
         self.freq_L= str(self.comboBox_freq_L.currentText())
@@ -68,24 +70,28 @@ class AUTO_TEST_TR_T(QDialog, Ui_Dialog):
             try:
                 self.pm=N1911.N1911(addr_pm)
             except:
-                QMessageBox.warning(self, "警告", "仪表连接错误！")
-                print('仪表连接错误，请确认！')
+                QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN, 
+                                ModuleConstants.QMESSAGEBOX_WARN_INPUT_PARAMETER_NOT_ENOUGH)
                 return
-        self.test_result.test_item = '收发信机单元/发信机测试'
+        self.test_result.test_item = ModuleConstants.TESTITEM_TR_T
         
         for i in range(len(self.testFreq)):
-            self.test_result.test_condition.append('测试频率:'+self.testFreq[i]+'MHz')
-            QMessageBox.information(self,"提示","请将被测设备发射频率设为"+self.testFreq[i]+'MHz',QMessageBox.Ok)
+            self.test_result.test_condition.append(ModuleConstants.TESTCONDITION_FREQ+self.testFreq[i]
+                                                   +ModuleConstants.TESTCONDITION_FREQ_UNIT)
+            QMessageBox.information(self,ModuleConstants.QMESSAGEBOX_INFO,ModuleConstants.QMESSAGEBOX_INFO_FREQ_SET+
+                                    self.testFreq[i]+ModuleConstants.TESTCONDITION_FREQ_UNIT,QMessageBox.Ok)
             self.test_result.test_results.append(self.testProcess())
             if self.thresholdL<self.test_result.test_results[i] <self.thresholdH:
                 
-                self.test_result.test_conclusion.append('PASS')
+                self.test_result.test_conclusion.append(ModuleConstants.TESTRESULT_PASS)
             else:
-                self.test_result.test_conclusion.append('FAIL')
+                self.test_result.test_conclusion.append(ModuleConstants.TESTRESULT_FAIL)
         if 'FAIL' not in self.test_result.test_conclusion:
-            QMessageBox.information(self,u"提示",u"测试正常",QMessageBox.Ok)
+            QMessageBox.information(self,ModuleConstants.QMESSAGEBOX_INFO,
+                                    ModuleConstants.QMESSAGEBOX_CONTENTS_TEST_NORMAL,QMessageBox.Ok)
         else:
-            QMessageBox.information(self,u"提示",u"收发信机单元/发信机故障",QMessageBox.Ok)
+            QMessageBox.information(self,ModuleConstants.QMESSAGEBOX_INFO,ModuleConstants.TESTITEM_TR_R+
+                                    ModuleConstants.QMESSAGEBOX_CONTENTS_TEST_ABNORMAL,QMessageBox.Ok)
         self._signalTest.emit("test_tr_t")
         self.accept()
         self.close()
@@ -98,8 +104,10 @@ class AUTO_TEST_TR_T(QDialog, Ui_Dialog):
             mres =float(0+ np.random.random(1))
         return round(float(mres),3)
     
+    @pyqtSlot()
     def closeEvent(self, event):
-        self._signalFinish.emit('finish', None)
+        if self.action == 'finish_all':
+            self._signalFinish.emit('finish', None)
         event.accept()
 
     
