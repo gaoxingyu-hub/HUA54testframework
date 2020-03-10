@@ -123,7 +123,7 @@ class MANUAL_TEST_LO(QDialog, Ui_Dialog):
     @pyqtSlot()
     def closeEvent(self, event):
         if self.action == 'finish_all':
-            self._signalFinish.emit('finish', None)
+            self._signalFinish.emit('finish_all', None)
         event.accept()
 #         reply = QMessageBox.information(self,                         #使用infomation信息框  
 #                                     u"正在测试中！",  

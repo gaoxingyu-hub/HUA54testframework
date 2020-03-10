@@ -127,7 +127,7 @@ class AUTO_TEST_LNA(QDialog, Ui_Dialog):
     @pyqtSlot()
     def closeEvent(self, event):
         if self.action == 'finish_all':
-            self._signalFinish.emit('finish', None)
+            self._signalFinish.emit('finish_all', None)
         event.accept()
 class test_results:
     def __init__(self):

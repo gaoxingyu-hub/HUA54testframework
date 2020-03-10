@@ -129,7 +129,7 @@ class MW1500_DEVICE(QDialog, Ui_Dialog):
         self.selected_test_cases = self.get_checked_test_cases()
         self.test_config = TestModuleConfigNew(self.config_file_path)
         if len(self.selected_test_cases) == 0:
-            QMessageBox.warning(self, "警告", "请选择测试项目")
+            QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN, ModuleConstants.QMESSAGEBOX_WARN_SELECTED_TEST)
             return
 
         self.test_cases_records = {}
@@ -280,8 +280,9 @@ class MW1500_DEVICE(QDialog, Ui_Dialog):
         :return:
         """
         if self.current_test_step_dialog:
+            self.current_test_step_dialog.action = 'next'
             self.current_test_step_dialog.close()
-            if flag == 'finish':
+            if flag == 'finish_all':
                 self.test_process_control('next','finish')
             elif flag == "step1":
                 self.test_cases_records[self.current_test_case]["current"] = \

@@ -136,7 +136,7 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         self.selected_test_cases = self.get_checked_test_cases()
         self.test_config = TestModuleConfigNew(self.config_file_path)
         if len(self.selected_test_cases) == 0:
-            QMessageBox.warning(self, "警告", "请选择测试项目")
+            QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN, ModuleConstants.QMESSAGEBOX_WARN_SELECTED_TEST)
             return
 
         self.test_cases_records = {}
@@ -207,8 +207,6 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
                     
                 #get the test case detail parameters
                 for x in range(len(self.test_config.test_case)):
-                    if action2 == 'finish':
-                        self.test_config = ''
                     if case in self.test_config.test_case_detail[x]["title"]:
 
                         temp_test_process = self.test_config.test_case_detail[x]["steps"][step["current"] - 1]
@@ -292,8 +290,9 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         :return:
         """
         if self.current_test_step_dialog:
+            self.current_test_step_dialog.action = 'next'
             self.current_test_step_dialog.close()
-            if flag == 'finish':
+            if flag == 'finish_all':
                 self.test_process_control('next','finish')
             elif flag == "step1":
                 self.test_cases_records[self.current_test_case]["current"] = \
@@ -305,6 +304,8 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
                     self.test_cases_records[self.current_test_case]["current"] + 1
                 time.sleep(0.1)
                 self.test_process_control("next")
+    
+
 
 #     def deal_signal_test_step_finish_emit_slot(self, paras):
 #         if self.current_test_step_dialog:
