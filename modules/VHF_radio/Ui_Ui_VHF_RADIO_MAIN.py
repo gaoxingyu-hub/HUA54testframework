@@ -17,7 +17,6 @@ class Ui_Dialog(object):
         font.setFamily('Microsoft YaHei')
         font.setPointSize(14)
         Dialog.setFont(font)
-        Dialog.setStyleSheet('QDialog{\nbackground-color:#D0DAE5;\n}\n\nQTextBrower{\nbackground-color:#D0DAE5;\n}\n\nQLineEdit{\nbackground-color:#D0DAE5;\n}\n\nQWidget{\nbackground-color:#D0DAE5;\n}\n\nQStackedWidget{\nbackground-color:#D0DAE5;\n}\n\nQHeaderView{\nbackground-color:#D0DAE5;\n}\n\nQLabel{\nfont-size:12px;\nfont-family:Microsoft YaHei;\nbackground-color:#D0DAE5;\n}\n\nQPushButton{         /*按钮自适应拉伸背景*/\nborder-width: 2px 15px 2px 15px;\nbackground-color:#2884D8;\ncolor: #FFFFFF;\nfont-size:12px;\nfont-family:Microsoft YaHei;\n}\n\nQGroupBox{\nfont-size:12px;\nfont-family:Microsoft YaHei;\nborder:1px solid rgb(0, 0, 0); \n}')
         self.gridLayout_7 = QtWidgets.QGridLayout(Dialog)
         self.gridLayout_7.setObjectName('gridLayout_7')
         self.gridLayout_17 = QtWidgets.QGridLayout()

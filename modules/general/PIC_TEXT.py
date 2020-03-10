@@ -10,6 +10,7 @@ from PyQt5.QtWidgets import QDialog, QGraphicsItem, QScrollArea
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import pyqtSignal
 
+from qss.load_qss import LoadQSS
 from .Ui_PIC_TEXT import Ui_Dialog
 import os
 
@@ -29,6 +30,7 @@ class DialogPicText(QDialog, Ui_Dialog):
         super(DialogPicText, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
+        self.setStyleSheet(LoadQSS.load())
     """
         # 图片缩放比例
         self.Scale = 1

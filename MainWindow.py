@@ -22,6 +22,7 @@ from PyQt5 import QtCore
 from common.logConfig import Logger
 from common.config import SystemConfig
 from common.info import MainWindowConstants,Constants,SystemLanguage
+from qss.load_qss import LoadQSS
 import time
 import frozen_dir
 import os
@@ -50,6 +51,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.dislay_in_center()
         self.treeWidget.expandAll()
         self.child = None
+        self.setStyleSheet(LoadQSS.load())
 
         self.system_config_file_path = os.path.join(
             SETUP_DIR, "conf", "system.json")

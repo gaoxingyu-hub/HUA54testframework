@@ -7,8 +7,9 @@ import datetime
 import os
 import time
 
-from PyQt5 import QtGui
+from PyQt5 import QtGui, QtCore
 from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import QDialog
 
 from common.info import Constants
@@ -28,6 +29,7 @@ from datetime import datetime
 from .Ui_Router import Ui_Dialog
 from common.config import TestModuleConfigNew, SystemConfig
 from PyQt5.QtCore import pyqtSignal, Qt
+from qss.load_qss import LoadQSS
 
 SETUP_DIR = frozen_dir.app_path()
 logger = Logger.module_logger("router")
@@ -41,6 +43,7 @@ class RouterDialog(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
+
     def __init__(self, parent=None):
         """
         Constructor
@@ -51,6 +54,7 @@ class RouterDialog(QDialog, Ui_Dialog):
         super(RouterDialog, self).__init__(parent)
         self.setupUi(self)
         self.current_test_step = 0
+        # self.setStyleSheet(LoadQSS.load())
         # config file
         self.config_file_path = os.path.join(
             SETUP_DIR, "conf", "router.json")
@@ -85,36 +89,62 @@ class RouterDialog(QDialog, Ui_Dialog):
 
         # load test resource
         for x in range(length):
+            item = QTableWidgetItem(str(x + 1))
+
+            self.tableWidget_test_resource.setItem(x, 0, item)
             # name
             item = QTableWidgetItem(str(self.test_config.test_source[x]["name"]))
-            self.tableWidget_test_resource.setItem(x, 0, item)
+            self.tableWidget_test_resource.setItem(x, 1, item)
             # type
             item = QTableWidgetItem(str(self.test_config.test_source[x]["type"]))
-            self.tableWidget_test_resource.setItem(x, 1, item)
+            self.tableWidget_test_resource.setItem(x, 2, item)
             # number
             item = QTableWidgetItem(str(self.test_config.test_source[x]["number"]))
-            self.tableWidget_test_resource.setItem(x, 2, item)
+            self.tableWidget_test_resource.setItem(x, 3, item)
             # count
             item = QTableWidgetItem(str(self.test_config.test_source[x]["count"]))
-            self.tableWidget_test_resource.setItem(x, 3, item)
+            self.tableWidget_test_resource.setItem(x, 4, item)
             # set tablewidget vertical header center
-            item = QTableWidgetItem(str(x+1))
+            item = QTableWidgetItem(str(x + 1))
             self.tableWidget_test_resource.setVerticalHeaderItem(x, item)
             self.tableWidget_test_resource.verticalHeaderItem(x).setTextAlignment(Qt.AlignCenter)
+
             # set font center
-            for a in range(0, 4):
+            for a in range(0, 5):
                 self.tableWidget_test_resource.item(x, a).setTextAlignment(Qt.AlignCenter)
 
+        self.tableWidget_test_resource.setColumnWidth(0, 30)
+        self.tableWidget_test_resource.setColumnWidth(2, 60)
+        self.tableWidget.setColumnWidth(0, 30)
+        self.tableWidget.setColumnWidth(1, 180)
+        self.tableWidget_test_resource.setAlternatingRowColors(True)
+        self.tableWidget_test_resource.setShowGrid(False)
+        self.tableWidget_test_resource.verticalHeader().setVisible(False)
+        self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
 
         for x in range(len(self.test_config.test_case)):
             child = QTreeWidgetItem(parent)
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
             child.setText(0, self.test_config.test_case_detail[x]["title"])
             child.setCheckState(0, Qt.Unchecked)
-        self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
-                                                                               QHeaderView.Stretch)
-        self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
-                                                                 QHeaderView.Stretch)
+
+        self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        self.tableWidget.setAlternatingRowColors(True)
+        self.tableWidget.setShowGrid(False)
+
+        self.pushButton_start.setStyleSheet("QPushButton:hover{\n"
+                                            "background-color:#2784D6;\n"
+                                            "cursor:pointer;}\n"
+                                            )
+        self.pushButton_close.setStyleSheet("QPushButton:hover{\n"
+                                            "background-color:#2784D6;\n"
+                                            "cursor:pointer;}\n"
+                                            )
+        self.pushButton_restart.setStyleSheet("QPushButton:hover{\n"
+                                              "background-color:#2784D6;\n"
+                                              "cursor:pointer;}\n"
+                                              )
+
         self.test_result = {}
         logger.info("Router inited")
 
@@ -163,7 +193,7 @@ class RouterDialog(QDialog, Ui_Dialog):
         self.signalTitle.emit("close")
         self.close()
         logger.info("router test close")
-    
+
     @pyqtSlot()
     def on_pushButton_restart_clicked(self):
         """
@@ -207,7 +237,7 @@ class RouterDialog(QDialog, Ui_Dialog):
 
         return selected_test_cases
 
-    def test_process_control(self,action):
+    def test_process_control(self, action):
         """
         action: test execute action "next"  "restart"  "finish"
         """
@@ -232,15 +262,19 @@ class RouterDialog(QDialog, Ui_Dialog):
                                 if self.last_test_case_status == ModuleConstants.PROCESS_CONTROL_NEXT:
                                     self.current_test_step_dialog.set_contents(temp_test_process['title'],
                                                                                temp_test_process['contents'], "")
-                                    self.current_test_step_dialog.set_button_contents(ModuleConstants.BUTTON_CONTENTS_NEXT)
+                                    self.current_test_step_dialog.set_button_contents(
+                                        ModuleConstants.BUTTON_CONTENTS_NEXT)
                                     self.current_test_step_dialog.set_msg(Constants.SIGNAL_NEXT)
                                 else:
                                     self.current_test_step_dialog \
                                         .set_contents(
-                                        temp_test_process['title'][:-2] + ModuleConstants.CONTENTS_NOT + temp_test_process['title'][-2:],
-                                        temp_test_process['contents'][:-2] + ModuleConstants.CONTENTS_NOT + temp_test_process['contents'][-2:],
+                                        temp_test_process['title'][:-2] + ModuleConstants.CONTENTS_NOT +
+                                        temp_test_process['title'][-2:],
+                                        temp_test_process['contents'][:-2] + ModuleConstants.CONTENTS_NOT +
+                                        temp_test_process['contents'][-2:],
                                         "")
-                                    self.current_test_step_dialog.set_button_contents(ModuleConstants.BUTTON_CONTENTS_FINISH)
+                                    self.current_test_step_dialog.set_button_contents(
+                                        ModuleConstants.BUTTON_CONTENTS_FINISH)
                                     self.current_test_step_dialog.set_msg(Constants.SIGNAL_FINISH)
                             elif temp_test_process['module'] == "DialogSimpleTestProcess2Btn":
                                 self.current_test_step_dialog.set_button_contents([ModuleConstants.CONTENTS_YES,
@@ -267,7 +301,7 @@ class RouterDialog(QDialog, Ui_Dialog):
 
         return
 
-    def deal_signal_test_step_finish_emit_slot(self, flag,para):
+    def deal_signal_test_step_finish_emit_slot(self, flag, para):
         """
         dialog event process handler
         :param paras:
@@ -322,7 +356,7 @@ class RouterDialog(QDialog, Ui_Dialog):
         if not self.test_time_update_obj.thread_status:
             self.test_time_update_obj.start()
 
-    def treeWidget_item_click_slot_test(self,QTreeWidgetItem, index):
+    def treeWidget_item_click_slot_test(self, QTreeWidgetItem, index):
         """
         set the test case single checked
         :return: None
@@ -353,17 +387,21 @@ class RouterDialog(QDialog, Ui_Dialog):
             self.tableWidget.removeRow(0)
         self.tableWidget.setRowCount(len(self.test_result))
         temp_index = 0
+
         for key, value in self.test_result.items():
-            item = QTableWidgetItem(str(key))
+            item = QTableWidgetItem(str(temp_index+1))
             self.tableWidget.setItem(temp_index, 0, item)
 
-            item = QTableWidgetItem(str(value))
+            item = QTableWidgetItem(str(key))
             self.tableWidget.setItem(temp_index, 1, item)
 
             item = QTableWidgetItem(str(value))
             self.tableWidget.setItem(temp_index, 2, item)
 
-            for a in range(0, 3):
+            item = QTableWidgetItem(str(value))
+            self.tableWidget.setItem(temp_index, 3, item)
+
+            for a in range(0, 4):
                 self.tableWidget.item(temp_index, a).setTextAlignment(Qt.AlignCenter)
 
             # set tablewidget vertical header center
@@ -372,5 +410,3 @@ class RouterDialog(QDialog, Ui_Dialog):
             self.tableWidget.verticalHeaderItem(temp_index).setTextAlignment(Qt.AlignCenter)
 
             temp_index = temp_index + 1
-
-

@@ -13,50 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(980, 980)
-        Dialog.setStyleSheet("QDialog{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QTextBrower{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QLineEdit{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QWidget{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QStackedWidget{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QHeaderView{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QLabel{\n"
-"font-size:12px;\n"
-"font-family:Microsoft YaHei;\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QPushButton{         /*按钮自适应拉伸背景*/\n"
-"border-width: 2px 15px 2px 15px;\n"
-"background-color:#2884D8;\n"
-"color: #FFFFFF;\n"
-"font-size:12px;\n"
-"font-family:Microsoft YaHei;\n"
-"}\n"
-"\n"
-"QGroupBox{\n"
-"font-size:12px;\n"
-"font-family:Microsoft YaHei;\n"
-"border:1px solid rgb(0, 0, 0); \n"
-"}")
+        Dialog.resize(950, 950)
         Dialog.setSizeGripEnabled(True)
         self.gridLayout_8 = QtWidgets.QGridLayout(Dialog)
         self.gridLayout_8.setObjectName("gridLayout_8")
@@ -71,7 +28,7 @@ class Ui_Dialog(object):
 "")
         self.pushButton_start.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/newPrefix/icon/start1.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../icon/start.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_start.setIcon(icon)
         self.pushButton_start.setIconSize(QtCore.QSize(32, 31))
         self.pushButton_start.setObjectName("pushButton_start")
@@ -80,7 +37,7 @@ class Ui_Dialog(object):
         self.pushButton_close.setStyleSheet("background-color:rgb(255, 255, 255);")
         self.pushButton_close.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/newPrefix/icon/close1.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("../icon/cancel.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_close.setIcon(icon1)
         self.pushButton_close.setIconSize(QtCore.QSize(32, 31))
         self.pushButton_close.setObjectName("pushButton_close")
@@ -89,7 +46,7 @@ class Ui_Dialog(object):
         self.pushButton_restart.setStyleSheet("background-color:rgb(255, 255, 255);")
         self.pushButton_restart.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/newPrefix/icon/restart1.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("../icon/stop.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_restart.setIcon(icon2)
         self.pushButton_restart.setIconSize(QtCore.QSize(32, 31))
         self.pushButton_restart.setObjectName("pushButton_restart")
@@ -143,7 +100,7 @@ class Ui_Dialog(object):
         self.tableWidget_test_resource = QtWidgets.QTableWidget(self.groupBox_test_resource)
         self.tableWidget_test_resource.setGridStyle(QtCore.Qt.DotLine)
         self.tableWidget_test_resource.setObjectName("tableWidget_test_resource")
-        self.tableWidget_test_resource.setColumnCount(4)
+        self.tableWidget_test_resource.setColumnCount(5)
         self.tableWidget_test_resource.setRowCount(2)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setVerticalHeaderItem(0, item)
@@ -158,7 +115,7 @@ class Ui_Dialog(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setHorizontalHeaderItem(3, item)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(0, 0, item)
+        self.tableWidget_test_resource.setHorizontalHeaderItem(4, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setItem(0, 1, item)
         item = QtWidgets.QTableWidgetItem()
@@ -166,17 +123,20 @@ class Ui_Dialog(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setItem(0, 3, item)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(1, 0, item)
+        self.tableWidget_test_resource.setItem(0, 4, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setItem(1, 1, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setItem(1, 2, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setItem(1, 3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_resource.setItem(1, 4, item)
         self.tableWidget_test_resource.horizontalHeader().setVisible(True)
-        self.tableWidget_test_resource.horizontalHeader().setCascadingSectionResizes(True)
-        self.tableWidget_test_resource.horizontalHeader().setDefaultSectionSize(120)
-        self.tableWidget_test_resource.verticalHeader().setVisible(True)
+        self.tableWidget_test_resource.horizontalHeader().setCascadingSectionResizes(False)
+        self.tableWidget_test_resource.horizontalHeader().setDefaultSectionSize(140)
+        self.tableWidget_test_resource.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget_test_resource.verticalHeader().setVisible(False)
         self.tableWidget_test_resource.verticalHeader().setCascadingSectionResizes(False)
         self.tableWidget_test_resource.verticalHeader().setMinimumSectionSize(25)
         self.tableWidget_test_resource.verticalHeader().setSortIndicatorShown(False)
@@ -198,9 +158,24 @@ class Ui_Dialog(object):
         self.gridLayout_7 = QtWidgets.QGridLayout(self.tab)
         self.gridLayout_7.setObjectName("gridLayout_7")
         self.tableWidget = QtWidgets.QTableWidget(self.tab)
+        self.tableWidget.setAutoFillBackground(False)
+        self.tableWidget.setTextElideMode(QtCore.Qt.ElideMiddle)
         self.tableWidget.setObjectName("tableWidget")
-        self.tableWidget.setColumnCount(0)
-        self.tableWidget.setRowCount(0)
+        self.tableWidget.setColumnCount(4)
+        self.tableWidget.setRowCount(1)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setVerticalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(3, item)
+        self.tableWidget.horizontalHeader().setCascadingSectionResizes(True)
+        self.tableWidget.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget.verticalHeader().setVisible(False)
         self.gridLayout_7.addWidget(self.tableWidget, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab, "")
         self.gridLayout_4.addWidget(self.tabWidget, 0, 0, 1, 1)
@@ -228,32 +203,44 @@ class Ui_Dialog(object):
         item = self.tableWidget_test_resource.verticalHeaderItem(1)
         item.setText(_translate("Dialog", "2"))
         item = self.tableWidget_test_resource.horizontalHeaderItem(0)
-        item.setText(_translate("Dialog", "名称"))
+        item.setText(_translate("Dialog", " "))
         item = self.tableWidget_test_resource.horizontalHeaderItem(1)
-        item.setText(_translate("Dialog", "类型"))
+        item.setText(_translate("Dialog", "名称"))
         item = self.tableWidget_test_resource.horizontalHeaderItem(2)
-        item.setText(_translate("Dialog", "编号/型号"))
+        item.setText(_translate("Dialog", "类型"))
         item = self.tableWidget_test_resource.horizontalHeaderItem(3)
+        item.setText(_translate("Dialog", "编号/型号"))
+        item = self.tableWidget_test_resource.horizontalHeaderItem(4)
         item.setText(_translate("Dialog", "数量"))
         __sortingEnabled = self.tableWidget_test_resource.isSortingEnabled()
         self.tableWidget_test_resource.setSortingEnabled(False)
-        item = self.tableWidget_test_resource.item(0, 0)
-        item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_resource.item(0, 1)
         item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_resource.item(0, 2)
         item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_resource.item(0, 3)
         item.setText(_translate("Dialog", "1"))
-        item = self.tableWidget_test_resource.item(1, 0)
-        item.setText(_translate("Dialog", "2"))
+        item = self.tableWidget_test_resource.item(0, 4)
+        item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_resource.item(1, 1)
         item.setText(_translate("Dialog", "2"))
         item = self.tableWidget_test_resource.item(1, 2)
         item.setText(_translate("Dialog", "2"))
         item = self.tableWidget_test_resource.item(1, 3)
         item.setText(_translate("Dialog", "2"))
+        item = self.tableWidget_test_resource.item(1, 4)
+        item.setText(_translate("Dialog", "2"))
         self.tableWidget_test_resource.setSortingEnabled(__sortingEnabled)
+        item = self.tableWidget.verticalHeaderItem(0)
+        item.setText(_translate("Dialog", "1"))
+        item = self.tableWidget.horizontalHeaderItem(0)
+        item.setText(_translate("Dialog", " "))
+        item = self.tableWidget.horizontalHeaderItem(1)
+        item.setText(_translate("Dialog", "测试项目"))
+        item = self.tableWidget.horizontalHeaderItem(2)
+        item.setText(_translate("Dialog", "测试结果"))
+        item = self.tableWidget.horizontalHeaderItem(3)
+        item.setText(_translate("Dialog", "测试结论"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Dialog", "路由器模块测试"))
 
 
