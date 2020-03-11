@@ -119,6 +119,7 @@ class VHF_RADIO(QDialog, Ui_Dialog):
         """
         self.selected_test_cases = self.get_checked_test_cases()
         self.test_result = {}
+        self.test_config = TestModuleConfigNew(self.config_file_path)
         if len(self.selected_test_cases) == 0:
             QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN, ModuleConstants.QMESSAGEBOX_WARN_SELECTED_TEST)
             return
@@ -176,13 +177,16 @@ class VHF_RADIO(QDialog, Ui_Dialog):
         self.close()
         logger.info('com_control_device test process close')
 
-    def test_process_control(self, action):
+    def test_process_control(self, action,action2=''):
         """
         action: test execute action "next" or "restart"
         """
         try:
             if action is 'next':
                 for case, step in self.test_cases_records.items():
+                    if action2 == 'finish':
+                        step["current"] = step["max"]+1
+                        self.test_config.test_case= None
                     if step['current'] > step['max']:
                         continue
                     for x in range(len(self.test_config.test_case)):
@@ -200,6 +204,7 @@ class VHF_RADIO(QDialog, Ui_Dialog):
                                 else:
                                     self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                             self.current_test_step_dialog.exec_()
+                            step["current"] = step["max"]+1 #解决测试过程中，点击关闭窗口，一直循环下去的问题
                             break
 
                 logger.info('test process: next step')
@@ -217,11 +222,15 @@ class VHF_RADIO(QDialog, Ui_Dialog):
         :return:
         """
         if self.current_test_step_dialog:
+            self.current_test_step_dialog.action = 'next'
             self.current_test_step_dialog.close()
             if flag == ModuleConstants.PROCESS_CONTROL_FINISH:
                 self.test_process_control(ModuleConstants.PROCESS_CONTROL_FINISH)
                 self.test_cases_records[self.current_test_case]['current'] = self.test_cases_records[self.current_test_case]['max'] + 1
                 self.test_result_display(self.current_test_case, para)
+            elif flag == 'finish_all':
+                self.test_process_control(ModuleConstants.PROCESS_CONTROL_NEXT,ModuleConstants.PROCESS_CONTROL_FINISH)
+                
             else:
                 self.test_cases_records[self.current_test_case]['current'] = self.test_cases_records[self.current_test_case]['current'] + 1
             self.test_process_control(ModuleConstants.PROCESS_CONTROL_NEXT)

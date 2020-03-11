@@ -13,12 +13,14 @@ from .Ui_SWITCH_TEST import Ui_Dialog
 import os
 from PyQt5.Qt import QMessageBox
 import numpy as np
+from .high_freq_constant import ModuleConstants
 
 class MANUAL_TEST_SWITCH(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
     _signalTest = pyqtSignal(str)
+    _signalFinish = pyqtSignal(str,object)
 
     def __init__(self, parent=None):
         """
@@ -31,6 +33,7 @@ class MANUAL_TEST_SWITCH(QDialog, Ui_Dialog):
         self.setupUi(self)
         self.flag = 1
         self.demo = True
+        self.action = 'finish_all'
     
     def initUi(self,mConfig):
         self.threshold = mConfig.test_case_detail[5]["threshold"][0]
@@ -51,15 +54,16 @@ class MANUAL_TEST_SWITCH(QDialog, Ui_Dialog):
 
         self.test_result=test_results()
 
-        self.test_result.test_item = '波导开关'
+        self.test_result.test_item = ModuleConstants.TESTITEM_SWITCH
         self.test_result.test_condition = '--'
         self.test_result.test_results=str(self.testProcess())
         if self.test_result.test_results ==self.threshold:
-            QMessageBox.information(self,u"提示",u"测试正常",QMessageBox.Ok)
-            self.test_result.test_conclusion='PASS'
+            QMessageBox.information(self,ModuleConstants.QMESSAGEBOX_INFO,ModuleConstants.QMESSAGEBOX_CONTENTS_TEST_NORMAL,QMessageBox.Ok)
+            self.test_result.test_conclusion=ModuleConstants.TESTRESULT_PASS
         else:
-            QMessageBox.information(self,u"提示",u"波导开关故障",QMessageBox.Ok)
-            self.test_result.test_conclusion='FAIL'
+            QMessageBox.information(self,ModuleConstants.QMESSAGEBOX_INFO,ModuleConstants.TESTITEM_SWITCH+
+                                    ModuleConstants.QMESSAGEBOX_CONTENTS_TEST_ABNORMAL,QMessageBox.Ok)
+            self.test_result.test_conclusion=ModuleConstants.TESTRESULT_FAIL
 
         self._signalTest.emit("test_switch")
         self.accept()
@@ -70,6 +74,11 @@ class MANUAL_TEST_SWITCH(QDialog, Ui_Dialog):
         mres = str(self.comboBox_sg_addr.currentText())
         return mres
     
+    @pyqtSlot()
+    def closeEvent(self, event):
+        if self.action == 'finish_all':
+            self._signalFinish.emit('finish_all', None)
+        event.accept()
 class test_results:
     def __init__(self):
         self.test_item=''

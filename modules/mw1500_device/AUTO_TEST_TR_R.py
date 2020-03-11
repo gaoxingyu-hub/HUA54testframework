@@ -14,14 +14,14 @@ from InstrumentDrivers.SignalGeneratorDriver import SignalGenerator
 from InstrumentDrivers.SpectrumAnalyzerDriver import SpectrumAnalyzer
 from PyQt5.Qt import QMessageBox
 import numpy as np
-
+from .mw1500_constant import ModuleConstants
 
 class AUTO_TEST_TR_R(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
     _signalTest = pyqtSignal(str)
-    _signalFinish = pyqtSignal(str)
+    _signalFinish = pyqtSignal(str,object)
 
     def __init__(self, parent=None):
         """
@@ -34,10 +34,11 @@ class AUTO_TEST_TR_R(QDialog, Ui_Dialog):
         self.setupUi(self)
         self.flag = 1
         self.demo = True
+        self.action = 'finish_all'
         
     def initUi(self,mConfig):
-        self.addr_sg= "192.168.1.141"
-        self.addr_sa= "192.168.1.142"
+        self.addr_sg= ModuleConstants.IP_SG
+        self.addr_sa= ModuleConstants.IP_SA
         self.freq_H= str(self.comboBox_freq_H.currentText())
         self.freq_M= str(self.comboBox_freq_M.currentText())
         self.freq_L= str(self.comboBox_freq_L.currentText())
@@ -67,7 +68,8 @@ class AUTO_TEST_TR_R(QDialog, Ui_Dialog):
             addr_sg=str(self.addr_sg)
             addr_sa=str(self.addr_sa)
         except:
-            QMessageBox.warning(self, "警告", "测试参数输入不完整或格式不正确！")
+            QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN, 
+                                ModuleConstants.QMESSAGEBOX_WARN_INPUT_PARAMETER_NOT_ENOUGH)
             return
         addr_sg="TCPIP0::"+addr_sg+"::inst0::INSTR"
         addr_sa = "TCPIP0::" + addr_sa + "::inst0::INSTR"
@@ -77,24 +79,28 @@ class AUTO_TEST_TR_R(QDialog, Ui_Dialog):
                 self.sa=SpectrumAnalyzer.SpectrumAnalyzer(addr_sa)
                 self.sg = SignalGenerator.SignalGenerator(addr_sg)
             except:
-                QMessageBox.warning(self, "警告", "仪表连接错误！")
-                print('仪表连接错误，请确认！')
+                QMessageBox.warning(self,ModuleConstants.QMESSAGEBOX_WARN, 
+                                    ModuleConstants.QMESSAGEBOX_WARN_INSTR_NOT_VALID)
                 return
-        self.test_result.test_item = '收发信机单元/收信机测试'
+        self.test_result.test_item = ModuleConstants.TESTITEM_TR_R
         
         for i in range(len(self.testFreq)):
-            self.test_result.test_condition.append('测试频率:'+self.testFreq[i]+'MHz')
-            QMessageBox.information(self,"提示","请将被测设备发射频率设为"+self.testFreq[i]+'MHz',QMessageBox.Ok)
+            self.test_result.test_condition.append(ModuleConstants.TESTCONDITION_FREQ+self.testFreq[i]
+                                                   +ModuleConstants.TESTCONDITION_FREQ_UNIT)
+            QMessageBox.information(self,ModuleConstants.QMESSAGEBOX_INFO,ModuleConstants.QMESSAGEBOX_INFO_FREQ_SET+
+                                    self.testFreq[i]+ModuleConstants.TESTCONDITION_FREQ_UNIT,QMessageBox.Ok)
             self.test_result.test_results.append(self.testProcess(self.testFreq[i]))
             if self.thresholdL<self.test_result.test_results[i] <self.thresholdH:
                 
-                self.test_result.test_conclusion.append('PASS')
+                self.test_result.test_conclusion.append(ModuleConstants.TESTRESULT_PASS)
             else:
-                self.test_result.test_conclusion.append('FAIL')
+                self.test_result.test_conclusion.append(ModuleConstants.TESTRESULT_FAIL)
         if 'FAIL' not in self.test_result.test_conclusion:
-            QMessageBox.information(self,u"提示",u"测试正常",QMessageBox.Ok)
+            QMessageBox.information(self,ModuleConstants.QMESSAGEBOX_INFO,
+                                    ModuleConstants.QMESSAGEBOX_CONTENTS_TEST_NORMAL,QMessageBox.Ok)
         else:
-            QMessageBox.information(self,u"提示",u"收发信机单元/收信机故障",QMessageBox.Ok)
+            QMessageBox.information(self,ModuleConstants.QMESSAGEBOX_INFO,ModuleConstants.TESTITEM_TR_R+
+                                    ModuleConstants.QMESSAGEBOX_CONTENTS_TEST_ABNORMAL,QMessageBox.Ok)
         self._signalTest.emit("test_tr_r")
         self.accept()
         self.close()
@@ -136,15 +142,10 @@ class AUTO_TEST_TR_R(QDialog, Ui_Dialog):
         return round(float(mres),3)
     
     @pyqtSlot()
-    def closeEvent(self, Event):
-        """
-        action before close event trigger
-        :param event: main window close action
-        :return: None
-        """
-        self._signalFinish.emit("finish","finish")
-        self.accept()
-        self.close()
+    def closeEvent(self, event):
+        if self.action == 'finish_all':
+            self._signalFinish.emit('finish_all', None)
+        event.accept()
     
 class test_results:
     def __init__(self):

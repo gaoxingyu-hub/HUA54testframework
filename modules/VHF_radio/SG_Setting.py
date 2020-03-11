@@ -29,6 +29,7 @@ class VHF_TEST(QDialog, Ui_Dialog):
         self.setupUi(self)
         self.flag = 1
         self.demo = True
+        self.action = 'finish_all'
 
     def initUi(self, mConfig):
         # addr_sg = mConfig[4]
@@ -96,7 +97,12 @@ class VHF_TEST(QDialog, Ui_Dialog):
         self.accept()
         self.close()
 
-
+    
+    @pyqtSlot()
+    def closeEvent(self, event):
+        if self.action == 'finish_all':
+            self._signalFinish.emit('finish_all', None)
+        event.accept()
 class test_results:
 
     def __init__(self):

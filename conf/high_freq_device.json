@@ -2,9 +2,83 @@
     "title":"散射高频设备",
     "module_name":"high_freq_device",
     "test_case": ["收发单元","低噪声放大器","功放","自环器","滤波器","波导开关","耦合器","监控模块"],
-	"test_ip": ["192.168.1.8"],
-    "test_source": ["192.168.1.141","192.168.1.142","192.168.1.223"],
-    "test_case_detail":[
+	"test_source": [{
+			"name": "信号源",
+			"number": "keysight E8257D",
+			"count": "1台",
+			"type": "仪器仪表"
+	},{
+			"name": "频谱仪",
+			"number": "keysight N9030B",
+			"count": "1台",
+			"type": "仪器仪表"
+	},{
+			"name": "矢量网络分析仪",
+			"number": "keysight N9951A",
+			"count": "1台",
+			"type": "仪器仪表"
+	},{
+			"name": "波导开关",
+			"number": "CSD-I",
+			"count": "1个",
+			"type": "测试附件"
+	},{
+			"name": "波导开关控制器",
+			"number": "XCE14T7Z1P40/YL11H26W1007J22",
+			"count": "1根",
+			"type": "测试附件"
+	},{
+			"name": "大功率衰减器",
+			"number": "40dB",
+			"count": "1个",
+			"type": "测试附件"
+	},{
+			"name": "SMA环形器",
+			"number": "",
+			"count": "1个",
+			"type": "测试附件"
+	},{
+			"name": "电源线",
+			"number": "XCD22T3K1P40",
+			"count": "1根",
+			"type": "测试附件"
+	},{
+			"name": "电缆",
+			"number": "BNC-J/BNC-J",
+			"count": "1m，2根",
+			"type": "测试附件"
+	},{
+			"name": "电缆",
+			"number": "N-J/N-J",
+			"count": "1m，2根",
+			"type": "测试附件"
+	},{
+			"name": "电缆",
+			"number": "SMA-J/SMA-JW",
+			"count": "1m，1根",
+			"type": "测试附件"
+	},{
+			"name": "连接器",
+			"number": "N-J/BNC-K",
+			"count": "1个",
+			"type": "测试附件"
+	},{
+			"name": "连接器",
+			"number": "N-KFK",
+			"count": "1个",
+			"type": "测试附件"
+	},{
+			"name": "连接器",
+			"number": "SMA-KFK",
+			"count": "1个",
+			"type": "测试附件"
+	},{
+			"name": "连接器",
+			"number": "N-K/SMA-K",
+			"count": "1个",
+			"type": "测试附件"
+	}],
+	"test_case_detail":[
 	        {
 	            "case_name": "收发单元",
 	            "title": "收发单元故障定位",

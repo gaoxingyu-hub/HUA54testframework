@@ -24,7 +24,7 @@ from modules.high_freq_device.AUTO_TEST_FILTER import AUTO_TEST_FILTER
 from modules.high_freq_device.AUTO_TEST_COUPLER import AUTO_TEST_COUPLER
 from modules.high_freq_device.MANUAL_TEST_SWITCH import MANUAL_TEST_SWITCH
 from modules.high_freq_device.MANUAL_TEST_MONITOR import MANUAL_TEST_MONITOR
-
+from modules.high_freq_device.high_freq_constant import ModuleConstants
 
 import time
 from common.logConfig import Logger
@@ -81,7 +81,32 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         parent = QTreeWidgetItem(self.treeWidget)
         parent.setText(0, self.test_config.title)
         parent.setFlags(parent.flags() | Qt.ItemIsTristate | Qt.ItemIsUserCheckable)
+        
+        # Load test resource
+        length = len(self.test_config.test_source)
+        self.tableWidget_test_resource.setRowCount(length)
+        for x in range(length):
+            # name
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["name"]))
+            self.tableWidget_test_resource.setItem(x, 0, item)
+            # number
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["type"]))
+            self.tableWidget_test_resource.setItem(x, 1, item)
+            # count
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["number"]))
+            self.tableWidget_test_resource.setItem(x, 2, item)
+            # note
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["count"]))
+            self.tableWidget_test_resource.setItem(x, 3, item)
+            # set tablewidget vertical header font center
+            item = QTableWidgetItem(str(x + 1))
+            self.tableWidget_test_resource.setVerticalHeaderItem(x, item)
+            self.tableWidget_test_resource.verticalHeaderItem(x).setTextAlignment(Qt.AlignCenter)
+            # set font center
+            for a in range(0, 4):
+                self.tableWidget_test_resource.item(x, a).setTextAlignment(Qt.AlignCenter)
 
+        
         for x in range(len(self.test_config.test_case)):
             child = QTreeWidgetItem(parent)
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
@@ -109,9 +134,9 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         self.selected_test_cases = self.get_checked_test_cases()
-
+        self.test_config = TestModuleConfigNew(self.config_file_path)
         if len(self.selected_test_cases) == 0:
-            QMessageBox.warning(self, "警告", "请选择测试项目")
+            QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN, ModuleConstants.QMESSAGEBOX_WARN_SELECTED_TEST)
             return
 
         self.test_cases_records = {}
@@ -173,16 +198,15 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         if action is "next":
            
             for case,step in self.test_cases_records.items():
+                if action2 == 'finish':
+                    step["current"] = step["max"]+1
+                    self.test_config.test_case= None
                 if step["current"] > step["max"]:
                     continue
-                if action2 == 'finish':
-                    self.test_cases_records = ''
-                    self.test_config.test_case = ''
+                
                     
                 #get the test case detail parameters
                 for x in range(len(self.test_config.test_case)):
-                    if action2 == 'finish':
-                        self.test_config = ''
                     if case in self.test_config.test_case_detail[x]["title"]:
 
                         temp_test_process = self.test_config.test_case_detail[x]["steps"][step["current"] - 1]
@@ -193,43 +217,53 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
                         if temp_test_process['module'] == 'AUTO_TEST':
                             self.current_test_step_dialog.initUi(self.test_config)
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_tr)
+                            self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                         elif temp_test_process['module'] == 'AUTO_TEST_T':
                             self.current_test_step_dialog.initUi(self.test_config)
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_tr)
+                            self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                         elif temp_test_process['module'] == 'MANUAL_TEST_LO':
                             self.current_test_step_dialog.initUi(self.test_config)
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_tr)
+                            self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                             
                         elif temp_test_process['module'] == 'AUTO_TEST_LNA':
                             self.current_test_step_dialog.initUi(self.test_config)
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_lna)
+                            self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                         elif temp_test_process['module'] == 'AUTO_TEST_PA':
                             self.current_test_step_dialog.initUi(self.test_config)
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_pa)
+                            self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                         elif temp_test_process['module'] == 'AUTO_TEST_LOOP':
                             self.current_test_step_dialog.initUi(self.test_config)
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_loop)
+                            self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                         elif temp_test_process['module'] == 'AUTO_TEST_FILTER':
                             self.current_test_step_dialog.initUi(self.test_config)
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_filter)
+                            self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                         elif temp_test_process['module'] == 'AUTO_TEST_COUPLER':
                             self.current_test_step_dialog.initUi(self.test_config)
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_coupler)
+                            self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                         elif temp_test_process['module'] == 'MANUAL_TEST_SWITCH':
                             self.current_test_step_dialog.initUi(self.test_config)
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_switch)
+                            self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                         elif temp_test_process['module'] == 'MANUAL_TEST_MONITOR':
                             
                             self.current_test_step_dialog._signalTest.connect(self.test_data_refesh_monitor)
+                            self.current_test_step_dialog._signalFinish.connect(self.deal_signal_test_step_finish_emit_slot)
                             self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
 
                         else:
@@ -245,7 +279,7 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
 
             logger.info("high_freq_device test process: next step")
         elif action is "finish":
-            logger.info("high_freq_device test process: next step")
+            pass
 #         return
 
 
@@ -256,8 +290,11 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         :return:
         """
         if self.current_test_step_dialog:
+            self.current_test_step_dialog.action = 'next'
             self.current_test_step_dialog.close()
-            if flag == "step1":
+            if flag == 'finish_all':
+                self.test_process_control('next','finish')
+            elif flag == "step1":
                 self.test_cases_records[self.current_test_case]["current"] = \
                     self.test_cases_records[self.current_test_case]["current"] + 1
                 time.sleep(0.1)
@@ -267,6 +304,8 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
                     self.test_cases_records[self.current_test_case]["current"] + 1
                 time.sleep(0.1)
                 self.test_process_control("next")
+    
+
 
 #     def deal_signal_test_step_finish_emit_slot(self, paras):
 #         if self.current_test_step_dialog:
@@ -277,15 +316,16 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
 
     def processStep(self,flag):
         if self.current_test_step_dialog:
+            self.current_test_step_dialog.action = 'next'
             self.current_test_step_dialog.close()
-            if flag == 'finish':
-                self.test_process_control('next','finish')
-            elif flag == "step1":
+            if flag == "step1":
+                self.current_test_step_dialog.close()
                 self.test_cases_records[self.current_test_case]["current"] = \
                     self.test_cases_records[self.current_test_case]["current"] + 1
                 time.sleep(0.1)
                 self.test_process_control("next")
             else:
+                self.current_test_step_dialog.close()
                 self.test_cases_records[self.current_test_case]["current"] = \
                     self.test_cases_records[self.current_test_case]["current"] + 1
                 time.sleep(0.1)
@@ -301,7 +341,8 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
             self.table.clear()
             self.table.setColumnCount(4)
             self.table.setRowCount(0)
-            self.table.setHorizontalHeaderLabels(['测试项目', '测试条件', '测试值','测试结论'])
+            self.table.setHorizontalHeaderLabels([ModuleConstants.TESTTABLE_ITEM, ModuleConstants.TESTTABLE_COND, 
+                                                  ModuleConstants.TESTTABLE_VALUE,ModuleConstants.TESTTABLE_CONCLU])
             self.table.horizontalHeader().setSectionResizeMode (1)  
 
         

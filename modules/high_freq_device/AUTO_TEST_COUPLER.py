@@ -14,12 +14,14 @@ import os
 from InstrumentDrivers.VNADriver import AgilentN5242
 from PyQt5.Qt import QMessageBox
 import numpy as np
+from .high_freq_constant import ModuleConstants
 
 class AUTO_TEST_COUPLER(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
     _signalTest = pyqtSignal(str)
+    _signalFinish = pyqtSignal(str,object)
 
     def __init__(self, parent=None):
         """
@@ -32,9 +34,10 @@ class AUTO_TEST_COUPLER(QDialog, Ui_Dialog):
         self.setupUi(self)
         self.flag = 1
         self.demo = True
+        self.action = 'finish_all'
 
     def initUi(self,mConfig):
-        self.addr_na= mConfig.test_source[2]
+        self.addr_na= self.addr_na= ModuleConstants.IP_NA
         freq_na= mConfig.test_case_detail[6]["test_para"][0]
         bw_na= mConfig.test_case_detail[6]["test_para"][1]
         self.lineEdit_freq_na.setText(freq_na)
@@ -60,7 +63,8 @@ class AUTO_TEST_COUPLER(QDialog, Ui_Dialog):
             self.bw_na=float(self.lineEdit_bw_na.text())*1e6
             addr_na=str(self.addr_na)
         except:
-            QMessageBox.warning(self, "警告", "测试参数输入不完整或格式不正确！")
+            QMessageBox.warning(self, ModuleConstants.QMESSAGEBOX_WARN, 
+                                ModuleConstants.QMESSAGEBOX_WARN_INPUT_PARAMETER_NOT_ENOUGH)
             return
         addr_na="TCPIP0::"+addr_na+"::inst0::INSTR"
 
@@ -69,20 +73,21 @@ class AUTO_TEST_COUPLER(QDialog, Ui_Dialog):
             try:
                 self.na=AgilentN5242.VNA_AgilentN5242(addr_na)
             except:
-                QMessageBox.warning(self, "警告", "仪表连接错误！")
-                print('仪表连接错误，请确认！')
+                QMessageBox.warning(self,ModuleConstants.QMESSAGEBOX_WARN, 
+                                    ModuleConstants.QMESSAGEBOX_WARN_INSTR_NOT_VALID)
                 return
-        self.test_result.test_item = '耦合器'
+        self.test_result.test_item = ModuleConstants.TESTITEM_COUPLER
 #         self.test_result.test_condition = '频率:4400,4700,5000'+self.lineEdit_freq_na.text()+'MHz，带宽:'+self.lineEdit_bw_na.text()+'MHz'
-        self.test_result.test_condition = '频率:4400,4700,5000'
+        self.test_result.test_condition = ModuleConstants.TESTCONDITION_FREQ+'4400,4700,5000'
         mTemp=self.testProcess()
         self.test_result.test_results=str(mTemp[0])+', '+str(mTemp[1]) +', '+str(mTemp[2])
         if self.thresholdL<mTemp[0]<self.thresholdH and self.thresholdL<mTemp[1]<self.thresholdH and self.thresholdL<mTemp[2]<self.thresholdH:
-            QMessageBox.information(self,u"提示",u"测试正常",QMessageBox.Ok)
-            self.test_result.test_conclusion='PASS'
+            QMessageBox.information(self,ModuleConstants.QMESSAGEBOX_INFO,ModuleConstants.QMESSAGEBOX_CONTENTS_TEST_NORMAL,QMessageBox.Ok)
+            self.test_result.test_conclusion=ModuleConstants.TESTRESULT_PASS
         else:
-            QMessageBox.information(self,u"提示",u"耦合器故障",QMessageBox.Ok)
-            self.test_result.test_conclusion='FAIL'
+            QMessageBox.information(self,ModuleConstants.QMESSAGEBOX_INFO,ModuleConstants.TESTITEM_COUPLER+
+                                    ModuleConstants.QMESSAGEBOX_CONTENTS_TEST_ABNORMAL,QMessageBox.Ok)
+            self.test_result.test_conclusion=ModuleConstants.TESTRESULT_FAIL
         self._signalTest.emit("test")
         self.accept()
         self.close()
@@ -116,6 +121,12 @@ class AUTO_TEST_COUPLER(QDialog, Ui_Dialog):
             temp.append(float(7+ np.random.random(1)))
         return temp
     
+    @pyqtSlot()
+    def closeEvent(self, event):
+        if self.action == 'finish_all':
+            self._signalFinish.emit('finish_all', None)
+        event.accept()
+        
 class test_results:
     def __init__(self):
         self.test_item=''

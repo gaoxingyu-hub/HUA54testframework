@@ -20,6 +20,7 @@ class DialogPicText(QDialog, Ui_Dialog):
     Class documentation goes here.
     """
     _signalFinish = pyqtSignal(str,object)
+    _signalFinishall = pyqtSignal(str,object)
 
     def __init__(self, parent=None):
         """
@@ -30,7 +31,8 @@ class DialogPicText(QDialog, Ui_Dialog):
         super(DialogPicText, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
-        self.setStyleSheet(LoadQSS.load())
+        self.action = 'finish_all'
+
     """
         # 图片缩放比例
         self.Scale = 1
@@ -86,6 +88,15 @@ class DialogPicText(QDialog, Ui_Dialog):
         """
         Slot documentation goes here.
         """
+        self._signalFinish.emit("next", None)
         self.reject()
         self.close()
-        self._signalFinish.emit("next", None)
+#         self._signalFinish.emit("next", None)
+
+    @pyqtSlot()
+    def closeEvent(self, event):
+        if self.action == 'finish_all':
+            self._signalFinish.emit('finish_all', None)
+        event.accept()
+
+

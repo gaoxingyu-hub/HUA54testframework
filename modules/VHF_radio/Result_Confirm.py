@@ -29,6 +29,7 @@ class RESULT_CONFIRM(QDialog, Ui_Dialog):
         self.setupUi(self)
         self.flag = 1
         self.demo = True
+        self.action = 'finish_all'
 
     def set_contents(self, title, contents):
         self.setWindowTitle(title)
@@ -53,7 +54,11 @@ class RESULT_CONFIRM(QDialog, Ui_Dialog):
         self.accept()
         self.close()
 
-
+    @pyqtSlot()
+    def closeEvent(self, event):
+        if self.action == 'finish_all':
+            self._signalFinish.emit('finish_all', None)
+        event.accept()
 class test_results:
 
     def __init__(self):
