@@ -72,47 +72,81 @@ class DialogSecurityMain(QDialog, Ui_Dialog):
         parent = QTreeWidgetItem(self.treeWidget)
         parent.setText(0, self.test_config.title)
         parent.setFlags(parent.flags() | Qt.ItemIsTristate | Qt.ItemIsUserCheckable)
-        # 插入数据,根据temp_length数组的长度插入行数
+        # insert test resource data
         length = len(self.test_config.test_source)
         self.tableWidget_test_resource.setRowCount(length)
 
-        # 加载测试资源
+        # load test resource
         for x in range(length):
-            # 名称
-            item = QTableWidgetItem(str(self.test_config.test_source[x]["name"]))
+
+            item = QTableWidgetItem(str(x + 1))
             self.tableWidget_test_resource.setItem(x, 0, item)
-            # 编号/型号
-            item = QTableWidgetItem(str(self.test_config.test_source[x]["type"]))
+            # name
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["name"]))
             self.tableWidget_test_resource.setItem(x, 1, item)
-            # 数量
-            item = QTableWidgetItem(str(self.test_config.test_source[x]["number"]))
+            # type
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["type"]))
             self.tableWidget_test_resource.setItem(x, 2, item)
-            # 备注
-            item = QTableWidgetItem(str(self.test_config.test_source[x]["count"]))
+            # number
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["number"]))
             self.tableWidget_test_resource.setItem(x, 3, item)
+            # count
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["count"]))
+            self.tableWidget_test_resource.setItem(x, 4, item)
             # set vertical header center
             item = QTableWidgetItem(str(x + 1))
             self.tableWidget_test_resource.setVerticalHeaderItem(x, item)
             self.tableWidget_test_resource.verticalHeaderItem(x).setTextAlignment(Qt.AlignCenter)
 
-            # 字体居中
-            for a in range(0, 4):
+            # set tablewidget vertical header center
+            item = QTableWidgetItem(str(x + 1))
+            self.tableWidget_test_resource.setVerticalHeaderItem(x, item)
+            self.tableWidget_test_resource.verticalHeaderItem(x).setTextAlignment(Qt.AlignCenter)
+
+            # set content center
+            for a in range(0, 5):
                 self.tableWidget_test_resource.item(x, a).setTextAlignment(Qt.AlignCenter)
 
+        # remove grid
+        self.tableWidget_test_resource.setShowGrid(False)
+        self.tableWidget.setShowGrid(False)
+        # set tablewidget column width
+        self.tableWidget_test_resource.setColumnWidth(0, 30)
+        self.tableWidget_test_resource.setColumnWidth(2, 90)
+        self.tableWidget.setColumnWidth(0, 30)
+        self.tableWidget.setColumnWidth(1, 180)
+        self.tableWidget_test_resource.setAlternatingRowColors(True)
+        self.tableWidget.setAlternatingRowColors(True)
+        # table widget 自适应
+        # self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        # sself.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        # set putton style
+        self.pushButton_start.setStyleSheet("QPushButton:hover{\n"
+                                            "background-color:#2784D6;\n"
+                                            "cursor:pointer;}\n"
+                                            "QPushButton{\n"
+                                            "background-color:#F4F4F3;\n"
+                                            "}"
+                                            )
+        self.pushButton_close.setStyleSheet("QPushButton:hover{\n"
+                                            "background-color:#2784D6;\n"
+                                            "cursor:pointer;}\n"
+                                            "QPushButton{\n"
+                                            "background-color:#F4F4F3;\n"
+                                            "}")
+        self.pushButton_restart.setStyleSheet("QPushButton:hover{\n"
+                                              "background-color:#2784D6;\n"
+                                              "cursor:pointer;}\n"
+                                              "QPushButton{\n"
+                                              "background-color:#F4F4F3;\n"
+                                              "}")
         for x in range(len(self.test_config.test_case)):
             child = QTreeWidgetItem(parent)
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
             child.setText(0, self.test_config.test_case_detail[x]["title"])
             child.setCheckState(0, Qt.Unchecked)
-        # table widget 自适应
-        self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
-                                                                               QHeaderView.Stretch)
-        self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
-                                                                 QHeaderView.Stretch)
         self.test_result = {}
-        # remove grid
-        self.tableWidget_test_resource.setShowGrid(False)
-        self.tableWidget.setShowGrid(False)
+
 
         # set alter color
         self.tableWidget_test_resource.setAlternatingRowColors(True)
@@ -360,12 +394,19 @@ class DialogSecurityMain(QDialog, Ui_Dialog):
         self.tableWidget.setRowCount(len(self.test_result))
         temp_index = 0
         for key, value in self.test_result.items():
-            item = QTableWidgetItem(str(key))
+            item = QTableWidgetItem(str(temp_index + 1))
             self.tableWidget.setItem(temp_index, 0, item)
+            item = QTableWidgetItem(str(key))
 
-            item = QTableWidgetItem(str(value))
             self.tableWidget.setItem(temp_index, 1, item)
 
             item = QTableWidgetItem(str(value))
             self.tableWidget.setItem(temp_index, 2, item)
+
+            item = QTableWidgetItem(str(value))
+            self.tableWidget.setItem(temp_index, 3, item)
+
+            for a in range(0, 4):
+                self.tableWidget.item(temp_index, a).setTextAlignment(Qt.AlignCenter)
+
             temp_index = temp_index + 1

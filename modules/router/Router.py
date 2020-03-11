@@ -90,7 +90,6 @@ class RouterDialog(QDialog, Ui_Dialog):
         # load test resource
         for x in range(length):
             item = QTableWidgetItem(str(x + 1))
-
             self.tableWidget_test_resource.setItem(x, 0, item)
             # name
             item = QTableWidgetItem(str(self.test_config.test_source[x]["name"]))
@@ -135,15 +134,22 @@ class RouterDialog(QDialog, Ui_Dialog):
         self.pushButton_start.setStyleSheet("QPushButton:hover{\n"
                                             "background-color:#2784D6;\n"
                                             "cursor:pointer;}\n"
+                                            "QPushButton{\n"
+                                            "background-color:#F4F4F3;\n"
+                                            "}"
                                             )
         self.pushButton_close.setStyleSheet("QPushButton:hover{\n"
                                             "background-color:#2784D6;\n"
                                             "cursor:pointer;}\n"
-                                            )
+                                            "QPushButton{\n"
+                                            "background-color:#F4F4F3;\n"
+                                            "}")
         self.pushButton_restart.setStyleSheet("QPushButton:hover{\n"
                                               "background-color:#2784D6;\n"
                                               "cursor:pointer;}\n"
-                                              )
+                                              "QPushButton{\n"
+                                              "background-color:#F4F4F3;\n"
+                                              "}")
 
         self.test_result = {}
         logger.info("Router inited")
@@ -403,10 +409,5 @@ class RouterDialog(QDialog, Ui_Dialog):
 
             for a in range(0, 4):
                 self.tableWidget.item(temp_index, a).setTextAlignment(Qt.AlignCenter)
-
-            # set tablewidget vertical header center
-            item = QTableWidgetItem(str(temp_index + 1))
-            self.tableWidget.setVerticalHeaderItem(temp_index, item)
-            self.tableWidget.verticalHeaderItem(temp_index).setTextAlignment(Qt.AlignCenter)
 
             temp_index = temp_index + 1

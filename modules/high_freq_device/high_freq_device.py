@@ -13,7 +13,7 @@ from common.config import TestModuleConfigNew, SystemConfig
 from PyQt5.QtWidgets import *
 import os
 import frozen_dir
-from modules.general.PIC_TEXT import DialogPicText
+from modules.general.PIC import DialogPic
 from modules.high_freq_device.MANUAL_TEST_LO import MANUAL_TEST_LO
 from modules.high_freq_device.AUTO_TEST import AUTO_TEST
 from modules.high_freq_device.AUTO_TEST_T import AUTO_TEST_T
@@ -86,43 +86,111 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         length = len(self.test_config.test_source)
         self.tableWidget_test_resource.setRowCount(length)
         for x in range(length):
+            item = QTableWidgetItem(str(x + 1))
+            self.tableWidget_test_resource.setItem(x, 0, item)
             # name
             item = QTableWidgetItem(str(self.test_config.test_source[x]["name"]))
-            self.tableWidget_test_resource.setItem(x, 0, item)
+            self.tableWidget_test_resource.setItem(x, 1, item)
             # number
             item = QTableWidgetItem(str(self.test_config.test_source[x]["type"]))
-            self.tableWidget_test_resource.setItem(x, 1, item)
+            self.tableWidget_test_resource.setItem(x, 2, item)
             # count
             item = QTableWidgetItem(str(self.test_config.test_source[x]["number"]))
-            self.tableWidget_test_resource.setItem(x, 2, item)
+            self.tableWidget_test_resource.setItem(x, 3, item)
             # note
             item = QTableWidgetItem(str(self.test_config.test_source[x]["count"]))
-            self.tableWidget_test_resource.setItem(x, 3, item)
+            self.tableWidget_test_resource.setItem(x, 4, item)
             # set tablewidget vertical header font center
             item = QTableWidgetItem(str(x + 1))
             self.tableWidget_test_resource.setVerticalHeaderItem(x, item)
             self.tableWidget_test_resource.verticalHeaderItem(x).setTextAlignment(Qt.AlignCenter)
             # set font center
-            for a in range(0, 4):
+            for a in range(0, 5):
                 self.tableWidget_test_resource.item(x, a).setTextAlignment(Qt.AlignCenter)
 
-        
         for x in range(len(self.test_config.test_case)):
             child = QTreeWidgetItem(parent)
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)
             child.setText(0, self.test_config.test_case_detail[x]["title"])
             child.setCheckState(0, Qt.Unchecked)
 
-        # remove grid
+        # Grid AlterColor
         self.tableWidget_test_resource.setShowGrid(False)
         self.tableWidget_test_results_coupler.setShowGrid(False)
+        self.tableWidget_test_results_filter.setShowGrid(False)
+        self.tableWidget_test_results_tr.setShowGrid(False)
+        self.tableWidget_test_results_lna.setShowGrid(False)
+        self.tableWidget_test_results_pa.setShowGrid(False)
+        self.tableWidget_test_results_sc.setShowGrid(False)
+        self.tableWidget_test_results_wg.setShowGrid(False)
+        self.tableWidget_test_results_monitor.setShowGrid(False)
+
         self.tableWidget_test_results_coupler.setAlternatingRowColors(True)
         self.tableWidget_test_resource.setAlternatingRowColors(True)
+        self.tableWidget_test_results_filter.setAlternatingRowColors(True)
+        self.tableWidget_test_results_tr.setAlternatingRowColors(True)
+        self.tableWidget_test_results_lna.setAlternatingRowColors(True)
+        self.tableWidget_test_results_pa.setAlternatingRowColors(True)
+        self.tableWidget_test_results_sc.setAlternatingRowColors(True)
+        self.tableWidget_test_results_wg.setAlternatingRowColors(True)
+        self.tableWidget_test_results_monitor.setAlternatingRowColors(True)
 
-        self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
-                                                                               QHeaderView.Stretch)
-        self.tableWidget_test_results_coupler.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
-                                                                               QHeaderView.Stretch)
+        self.tableWidget_test_results_filter.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        self.tableWidget_test_results_tr.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        self.tableWidget_test_results_lna.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        self.tableWidget_test_results_pa.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        self.tableWidget_test_results_sc.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        self.tableWidget_test_results_wg.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        self.tableWidget_test_results_monitor.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        self.tableWidget_test_results_coupler.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        # set column width
+        self.tableWidget_test_resource.setColumnWidth(0, 30)
+        self.tableWidget_test_resource.setColumnWidth(1, 120)
+        self.tableWidget_test_resource.setColumnWidth(2, 80)
+        self.tableWidget_test_resource.setColumnWidth(3, 120)
+        self.tableWidget_test_results_tr.setColumnWidth(0, 30)
+        self.tableWidget_test_results_tr.setColumnWidth(1, 120)
+        self.tableWidget_test_results_tr.setColumnWidth(2, 200)
+        self.tableWidget_test_results_lna.setColumnWidth(0, 30)
+        self.tableWidget_test_results_lna.setColumnWidth(1, 120)
+        self.tableWidget_test_results_pa.setColumnWidth(0, 30)
+        self.tableWidget_test_results_pa.setColumnWidth(1, 120)
+        self.tableWidget_test_results_sc.setColumnWidth(0, 30)
+        self.tableWidget_test_results_sc.setColumnWidth(1, 120)
+        self.tableWidget_test_results_filter.setColumnWidth(0, 30)
+        self.tableWidget_test_results_filter.setColumnWidth(3, 350)
+        self.tableWidget_test_results_filter.setColumnWidth(1, 120)
+        self.tableWidget_test_results_wg.setColumnWidth(0, 30)
+        self.tableWidget_test_results_wg.setColumnWidth(1, 120)
+        self.tableWidget_test_results_coupler.setColumnWidth(0, 30)
+        self.tableWidget_test_results_coupler.setColumnWidth(1, 120)
+        self.tableWidget_test_results_coupler.setColumnWidth(3, 400)
+        self.tableWidget_test_results_monitor.setColumnWidth(0, 30)
+        self.tableWidget_test_results_monitor.setColumnWidth(1, 120)
+        self.tableWidget_test_results_lna.setColumnWidth(2, 200)
+        self.tableWidget_test_results_pa.setColumnWidth(2, 200)
+        self.tableWidget_test_results_sc.setColumnWidth(2, 200)
+        self.tableWidget_test_results_filter.setColumnWidth(2, 200)
+        self.pushButton_start.setStyleSheet("QPushButton:hover{\n"
+                                            "background-color:#2784D6;\n"
+                                            "cursor:pointer;}\n"
+                                            "QPushButton{\n"
+                                            "background-color:#F4F4F3;\n"
+                                            "}"
+                                            )
+        self.pushButton_close.setStyleSheet("QPushButton:hover{\n"
+                                            "background-color:#2784D6;\n"
+                                            "cursor:pointer;}\n"
+                                            "QPushButton{\n"
+                                            "background-color:#F4F4F3;\n"
+                                            "}")
+        self.pushButton_restart.setStyleSheet("QPushButton:hover{\n"
+                                              "background-color:#2784D6;\n"
+                                              "cursor:pointer;}\n"
+                                              "QPushButton{\n"
+                                              "background-color:#F4F4F3;\n"
+                                              "}")
         logger.info("high_freq_device inited")
         self.tabWidget.setCurrentIndex(0)
         self.record_table_init()
@@ -339,11 +407,11 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         for table in table_names:
             self.table = getattr(self, table)
             self.table.clear()
-            self.table.setColumnCount(4)
+            self.table.setColumnCount(5)
             self.table.setRowCount(0)
-            self.table.setHorizontalHeaderLabels([ModuleConstants.TESTTABLE_ITEM, ModuleConstants.TESTTABLE_COND, 
+            self.table.setHorizontalHeaderLabels([ModuleConstants.TESTNUMBER,ModuleConstants.TESTTABLE_ITEM, ModuleConstants.TESTTABLE_COND,
                                                   ModuleConstants.TESTTABLE_VALUE,ModuleConstants.TESTTABLE_CONCLU])
-            self.table.horizontalHeader().setSectionResizeMode (1)  
+
 
         
     def test_data_refesh_tr(self,flag):
@@ -353,26 +421,30 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         rowCount=self.table.rowCount()
         self.table.insertRow(rowCount)
         current_row=rowCount
-        
-        mItem = self.current_test_step_dialog.test_result.test_item
-        newItem = QTableWidgetItem(mItem)
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+        # the column number
+        newItem = QTableWidgetItem(str(current_row+1))
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter)
         self.table.setItem(current_row, 0, newItem)
-        
-        mItem = self.current_test_step_dialog.test_result.test_condition
+
+        mItem = self.current_test_step_dialog.test_result.test_item
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 1, newItem)
         
-        mItem = str(self.current_test_step_dialog.test_result.test_results)
+        mItem = self.current_test_step_dialog.test_result.test_condition
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 2, newItem)
         
-        mItem = self.current_test_step_dialog.test_result.test_conclusion
+        mItem = str(self.current_test_step_dialog.test_result.test_results)
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 3, newItem)
+        
+        mItem = self.current_test_step_dialog.test_result.test_conclusion
+        newItem = QTableWidgetItem(mItem)
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+        self.table.setItem(current_row, 4, newItem)
 
         self.processStep(flag)
 #         if self.current_test_step_dialog:
@@ -395,25 +467,30 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         rowCount=self.table.rowCount()
         self.table.insertRow(rowCount)
         current_row=rowCount
-        mItem = self.current_test_step_dialog.test_result.test_item
-        newItem = QTableWidgetItem(mItem)
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+
+        newItem = QTableWidgetItem(str(current_row+1))
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter)
         self.table.setItem(current_row, 0, newItem)
-        
-        mItem = self.current_test_step_dialog.test_result.test_condition
+
+        mItem = self.current_test_step_dialog.test_result.test_item
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 1, newItem)
         
-        mItem = str(self.current_test_step_dialog.test_result.test_results)
+        mItem = self.current_test_step_dialog.test_result.test_condition
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 2, newItem)
         
-        mItem = self.current_test_step_dialog.test_result.test_conclusion
+        mItem = str(self.current_test_step_dialog.test_result.test_results)
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 3, newItem)
+        
+        mItem = self.current_test_step_dialog.test_result.test_conclusion
+        newItem = QTableWidgetItem(mItem)
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+        self.table.setItem(current_row, 4, newItem)
         self.processStep(flag)
         #test
 #         if self.current_test_step_dialog:
@@ -436,25 +513,30 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         rowCount=self.table.rowCount()
         self.table.insertRow(rowCount)
         current_row=rowCount
-        mItem = self.current_test_step_dialog.test_result.test_item
-        newItem = QTableWidgetItem(mItem)
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+
+        newItem = QTableWidgetItem(str(current_row + 1))
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter)
         self.table.setItem(current_row, 0, newItem)
-        
-        mItem = self.current_test_step_dialog.test_result.test_condition
+
+        mItem = self.current_test_step_dialog.test_result.test_item
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 1, newItem)
         
-        mItem = str(self.current_test_step_dialog.test_result.test_results)
+        mItem = self.current_test_step_dialog.test_result.test_condition
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 2, newItem)
         
-        mItem = self.current_test_step_dialog.test_result.test_conclusion
+        mItem = str(self.current_test_step_dialog.test_result.test_results)
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 3, newItem)
+        
+        mItem = self.current_test_step_dialog.test_result.test_conclusion
+        newItem = QTableWidgetItem(mItem)
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+        self.table.setItem(current_row, 4, newItem)
         
         self.processStep(flag)
         
@@ -465,25 +547,30 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         rowCount=self.table.rowCount()
         self.table.insertRow(rowCount)
         current_row=rowCount
-        mItem = self.current_test_step_dialog.test_result.test_item
-        newItem = QTableWidgetItem(mItem)
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+
+        newItem = QTableWidgetItem(str(current_row + 1))
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter)
         self.table.setItem(current_row, 0, newItem)
-        
-        mItem = self.current_test_step_dialog.test_result.test_condition
+
+        mItem = self.current_test_step_dialog.test_result.test_item
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 1, newItem)
         
-        mItem = str(self.current_test_step_dialog.test_result.test_results)
+        mItem = self.current_test_step_dialog.test_result.test_condition
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 2, newItem)
         
-        mItem = self.current_test_step_dialog.test_result.test_conclusion
+        mItem = str(self.current_test_step_dialog.test_result.test_results)
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 3, newItem)
+        
+        mItem = self.current_test_step_dialog.test_result.test_conclusion
+        newItem = QTableWidgetItem(mItem)
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+        self.table.setItem(current_row, 4, newItem)
         
         self.processStep(flag)
         
@@ -494,25 +581,30 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         rowCount=self.table.rowCount()
         self.table.insertRow(rowCount)
         current_row=rowCount
-        mItem = self.current_test_step_dialog.test_result.test_item
-        newItem = QTableWidgetItem(mItem)
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+
+        newItem = QTableWidgetItem(str(current_row + 1))
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter)
         self.table.setItem(current_row, 0, newItem)
-        
-        mItem = self.current_test_step_dialog.test_result.test_condition
+
+        mItem = self.current_test_step_dialog.test_result.test_item
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 1, newItem)
         
-        mItem = str(self.current_test_step_dialog.test_result.test_results)
+        mItem = self.current_test_step_dialog.test_result.test_condition
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 2, newItem)
         
-        mItem = self.current_test_step_dialog.test_result.test_conclusion
+        mItem = str(self.current_test_step_dialog.test_result.test_results)
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 3, newItem)
+        
+        mItem = self.current_test_step_dialog.test_result.test_conclusion
+        newItem = QTableWidgetItem(mItem)
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+        self.table.setItem(current_row, 4, newItem)
         
         self.processStep(flag)
         
@@ -523,25 +615,30 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         rowCount=self.table.rowCount()
         self.table.insertRow(rowCount)
         current_row=rowCount
-        mItem = self.current_test_step_dialog.test_result.test_item
-        newItem = QTableWidgetItem(mItem)
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+
+        newItem = QTableWidgetItem(str(current_row + 1))
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter)
         self.table.setItem(current_row, 0, newItem)
-        
-        mItem = self.current_test_step_dialog.test_result.test_condition
+
+        mItem = self.current_test_step_dialog.test_result.test_item
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 1, newItem)
         
-        mItem = str(self.current_test_step_dialog.test_result.test_results)
+        mItem = self.current_test_step_dialog.test_result.test_condition
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 2, newItem)
         
-        mItem = self.current_test_step_dialog.test_result.test_conclusion
+        mItem = str(self.current_test_step_dialog.test_result.test_results)
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 3, newItem)
+        
+        mItem = self.current_test_step_dialog.test_result.test_conclusion
+        newItem = QTableWidgetItem(mItem)
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+        self.table.setItem(current_row, 4, newItem)
         
         self.processStep(flag)
         
@@ -552,25 +649,30 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         rowCount=self.table.rowCount()
         self.table.insertRow(rowCount)
         current_row=rowCount
-        mItem = self.current_test_step_dialog.test_result.test_item
-        newItem = QTableWidgetItem(mItem)
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+
+        newItem = QTableWidgetItem(str(current_row + 1))
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter)
         self.table.setItem(current_row, 0, newItem)
-        
-        mItem = self.current_test_step_dialog.test_result.test_condition
+
+        mItem = self.current_test_step_dialog.test_result.test_item
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 1, newItem)
         
-        mItem = str(self.current_test_step_dialog.test_result.test_results)
+        mItem = self.current_test_step_dialog.test_result.test_condition
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 2, newItem)
         
-        mItem = self.current_test_step_dialog.test_result.test_conclusion
+        mItem = str(self.current_test_step_dialog.test_result.test_results)
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
         self.table.setItem(current_row, 3, newItem)
+        
+        mItem = self.current_test_step_dialog.test_result.test_conclusion
+        newItem = QTableWidgetItem(mItem)
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+        self.table.setItem(current_row, 4, newItem)
         
         self.processStep(flag)
         
@@ -582,25 +684,30 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
             rowCount=self.table.rowCount()
             self.table.insertRow(rowCount)
             current_row=rowCount
-            mItem = self.current_test_step_dialog.test_result.test_item
-            newItem = QTableWidgetItem(mItem)
-            newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+
+            newItem = QTableWidgetItem(str(current_row + 1))
+            newItem.setTextAlignment(QtCore.Qt.AlignCenter)
             self.table.setItem(current_row, 0, newItem)
-            
-            mItem = self.current_test_step_dialog.test_result.test_condition
+
+            mItem = self.current_test_step_dialog.test_result.test_item
             newItem = QTableWidgetItem(mItem)
             newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
             self.table.setItem(current_row, 1, newItem)
             
-            mItem = str(self.current_test_step_dialog.test_result.test_results[i])
+            mItem = self.current_test_step_dialog.test_result.test_condition
             newItem = QTableWidgetItem(mItem)
             newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
             self.table.setItem(current_row, 2, newItem)
             
-            mItem = str(self.current_test_step_dialog.test_result.test_conclusion[i])
+            mItem = str(self.current_test_step_dialog.test_result.test_results[i])
             newItem = QTableWidgetItem(mItem)
             newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
             self.table.setItem(current_row, 3, newItem)
+            
+            mItem = str(self.current_test_step_dialog.test_result.test_conclusion[i])
+            newItem = QTableWidgetItem(mItem)
+            newItem.setTextAlignment(QtCore.Qt.AlignCenter) 
+            self.table.setItem(current_row, 4, newItem)
         
         self.processStep(flag)
     def start_caculate_test_duration(self):

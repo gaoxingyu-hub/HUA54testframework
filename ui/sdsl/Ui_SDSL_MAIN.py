@@ -20,10 +20,12 @@ class Ui_Dialog(object):
         Dialog.setFont(font)
         Dialog.setStyleSheet("QDialog{\n"
 "background-color:#D0DAE5;\n"
+"margin-top:10px;\n"
 "}\n"
 "\n"
 "QTextBrower{\n"
 "background-color:#D0DAE5;\n"
+"border-width:0;border-style:outset\n"
 "}\n"
 "\n"
 "QLineEdit{\n"
@@ -38,29 +40,121 @@ class Ui_Dialog(object):
 "background-color:#D0DAE5;\n"
 "}\n"
 "\n"
-"QHeaderView{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
 "QLabel{\n"
-"font-size:12px;\n"
+"font-size:14px;\n"
 "font-family:Microsoft YaHei;\n"
 "background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QPushButton{         /*按钮自适应拉伸背景*/\n"
-"border-width: 2px 15px 2px 15px;\n"
-"background-color:#2884D8;\n"
-"color: #FFFFFF;\n"
-"font-size:12px;\n"
-"font-family:Microsoft YaHei;\n"
 "}\n"
 "\n"
 "QGroupBox{\n"
-"font-size:12px;\n"
+"font-size:14px;\n"
 "font-family:Microsoft YaHei;\n"
-"border:1px solid rgb(0, 0, 0); \n"
-"}")
+"border:1px solid rgb(0, 0, 0);\n"
+"}\n"
+"\n"
+"/****QPushButton****/\n"
+"QPushButton{\n"
+"width:32px;\n"
+"height:32px;\n"
+"background-color:#F4F4F3;\n"
+"color: #FFFFFF;\n"
+"font-size:14px;\n"
+"font-family:Microsoft YaHei;\n"
+"}\n"
+"QPushButton#pushButton_close:hover{\n"
+"background-color:#2784D6;\n"
+"cursor:pointer;\n"
+"}\n"
+"QPushButton#pushButton_close:pressed{\n"
+"background-color:#2784D6;\n"
+"}\n"
+"QToolBar{\n"
+"background-color:#172545;\n"
+"height:30px;\n"
+"border:None;\n"
+"padding:1px;\n"
+"}\n"
+"\n"
+"\n"
+"/****QTreeWidget****/\n"
+"QTreeWidget{\n"
+"background-color:#D0DAE5;\n"
+"padding-top:20px;\n"
+"padding-left:10px;\n"
+"margin-top:20px;\n"
+"}\n"
+"QTreeView::item{\n"
+"font: 14px;\n"
+"}\n"
+"QTreeView::item:selected{\n"
+"selection-color: #1F95FF;\n"
+"}\n"
+"QTreeView::item:hover{\n"
+"background-color:#D0DAE5;\n"
+"}\n"
+"\n"
+"QTreeView::branch:has-children:!has-siblings:closed,\n"
+"QTreeView::branch:closed:has-children:has-siblings {\n"
+"border-image: none;\n"
+"image: url(imgs/common/plus.png);\n"
+"}\n"
+"\n"
+"QTreeView::branch:open:has-children:!has-siblings,\n"
+"QTreeView::branch:open:has-children:has-siblings  {\n"
+"border-image: none;\n"
+"image: url(imgs/common/Minus.png);\n"
+"}\n"
+"\n"
+"QTreeView::branch:!has-children:!has-siblings:adjoins-item {\n"
+"    border-image: url(imgs/common/tree.png);\n"
+"}\n"
+"QTableWidget{\n"
+"outline: none;\n"
+"selection-color:#666666;\n"
+"alternate-background-color:#F9FAFC;\n"
+"}\n"
+"QTableCornerButton::section{\n"
+"background: #EDF2F8;\n"
+"}\n"
+"QTableWidget::item{\n"
+"font-size:14px;\n"
+"line-height:30px;\n"
+"border:1px solid #D2D2D2;\n"
+"}\n"
+"\n"
+"QTableWidget::item:hover{\n"
+"background-color:#EAF7FF;\n"
+"}\n"
+"QHeaderView::section:vertical {\n"
+"color: #666666;\n"
+"text-align:center;\n"
+"font: 14px Arial;\n"
+"border:1px solid #D2D2D2;\n"
+"background: #F9FBFD;\n"
+"width: 40px;\n"
+"height:30px;\n"
+"alternate-background-color:#F9FAFC;\n"
+"}\n"
+"QHeaderView::section:horizontal {\n"
+"color: #666666;\n"
+"font: 14px Microsoft YaHei;\n"
+"padding: 0px 1px 0 1px;\n"
+"text-align:center;\n"
+"border:1px solid #D2D2D2;\n"
+"background: #EDF2F8;\n"
+"height: 30px;\n"
+"alternate-background-color:#F9FAFC;\n"
+"}\n"
+"QScrollBar:vertical{\n"
+"border: 5px solid #D5D5D5;\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color:#2784D6;\n"
+"cursor:pointer;}\n"
+"QPushButton{\n"
+"background-color:#F4F4F3;\n"
+"}\n"
+"")
         self.gridLayout_11 = QtWidgets.QGridLayout(Dialog)
         self.gridLayout_11.setObjectName("gridLayout_11")
         self.gridLayout_10 = QtWidgets.QGridLayout()
@@ -142,7 +236,7 @@ class Ui_Dialog(object):
         self.tableWidget_test_resource = QtWidgets.QTableWidget(self.groupBox_test_resource)
         self.tableWidget_test_resource.setGridStyle(QtCore.Qt.DotLine)
         self.tableWidget_test_resource.setObjectName("tableWidget_test_resource")
-        self.tableWidget_test_resource.setColumnCount(4)
+        self.tableWidget_test_resource.setColumnCount(5)
         self.tableWidget_test_resource.setRowCount(2)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setVerticalHeaderItem(0, item)
@@ -157,7 +251,7 @@ class Ui_Dialog(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setHorizontalHeaderItem(3, item)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(0, 0, item)
+        self.tableWidget_test_resource.setHorizontalHeaderItem(4, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setItem(0, 1, item)
         item = QtWidgets.QTableWidgetItem()
@@ -165,15 +259,19 @@ class Ui_Dialog(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setItem(0, 3, item)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(1, 0, item)
+        self.tableWidget_test_resource.setItem(0, 4, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setItem(1, 1, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setItem(1, 2, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setItem(1, 3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_resource.setItem(1, 4, item)
         self.tableWidget_test_resource.horizontalHeader().setCascadingSectionResizes(True)
         self.tableWidget_test_resource.horizontalHeader().setDefaultSectionSize(120)
+        self.tableWidget_test_resource.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget_test_resource.verticalHeader().setVisible(False)
         self.gridLayout_5.addWidget(self.tableWidget_test_resource, 0, 0, 1, 1)
         self.horizontalLayout.addWidget(self.groupBox_test_resource)
         self.horizontalLayout.setStretch(1, 2)
@@ -186,46 +284,35 @@ class Ui_Dialog(object):
         self.tabWidget = QtWidgets.QTabWidget(self.groupBox_test_results)
         self.tabWidget.setTabPosition(QtWidgets.QTabWidget.South)
         self.tabWidget.setObjectName("tabWidget")
-        self.tab = QtWidgets.QWidget()
-        self.tab.setObjectName("tab")
-        self.gridLayout_8 = QtWidgets.QGridLayout(self.tab)
-        self.gridLayout_8.setObjectName("gridLayout_8")
-        self.tableWidget_test_results_ecom_ns1 = QtWidgets.QTableWidget(self.tab)
-        self.tableWidget_test_results_ecom_ns1.setObjectName("tableWidget_test_results_ecom_ns1")
-        self.tableWidget_test_results_ecom_ns1.setColumnCount(3)
-        self.tableWidget_test_results_ecom_ns1.setRowCount(0)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_results_ecom_ns1.setHorizontalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_results_ecom_ns1.setHorizontalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_results_ecom_ns1.setHorizontalHeaderItem(2, item)
-        self.tableWidget_test_results_ecom_ns1.horizontalHeader().setDefaultSectionSize(228)
-        self.gridLayout_8.addWidget(self.tableWidget_test_results_ecom_ns1, 0, 0, 1, 1)
-        self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
         self.gridLayout_9 = QtWidgets.QGridLayout(self.tab_2)
         self.gridLayout_9.setObjectName("gridLayout_9")
-        self.tableWidget_test_results_ecom_ns2 = QtWidgets.QTableWidget(self.tab_2)
-        self.tableWidget_test_results_ecom_ns2.setObjectName("tableWidget_test_results_ecom_ns2")
-        self.tableWidget_test_results_ecom_ns2.setColumnCount(3)
-        self.tableWidget_test_results_ecom_ns2.setRowCount(0)
+        self.tableWidget_test_results = QtWidgets.QTableWidget(self.tab_2)
+        self.tableWidget_test_results.setObjectName("tableWidget_test_results")
+        self.tableWidget_test_results.setColumnCount(4)
+        self.tableWidget_test_results.setRowCount(1)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_results_ecom_ns2.setHorizontalHeaderItem(0, item)
+        self.tableWidget_test_results.setVerticalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_results_ecom_ns2.setHorizontalHeaderItem(1, item)
+        self.tableWidget_test_results.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_results_ecom_ns2.setHorizontalHeaderItem(2, item)
-        self.tableWidget_test_results_ecom_ns2.horizontalHeader().setDefaultSectionSize(228)
-        self.gridLayout_9.addWidget(self.tableWidget_test_results_ecom_ns2, 0, 0, 1, 1)
+        self.tableWidget_test_results.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_results.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_results.setHorizontalHeaderItem(3, item)
+        self.tableWidget_test_results.horizontalHeader().setDefaultSectionSize(120)
+        self.tableWidget_test_results.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget_test_results.verticalHeader().setVisible(False)
+        self.gridLayout_9.addWidget(self.tableWidget_test_results, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab_2, "")
         self.gridLayout_4.addWidget(self.tabWidget, 0, 0, 1, 1)
         self.gridLayout_10.addWidget(self.groupBox_test_results, 2, 0, 1, 1)
         self.gridLayout_11.addLayout(self.gridLayout_10, 0, 0, 1, 1)
 
         self.retranslateUi(Dialog)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
@@ -240,46 +327,45 @@ class Ui_Dialog(object):
         item = self.tableWidget_test_resource.verticalHeaderItem(1)
         item.setText(_translate("Dialog", "2"))
         item = self.tableWidget_test_resource.horizontalHeaderItem(0)
-        item.setText(_translate("Dialog", "名称"))
+        item.setText(_translate("Dialog", " "))
         item = self.tableWidget_test_resource.horizontalHeaderItem(1)
-        item.setText(_translate("Dialog", "类型"))
+        item.setText(_translate("Dialog", "名称"))
         item = self.tableWidget_test_resource.horizontalHeaderItem(2)
-        item.setText(_translate("Dialog", "编号/型号"))
+        item.setText(_translate("Dialog", "类型"))
         item = self.tableWidget_test_resource.horizontalHeaderItem(3)
+        item.setText(_translate("Dialog", "编号/型号"))
+        item = self.tableWidget_test_resource.horizontalHeaderItem(4)
         item.setText(_translate("Dialog", "数量"))
         __sortingEnabled = self.tableWidget_test_resource.isSortingEnabled()
         self.tableWidget_test_resource.setSortingEnabled(False)
-        item = self.tableWidget_test_resource.item(0, 0)
-        item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_resource.item(0, 1)
-        item.setText(_translate("Dialog", "2"))
+        item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_resource.item(0, 2)
         item.setText(_translate("Dialog", "2"))
         item = self.tableWidget_test_resource.item(0, 3)
-        item.setText(_translate("Dialog", "1"))
-        item = self.tableWidget_test_resource.item(1, 0)
         item.setText(_translate("Dialog", "2"))
+        item = self.tableWidget_test_resource.item(0, 4)
+        item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_resource.item(1, 1)
         item.setText(_translate("Dialog", "2"))
         item = self.tableWidget_test_resource.item(1, 2)
         item.setText(_translate("Dialog", "2"))
         item = self.tableWidget_test_resource.item(1, 3)
         item.setText(_translate("Dialog", "2"))
+        item = self.tableWidget_test_resource.item(1, 4)
+        item.setText(_translate("Dialog", "2"))
         self.tableWidget_test_resource.setSortingEnabled(__sortingEnabled)
-        item = self.tableWidget_test_results_ecom_ns1.horizontalHeaderItem(0)
+        item = self.tableWidget_test_results.verticalHeaderItem(0)
+        item.setText(_translate("Dialog", "1"))
+        item = self.tableWidget_test_results.horizontalHeaderItem(0)
+        item.setText(_translate("Dialog", " "))
+        item = self.tableWidget_test_results.horizontalHeaderItem(1)
         item.setText(_translate("Dialog", "测试项"))
-        item = self.tableWidget_test_results_ecom_ns1.horizontalHeaderItem(1)
+        item = self.tableWidget_test_results.horizontalHeaderItem(2)
         item.setText(_translate("Dialog", "测试结果"))
-        item = self.tableWidget_test_results_ecom_ns1.horizontalHeaderItem(2)
+        item = self.tableWidget_test_results.horizontalHeaderItem(3)
         item.setText(_translate("Dialog", "测试结论"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Dialog", "ecom-ns1"))
-        item = self.tableWidget_test_results_ecom_ns2.horizontalHeaderItem(0)
-        item.setText(_translate("Dialog", "测试项"))
-        item = self.tableWidget_test_results_ecom_ns2.horizontalHeaderItem(1)
-        item.setText(_translate("Dialog", "测试结果"))
-        item = self.tableWidget_test_results_ecom_ns2.horizontalHeaderItem(2)
-        item.setText(_translate("Dialog", "测试结论"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Dialog", "ecom-ns2"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Dialog", "SDSL测试"))
 import iconQrc_rc
 
 

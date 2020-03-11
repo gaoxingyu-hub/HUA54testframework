@@ -3,5 +3,9 @@
     <file>icon/close1.ico</file>
     <file>icon/restart1.ico</file>
     <file>icon/start1.ico</file>
+    <file>icon/cancel.ico</file>
+    <file>icon/start.ico</file>
+    <file>icon/stop.ico</file>
+    <file>icon/line.ico</file>
   </qresource>
 </RCC>

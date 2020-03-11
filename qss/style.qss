@@ -1,29 +1,29 @@
 QDialog{
-background-color:#E3E8F1;
+background-color:#D0DAE5;
 margin-top:10px;
 }
 
 QTextBrower{
-background-color:#E3EAF4;
+background-color:#D0DAE5;
 border-width:0;border-style:outset
 }
 
 QLineEdit{
-background-color:#E3EAF4;
+background-color:#D0DAE5;
 }
 
 QWidget{
-background-color:#E3EAF4;
+background-color:#D0DAE5;
 }
 
 QStackedWidget{
-background-color:#E3EAF4;
+background-color:#D0DAE5;
 }
 
 QLabel{
 font-size:14px;
 font-family:Microsoft YaHei;
-background-color:#E3EAF4;
+background-color:#D0DAE5;
 }
 
 QGroupBox{
@@ -58,7 +58,7 @@ padding:1px;
 
 /****QTreeWidget****/
 QTreeWidget{
-background-color:#E3EAF4;
+background-color:#D0DAE5;
 padding-top:20px;
 padding-left:10px;
 margin-top:20px;
@@ -127,4 +127,10 @@ alternate-background-color:#F9FAFC;
 }
 QScrollBar:vertical{
 border: 5px solid #D5D5D5;
+}
+QPushButton:hover{
+background-color:#2784D6;
+cursor:pointer;}
+QPushButton{
+background-color:#F4F4F3;
 }

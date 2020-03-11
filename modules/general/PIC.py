@@ -8,15 +8,16 @@ from PyQt5.QtWidgets import QDialog, QGraphicsItem, QScrollArea
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import pyqtSignal
 
-from .Ui_PIC_TEXT import Ui_Dialog
+from .Ui_PIC import Ui_Dialog
 import os
 
 
-class DialogPicText(QDialog, Ui_Dialog):
+class DialogPic(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
     _signalFinish = pyqtSignal(str, object)
+    _signalFinishall = pyqtSignal(str, object)
 
     def __init__(self, parent=None):
         """
@@ -24,9 +25,10 @@ class DialogPicText(QDialog, Ui_Dialog):
         @param parent reference to the parent widget
         @type QWidget
         """
-        super(DialogPicText, self).__init__(parent)
+        super(DialogPic, self).__init__(parent)
         self.setupUi(self)
         self.flag = 1
+        self.action = 'finish_all'
 
     """
         # 图片缩放比例
@@ -83,6 +85,14 @@ class DialogPicText(QDialog, Ui_Dialog):
         """
         Slot documentation goes here.
         """
+        self._signalFinish.emit("next", None)
         self.reject()
         self.close()
-        self._signalFinish.emit("next", None)
+
+    #         self._signalFinish.emit("next", None)
+
+    @pyqtSlot()
+    def closeEvent(self, event):
+        if self.action == 'finish_all':
+            self._signalFinish.emit('finish_all', None)
+        event.accept()

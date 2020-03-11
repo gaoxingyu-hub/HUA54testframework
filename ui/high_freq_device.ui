@@ -22,10 +22,12 @@
   <property name="styleSheet">
    <string notr="true">QDialog{
 background-color:#D0DAE5;
+margin-top:10px;
 }
 
 QTextBrower{
 background-color:#D0DAE5;
+border-width:0;border-style:outset
 }
 
 QLineEdit{
@@ -40,29 +42,121 @@ QStackedWidget{
 background-color:#D0DAE5;
 }
 
-QHeaderView{
-background-color:#D0DAE5;
-}
-
 QLabel{
-font-size:12px;
+font-size:14px;
 font-family:Microsoft YaHei;
 background-color:#D0DAE5;
-}
-
-QPushButton{         /*按钮自适应拉伸背景*/
-border-width: 2px 15px 2px 15px;
-background-color:#2884D8;
-color: #FFFFFF;
-font-size:12px;
-font-family:Microsoft YaHei;
 }
 
 QGroupBox{
-font-size:12px;
+font-size:14px;
 font-family:Microsoft YaHei;
-border:1px solid rgb(0, 0, 0); 
-}</string>
+border:1px solid rgb(0, 0, 0);
+}
+
+/****QPushButton****/
+QPushButton{
+width:32px;
+height:32px;
+background-color:#F4F4F3;
+color: #FFFFFF;
+font-size:14px;
+font-family:Microsoft YaHei;
+}
+QPushButton#pushButton_close:hover{
+background-color:#2784D6;
+cursor:pointer;
+}
+QPushButton#pushButton_close:pressed{
+background-color:#2784D6;
+}
+QToolBar{
+background-color:#172545;
+height:30px;
+border:None;
+padding:1px;
+}
+
+
+/****QTreeWidget****/
+QTreeWidget{
+background-color:#D0DAE5;
+padding-top:20px;
+padding-left:10px;
+margin-top:20px;
+}
+QTreeView::item{
+font: 14px;
+}
+QTreeView::item:selected{
+selection-color: #1F95FF;
+}
+QTreeView::item:hover{
+background-color:#D0DAE5;
+}
+
+QTreeView::branch:has-children:!has-siblings:closed,
+QTreeView::branch:closed:has-children:has-siblings {
+border-image: none;
+image: url(imgs/common/plus.png);
+}
+
+QTreeView::branch:open:has-children:!has-siblings,
+QTreeView::branch:open:has-children:has-siblings  {
+border-image: none;
+image: url(imgs/common/Minus.png);
+}
+
+QTreeView::branch:!has-children:!has-siblings:adjoins-item {
+    border-image: url(imgs/common/tree.png);
+}
+QTableWidget{
+outline: none;
+selection-color:#666666;
+alternate-background-color:#F9FAFC;
+}
+QTableCornerButton::section{
+background: #EDF2F8;
+}
+QTableWidget::item{
+font-size:14px;
+line-height:30px;
+border:1px solid #D2D2D2;
+}
+
+QTableWidget::item:hover{
+background-color:#EAF7FF;
+}
+QHeaderView::section:vertical {
+color: #666666;
+text-align:center;
+font: 14px Arial;
+border:1px solid #D2D2D2;
+background: #F9FBFD;
+width: 40px;
+height:30px;
+alternate-background-color:#F9FAFC;
+}
+QHeaderView::section:horizontal {
+color: #666666;
+font: 14px Microsoft YaHei;
+padding: 0px 1px 0 1px;
+text-align:center;
+border:1px solid #D2D2D2;
+background: #EDF2F8;
+height: 30px;
+alternate-background-color:#F9FAFC;
+}
+QScrollBar:vertical{
+border: 5px solid #D5D5D5;
+}
+QPushButton:hover{
+background-color:#2784D6;
+cursor:pointer;}
+QPushButton{
+background-color:#F4F4F3;
+}
+</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_8">
    <item row="0" column="0">
@@ -78,7 +172,7 @@ border:1px solid rgb(0, 0, 0);
        </property>
        <property name="icon">
         <iconset resource="iconQrc.qrc">
-         <normaloff>:/newPrefix/icon/start1.ico</normaloff>:/newPrefix/icon/start1.ico</iconset>
+         <normaloff>:/newPrefix/icon/start.ico</normaloff>:/newPrefix/icon/start.ico</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -98,7 +192,7 @@ border:1px solid rgb(0, 0, 0);
        </property>
        <property name="icon">
         <iconset resource="iconQrc.qrc">
-         <normaloff>:/newPrefix/icon/restart1.ico</normaloff>:/newPrefix/icon/restart1.ico</iconset>
+         <normaloff>:/newPrefix/icon/stop.ico</normaloff>:/newPrefix/icon/stop.ico</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -118,7 +212,7 @@ border:1px solid rgb(0, 0, 0);
        </property>
        <property name="icon">
         <iconset resource="iconQrc.qrc">
-         <normaloff>:/newPrefix/icon/close1.ico</normaloff>:/newPrefix/icon/close1.ico</iconset>
+         <normaloff>:/newPrefix/icon/cancel.ico</normaloff>:/newPrefix/icon/cancel.ico</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -294,9 +388,12 @@ border:1px solid rgb(0, 0, 0);
            <bool>true</bool>
           </attribute>
           <attribute name="horizontalHeaderDefaultSectionSize">
-           <number>153</number>
+           <number>150</number>
           </attribute>
           <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
           <attribute name="verticalHeaderStretchLastSection">
@@ -312,71 +409,11 @@ border:1px solid rgb(0, 0, 0);
             <string>2</string>
            </property>
           </row>
-          <row>
+          <column>
            <property name="text">
-            <string>3</string>
+            <string/>
            </property>
-          </row>
-          <row>
-           <property name="text">
-            <string>4</string>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string>5</string>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string>6</string>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string>7</string>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string>8</string>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string>9</string>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string>10</string>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string>11</string>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string>12</string>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string>13</string>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string>14</string>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string>15</string>
-           </property>
-          </row>
+          </column>
           <column>
            <property name="text">
             <string>名称</string>
@@ -397,299 +434,44 @@ border:1px solid rgb(0, 0, 0);
             <string>备注</string>
            </property>
           </column>
-          <item row="0" column="0">
-           <property name="text">
-            <string>信号源</string>
-           </property>
-          </item>
           <item row="0" column="1">
            <property name="text">
-            <string>仪器仪表</string>
+            <string>1</string>
            </property>
           </item>
           <item row="0" column="2">
            <property name="text">
-            <string>keysight E8267D</string>
+            <string>1</string>
            </property>
           </item>
           <item row="0" column="3">
            <property name="text">
-            <string>1台</string>
+            <string>1</string>
            </property>
           </item>
-          <item row="1" column="0">
+          <item row="0" column="4">
            <property name="text">
-            <string>频谱仪</string>
+            <string>1</string>
            </property>
           </item>
           <item row="1" column="1">
            <property name="text">
-            <string>仪器仪表</string>
+            <string>2</string>
            </property>
           </item>
           <item row="1" column="2">
            <property name="text">
-            <string>keysight N9030B</string>
+            <string>2</string>
            </property>
           </item>
           <item row="1" column="3">
            <property name="text">
-            <string>1台</string>
+            <string>2</string>
            </property>
           </item>
-          <item row="2" column="0">
+          <item row="1" column="4">
            <property name="text">
-            <string>矢量网络分析仪</string>
-           </property>
-          </item>
-          <item row="2" column="1">
-           <property name="text">
-            <string>仪器仪表</string>
-           </property>
-          </item>
-          <item row="2" column="2">
-           <property name="text">
-            <string>keysight N5242</string>
-           </property>
-          </item>
-          <item row="2" column="3">
-           <property name="text">
-            <string>1台</string>
-           </property>
-          </item>
-          <item row="3" column="0">
-           <property name="text">
-            <string>波导开关</string>
-           </property>
-          </item>
-          <item row="3" column="1">
-           <property name="text">
-            <string>测试附件</string>
-           </property>
-          </item>
-          <item row="3" column="2">
-           <property name="text">
-            <string>CSD-I</string>
-           </property>
-          </item>
-          <item row="3" column="3">
-           <property name="text">
-            <string>1个</string>
-           </property>
-          </item>
-          <item row="4" column="0">
-           <property name="text">
-            <string>波导开关控制器</string>
-           </property>
-          </item>
-          <item row="4" column="1">
-           <property name="text">
-            <string>测试附件</string>
-           </property>
-          </item>
-          <item row="4" column="2">
-           <property name="text">
-            <string>XCE14T7Z1P40/YL11H26W1007J22</string>
-           </property>
-          </item>
-          <item row="4" column="3">
-           <property name="text">
-            <string>1根</string>
-           </property>
-          </item>
-          <item row="5" column="0">
-           <property name="text">
-            <string>大功率衰减器</string>
-           </property>
-          </item>
-          <item row="5" column="1">
-           <property name="text">
-            <string>测试附件</string>
-           </property>
-          </item>
-          <item row="5" column="2">
-           <property name="text">
-            <string>40dB</string>
-           </property>
-          </item>
-          <item row="5" column="3">
-           <property name="text">
-            <string>1个</string>
-           </property>
-          </item>
-          <item row="6" column="0">
-           <property name="text">
-            <string>SMA环形器</string>
-           </property>
-          </item>
-          <item row="6" column="1">
-           <property name="text">
-            <string>测试附件</string>
-           </property>
-          </item>
-          <item row="6" column="3">
-           <property name="text">
-            <string>1个</string>
-           </property>
-          </item>
-          <item row="7" column="0">
-           <property name="text">
-            <string>电源线</string>
-           </property>
-          </item>
-          <item row="7" column="1">
-           <property name="text">
-            <string>测试附件</string>
-           </property>
-          </item>
-          <item row="7" column="2">
-           <property name="text">
-            <string>XCD22T3K1P40</string>
-           </property>
-          </item>
-          <item row="7" column="3">
-           <property name="text">
-            <string>1根</string>
-           </property>
-          </item>
-          <item row="8" column="0">
-           <property name="text">
-            <string>电缆</string>
-           </property>
-          </item>
-          <item row="8" column="1">
-           <property name="text">
-            <string>测试附件</string>
-           </property>
-          </item>
-          <item row="8" column="2">
-           <property name="text">
-            <string>BNC-J/BNC-J</string>
-           </property>
-          </item>
-          <item row="8" column="3">
-           <property name="text">
-            <string>1m，2根</string>
-           </property>
-          </item>
-          <item row="9" column="0">
-           <property name="text">
-            <string>电缆</string>
-           </property>
-          </item>
-          <item row="9" column="1">
-           <property name="text">
-            <string>测试附件</string>
-           </property>
-          </item>
-          <item row="9" column="2">
-           <property name="text">
-            <string>N-J/N-J</string>
-           </property>
-          </item>
-          <item row="9" column="3">
-           <property name="text">
-            <string>1m，2根</string>
-           </property>
-          </item>
-          <item row="10" column="0">
-           <property name="text">
-            <string>电缆</string>
-           </property>
-          </item>
-          <item row="10" column="1">
-           <property name="text">
-            <string>测试附件</string>
-           </property>
-          </item>
-          <item row="10" column="2">
-           <property name="text">
-            <string>SMA-J/SMA-JW</string>
-           </property>
-          </item>
-          <item row="10" column="3">
-           <property name="text">
-            <string>1m，1根</string>
-           </property>
-          </item>
-          <item row="11" column="0">
-           <property name="text">
-            <string>连接器</string>
-           </property>
-          </item>
-          <item row="11" column="1">
-           <property name="text">
-            <string>测试附件</string>
-           </property>
-          </item>
-          <item row="11" column="2">
-           <property name="text">
-            <string>N-J/BNC-K</string>
-           </property>
-          </item>
-          <item row="11" column="3">
-           <property name="text">
-            <string>1个</string>
-           </property>
-          </item>
-          <item row="12" column="0">
-           <property name="text">
-            <string>连接器</string>
-           </property>
-          </item>
-          <item row="12" column="1">
-           <property name="text">
-            <string>测试附件</string>
-           </property>
-          </item>
-          <item row="12" column="2">
-           <property name="text">
-            <string>N-KFK</string>
-           </property>
-          </item>
-          <item row="12" column="3">
-           <property name="text">
-            <string>1个</string>
-           </property>
-          </item>
-          <item row="13" column="0">
-           <property name="text">
-            <string>连接器</string>
-           </property>
-          </item>
-          <item row="13" column="1">
-           <property name="text">
-            <string>测试附件</string>
-           </property>
-          </item>
-          <item row="13" column="2">
-           <property name="text">
-            <string>SMA-KFK</string>
-           </property>
-          </item>
-          <item row="13" column="3">
-           <property name="text">
-            <string>1个</string>
-           </property>
-          </item>
-          <item row="14" column="0">
-           <property name="text">
-            <string>连接器</string>
-           </property>
-          </item>
-          <item row="14" column="1">
-           <property name="text">
-            <string>测试附件</string>
-           </property>
-          </item>
-          <item row="14" column="2">
-           <property name="text">
-            <string>N-K/SMA-K</string>
-           </property>
-          </item>
-          <item row="14" column="3">
-           <property name="text">
-            <string>1个</string>
+            <string>2</string>
            </property>
           </item>
          </widget>
@@ -711,7 +493,7 @@ border:1px solid rgb(0, 0, 0);
          <enum>QTabWidget::South</enum>
         </property>
         <property name="currentIndex">
-         <number>7</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="tab">
          <attribute name="title">
@@ -721,8 +503,24 @@ border:1px solid rgb(0, 0, 0);
           <item row="0" column="0">
            <widget class="QTableWidget" name="tableWidget_test_results_tr">
             <attribute name="horizontalHeaderDefaultSectionSize">
-             <number>228</number>
+             <number>150</number>
             </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <row>
+             <property name="text">
+              <string>1</string>
+             </property>
+            </row>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+            </column>
             <column>
              <property name="text">
               <string>测试项</string>
@@ -755,8 +553,24 @@ border:1px solid rgb(0, 0, 0);
           <item row="0" column="0">
            <widget class="QTableWidget" name="tableWidget_test_results_lna">
             <attribute name="horizontalHeaderDefaultSectionSize">
-             <number>228</number>
+             <number>150</number>
             </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <row>
+             <property name="text">
+              <string>1</string>
+             </property>
+            </row>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+            </column>
             <column>
              <property name="text">
               <string>测试项</string>
@@ -788,6 +602,25 @@ border:1px solid rgb(0, 0, 0);
          <layout class="QGridLayout" name="gridLayout_10">
           <item row="0" column="0">
            <widget class="QTableWidget" name="tableWidget_test_results_pa">
+            <attribute name="horizontalHeaderDefaultSectionSize">
+             <number>150</number>
+            </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <row>
+             <property name="text">
+              <string>1</string>
+             </property>
+            </row>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+            </column>
             <column>
              <property name="text">
               <string>测试项</string>
@@ -819,6 +652,25 @@ border:1px solid rgb(0, 0, 0);
          <layout class="QGridLayout" name="gridLayout_11">
           <item row="0" column="0">
            <widget class="QTableWidget" name="tableWidget_test_results_sc">
+            <attribute name="horizontalHeaderDefaultSectionSize">
+             <number>150</number>
+            </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <row>
+             <property name="text">
+              <string>1</string>
+             </property>
+            </row>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+            </column>
             <column>
              <property name="text">
               <string>测试项</string>
@@ -850,6 +702,25 @@ border:1px solid rgb(0, 0, 0);
          <layout class="QGridLayout" name="gridLayout_12">
           <item row="0" column="0">
            <widget class="QTableWidget" name="tableWidget_test_results_filter">
+            <attribute name="horizontalHeaderDefaultSectionSize">
+             <number>150</number>
+            </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <row>
+             <property name="text">
+              <string>1</string>
+             </property>
+            </row>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+            </column>
             <column>
              <property name="text">
               <string>测试项</string>
@@ -881,6 +752,25 @@ border:1px solid rgb(0, 0, 0);
          <layout class="QGridLayout" name="gridLayout_13">
           <item row="0" column="0">
            <widget class="QTableWidget" name="tableWidget_test_results_wg">
+            <attribute name="horizontalHeaderDefaultSectionSize">
+             <number>150</number>
+            </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <row>
+             <property name="text">
+              <string> 1</string>
+             </property>
+            </row>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+            </column>
             <column>
              <property name="text">
               <string>测试项</string>
@@ -912,6 +802,25 @@ border:1px solid rgb(0, 0, 0);
          <layout class="QGridLayout" name="gridLayout_14">
           <item row="0" column="0">
            <widget class="QTableWidget" name="tableWidget_test_results_coupler">
+            <attribute name="horizontalHeaderDefaultSectionSize">
+             <number>150</number>
+            </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <row>
+             <property name="text">
+              <string>1</string>
+             </property>
+            </row>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+            </column>
             <column>
              <property name="text">
               <string>测试项</string>
@@ -943,6 +852,25 @@ border:1px solid rgb(0, 0, 0);
          <layout class="QGridLayout" name="gridLayout_15">
           <item row="0" column="0">
            <widget class="QTableWidget" name="tableWidget_test_results_monitor">
+            <attribute name="horizontalHeaderDefaultSectionSize">
+             <number>150</number>
+            </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <row>
+             <property name="text">
+              <string>1</string>
+             </property>
+            </row>
+            <column>
+             <property name="text">
+              <string/>
+             </property>
+            </column>
             <column>
              <property name="text">
               <string>测试项</string>

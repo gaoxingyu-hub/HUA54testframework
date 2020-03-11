@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'E:\autoTest\54testframework\ui\high_freq_device.ui'
+# Form implementation generated from reading ui file 'D:\code\54testframework\ui\high_freq_device.ui'
 #
-# Created by: PyQt5 UI code generator 5.14.1
+# Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -20,10 +20,12 @@ class Ui_Dialog(object):
         Dialog.setFont(font)
         Dialog.setStyleSheet("QDialog{\n"
 "background-color:#D0DAE5;\n"
+"margin-top:10px;\n"
 "}\n"
 "\n"
 "QTextBrower{\n"
 "background-color:#D0DAE5;\n"
+"border-width:0;border-style:outset\n"
 "}\n"
 "\n"
 "QLineEdit{\n"
@@ -38,29 +40,121 @@ class Ui_Dialog(object):
 "background-color:#D0DAE5;\n"
 "}\n"
 "\n"
-"QHeaderView{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
 "QLabel{\n"
-"font-size:12px;\n"
+"font-size:14px;\n"
 "font-family:Microsoft YaHei;\n"
 "background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QPushButton{         /*按钮自适应拉伸背景*/\n"
-"border-width: 2px 15px 2px 15px;\n"
-"background-color:#2884D8;\n"
-"color: #FFFFFF;\n"
-"font-size:12px;\n"
-"font-family:Microsoft YaHei;\n"
 "}\n"
 "\n"
 "QGroupBox{\n"
-"font-size:12px;\n"
+"font-size:14px;\n"
 "font-family:Microsoft YaHei;\n"
-"border:1px solid rgb(0, 0, 0); \n"
-"}")
+"border:1px solid rgb(0, 0, 0);\n"
+"}\n"
+"\n"
+"/****QPushButton****/\n"
+"QPushButton{\n"
+"width:32px;\n"
+"height:32px;\n"
+"background-color:#F4F4F3;\n"
+"color: #FFFFFF;\n"
+"font-size:14px;\n"
+"font-family:Microsoft YaHei;\n"
+"}\n"
+"QPushButton#pushButton_close:hover{\n"
+"background-color:#2784D6;\n"
+"cursor:pointer;\n"
+"}\n"
+"QPushButton#pushButton_close:pressed{\n"
+"background-color:#2784D6;\n"
+"}\n"
+"QToolBar{\n"
+"background-color:#172545;\n"
+"height:30px;\n"
+"border:None;\n"
+"padding:1px;\n"
+"}\n"
+"\n"
+"\n"
+"/****QTreeWidget****/\n"
+"QTreeWidget{\n"
+"background-color:#D0DAE5;\n"
+"padding-top:20px;\n"
+"padding-left:10px;\n"
+"margin-top:20px;\n"
+"}\n"
+"QTreeView::item{\n"
+"font: 14px;\n"
+"}\n"
+"QTreeView::item:selected{\n"
+"selection-color: #1F95FF;\n"
+"}\n"
+"QTreeView::item:hover{\n"
+"background-color:#D0DAE5;\n"
+"}\n"
+"\n"
+"QTreeView::branch:has-children:!has-siblings:closed,\n"
+"QTreeView::branch:closed:has-children:has-siblings {\n"
+"border-image: none;\n"
+"image: url(imgs/common/plus.png);\n"
+"}\n"
+"\n"
+"QTreeView::branch:open:has-children:!has-siblings,\n"
+"QTreeView::branch:open:has-children:has-siblings  {\n"
+"border-image: none;\n"
+"image: url(imgs/common/Minus.png);\n"
+"}\n"
+"\n"
+"QTreeView::branch:!has-children:!has-siblings:adjoins-item {\n"
+"    border-image: url(imgs/common/tree.png);\n"
+"}\n"
+"QTableWidget{\n"
+"outline: none;\n"
+"selection-color:#666666;\n"
+"alternate-background-color:#F9FAFC;\n"
+"}\n"
+"QTableCornerButton::section{\n"
+"background: #EDF2F8;\n"
+"}\n"
+"QTableWidget::item{\n"
+"font-size:14px;\n"
+"line-height:30px;\n"
+"border:1px solid #D2D2D2;\n"
+"}\n"
+"\n"
+"QTableWidget::item:hover{\n"
+"background-color:#EAF7FF;\n"
+"}\n"
+"QHeaderView::section:vertical {\n"
+"color: #666666;\n"
+"text-align:center;\n"
+"font: 14px Arial;\n"
+"border:1px solid #D2D2D2;\n"
+"background: #F9FBFD;\n"
+"width: 40px;\n"
+"height:30px;\n"
+"alternate-background-color:#F9FAFC;\n"
+"}\n"
+"QHeaderView::section:horizontal {\n"
+"color: #666666;\n"
+"font: 14px Microsoft YaHei;\n"
+"padding: 0px 1px 0 1px;\n"
+"text-align:center;\n"
+"border:1px solid #D2D2D2;\n"
+"background: #EDF2F8;\n"
+"height: 30px;\n"
+"alternate-background-color:#F9FAFC;\n"
+"}\n"
+"QScrollBar:vertical{\n"
+"border: 5px solid #D5D5D5;\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color:#2784D6;\n"
+"cursor:pointer;}\n"
+"QPushButton{\n"
+"background-color:#F4F4F3;\n"
+"}\n"
+"")
         self.gridLayout_8 = QtWidgets.QGridLayout(Dialog)
         self.gridLayout_8.setObjectName("gridLayout_8")
         self.gridLayout = QtWidgets.QGridLayout()
@@ -70,7 +164,7 @@ class Ui_Dialog(object):
 "")
         self.pushButton_start.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/newPrefix/icon/start1.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/icon/start.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_start.setIcon(icon)
         self.pushButton_start.setIconSize(QtCore.QSize(32, 31))
         self.pushButton_start.setObjectName("pushButton_start")
@@ -79,7 +173,7 @@ class Ui_Dialog(object):
         self.pushButton_restart.setStyleSheet("background-color:rgb(255, 255, 255);")
         self.pushButton_restart.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/newPrefix/icon/restart1.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/newPrefix/icon/stop.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_restart.setIcon(icon1)
         self.pushButton_restart.setIconSize(QtCore.QSize(32, 31))
         self.pushButton_restart.setObjectName("pushButton_restart")
@@ -88,7 +182,7 @@ class Ui_Dialog(object):
         self.pushButton_close.setStyleSheet("background-color:rgb(255, 255, 255);")
         self.pushButton_close.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/newPrefix/icon/close1.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/newPrefix/icon/cancel.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_close.setIcon(icon2)
         self.pushButton_close.setIconSize(QtCore.QSize(32, 31))
         self.pushButton_close.setObjectName("pushButton_close")
@@ -155,38 +249,12 @@ class Ui_Dialog(object):
         self.tableWidget_test_resource = QtWidgets.QTableWidget(self.groupBox_test_resource)
         self.tableWidget_test_resource.setGridStyle(QtCore.Qt.DotLine)
         self.tableWidget_test_resource.setObjectName("tableWidget_test_resource")
-        self.tableWidget_test_resource.setColumnCount(4)
-        self.tableWidget_test_resource.setRowCount(15)
+        self.tableWidget_test_resource.setColumnCount(5)
+        self.tableWidget_test_resource.setRowCount(2)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setVerticalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setVerticalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(4, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(5, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(6, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(7, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(8, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(9, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(10, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(11, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(12, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(13, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setVerticalHeaderItem(14, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -196,7 +264,7 @@ class Ui_Dialog(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setHorizontalHeaderItem(3, item)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(0, 0, item)
+        self.tableWidget_test_resource.setHorizontalHeaderItem(4, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setItem(0, 1, item)
         item = QtWidgets.QTableWidgetItem()
@@ -204,7 +272,7 @@ class Ui_Dialog(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setItem(0, 3, item)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(1, 0, item)
+        self.tableWidget_test_resource.setItem(0, 4, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setItem(1, 1, item)
         item = QtWidgets.QTableWidgetItem()
@@ -212,110 +280,11 @@ class Ui_Dialog(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_resource.setItem(1, 3, item)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(2, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(2, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(2, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(2, 3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(3, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(3, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(3, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(3, 3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(4, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(4, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(4, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(4, 3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(5, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(5, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(5, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(5, 3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(6, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(6, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(6, 3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(7, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(7, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(7, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(7, 3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(8, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(8, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(8, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(8, 3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(9, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(9, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(9, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(9, 3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(10, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(10, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(10, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(10, 3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(11, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(11, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(11, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(11, 3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(12, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(12, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(12, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(12, 3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(13, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(13, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(13, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(13, 3, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(14, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(14, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(14, 2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_test_resource.setItem(14, 3, item)
+        self.tableWidget_test_resource.setItem(1, 4, item)
         self.tableWidget_test_resource.horizontalHeader().setCascadingSectionResizes(True)
-        self.tableWidget_test_resource.horizontalHeader().setDefaultSectionSize(153)
-        self.tableWidget_test_resource.horizontalHeader().setStretchLastSection(False)
+        self.tableWidget_test_resource.horizontalHeader().setDefaultSectionSize(150)
+        self.tableWidget_test_resource.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget_test_resource.verticalHeader().setVisible(False)
         self.tableWidget_test_resource.verticalHeader().setStretchLastSection(False)
         self.gridLayout_5.addWidget(self.tableWidget_test_resource, 0, 0, 1, 1)
         self.horizontalLayout.addWidget(self.groupBox_test_resource)
@@ -335,8 +304,10 @@ class Ui_Dialog(object):
         self.gridLayout_4.setObjectName("gridLayout_4")
         self.tableWidget_test_results_tr = QtWidgets.QTableWidget(self.tab)
         self.tableWidget_test_results_tr.setObjectName("tableWidget_test_results_tr")
-        self.tableWidget_test_results_tr.setColumnCount(4)
-        self.tableWidget_test_results_tr.setRowCount(0)
+        self.tableWidget_test_results_tr.setColumnCount(5)
+        self.tableWidget_test_results_tr.setRowCount(1)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_results_tr.setVerticalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_results_tr.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -345,7 +316,11 @@ class Ui_Dialog(object):
         self.tableWidget_test_results_tr.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_results_tr.setHorizontalHeaderItem(3, item)
-        self.tableWidget_test_results_tr.horizontalHeader().setDefaultSectionSize(228)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_results_tr.setHorizontalHeaderItem(4, item)
+        self.tableWidget_test_results_tr.horizontalHeader().setDefaultSectionSize(150)
+        self.tableWidget_test_results_tr.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget_test_results_tr.verticalHeader().setVisible(False)
         self.gridLayout_4.addWidget(self.tableWidget_test_results_tr, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtWidgets.QWidget()
@@ -354,8 +329,10 @@ class Ui_Dialog(object):
         self.gridLayout_9.setObjectName("gridLayout_9")
         self.tableWidget_test_results_lna = QtWidgets.QTableWidget(self.tab_2)
         self.tableWidget_test_results_lna.setObjectName("tableWidget_test_results_lna")
-        self.tableWidget_test_results_lna.setColumnCount(4)
-        self.tableWidget_test_results_lna.setRowCount(0)
+        self.tableWidget_test_results_lna.setColumnCount(5)
+        self.tableWidget_test_results_lna.setRowCount(1)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_results_lna.setVerticalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_results_lna.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -364,7 +341,11 @@ class Ui_Dialog(object):
         self.tableWidget_test_results_lna.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_results_lna.setHorizontalHeaderItem(3, item)
-        self.tableWidget_test_results_lna.horizontalHeader().setDefaultSectionSize(228)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_results_lna.setHorizontalHeaderItem(4, item)
+        self.tableWidget_test_results_lna.horizontalHeader().setDefaultSectionSize(150)
+        self.tableWidget_test_results_lna.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget_test_results_lna.verticalHeader().setVisible(False)
         self.gridLayout_9.addWidget(self.tableWidget_test_results_lna, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab_2, "")
         self.tab_3 = QtWidgets.QWidget()
@@ -373,8 +354,10 @@ class Ui_Dialog(object):
         self.gridLayout_10.setObjectName("gridLayout_10")
         self.tableWidget_test_results_pa = QtWidgets.QTableWidget(self.tab_3)
         self.tableWidget_test_results_pa.setObjectName("tableWidget_test_results_pa")
-        self.tableWidget_test_results_pa.setColumnCount(4)
-        self.tableWidget_test_results_pa.setRowCount(0)
+        self.tableWidget_test_results_pa.setColumnCount(5)
+        self.tableWidget_test_results_pa.setRowCount(1)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_results_pa.setVerticalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_results_pa.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -383,6 +366,11 @@ class Ui_Dialog(object):
         self.tableWidget_test_results_pa.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_results_pa.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_results_pa.setHorizontalHeaderItem(4, item)
+        self.tableWidget_test_results_pa.horizontalHeader().setDefaultSectionSize(150)
+        self.tableWidget_test_results_pa.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget_test_results_pa.verticalHeader().setVisible(False)
         self.gridLayout_10.addWidget(self.tableWidget_test_results_pa, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab_3, "")
         self.tab_4 = QtWidgets.QWidget()
@@ -391,8 +379,10 @@ class Ui_Dialog(object):
         self.gridLayout_11.setObjectName("gridLayout_11")
         self.tableWidget_test_results_sc = QtWidgets.QTableWidget(self.tab_4)
         self.tableWidget_test_results_sc.setObjectName("tableWidget_test_results_sc")
-        self.tableWidget_test_results_sc.setColumnCount(4)
-        self.tableWidget_test_results_sc.setRowCount(0)
+        self.tableWidget_test_results_sc.setColumnCount(5)
+        self.tableWidget_test_results_sc.setRowCount(1)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_results_sc.setVerticalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_results_sc.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -401,6 +391,11 @@ class Ui_Dialog(object):
         self.tableWidget_test_results_sc.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_results_sc.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_results_sc.setHorizontalHeaderItem(4, item)
+        self.tableWidget_test_results_sc.horizontalHeader().setDefaultSectionSize(150)
+        self.tableWidget_test_results_sc.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget_test_results_sc.verticalHeader().setVisible(False)
         self.gridLayout_11.addWidget(self.tableWidget_test_results_sc, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab_4, "")
         self.tab_5 = QtWidgets.QWidget()
@@ -409,8 +404,10 @@ class Ui_Dialog(object):
         self.gridLayout_12.setObjectName("gridLayout_12")
         self.tableWidget_test_results_filter = QtWidgets.QTableWidget(self.tab_5)
         self.tableWidget_test_results_filter.setObjectName("tableWidget_test_results_filter")
-        self.tableWidget_test_results_filter.setColumnCount(4)
-        self.tableWidget_test_results_filter.setRowCount(0)
+        self.tableWidget_test_results_filter.setColumnCount(5)
+        self.tableWidget_test_results_filter.setRowCount(1)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_results_filter.setVerticalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_results_filter.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -419,6 +416,11 @@ class Ui_Dialog(object):
         self.tableWidget_test_results_filter.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_results_filter.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_results_filter.setHorizontalHeaderItem(4, item)
+        self.tableWidget_test_results_filter.horizontalHeader().setDefaultSectionSize(150)
+        self.tableWidget_test_results_filter.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget_test_results_filter.verticalHeader().setVisible(False)
         self.gridLayout_12.addWidget(self.tableWidget_test_results_filter, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab_5, "")
         self.tab_7 = QtWidgets.QWidget()
@@ -427,8 +429,10 @@ class Ui_Dialog(object):
         self.gridLayout_13.setObjectName("gridLayout_13")
         self.tableWidget_test_results_wg = QtWidgets.QTableWidget(self.tab_7)
         self.tableWidget_test_results_wg.setObjectName("tableWidget_test_results_wg")
-        self.tableWidget_test_results_wg.setColumnCount(4)
-        self.tableWidget_test_results_wg.setRowCount(0)
+        self.tableWidget_test_results_wg.setColumnCount(5)
+        self.tableWidget_test_results_wg.setRowCount(1)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_results_wg.setVerticalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_results_wg.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -437,6 +441,11 @@ class Ui_Dialog(object):
         self.tableWidget_test_results_wg.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_results_wg.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_results_wg.setHorizontalHeaderItem(4, item)
+        self.tableWidget_test_results_wg.horizontalHeader().setDefaultSectionSize(150)
+        self.tableWidget_test_results_wg.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget_test_results_wg.verticalHeader().setVisible(False)
         self.gridLayout_13.addWidget(self.tableWidget_test_results_wg, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab_7, "")
         self.tab_6 = QtWidgets.QWidget()
@@ -445,8 +454,10 @@ class Ui_Dialog(object):
         self.gridLayout_14.setObjectName("gridLayout_14")
         self.tableWidget_test_results_coupler = QtWidgets.QTableWidget(self.tab_6)
         self.tableWidget_test_results_coupler.setObjectName("tableWidget_test_results_coupler")
-        self.tableWidget_test_results_coupler.setColumnCount(4)
-        self.tableWidget_test_results_coupler.setRowCount(0)
+        self.tableWidget_test_results_coupler.setColumnCount(5)
+        self.tableWidget_test_results_coupler.setRowCount(1)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_results_coupler.setVerticalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_results_coupler.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -455,6 +466,11 @@ class Ui_Dialog(object):
         self.tableWidget_test_results_coupler.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_results_coupler.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_results_coupler.setHorizontalHeaderItem(4, item)
+        self.tableWidget_test_results_coupler.horizontalHeader().setDefaultSectionSize(150)
+        self.tableWidget_test_results_coupler.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget_test_results_coupler.verticalHeader().setVisible(False)
         self.gridLayout_14.addWidget(self.tableWidget_test_results_coupler, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab_6, "")
         self.tab_8 = QtWidgets.QWidget()
@@ -463,8 +479,10 @@ class Ui_Dialog(object):
         self.gridLayout_15.setObjectName("gridLayout_15")
         self.tableWidget_test_results_monitor = QtWidgets.QTableWidget(self.tab_8)
         self.tableWidget_test_results_monitor.setObjectName("tableWidget_test_results_monitor")
-        self.tableWidget_test_results_monitor.setColumnCount(4)
-        self.tableWidget_test_results_monitor.setRowCount(0)
+        self.tableWidget_test_results_monitor.setColumnCount(5)
+        self.tableWidget_test_results_monitor.setRowCount(1)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_results_monitor.setVerticalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_results_monitor.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -473,6 +491,11 @@ class Ui_Dialog(object):
         self.tableWidget_test_results_monitor.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_test_results_monitor.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_test_results_monitor.setHorizontalHeaderItem(4, item)
+        self.tableWidget_test_results_monitor.horizontalHeader().setDefaultSectionSize(150)
+        self.tableWidget_test_results_monitor.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget_test_results_monitor.verticalHeader().setVisible(False)
         self.gridLayout_15.addWidget(self.tableWidget_test_results_monitor, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab_8, "")
         self.gridLayout_7.addWidget(self.tabWidget, 0, 0, 1, 1)
@@ -487,7 +510,7 @@ class Ui_Dialog(object):
         self.splitter_4.setObjectName("splitter_4")
 
         self.retranslateUi(Dialog)
-        self.tabWidget.setCurrentIndex(7)
+        self.tabWidget.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
@@ -512,231 +535,119 @@ class Ui_Dialog(object):
         item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_resource.verticalHeaderItem(1)
         item.setText(_translate("Dialog", "2"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(2)
-        item.setText(_translate("Dialog", "3"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(3)
-        item.setText(_translate("Dialog", "4"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(4)
-        item.setText(_translate("Dialog", "5"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(5)
-        item.setText(_translate("Dialog", "6"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(6)
-        item.setText(_translate("Dialog", "7"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(7)
-        item.setText(_translate("Dialog", "8"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(8)
-        item.setText(_translate("Dialog", "9"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(9)
-        item.setText(_translate("Dialog", "10"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(10)
-        item.setText(_translate("Dialog", "11"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(11)
-        item.setText(_translate("Dialog", "12"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(12)
-        item.setText(_translate("Dialog", "13"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(13)
-        item.setText(_translate("Dialog", "14"))
-        item = self.tableWidget_test_resource.verticalHeaderItem(14)
-        item.setText(_translate("Dialog", "15"))
-        item = self.tableWidget_test_resource.horizontalHeaderItem(0)
-        item.setText(_translate("Dialog", "名称"))
         item = self.tableWidget_test_resource.horizontalHeaderItem(1)
-        item.setText(_translate("Dialog", "类型"))
+        item.setText(_translate("Dialog", "名称"))
         item = self.tableWidget_test_resource.horizontalHeaderItem(2)
-        item.setText(_translate("Dialog", "编号/型号"))
+        item.setText(_translate("Dialog", "类型"))
         item = self.tableWidget_test_resource.horizontalHeaderItem(3)
+        item.setText(_translate("Dialog", "编号/型号"))
+        item = self.tableWidget_test_resource.horizontalHeaderItem(4)
         item.setText(_translate("Dialog", "备注"))
         __sortingEnabled = self.tableWidget_test_resource.isSortingEnabled()
         self.tableWidget_test_resource.setSortingEnabled(False)
-        item = self.tableWidget_test_resource.item(0, 0)
-        item.setText(_translate("Dialog", "信号源"))
         item = self.tableWidget_test_resource.item(0, 1)
-        item.setText(_translate("Dialog", "仪器仪表"))
+        item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_resource.item(0, 2)
-        item.setText(_translate("Dialog", "keysight E8267D"))
+        item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_resource.item(0, 3)
-        item.setText(_translate("Dialog", "1台"))
-        item = self.tableWidget_test_resource.item(1, 0)
-        item.setText(_translate("Dialog", "频谱仪"))
+        item.setText(_translate("Dialog", "1"))
+        item = self.tableWidget_test_resource.item(0, 4)
+        item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_resource.item(1, 1)
-        item.setText(_translate("Dialog", "仪器仪表"))
+        item.setText(_translate("Dialog", "2"))
         item = self.tableWidget_test_resource.item(1, 2)
-        item.setText(_translate("Dialog", "keysight N9030B"))
+        item.setText(_translate("Dialog", "2"))
         item = self.tableWidget_test_resource.item(1, 3)
-        item.setText(_translate("Dialog", "1台"))
-        item = self.tableWidget_test_resource.item(2, 0)
-        item.setText(_translate("Dialog", "矢量网络分析仪"))
-        item = self.tableWidget_test_resource.item(2, 1)
-        item.setText(_translate("Dialog", "仪器仪表"))
-        item = self.tableWidget_test_resource.item(2, 2)
-        item.setText(_translate("Dialog", "keysight N5242"))
-        item = self.tableWidget_test_resource.item(2, 3)
-        item.setText(_translate("Dialog", "1台"))
-        item = self.tableWidget_test_resource.item(3, 0)
-        item.setText(_translate("Dialog", "波导开关"))
-        item = self.tableWidget_test_resource.item(3, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(3, 2)
-        item.setText(_translate("Dialog", "CSD-I"))
-        item = self.tableWidget_test_resource.item(3, 3)
-        item.setText(_translate("Dialog", "1个"))
-        item = self.tableWidget_test_resource.item(4, 0)
-        item.setText(_translate("Dialog", "波导开关控制器"))
-        item = self.tableWidget_test_resource.item(4, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(4, 2)
-        item.setText(_translate("Dialog", "XCE14T7Z1P40/YL11H26W1007J22"))
-        item = self.tableWidget_test_resource.item(4, 3)
-        item.setText(_translate("Dialog", "1根"))
-        item = self.tableWidget_test_resource.item(5, 0)
-        item.setText(_translate("Dialog", "大功率衰减器"))
-        item = self.tableWidget_test_resource.item(5, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(5, 2)
-        item.setText(_translate("Dialog", "40dB"))
-        item = self.tableWidget_test_resource.item(5, 3)
-        item.setText(_translate("Dialog", "1个"))
-        item = self.tableWidget_test_resource.item(6, 0)
-        item.setText(_translate("Dialog", "SMA环形器"))
-        item = self.tableWidget_test_resource.item(6, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(6, 3)
-        item.setText(_translate("Dialog", "1个"))
-        item = self.tableWidget_test_resource.item(7, 0)
-        item.setText(_translate("Dialog", "电源线"))
-        item = self.tableWidget_test_resource.item(7, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(7, 2)
-        item.setText(_translate("Dialog", "XCD22T3K1P40"))
-        item = self.tableWidget_test_resource.item(7, 3)
-        item.setText(_translate("Dialog", "1根"))
-        item = self.tableWidget_test_resource.item(8, 0)
-        item.setText(_translate("Dialog", "电缆"))
-        item = self.tableWidget_test_resource.item(8, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(8, 2)
-        item.setText(_translate("Dialog", "BNC-J/BNC-J"))
-        item = self.tableWidget_test_resource.item(8, 3)
-        item.setText(_translate("Dialog", "1m，2根"))
-        item = self.tableWidget_test_resource.item(9, 0)
-        item.setText(_translate("Dialog", "电缆"))
-        item = self.tableWidget_test_resource.item(9, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(9, 2)
-        item.setText(_translate("Dialog", "N-J/N-J"))
-        item = self.tableWidget_test_resource.item(9, 3)
-        item.setText(_translate("Dialog", "1m，2根"))
-        item = self.tableWidget_test_resource.item(10, 0)
-        item.setText(_translate("Dialog", "电缆"))
-        item = self.tableWidget_test_resource.item(10, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(10, 2)
-        item.setText(_translate("Dialog", "SMA-J/SMA-JW"))
-        item = self.tableWidget_test_resource.item(10, 3)
-        item.setText(_translate("Dialog", "1m，1根"))
-        item = self.tableWidget_test_resource.item(11, 0)
-        item.setText(_translate("Dialog", "连接器"))
-        item = self.tableWidget_test_resource.item(11, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(11, 2)
-        item.setText(_translate("Dialog", "N-J/BNC-K"))
-        item = self.tableWidget_test_resource.item(11, 3)
-        item.setText(_translate("Dialog", "1个"))
-        item = self.tableWidget_test_resource.item(12, 0)
-        item.setText(_translate("Dialog", "连接器"))
-        item = self.tableWidget_test_resource.item(12, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(12, 2)
-        item.setText(_translate("Dialog", "N-KFK"))
-        item = self.tableWidget_test_resource.item(12, 3)
-        item.setText(_translate("Dialog", "1个"))
-        item = self.tableWidget_test_resource.item(13, 0)
-        item.setText(_translate("Dialog", "连接器"))
-        item = self.tableWidget_test_resource.item(13, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(13, 2)
-        item.setText(_translate("Dialog", "SMA-KFK"))
-        item = self.tableWidget_test_resource.item(13, 3)
-        item.setText(_translate("Dialog", "1个"))
-        item = self.tableWidget_test_resource.item(14, 0)
-        item.setText(_translate("Dialog", "连接器"))
-        item = self.tableWidget_test_resource.item(14, 1)
-        item.setText(_translate("Dialog", "测试附件"))
-        item = self.tableWidget_test_resource.item(14, 2)
-        item.setText(_translate("Dialog", "N-K/SMA-K"))
-        item = self.tableWidget_test_resource.item(14, 3)
-        item.setText(_translate("Dialog", "1个"))
+        item.setText(_translate("Dialog", "2"))
+        item = self.tableWidget_test_resource.item(1, 4)
+        item.setText(_translate("Dialog", "2"))
         self.tableWidget_test_resource.setSortingEnabled(__sortingEnabled)
-        item = self.tableWidget_test_results_tr.horizontalHeaderItem(0)
-        item.setText(_translate("Dialog", "测试项"))
+        item = self.tableWidget_test_results_tr.verticalHeaderItem(0)
+        item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_results_tr.horizontalHeaderItem(1)
-        item.setText(_translate("Dialog", "测试条件"))
+        item.setText(_translate("Dialog", "测试项"))
         item = self.tableWidget_test_results_tr.horizontalHeaderItem(2)
-        item.setText(_translate("Dialog", "测试结果"))
+        item.setText(_translate("Dialog", "测试条件"))
         item = self.tableWidget_test_results_tr.horizontalHeaderItem(3)
+        item.setText(_translate("Dialog", "测试结果"))
+        item = self.tableWidget_test_results_tr.horizontalHeaderItem(4)
         item.setText(_translate("Dialog", "测试结论"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Dialog", "收发单元"))
-        item = self.tableWidget_test_results_lna.horizontalHeaderItem(0)
-        item.setText(_translate("Dialog", "测试项"))
+        item = self.tableWidget_test_results_lna.verticalHeaderItem(0)
+        item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_results_lna.horizontalHeaderItem(1)
-        item.setText(_translate("Dialog", "测试条件"))
+        item.setText(_translate("Dialog", "测试项"))
         item = self.tableWidget_test_results_lna.horizontalHeaderItem(2)
-        item.setText(_translate("Dialog", "测试结果"))
+        item.setText(_translate("Dialog", "测试条件"))
         item = self.tableWidget_test_results_lna.horizontalHeaderItem(3)
+        item.setText(_translate("Dialog", "测试结果"))
+        item = self.tableWidget_test_results_lna.horizontalHeaderItem(4)
         item.setText(_translate("Dialog", "测试结论"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Dialog", "低噪声放大器"))
-        item = self.tableWidget_test_results_pa.horizontalHeaderItem(0)
-        item.setText(_translate("Dialog", "测试项"))
+        item = self.tableWidget_test_results_pa.verticalHeaderItem(0)
+        item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_results_pa.horizontalHeaderItem(1)
-        item.setText(_translate("Dialog", "测试条件"))
+        item.setText(_translate("Dialog", "测试项"))
         item = self.tableWidget_test_results_pa.horizontalHeaderItem(2)
-        item.setText(_translate("Dialog", "测试结果"))
+        item.setText(_translate("Dialog", "测试条件"))
         item = self.tableWidget_test_results_pa.horizontalHeaderItem(3)
+        item.setText(_translate("Dialog", "测试结果"))
+        item = self.tableWidget_test_results_pa.horizontalHeaderItem(4)
         item.setText(_translate("Dialog", "测试结论"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("Dialog", "功放模块"))
-        item = self.tableWidget_test_results_sc.horizontalHeaderItem(0)
-        item.setText(_translate("Dialog", "测试项"))
+        item = self.tableWidget_test_results_sc.verticalHeaderItem(0)
+        item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_results_sc.horizontalHeaderItem(1)
-        item.setText(_translate("Dialog", "测试条件"))
+        item.setText(_translate("Dialog", "测试项"))
         item = self.tableWidget_test_results_sc.horizontalHeaderItem(2)
-        item.setText(_translate("Dialog", "测试结果"))
+        item.setText(_translate("Dialog", "测试条件"))
         item = self.tableWidget_test_results_sc.horizontalHeaderItem(3)
+        item.setText(_translate("Dialog", "测试结果"))
+        item = self.tableWidget_test_results_sc.horizontalHeaderItem(4)
         item.setText(_translate("Dialog", "测试结论"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("Dialog", "自环器"))
-        item = self.tableWidget_test_results_filter.horizontalHeaderItem(0)
-        item.setText(_translate("Dialog", "测试项"))
+        item = self.tableWidget_test_results_filter.verticalHeaderItem(0)
+        item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_results_filter.horizontalHeaderItem(1)
-        item.setText(_translate("Dialog", "测试条件"))
+        item.setText(_translate("Dialog", "测试项"))
         item = self.tableWidget_test_results_filter.horizontalHeaderItem(2)
-        item.setText(_translate("Dialog", "测试结果"))
+        item.setText(_translate("Dialog", "测试条件"))
         item = self.tableWidget_test_results_filter.horizontalHeaderItem(3)
+        item.setText(_translate("Dialog", "测试结果"))
+        item = self.tableWidget_test_results_filter.horizontalHeaderItem(4)
         item.setText(_translate("Dialog", "测试结论"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), _translate("Dialog", "滤波器"))
-        item = self.tableWidget_test_results_wg.horizontalHeaderItem(0)
-        item.setText(_translate("Dialog", "测试项"))
+        item = self.tableWidget_test_results_wg.verticalHeaderItem(0)
+        item.setText(_translate("Dialog", " 1"))
         item = self.tableWidget_test_results_wg.horizontalHeaderItem(1)
-        item.setText(_translate("Dialog", "测试条件"))
+        item.setText(_translate("Dialog", "测试项"))
         item = self.tableWidget_test_results_wg.horizontalHeaderItem(2)
-        item.setText(_translate("Dialog", "测试结果"))
+        item.setText(_translate("Dialog", "测试条件"))
         item = self.tableWidget_test_results_wg.horizontalHeaderItem(3)
+        item.setText(_translate("Dialog", "测试结果"))
+        item = self.tableWidget_test_results_wg.horizontalHeaderItem(4)
         item.setText(_translate("Dialog", "测试结论"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_7), _translate("Dialog", "波导开关"))
-        item = self.tableWidget_test_results_coupler.horizontalHeaderItem(0)
-        item.setText(_translate("Dialog", "测试项"))
+        item = self.tableWidget_test_results_coupler.verticalHeaderItem(0)
+        item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_results_coupler.horizontalHeaderItem(1)
-        item.setText(_translate("Dialog", "测试条件"))
+        item.setText(_translate("Dialog", "测试项"))
         item = self.tableWidget_test_results_coupler.horizontalHeaderItem(2)
-        item.setText(_translate("Dialog", "测试结果"))
+        item.setText(_translate("Dialog", "测试条件"))
         item = self.tableWidget_test_results_coupler.horizontalHeaderItem(3)
+        item.setText(_translate("Dialog", "测试结果"))
+        item = self.tableWidget_test_results_coupler.horizontalHeaderItem(4)
         item.setText(_translate("Dialog", "测试结论"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_6), _translate("Dialog", "耦合器"))
-        item = self.tableWidget_test_results_monitor.horizontalHeaderItem(0)
-        item.setText(_translate("Dialog", "测试项"))
+        item = self.tableWidget_test_results_monitor.verticalHeaderItem(0)
+        item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_results_monitor.horizontalHeaderItem(1)
-        item.setText(_translate("Dialog", "测试条件"))
+        item.setText(_translate("Dialog", "测试项"))
         item = self.tableWidget_test_results_monitor.horizontalHeaderItem(2)
-        item.setText(_translate("Dialog", "测试结果"))
+        item.setText(_translate("Dialog", "测试条件"))
         item = self.tableWidget_test_results_monitor.horizontalHeaderItem(3)
+        item.setText(_translate("Dialog", "测试结果"))
+        item = self.tableWidget_test_results_monitor.horizontalHeaderItem(4)
         item.setText(_translate("Dialog", "测试结论"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_8), _translate("Dialog", "监控模块"))
 import res.iconQrc_rc

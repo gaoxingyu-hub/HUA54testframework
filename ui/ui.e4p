@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project ui -->
-<!-- Saved: 2020-03-09, 17:02:25 -->
+<!-- Saved: 2020-03-11, 18:28:09 -->
 <!-- Copyright (C) 2020 ,  -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -50,6 +50,7 @@
     <Source>control_device/Ui_COM_CONTROL_DEVICE_PA2.py</Source>
     <Source>ecom-ns-1/ECOM_NS1_KEY_TEST.py</Source>
     <Source>ecom-ns-1/Ui_ECOM_NS1_KEY_TEST.py</Source>
+    <Source>ecom-ns-1/Ui_ECOM_NS1_MAIN.py</Source>
     <Source>ecom-ns-2/ECOM_NS2_EXECUTE1.py</Source>
     <Source>ecom-ns-2/ECOM_NS2_KEY_TEST.py</Source>
     <Source>ecom-ns-2/ECOM_NS2_MAIN.py</Source>
@@ -61,6 +62,7 @@
     <Source>iconQrc_rc.py</Source>
     <Source>mv_com_device/MV_COM_DEVICE_MAIN.py</Source>
     <Source>mv_com_device/Ui_MV_COM_DEVICE_MAIN.py</Source>
+    <Source>mw1500_device/Ui_mw1500_device.py</Source>
     <Source>router/Router.py</Source>
     <Source>router/Router_Lan_test.py</Source>
     <Source>router/Ui_Router.py</Source>
@@ -108,6 +110,7 @@
     <Form>control_device/COM_CONTROL_DEVICE_EXECUTE4.ui</Form>
     <Form>control_device/COM_CONTROL_DEVICE_PA2.ui</Form>
     <Form>ecom-ns-1/ECOM_NS1_KEY_TEST.ui</Form>
+    <Form>ecom-ns-1/ECOM_NS1_MAIN.ui</Form>
     <Form>ecom-ns-2/ECOM_NS2_EXECUTE1.ui</Form>
     <Form>ecom-ns-2/ECOM_NS2_KEY_TEST.ui</Form>
     <Form>ecom-ns-2/ECOM_NS2_MAIN.ui</Form>
@@ -115,6 +118,9 @@
     <Form>high_freq_device.ui</Form>
     <Form>module.ui</Form>
     <Form>mv_com_device/MV_COM_DEVICE_MAIN.ui</Form>
+    <Form>mw1500_device/AUTO_TEST_TR_R.ui</Form>
+    <Form>mw1500_device/AUTO_TEST_TR_T.ui</Form>
+    <Form>mw1500_device/mw1500_device.ui</Form>
     <Form>router/Router.ui</Form>
     <Form>router/Router_Lan_test.ui</Form>
     <Form>sdsl/SDSL_COM.ui</Form>
@@ -124,6 +130,7 @@
     <Form>security_machine/security.ui</Form>
     <Form>testInfo.ui</Form>
     <Form>testPA4.ui</Form>
+    <Form>vhf_radio/Ui_VHF_RADIO_MAIN.ui</Form>
     <Form>vhf_radio/Low_Power_Test.ui</Form>
     <Form>vhf_radio/VHF_Test.ui</Form>
     <Form>vhf_radio/VHF_Test_result_confirm.ui</Form>

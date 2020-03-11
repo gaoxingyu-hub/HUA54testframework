@@ -343,7 +343,7 @@ background-color:#F4F4F3;
             </row>
             <column>
              <property name="text">
-              <string> </string>
+              <string/>
              </property>
             </column>
             <column>
@@ -429,7 +429,7 @@ background-color:#F4F4F3;
           </property>
           <widget class="QWidget" name="tab_2">
            <attribute name="title">
-            <string>SDSL测试</string>
+            <string>ECOM-NS-1测试</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_9">
             <item row="0" column="0">
@@ -450,7 +450,7 @@ background-color:#F4F4F3;
               </row>
               <column>
                <property name="text">
-                <string> </string>
+                <string/>
                </property>
               </column>
               <column>

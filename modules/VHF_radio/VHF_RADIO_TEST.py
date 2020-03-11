@@ -64,20 +64,23 @@ class VHF_RADIO(QDialog, Ui_Dialog):
         parent.setFlags(parent.flags() | Qt.ItemIsTristate | Qt.ItemIsUserCheckable)
         self.tableWidget_test_resource.setRowCount(len(self.test_config.test_source))
         for x in range(len(self.test_config.test_source)):
-            item = QTableWidgetItem(str(self.test_config.test_source[x]['name']))
+            item = QTableWidgetItem(str(x + 1))
             self.tableWidget_test_resource.setItem(x, 0, item)
-            item = QTableWidgetItem(str(self.test_config.test_source[x]['type']))
+
+            item = QTableWidgetItem(str(self.test_config.test_source[x]['name']))
             self.tableWidget_test_resource.setItem(x, 1, item)
-            item = QTableWidgetItem(str(self.test_config.test_source[x]['number']))
+            item = QTableWidgetItem(str(self.test_config.test_source[x]['type']))
             self.tableWidget_test_resource.setItem(x, 2, item)
-            item = QTableWidgetItem(str(self.test_config.test_source[x]['count']))
+            item = QTableWidgetItem(str(self.test_config.test_source[x]['number']))
             self.tableWidget_test_resource.setItem(x, 3, item)
+            item = QTableWidgetItem(str(self.test_config.test_source[x]['count']))
+            self.tableWidget_test_resource.setItem(x, 4, item)
             # set vertical header center
             item = QTableWidgetItem(str(x + 1))
             self.tableWidget_test_resource.setVerticalHeaderItem(x, item)
             self.tableWidget_test_resource.verticalHeaderItem(x).setTextAlignment(Qt.AlignCenter)
 
-            for a in range(0, 4):
+            for a in range(0, 5):
                 self.tableWidget_test_resource.item(x, a).setTextAlignment(Qt.AlignCenter)
 
         for x in range(len(self.test_config.test_case)):
@@ -86,12 +89,6 @@ class VHF_RADIO(QDialog, Ui_Dialog):
             child.setText(0, self.test_config.test_case_detail[x]['title'])
             child.setCheckState(0, Qt.Unchecked)
 
-        # remove grid
-        self.tableWidget_test_resource.setShowGrid(False)
-        self.tableWidget_high_power.setShowGrid(False)
-        self.tableWidget_IB.setShowGrid(False)
-        self.tableWidget_low_power.setShowGrid(False)
-        self.tableWidget_VF_IF.setShowGrid(False)
 
         # set alter color
         self.tableWidget_test_resource.setAlternatingRowColors(True)
@@ -100,16 +97,17 @@ class VHF_RADIO(QDialog, Ui_Dialog):
         self.tableWidget_low_power.setAlternatingRowColors(True)
         self.tableWidget_VF_IF.setAlternatingRowColors(True)
 
-        self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
-                                                                               QHeaderView.Stretch)
-        self.tableWidget_high_power.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
-                                                                               QHeaderView.Stretch)
-        self.tableWidget_IB.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
-                                                                               QHeaderView.Stretch)
-        self.tableWidget_low_power.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
-                                                                               QHeaderView.Stretch)
-        self.tableWidget_VF_IF.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
-                                                                               QHeaderView.Stretch)
+        self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        self.tableWidget_high_power.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        self.tableWidget_IB.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        self.tableWidget_low_power.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        self.tableWidget_VF_IF.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+
+        self.tableWidget_test_resource.setColumnWidth(0, 30)
+        self.tableWidget_VF_IF.setColumnWidth(0, 30)
+        self.tableWidget_IB.setColumnWidth(0, 30)
+        self.tableWidget_low_power.setColumnWidth(0, 30)
+        self.tableWidget_high_power.setColumnWidth(0, 30)
         logger.info('com_control_device inited')
 
     @pyqtSlot()
@@ -310,23 +308,32 @@ class VHF_RADIO(QDialog, Ui_Dialog):
                 else:
                     self.tabWidget.setCurrentIndex(3)
                     self.table = self.tableWidget_IB
+        # set table row is zero
+        while self.table.rowCount() > 0:
+            self.table.removeRow(0)
+
         rowCount = self.table.rowCount()
         self.table.insertRow(rowCount)
         current_row = rowCount
         mItem = result.test_item
-        newItem = QTableWidgetItem(mItem)
+
+        newItem = QTableWidgetItem(str(current_row+1))
         newItem.setTextAlignment(QtCore.Qt.AlignCenter)
         self.table.setItem(current_row, 0, newItem)
-        mItem = result.test_condition
+
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter)
         self.table.setItem(current_row, 1, newItem)
-        mItem = str(result.test_results)
+        mItem = result.test_condition
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter)
         self.table.setItem(current_row, 2, newItem)
-        mItem = result.test_conclusion
+        mItem = str(result.test_results)
         newItem = QTableWidgetItem(mItem)
         newItem.setTextAlignment(QtCore.Qt.AlignCenter)
         self.table.setItem(current_row, 3, newItem)
+        mItem = result.test_conclusion
+        newItem = QTableWidgetItem(mItem)
+        newItem.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.table.setItem(current_row, 4, newItem)
 

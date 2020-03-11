@@ -76,25 +76,27 @@ class EcomNs1Main(QDialog, Ui_Dialog):
         parent.setText(0, self.test_config.title)
         parent.setFlags(parent.flags() | Qt.ItemIsTristate | Qt.ItemIsUserCheckable)
 
-        # 插入数据,根据temp_length数组的长度插入行数
+        # insert test resource data
         self.tableWidget_test_resource.setRowCount(len(self.test_config.test_source))
 
-        # 加载测试资源
+        # load test resource
         for x in range(len(self.test_config.test_source)):
-            # 名称
-            item = QTableWidgetItem(str(self.test_config.test_source[x]["name"]))
+            item = QTableWidgetItem(str(x + 1))
             self.tableWidget_test_resource.setItem(x, 0, item)
-            # 编号/型号
-            item = QTableWidgetItem(str(self.test_config.test_source[x]["type"]))
+            # name
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["name"]))
             self.tableWidget_test_resource.setItem(x, 1, item)
-            # 数量
-            item = QTableWidgetItem(str(self.test_config.test_source[x]["number"]))
+            # type
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["type"]))
             self.tableWidget_test_resource.setItem(x, 2, item)
-            # 备注
-            item = QTableWidgetItem(str(self.test_config.test_source[x]["count"]))
+            # number
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["number"]))
             self.tableWidget_test_resource.setItem(x, 3, item)
-            # 字体居中
-            for a in range(0, 4):
+            # count
+            item = QTableWidgetItem(str(self.test_config.test_source[x]["count"]))
+            self.tableWidget_test_resource.setItem(x, 4, item)
+            # set font center
+            for a in range(0, 5):
                 self.tableWidget_test_resource.item(x, a).setTextAlignment(Qt.AlignCenter)
 
             # set vertical header center
@@ -108,18 +110,38 @@ class EcomNs1Main(QDialog, Ui_Dialog):
             child.setText(0, self.test_config.test_case_detail[x]["title"])
             child.setCheckState(0, Qt.Unchecked)
         # table widget 自适应
-        self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
-                                                                               QHeaderView.Stretch)
-        self.tableWidget_test_results_ecom_ns1.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive |
-                                                                                       QHeaderView.Stretch)
-        # 设置treeWidget单选
-        # self.treeWidget.itemClicked.connect(self.treeWidget_item_click_slot_test)
+        self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        self.tableWidget_test_results.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
         # remove grid
         self.tableWidget_test_resource.setShowGrid(False)
-        self.tableWidget_test_results_ecom_ns1.setShowGrid(False)
+        self.tableWidget_test_results.setShowGrid(False)
         # set alter color
         self.tableWidget_test_resource.setAlternatingRowColors(True)
-        self.tableWidget_test_results_ecom_ns1.setAlternatingRowColors(True)
+        self.tableWidget_test_results.setAlternatingRowColors(True)
+        self.tableWidget_test_resource.setColumnWidth(0, 30)
+        self.tableWidget_test_resource.setColumnWidth(2, 60)
+        self.tableWidget_test_resource.setColumnWidth(3, 150)
+        self.tableWidget_test_results.setColumnWidth(0, 30)
+        self.tableWidget_test_results.setColumnWidth(1, 300)
+        self.pushButton_start.setStyleSheet("QPushButton:hover{\n"
+                                            "background-color:#2784D6;\n"
+                                            "cursor:pointer;}\n"
+                                            "QPushButton{\n"
+                                            "background-color:#F4F4F3;\n"
+                                            "}"
+                                            )
+        self.pushButton_close.setStyleSheet("QPushButton:hover{\n"
+                                            "background-color:#2784D6;\n"
+                                            "cursor:pointer;}\n"
+                                            "QPushButton{\n"
+                                            "background-color:#F4F4F3;\n"
+                                            "}")
+        self.pushButton_restart.setStyleSheet("QPushButton:hover{\n"
+                                              "background-color:#2784D6;\n"
+                                              "cursor:pointer;}\n"
+                                              "QPushButton{\n"
+                                              "background-color:#F4F4F3;\n"
+                                              "}")
         self.test_result = {}
         logger.info("ecom_ns_1 inited")
     
@@ -369,23 +391,25 @@ class EcomNs1Main(QDialog, Ui_Dialog):
         display the test result into table widget
         :return: none
         """
-        while self.tableWidget_test_results_ecom_ns1.rowCount() > 0:
-            self.tableWidget_test_results_ecom_ns1.removeRow(0)
-        self.tableWidget_test_results_ecom_ns1.setRowCount(len(self.test_result))
+        while self.tableWidget_test_results.rowCount() > 0:
+            self.tableWidget_test_results.removeRow(0)
+        self.tableWidget_test_results.setRowCount(len(self.test_result))
         temp_index = 0
         for key, value in self.test_result.items():
+            item = QTableWidgetItem(str(temp_index + 1))
+            self.tableWidget_test_results.setItem(temp_index, 0, item)
+
             item = QTableWidgetItem(str(key))
-            self.tableWidget_test_results_ecom_ns1.setItem(temp_index, 0, item)
+            self.tableWidget_test_results.setItem(temp_index, 1, item)
 
             item = QTableWidgetItem(str(value))
-            self.tableWidget_test_results_ecom_ns1.setItem(temp_index, 1, item)
+            self.tableWidget_test_results.setItem(temp_index, 2, item)
 
             item = QTableWidgetItem(str(value))
-            self.tableWidget_test_results_ecom_ns1.setItem(temp_index, 2, item)
+            self.tableWidget_test_results.setItem(temp_index, 3, item)
 
             item = QTableWidgetItem(str(temp_index + 1))
-            self.tableWidget_test_results_ecom_ns1.setVerticalHeaderItem(temp_index, item)
-            self.tableWidget_test_results_ecom_ns1.verticalHeaderItem(temp_index).setTextAlignment(Qt.AlignCenter)
+            for a in range(0, 4):
+                self.tableWidget_test_results.item(temp_index, a).setTextAlignment(Qt.AlignCenter)
 
             temp_index = temp_index + 1
-

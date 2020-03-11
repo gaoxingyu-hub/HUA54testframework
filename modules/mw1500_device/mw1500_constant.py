@@ -2,6 +2,7 @@
 
 
 class ModuleConstants:
+    TESTNUMBER=''
     TESTTABLE_ITEM = '测试项目'
     TESTTABLE_COND = '测试条件'
     TESTTABLE_VALUE = '测试值'

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'D:\code\54testframework\ui\ecom-ns-2\ECOM_NS2_MAIN.ui'
+# Form implementation generated from reading ui file 'D:\code\54testframework\ui\ecom-ns-1\ECOM_NS1_MAIN.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.0
 #
@@ -361,7 +361,7 @@ class Ui_Dialog(object):
         item.setText(_translate("Dialog", "测试结果"))
         item = self.tableWidget_test_results.horizontalHeaderItem(3)
         item.setText(_translate("Dialog", "测试结论"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Dialog", "ECOM-NS-2测试"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Dialog", "ECOM-NS-1测试"))
 import iconQrc_rc
 
 
