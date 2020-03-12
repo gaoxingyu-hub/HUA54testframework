@@ -145,21 +145,9 @@ class Ui_MainWindow(object):
 "}\n"
 "/****QPushButton****/\n"
 "QPushButton{\n"
-"width:32px;\n"
-"height:32px;\n"
-"background-color:#F4F4F3;\n"
-"color: #FFFFFF;\n"
-"font-size:14px;\n"
-"font-family:Microsoft YaHei;\n"
-"}\n"
-"QPushButton:hover{\n"
-"background-color:#2784D6;\n"
-"cursor:pointer;\n"
-"}\n"
-"QPushButton:pressed{\n"
 "background-color:#2784D6;\n"
 "}\n"
-"")
+)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.centralwidget)
