@@ -51,7 +51,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.dislay_in_center()
         self.treeWidget.expandAll()
         self.child = None
-        self.setStyleSheet(LoadQSS.load())
+        #self.setStyleSheet(LoadQSS.load())
 
         self.system_config_file_path = os.path.join(
             SETUP_DIR, "conf", "system.json")

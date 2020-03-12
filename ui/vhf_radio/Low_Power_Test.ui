@@ -20,48 +20,43 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QDialog{
-background-color:#D0DAE5;
+   <string notr="true">QWidget{
+background-color:#E3EAF4;
 }
-
-QTextBrower{
-background-color:#D0DAE5;
-}
-
 QLineEdit{
-background-color:#D0DAE5;
+background-color:#E3EAF4;
 }
-
-QWidget{
-background-color:#D0DAE5;
+QDialog{
+background-color:#E3EAF4;
+margin-top:10px;
 }
-
-QStackedWidget{
-background-color:#D0DAE5;
-}
-
-QHeaderView{
-background-color:#D0DAE5;
-}
-
 QLabel{
-font-size:12px;
+font-size:14px;
 font-family:Microsoft YaHei;
-background-color:#D0DAE5;
+background-color:#E3EAF4;
 }
-
-QPushButton{         /*按钮自适应拉伸背景*/
-border-width: 2px 15px 2px 15px;
+QGroupBox{
+font-size:14px;
+font-family:Microsoft YaHei;
+border:1px solid rgb(0, 0, 0);
+background-color:#E3EAF4;
+}
+QPushButton{
 background-color:#2884D8;
 color: #FFFFFF;
-font-size:12px;
+font-size:14px;
 font-family:Microsoft YaHei;
 }
-
-QGroupBox{
-font-size:12px;
-font-family:Microsoft YaHei;
-border:1px solid rgb(0, 0, 0); 
+QTextBrowser{
+margin-top:10px;
+border-width:0;
+border-style:outset;
+background-color:#E3EAF4;
+}
+QGraphicsView{
+background-color:#E3EAF4;
+border-width:0;
+border-style:outset;
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
@@ -107,7 +102,11 @@ border:1px solid rgb(0, 0, 0);
         </property>
         <layout class="QGridLayout" name="gridLayout_3">
          <item row="0" column="0">
-          <widget class="QTextBrowser" name="textBrowser"/>
+          <widget class="QTextBrowser" name="textBrowser">
+           <property name="styleSheet">
+            <string notr="true">margin-top:20px;</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>

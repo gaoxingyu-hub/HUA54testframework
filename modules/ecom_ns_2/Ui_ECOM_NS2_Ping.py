@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'G:\sourcecode\54\54testframework\ui\ecom-ns-2\ECOM_NS2_Ping.ui'
+# Form implementation generated from reading ui file 'D:\code\54testframework\ui\ecom-ns-2\ECOM_NS2_Ping.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.0
 #
@@ -13,84 +13,77 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(792, 600)
+        Dialog.resize(600, 600)
         font = QtGui.QFont()
         font.setFamily("Microsoft YaHei")
         font.setPointSize(14)
         Dialog.setFont(font)
-        Dialog.setStyleSheet("QDialog{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QTextBrower{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QLineEdit{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
+        Dialog.setStyleSheet("\n"
 "QWidget{\n"
-"background-color:#D0DAE5;\n"
+"background-color:#E3EAF4;\n"
 "}\n"
-"\n"
-"QStackedWidget{\n"
-"background-color:#D0DAE5;\n"
+"QLineEdit{\n"
+"background-color:#E3EAF4;\n"
 "}\n"
-"\n"
-"QHeaderView{\n"
-"background-color:#D0DAE5;\n"
+"QDialog{\n"
+"background-color:#E3EAF4;\n"
+"margin-top:10px;\n"
 "}\n"
-"\n"
 "QLabel{\n"
-"font-size:12px;\n"
+"font-size:14px;\n"
 "font-family:Microsoft YaHei;\n"
-"background-color:#D0DAE5;\n"
+"background-color:#E3EAF4;\n"
 "}\n"
-"\n"
-"QPushButton{         /*按钮自适应拉伸背景*/\n"
-"border-width: 2px 15px 2px 15px;\n"
+"QGroupBox{\n"
+"font-size:14px;\n"
+"font-family:Microsoft YaHei;\n"
+"border:1px solid rgb(0, 0, 0);\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"QPushButton{\n"
 "background-color:#2884D8;\n"
 "color: #FFFFFF;\n"
-"font-size:12px;\n"
+"font-size:14px;\n"
 "font-family:Microsoft YaHei;\n"
 "}\n"
-"\n"
-"QGroupBox{\n"
-"font-size:12px;\n"
-"font-family:Microsoft YaHei;\n"
-"border:1px solid rgb(0, 0, 0); \n"
+"QTextBrowser{\n"
+"border-width:0;\n"
+"border-style:outset;\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"QGraphicsView{\n"
+"background-color:#E3EAF4;\n"
+"border-width:0;\n"
+"border-style:outset;\n"
 "}")
         self.gridLayout_2 = QtWidgets.QGridLayout(Dialog)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.groupBox = QtWidgets.QGroupBox(Dialog)
         self.groupBox.setTitle("")
         self.groupBox.setObjectName("groupBox")
-        self.widget = QtWidgets.QWidget(self.groupBox)
-        self.widget.setGeometry(QtCore.QRect(10, 10, 751, 561))
-        self.widget.setObjectName("widget")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget)
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_4 = QtWidgets.QGridLayout(self.groupBox)
+        self.gridLayout_4.setObjectName("gridLayout_4")
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
         self.gridLayout_3 = QtWidgets.QGridLayout()
         self.gridLayout_3.setObjectName("gridLayout_3")
-        self.label_3 = QtWidgets.QLabel(self.widget)
+        self.label_3 = QtWidgets.QLabel(self.groupBox)
         font = QtGui.QFont()
         font.setFamily("Microsoft YaHei")
         font.setPointSize(-1)
         self.label_3.setFont(font)
         self.label_3.setObjectName("label_3")
         self.gridLayout_3.addWidget(self.label_3, 0, 0, 1, 1)
-        self.lineEdit_ip_address = QtWidgets.QLineEdit(self.widget)
+        self.lineEdit_ip_address = QtWidgets.QLineEdit(self.groupBox)
         self.lineEdit_ip_address.setObjectName("lineEdit_ip_address")
         self.gridLayout_3.addWidget(self.lineEdit_ip_address, 0, 1, 1, 1)
-        self.pushButton_ping = QtWidgets.QPushButton(self.widget)
+        self.pushButton_ping = QtWidgets.QPushButton(self.groupBox)
         self.pushButton_ping.setObjectName("pushButton_ping")
         self.gridLayout_3.addWidget(self.pushButton_ping, 0, 2, 1, 1)
         self.verticalLayout.addLayout(self.gridLayout_3)
-        self.groupBox_2 = QtWidgets.QGroupBox(self.widget)
+        self.groupBox_2 = QtWidgets.QGroupBox(self.groupBox)
         self.groupBox_2.setObjectName("groupBox_2")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.groupBox_2)
         self.gridLayout_5.setContentsMargins(-1, 20, -1, -1)
@@ -101,7 +94,7 @@ class Ui_Dialog(object):
         self.verticalLayout.addWidget(self.groupBox_2)
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
-        self.pushButton_next = QtWidgets.QPushButton(self.widget)
+        self.pushButton_next = QtWidgets.QPushButton(self.groupBox)
         self.pushButton_next.setObjectName("pushButton_next")
         self.gridLayout.addWidget(self.pushButton_next, 0, 1, 1, 1)
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -110,7 +103,7 @@ class Ui_Dialog(object):
         self.gridLayout.addItem(spacerItem1, 0, 0, 1, 1)
         self.verticalLayout.addLayout(self.gridLayout)
         self.horizontalLayout.addLayout(self.verticalLayout)
-        self.groupBox_3 = QtWidgets.QGroupBox(self.widget)
+        self.groupBox_3 = QtWidgets.QGroupBox(self.groupBox)
         self.groupBox_3.setObjectName("groupBox_3")
         self.gridLayout_6 = QtWidgets.QGridLayout(self.groupBox_3)
         self.gridLayout_6.setContentsMargins(-1, 20, -1, -1)
@@ -121,6 +114,7 @@ class Ui_Dialog(object):
         self.horizontalLayout.addWidget(self.groupBox_3)
         self.horizontalLayout.setStretch(0, 2)
         self.horizontalLayout.setStretch(1, 1)
+        self.gridLayout_4.addLayout(self.horizontalLayout, 0, 0, 1, 1)
         self.gridLayout_2.addWidget(self.groupBox, 0, 0, 1, 1)
 
         self.retranslateUi(Dialog)

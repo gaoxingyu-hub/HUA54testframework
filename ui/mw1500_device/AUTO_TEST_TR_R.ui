@@ -67,6 +67,46 @@ border:1px solid rgb(0, 0, 0);
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBox">
+     <property name="styleSheet">
+      <string notr="true">
+QWidget{
+background-color:#E3EAF4;
+}
+QLineEdit{
+background-color:#E3EAF4;
+}
+QDialog{
+background-color:#E3EAF4;
+margin-top:10px;
+}
+QLabel{
+font-size:14px;
+font-family:Microsoft YaHei;
+background-color:#E3EAF4;
+}
+QGroupBox{
+font-size:14px;
+font-family:Microsoft YaHei;
+border:1px solid rgb(0, 0, 0);
+background-color:#E3EAF4;
+}
+QPushButton{
+background-color:#2884D8;
+color: #FFFFFF;
+font-size:14px;
+font-family:Microsoft YaHei;
+}
+QTextBrowser{
+border-width:0;
+border-style:outset;
+background-color:#E3EAF4;
+}
+QGraphicsView{
+background-color:#E3EAF4;
+border-width:0;
+border-style:outset;
+}</string>
+     </property>
      <property name="title">
       <string/>
      </property>

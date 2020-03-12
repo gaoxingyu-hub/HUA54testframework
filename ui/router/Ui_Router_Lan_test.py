@@ -14,53 +14,36 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(993, 590)
+        Dialog.setStyleSheet("QDialog{\n"
+"background-color:#E3EAF4;\n"
+"margin-top:10px;\n"
+"}\n"
+"QLabel{\n"
+"font-size:14px;\n"
+"font-family:Microsoft YaHei;\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"QGroupBox{\n"
+"font-size:14px;\n"
+"font-family:Microsoft YaHei;\n"
+"border:1px solid rgb(0, 0, 0);\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"QTextBrowser{\n"
+"border-width:0;\n"
+"border-style:outset;\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"QWidget{\n"
+"background-color:#E3EAF4;\n"
+"}")
+        self.gridLayout_2 = QtWidgets.QGridLayout(Dialog)
+        self.gridLayout_2.setObjectName("gridLayout_2")
         self.groupBox = QtWidgets.QGroupBox(Dialog)
-        self.groupBox.setGeometry(QtCore.QRect(0, 0, 983, 582))
         font = QtGui.QFont()
         font.setFamily("Microsoft YaHei")
-        font.setPointSize(12)
+        font.setPointSize(-1)
         self.groupBox.setFont(font)
-        Dialog.setStyleSheet("QDialog{\n"
-                             "background-color:#D0DAE5;\n"
-                             "}\n"
-                             "\n"
-                             "QTextBrower{\n"
-                             "background-color:#D0DAE5;\n"
-                             "}\n"
-                             "\n"
-                             "QLineEdit{\n"
-                             "background-color:#D0DAE5;\n"
-                             "}\n"
-                             "\n"
-                             "QWidget{\n"
-                             "background-color:#D0DAE5;\n"
-                             "}\n"
-                             "\n"
-                             "QStackedWidget{\n"
-                             "background-color:#D0DAE5;\n"
-                             "}\n"
-                             "\n"
-                             "QHeaderView{\n"
-                             "background-color:#D0DAE5;\n"
-                             "}\n"
-                             "\n"
-                             "QLabel{\n"
-                             "font-size:12px;\n"
-                             "font-family:Microsoft YaHei;\n"
-                             "background-color:#D0DAE5;\n"
-                             "}\n"
-                             "\n"
-                             "QPushButton{         /*按钮自适应拉伸背景*/\n"
-                             "border-width: 2px 15px 2px 15px;\n"
-                             "background-color:#2884D8;\n"
-                             "color: #FFFFFF;\n"
-                             "font-family:Microsoft YaHei;\n"
-                             "}\n"
-                             "\n"
-                             "QGroupBox{\n"
-                             "font-family:Microsoft YaHei;\n"
-                             "border:1px solid rgb(0, 0, 0); \n"
-                             "}")
         self.groupBox.setTitle("")
         self.groupBox.setObjectName("groupBox")
         self.gridLayout_8 = QtWidgets.QGridLayout(self.groupBox)
@@ -70,7 +53,7 @@ class Ui_Dialog(object):
         self.groupBox_lan1 = QtWidgets.QGroupBox(self.groupBox)
         font = QtGui.QFont()
         font.setFamily("Microsoft YaHei")
-        font.setPointSize(9)
+        font.setPointSize(-1)
         self.groupBox_lan1.setFont(font)
         self.groupBox_lan1.setObjectName("groupBox_lan1")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.groupBox_lan1)
@@ -118,7 +101,7 @@ class Ui_Dialog(object):
         self.groupBox_lan1_2 = QtWidgets.QGroupBox(self.groupBox)
         font = QtGui.QFont()
         font.setFamily("Microsoft YaHei")
-        font.setPointSize(9)
+        font.setPointSize(-1)
         self.groupBox_lan1_2.setFont(font)
         self.groupBox_lan1_2.setObjectName("groupBox_lan1_2")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.groupBox_lan1_2)
@@ -187,12 +170,20 @@ class Ui_Dialog(object):
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem, 0, 2, 1, 1)
         self.pushButton_process = QtWidgets.QPushButton(self.groupBox)
+        self.pushButton_process.setStyleSheet("QPushButton{\n"
+"height:32px;\n"
+"background-color:#2884D8;\n"
+"color: #FFFFFF;\n"
+"font-size:14px;\n"
+"font-family:Microsoft YaHei;\n"
+"}")
         self.pushButton_process.setObjectName("pushButton_process")
         self.gridLayout.addWidget(self.pushButton_process, 0, 1, 1, 1)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem1, 0, 0, 1, 1)
         self.gridLayout_7.addLayout(self.gridLayout, 2, 0, 1, 3)
         self.gridLayout_8.addLayout(self.gridLayout_7, 0, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.groupBox, 0, 0, 1, 1)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)

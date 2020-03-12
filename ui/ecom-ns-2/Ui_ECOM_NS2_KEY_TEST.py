@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'E:\tianheng_projects\54\54TestFramework\ui\ecom-ns-2\ECOM_NS2_KEY_TEST.ui'
+# Form implementation generated from reading ui file 'D:\code\54testframework\ui\ecom-ns-2\ECOM_NS2_KEY_TEST.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.1
+# Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -18,53 +18,50 @@ class Ui_Dialog(object):
         font.setFamily("Microsoft YaHei")
         font.setPointSize(14)
         Dialog.setFont(font)
-        Dialog.setStyleSheet("QDialog{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QTextBrower{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QLineEdit{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
+        Dialog.setStyleSheet("\n"
 "QWidget{\n"
-"background-color:#D0DAE5;\n"
+"background-color:#E3EAF4;\n"
 "}\n"
-"\n"
-"QStackedWidget{\n"
-"background-color:#D0DAE5;\n"
+"QLineEdit{\n"
+"background-color:#E3EAF4;\n"
 "}\n"
-"\n"
-"QHeaderView{\n"
-"background-color:#D0DAE5;\n"
+"QDialog{\n"
+"background-color:#E3EAF4;\n"
+"margin-top:10px;\n"
 "}\n"
-"\n"
 "QLabel{\n"
-"font-size:12px;\n"
+"font-size:14px;\n"
 "font-family:Microsoft YaHei;\n"
-"background-color:#D0DAE5;\n"
+"background-color:#E3EAF4;\n"
 "}\n"
-"\n"
-"QPushButton{         /*按钮自适应拉伸背景*/\n"
-"border-width: 2px 15px 2px 15px;\n"
+"QGroupBox{\n"
+"font-size:14px;\n"
+"font-family:Microsoft YaHei;\n"
+"border:1px solid rgb(0, 0, 0);\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"QPushButton{\n"
 "background-color:#2884D8;\n"
 "color: #FFFFFF;\n"
+"font-size:14px;\n"
 "font-family:Microsoft YaHei;\n"
 "}\n"
-"\n"
-"QGroupBox{\n"
-"font-family:Microsoft YaHei;\n"
-"border:1px solid rgb(0, 0, 0); \n"
+"QTextBrowser{\n"
+"border-width:0;\n"
+"border-style:outset;\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"QGraphicsView{\n"
+"background-color:#E3EAF4;\n"
+"border-width:0;\n"
+"border-style:outset;\n"
 "}")
         self.gridLayout_2 = QtWidgets.QGridLayout(Dialog)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.groupBox = QtWidgets.QGroupBox(Dialog)
         font = QtGui.QFont()
         font.setFamily("Microsoft YaHei")
-        font.setPointSize(12)
+        font.setPointSize(-1)
         self.groupBox.setFont(font)
         self.groupBox.setTitle("")
         self.groupBox.setObjectName("groupBox")
@@ -286,7 +283,7 @@ class Ui_Dialog(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.groupBox_2.setTitle(_translate("Dialog", "提示信息"))
         self.pushButton_process.setText(_translate("Dialog", "下一步"))
-import iconQrc_rc
+import res.iconQrc_rc
 
 
 if __name__ == "__main__":

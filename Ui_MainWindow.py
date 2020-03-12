@@ -8,7 +8,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import Qt
 
 
 class Ui_MainWindow(object):
@@ -24,16 +23,142 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         MainWindow.setFont(font)
         MainWindow.setLayoutDirection(QtCore.Qt.LeftToRight)
-        MainWindow.setStyleSheet("QGroupBox{\n"
+        MainWindow.setStyleSheet("QDialog{\n"
+"background-color:#E3EAF4;\n"
+"margin-top:10px;\n"
+"}\n"
+"\n"
+"QTextBrower{\n"
+"background-color:#E3EAF4;\n"
+"border-width:0;border-style:outset\n"
+"}\n"
+"\n"
+"QLineEdit{\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"\n"
+"QWidget{\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"\n"
+"QStackedWidget{\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"\n"
+"QLabel{\n"
+"font-size:14px;\n"
+"font-family:Microsoft YaHei;\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"\n"
+"QGroupBox{\n"
+"font-size:14px;\n"
+"font-family:Microsoft YaHei;\n"
+"border:1px solid rgb(0, 0, 0);\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"\n"
+"\n"
+"QToolBar{\n"
+"background-color:#D5D5D5;\n"
+"height:30px;\n"
+"border:None;\n"
+"padding:1px;\n"
+"}\n"
+"/****QTreeWidget****/\n"
+"QTreeWidget{\n"
+"background-color:#E3EAF4;\n"
+"padding-top:20px;\n"
+"padding-left:10px;\n"
+"margin-top:20px;\n"
+"}\n"
+"QTreeView::item{\n"
+"font: 14px;\n"
+"}\n"
+"QTreeView::item:selected{\n"
+"selection-color: #1F95FF;\n"
+"}\n"
+"QTreeView::item:hover{\n"
+"background-color:#D0DAE5;\n"
+"}\n"
+"QTreeView::branch:has-siblings:!adjoins-item {\n"
+"    border-image: url(imgs/common/line.png) 0;\n"
+"}\n"
+"\n"
+"QTreeView::branch:has-siblings:adjoins-item {\n"
+"    border-image: url(imgs/common/line.png) 0;\n"
+"}\n"
+"QTreeView::branch:has-children:!has-siblings:closed,\n"
+"QTreeView::branch:closed:has-children:has-siblings {\n"
+"border-image: none;\n"
+"image: url(imgs/common/plus.png);\n"
+"}\n"
+"\n"
+"QTreeView::branch:open:has-children:!has-siblings,\n"
+"QTreeView::branch:open:has-children:has-siblings  {\n"
+"border-image: none;\n"
+"image: url(imgs/common/Minus.png);\n"
+"}\n"
+"\n"
+"QTreeView::branch:!has-children:!has-siblings:adjoins-item {\n"
+"    border-image: url(imgs/common/tree.png);\n"
+"}\n"
+"QTableWidget{\n"
+"outline: none;\n"
+"selection-color:#666666;\n"
+"alternate-background-color:#F9FAFC;\n"
+"}\n"
+"QTableCornerButton::section{\n"
+"background: #EDF2F8;\n"
+"}\n"
+"QTableWidget::item{\n"
+"font-size:14px;\n"
+"line-height:30px;\n"
+"border:1px solid #D2D2D2;\n"
+"}\n"
+"\n"
+"QTableWidget::item:hover{\n"
+"background-color:#EAF7FF;\n"
+"}\n"
+"QHeaderView::section:vertical {\n"
+"color: #666666;\n"
+"text-align:center;\n"
+"font: 14px Arial;\n"
+"border:1px solid #D2D2D2;\n"
+"background: #F9FBFD;\n"
+"width: 40px;\n"
+"height:30px;\n"
+"alternate-background-color:#F9FAFC;\n"
+"}\n"
+"QHeaderView::section:horizontal {\n"
+"color: #666666;\n"
+"font: 14px Microsoft YaHei;\n"
+"padding: 0px 1px 0 1px;\n"
+"text-align:center;\n"
+"border:1px solid #D2D2D2;\n"
+"background: #EDF2F8;\n"
+"height: 30px;\n"
+"alternate-background-color:#F9FAFC;\n"
+"}\n"
+"QScrollBar:vertical{\n"
+"border: 5px solid #D5D5D5;\n"
+"}\n"
+"/****QPushButton****/\n"
+"QPushButton{\n"
+"width:32px;\n"
+"height:32px;\n"
+"background-color:#F4F4F3;\n"
+"color: #FFFFFF;\n"
 "font-size:14px;\n"
 "font-family:Microsoft YaHei;\n"
 "}\n"
-"\n"
-"QMainWindow::title{\n"
-"background-color:#D0DAE5;\n"
-"font-color:rgb(255, 255, 255);\n"
+"QPushButton:hover{\n"
+"background-color:#2784D6;\n"
+"cursor:pointer;\n"
 "}\n"
-"\n"
+"QPushButton:pressed{\n"
+"background-color:#2784D6;\n"
+"}\n"
 "")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -42,7 +167,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.groupBoxMenu = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBoxMenu.setStyleSheet("background-color:#D0DAE5;\n"
+        self.groupBoxMenu.setStyleSheet("background-color:#E3EAF4;\n"
 "color:#666666")
         self.groupBoxMenu.setObjectName("groupBoxMenu")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.groupBoxMenu)
@@ -72,7 +197,7 @@ class Ui_MainWindow(object):
         font.setFamily("Microsoft YaHei")
         font.setPointSize(-1)
         self.groupBox.setFont(font)
-        self.groupBox.setStyleSheet("background-color:#D0DAE5;\n"
+        self.groupBox.setStyleSheet("background-color:#E3EAF4;\n"
 "color:#666666")
         self.groupBox.setObjectName("groupBox")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.groupBox)
@@ -109,6 +234,7 @@ class Ui_MainWindow(object):
         self.action_help.setObjectName("action_help")
         self.toolBar.addAction(self.action_about)
         self.toolBar.addAction(self.action_help)
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 

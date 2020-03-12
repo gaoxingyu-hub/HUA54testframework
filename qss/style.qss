@@ -1,64 +1,48 @@
 QDialog{
-background-color:#D0DAE5;
+background-color:#E3EAF4;
 margin-top:10px;
 }
 
 QTextBrower{
-background-color:#D0DAE5;
+background-color:#E3EAF4;
 border-width:0;border-style:outset
 }
 
 QLineEdit{
-background-color:#D0DAE5;
+background-color:#E3EAF4;
 }
 
 QWidget{
-background-color:#D0DAE5;
+background-color:#E3EAF4;
 }
 
 QStackedWidget{
-background-color:#D0DAE5;
+background-color:#E3EAF4;
 }
 
 QLabel{
 font-size:14px;
 font-family:Microsoft YaHei;
-background-color:#D0DAE5;
+background-color:#E3EAF4;
 }
 
 QGroupBox{
 font-size:14px;
 font-family:Microsoft YaHei;
 border:1px solid rgb(0, 0, 0);
+background-color:#E3EAF4;
 }
 
-/****QPushButton****/
-QPushButton{
-width:32px;
-height:32px;
-background-color:#F4F4F3;
-color: #FFFFFF;
-font-size:14px;
-font-family:Microsoft YaHei;
-}
-QPushButton#pushButton_close:hover{
-background-color:#2784D6;
-cursor:pointer;
-}
-QPushButton#pushButton_close:pressed{
-background-color:#2784D6;
-}
+
 QToolBar{
-background-color:#172545;
+background-color:#D5D5D5;
 height:30px;
 border:None;
 padding:1px;
 }
-
-
 /****QTreeWidget****/
 QTreeWidget{
-background-color:#D0DAE5;
+background-color:#E3EAF4;
 padding-top:20px;
 padding-left:10px;
 margin-top:20px;
@@ -128,9 +112,19 @@ alternate-background-color:#F9FAFC;
 QScrollBar:vertical{
 border: 5px solid #D5D5D5;
 }
+/****QPushButton****/
+QPushButton{
+width:32px;
+height:32px;
+background-color:#F4F4F3;
+color: #FFFFFF;
+font-size:14px;
+font-family:Microsoft YaHei;
+}
 QPushButton:hover{
 background-color:#2784D6;
-cursor:pointer;}
-QPushButton{
-background-color:#F4F4F3;
+cursor:pointer;
+}
+QPushButton:pressed{
+background-color:#2784D6;
 }

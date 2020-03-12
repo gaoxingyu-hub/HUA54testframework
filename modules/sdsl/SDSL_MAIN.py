@@ -77,26 +77,6 @@ class DialogSdslMain(QDialog, Ui_Dialog):
 
         # insert test resource data
         self.tableWidget_test_resource.setRowCount(len(self.test_config.test_source))
-        self.pushButton_start.setStyleSheet("QPushButton:hover{\n"
-                                            "background-color:#2784D6;\n"
-                                            "cursor:pointer;}\n"
-                                            "QPushButton{\n"
-                                            "background-color:#F4F4F3;\n"
-                                            "}"
-                                            )
-        self.pushButton_close.setStyleSheet("QPushButton:hover{\n"
-                                            "background-color:#2784D6;\n"
-                                            "cursor:pointer;}\n"
-                                            "QPushButton{\n"
-                                            "background-color:#F4F4F3;\n"
-                                            "}")
-        self.pushButton_restart.setStyleSheet("QPushButton:hover{\n"
-                                              "background-color:#2784D6;\n"
-                                              "cursor:pointer;}\n"
-                                              "QPushButton{\n"
-                                              "background-color:#F4F4F3;\n"
-                                              "}")
-
 
         # load test resource
         for x in range(len(self.test_config.test_source)):

@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'D:\work\AutoTest\54testframework\ui\vhf_radio\Low_Power_Test.ui'
+# Form implementation generated from reading ui file 'D:\code\54testframework\ui\vhf_radio\Low_Power_Test.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.3
+# Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -16,48 +18,43 @@ class Ui_Dialog(object):
         font.setFamily("Microsoft YaHei")
         font.setPointSize(14)
         Dialog.setFont(font)
-        Dialog.setStyleSheet("QDialog{\n"
-"background-color:#D0DAE5;\n"
+        Dialog.setStyleSheet("QWidget{\n"
+"background-color:#E3EAF4;\n"
 "}\n"
-"\n"
-"QTextBrower{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
 "QLineEdit{\n"
-"background-color:#D0DAE5;\n"
+"background-color:#E3EAF4;\n"
 "}\n"
-"\n"
-"QWidget{\n"
-"background-color:#D0DAE5;\n"
+"QDialog{\n"
+"background-color:#E3EAF4;\n"
+"margin-top:10px;\n"
 "}\n"
-"\n"
-"QStackedWidget{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
-"QHeaderView{\n"
-"background-color:#D0DAE5;\n"
-"}\n"
-"\n"
 "QLabel{\n"
-"font-size:12px;\n"
+"font-size:14px;\n"
 "font-family:Microsoft YaHei;\n"
-"background-color:#D0DAE5;\n"
+"background-color:#E3EAF4;\n"
 "}\n"
-"\n"
-"QPushButton{         /*按钮自适应拉伸背景*/\n"
-"border-width: 2px 15px 2px 15px;\n"
+"QGroupBox{\n"
+"font-size:14px;\n"
+"font-family:Microsoft YaHei;\n"
+"border:1px solid rgb(0, 0, 0);\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"QPushButton{\n"
 "background-color:#2884D8;\n"
 "color: #FFFFFF;\n"
-"font-size:12px;\n"
+"font-size:14px;\n"
 "font-family:Microsoft YaHei;\n"
 "}\n"
-"\n"
-"QGroupBox{\n"
-"font-size:12px;\n"
-"font-family:Microsoft YaHei;\n"
-"border:1px solid rgb(0, 0, 0); \n"
+"QTextBrowser{\n"
+"margin-top:10px;\n"
+"border-width:0;\n"
+"border-style:outset;\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"QGraphicsView{\n"
+"background-color:#E3EAF4;\n"
+"border-width:0;\n"
+"border-style:outset;\n"
 "}")
         self.gridLayout_2 = QtWidgets.QGridLayout(Dialog)
         self.gridLayout_2.setObjectName("gridLayout_2")
@@ -81,6 +78,7 @@ class Ui_Dialog(object):
         self.gridLayout_3 = QtWidgets.QGridLayout(self.groupBox_3)
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.textBrowser = QtWidgets.QTextBrowser(self.groupBox_3)
+        self.textBrowser.setStyleSheet("margin-top:20px;")
         self.textBrowser.setObjectName("textBrowser")
         self.gridLayout_3.addWidget(self.textBrowser, 0, 0, 1, 1)
         self.gridLayout_4.addWidget(self.groupBox_3, 0, 0, 1, 1)
@@ -97,8 +95,8 @@ class Ui_Dialog(object):
         self.groupBox_4.setTitle(_translate("Dialog", "操作面板"))
         self.pushButton_next.setText(_translate("Dialog", "下一步"))
         self.groupBox_3.setTitle(_translate("Dialog", "测试信息"))
+import res.iconQrc_rc
 
-import iconQrc_rc
 
 if __name__ == "__main__":
     import sys
@@ -108,4 +106,3 @@ if __name__ == "__main__":
     ui.setupUi(Dialog)
     Dialog.show()
     sys.exit(app.exec_())
-

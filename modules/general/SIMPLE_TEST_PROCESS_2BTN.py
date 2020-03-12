@@ -109,6 +109,7 @@ class DialogSimpleTestProcess2Btn(QDialog, Ui_Dialog):
                     self.pixmap = self.pixmap.scaled(600, 600,
                                                      Qt.IgnoreAspectRatio | Qt.SmoothTransformation)
                     self.label_img.setPixmap(self.pixmap)
+                    self.label_img.setAlignment(Qt.AlignCenter)
         except BaseException as e:
             logger.error(str(e))
         return

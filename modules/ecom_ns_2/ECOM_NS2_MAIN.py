@@ -127,25 +127,6 @@ class EcomNs2Main(QDialog, Ui_Dialog):
         self.tableWidget_test_resource.setColumnWidth(3, 150)
         self.tableWidget_test_results.setColumnWidth(0, 30)
         self.tableWidget_test_results.setColumnWidth(1, 300)
-        self.pushButton_start.setStyleSheet("QPushButton:hover{\n"
-                                            "background-color:#2784D6;\n"
-                                            "cursor:pointer;}\n"
-                                            "QPushButton{\n"
-                                            "background-color:#F4F4F3;\n"
-                                            "}"
-                                            )
-        self.pushButton_close.setStyleSheet("QPushButton:hover{\n"
-                                            "background-color:#2784D6;\n"
-                                            "cursor:pointer;}\n"
-                                            "QPushButton{\n"
-                                            "background-color:#F4F4F3;\n"
-                                            "}")
-        self.pushButton_restart.setStyleSheet("QPushButton:hover{\n"
-                                              "background-color:#2784D6;\n"
-                                              "cursor:pointer;}\n"
-                                              "QPushButton{\n"
-                                              "background-color:#F4F4F3;\n"
-                                              "}")
 
         self.test_result = {}
         logger.info("ecom_ns_2 inited")

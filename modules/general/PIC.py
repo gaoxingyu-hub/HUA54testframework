@@ -73,9 +73,10 @@ class DialogPic(QDialog, Ui_Dialog):
             if img_file_path and img_file_path != "":
                 if os.path.isfile(img_file_path) and os.access(img_file_path, os.W_OK):
                     self.pixmap = QtGui.QPixmap(img_file_path)
-                    self.pixmap = self.pixmap.scaled(750, 600,
-                                                     Qt.IgnoreAspectRatio | Qt.SmoothTransformation)
+                    self.pixmap = self.pixmap.scaled(560, 400,
+                                                     Qt.KeepAspectRatio | Qt.SmoothTransformation)
                     self.label_img.setPixmap(self.pixmap)
+                    self.label_img.setAlignment(Qt.AlignCenter)
         except:
             pass
         return

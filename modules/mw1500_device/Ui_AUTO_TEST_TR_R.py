@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'E:\autoTest\54testframework\ui\mw1500_device\AUTO_TEST_TR_R.ui'
+# Form implementation generated from reading ui file 'D:\code\54testframework\ui\mw1500_device\AUTO_TEST_TR_R.ui'
 #
-# Created by: PyQt5 UI code generator 5.14.1
+# Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -64,6 +64,44 @@ class Ui_Dialog(object):
         self.gridLayout_2 = QtWidgets.QGridLayout(Dialog)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.groupBox = QtWidgets.QGroupBox(Dialog)
+        self.groupBox.setStyleSheet("\n"
+"QWidget{\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"QLineEdit{\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"QDialog{\n"
+"background-color:#E3EAF4;\n"
+"margin-top:10px;\n"
+"}\n"
+"QLabel{\n"
+"font-size:14px;\n"
+"font-family:Microsoft YaHei;\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"QGroupBox{\n"
+"font-size:14px;\n"
+"font-family:Microsoft YaHei;\n"
+"border:1px solid rgb(0, 0, 0);\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"QPushButton{\n"
+"background-color:#2884D8;\n"
+"color: #FFFFFF;\n"
+"font-size:14px;\n"
+"font-family:Microsoft YaHei;\n"
+"}\n"
+"QTextBrowser{\n"
+"border-width:0;\n"
+"border-style:outset;\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"QGraphicsView{\n"
+"background-color:#E3EAF4;\n"
+"border-width:0;\n"
+"border-style:outset;\n"
+"}")
         self.groupBox.setTitle("")
         self.groupBox.setObjectName("groupBox")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.groupBox)

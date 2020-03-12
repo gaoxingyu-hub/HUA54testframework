@@ -11,7 +11,7 @@ import frozen_dir
 from common.config import RouterLanTestModuleConfig
 from common.logConfig import Logger
 from .router_test_process import TestProcessRouter
-from ui.router.Ui_Router_Lan_test import Ui_Dialog
+from modules.router.Ui_Router_Lan_test import Ui_Dialog
 from common.info import Constants,ThCommonNoticeInfo
 
 SETUP_DIR = frozen_dir.app_path()

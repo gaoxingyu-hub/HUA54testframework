@@ -14,6 +14,137 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(980, 980)
+        Dialog.setStyleSheet("QDialog{\n"
+"background-color:#E3EAF4;\n"
+"margin-top:10px;\n"
+"}\n"
+"\n"
+"QTextBrower{\n"
+"background-color:#E3EAF4;\n"
+"border-width:0;border-style:outset\n"
+"}\n"
+"\n"
+"QLineEdit{\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"\n"
+"QWidget{\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"\n"
+"QStackedWidget{\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"\n"
+"QLabel{\n"
+"font-size:14px;\n"
+"font-family:Microsoft YaHei;\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"\n"
+"QGroupBox{\n"
+"font-size:14px;\n"
+"font-family:Microsoft YaHei;\n"
+"border:1px solid rgb(0, 0, 0);\n"
+"background-color:#E3EAF4;\n"
+"}\n"
+"\n"
+"\n"
+"QToolBar{\n"
+"background-color:#D5D5D5;\n"
+"height:30px;\n"
+"border:None;\n"
+"padding:1px;\n"
+"}\n"
+"/****QTreeWidget****/\n"
+"QTreeWidget{\n"
+"background-color:#E3EAF4;\n"
+"padding-top:20px;\n"
+"padding-left:10px;\n"
+"margin-top:20px;\n"
+"}\n"
+"QTreeView::item{\n"
+"font: 14px;\n"
+"}\n"
+"QTreeView::item:selected{\n"
+"selection-color: #1F95FF;\n"
+"}\n"
+"QTreeView::item:hover{\n"
+"background-color:#D0DAE5;\n"
+"}\n"
+"\n"
+"QTreeView::branch:has-children:!has-siblings:closed,\n"
+"QTreeView::branch:closed:has-children:has-siblings {\n"
+"border-image: none;\n"
+"image: url(imgs/common/plus.png);\n"
+"}\n"
+"\n"
+"QTreeView::branch:open:has-children:!has-siblings,\n"
+"QTreeView::branch:open:has-children:has-siblings  {\n"
+"border-image: none;\n"
+"image: url(imgs/common/Minus.png);\n"
+"}\n"
+"\n"
+"QTreeView::branch:!has-children:!has-siblings:adjoins-item {\n"
+"    border-image: url(imgs/common/tree.png);\n"
+"}\n"
+"QTableWidget{\n"
+"outline: none;\n"
+"selection-color:#666666;\n"
+"alternate-background-color:#F9FAFC;\n"
+"}\n"
+"QTableCornerButton::section{\n"
+"background: #EDF2F8;\n"
+"}\n"
+"QTableWidget::item{\n"
+"font-size:14px;\n"
+"line-height:30px;\n"
+"border:1px solid #D2D2D2;\n"
+"}\n"
+"\n"
+"QTableWidget::item:hover{\n"
+"background-color:#EAF7FF;\n"
+"}\n"
+"QHeaderView::section:vertical {\n"
+"color: #666666;\n"
+"text-align:center;\n"
+"font: 14px Arial;\n"
+"border:1px solid #D2D2D2;\n"
+"background: #F9FBFD;\n"
+"width: 40px;\n"
+"height:30px;\n"
+"alternate-background-color:#F9FAFC;\n"
+"}\n"
+"QHeaderView::section:horizontal {\n"
+"color: #666666;\n"
+"font: 14px Microsoft YaHei;\n"
+"padding: 0px 1px 0 1px;\n"
+"text-align:center;\n"
+"border:1px solid #D2D2D2;\n"
+"background: #EDF2F8;\n"
+"height: 30px;\n"
+"alternate-background-color:#F9FAFC;\n"
+"}\n"
+"QScrollBar:vertical{\n"
+"border: 5px solid #D5D5D5;\n"
+"}\n"
+"/****QPushButton****/\n"
+"QPushButton{\n"
+"width:32px;\n"
+"height:32px;\n"
+"background-color:#F4F4F3;\n"
+"color: #FFFFFF;\n"
+"font-size:14px;\n"
+"font-family:Microsoft YaHei;\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color:#2784D6;\n"
+"cursor:pointer;\n"
+"}\n"
+"QPushButton:pressed{\n"
+"background-color:#2784D6;\n"
+"}\n"
+"")
         Dialog.setSizeGripEnabled(True)
         self.gridLayout_8 = QtWidgets.QGridLayout(Dialog)
         self.gridLayout_8.setObjectName("gridLayout_8")
@@ -24,29 +155,29 @@ class Ui_Dialog(object):
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
         self.pushButton_start = QtWidgets.QPushButton(Dialog)
-        self.pushButton_start.setStyleSheet("background-color:rgb(255, 255, 255);\n"
-"")
+        self.pushButton_start.setStyleSheet("")
         self.pushButton_start.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../icon/start.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/icon/start.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_start.setIcon(icon)
         self.pushButton_start.setIconSize(QtCore.QSize(32, 31))
         self.pushButton_start.setObjectName("pushButton_start")
         self.gridLayout.addWidget(self.pushButton_start, 0, 0, 1, 1)
         self.pushButton_close = QtWidgets.QPushButton(Dialog)
-        self.pushButton_close.setStyleSheet("background-color:rgb(255, 255, 255);")
+        self.pushButton_close.setAutoFillBackground(False)
+        self.pushButton_close.setStyleSheet("")
         self.pushButton_close.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../icon/cancel.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/newPrefix/icon/cancel.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_close.setIcon(icon1)
         self.pushButton_close.setIconSize(QtCore.QSize(32, 31))
         self.pushButton_close.setObjectName("pushButton_close")
         self.gridLayout.addWidget(self.pushButton_close, 0, 2, 1, 1)
         self.pushButton_restart = QtWidgets.QPushButton(Dialog)
-        self.pushButton_restart.setStyleSheet("background-color:rgb(255, 255, 255);")
+        self.pushButton_restart.setStyleSheet("")
         self.pushButton_restart.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../icon/stop.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/newPrefix/icon/stop.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_restart.setIcon(icon2)
         self.pushButton_restart.setIconSize(QtCore.QSize(32, 31))
         self.pushButton_restart.setObjectName("pushButton_restart")
@@ -98,6 +229,12 @@ class Ui_Dialog(object):
         self.gridLayout_5.setContentsMargins(-1, 20, -1, -1)
         self.gridLayout_5.setObjectName("gridLayout_5")
         self.tableWidget_test_resource = QtWidgets.QTableWidget(self.groupBox_test_resource)
+        self.tableWidget_test_resource.setEditTriggers(QtWidgets.QAbstractItemView.SelectedClicked)
+        self.tableWidget_test_resource.setAlternatingRowColors(True)
+        self.tableWidget_test_resource.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.tableWidget_test_resource.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.tableWidget_test_resource.setTextElideMode(QtCore.Qt.ElideRight)
+        self.tableWidget_test_resource.setShowGrid(False)
         self.tableWidget_test_resource.setGridStyle(QtCore.Qt.DotLine)
         self.tableWidget_test_resource.setObjectName("tableWidget_test_resource")
         self.tableWidget_test_resource.setColumnCount(5)
@@ -134,7 +271,8 @@ class Ui_Dialog(object):
         self.tableWidget_test_resource.setItem(1, 4, item)
         self.tableWidget_test_resource.horizontalHeader().setVisible(True)
         self.tableWidget_test_resource.horizontalHeader().setCascadingSectionResizes(False)
-        self.tableWidget_test_resource.horizontalHeader().setDefaultSectionSize(120)
+        self.tableWidget_test_resource.horizontalHeader().setDefaultSectionSize(150)
+        self.tableWidget_test_resource.horizontalHeader().setMinimumSectionSize(25)
         self.tableWidget_test_resource.horizontalHeader().setStretchLastSection(True)
         self.tableWidget_test_resource.verticalHeader().setVisible(False)
         self.tableWidget_test_resource.verticalHeader().setCascadingSectionResizes(False)
@@ -159,6 +297,7 @@ class Ui_Dialog(object):
         self.gridLayout_7.setObjectName("gridLayout_7")
         self.tableWidget = QtWidgets.QTableWidget(self.tab)
         self.tableWidget.setAutoFillBackground(False)
+        self.tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.tableWidget.setTextElideMode(QtCore.Qt.ElideMiddle)
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(4)
@@ -175,7 +314,6 @@ class Ui_Dialog(object):
         self.tableWidget.setHorizontalHeaderItem(3, item)
         self.tableWidget.horizontalHeader().setCascadingSectionResizes(True)
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
-        self.tableWidget.horizontalHeader().setDefaultSectionSize(150)
         self.tableWidget.verticalHeader().setVisible(False)
         self.gridLayout_7.addWidget(self.tableWidget, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab, "")
@@ -203,8 +341,6 @@ class Ui_Dialog(object):
         item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_resource.verticalHeaderItem(1)
         item.setText(_translate("Dialog", "2"))
-        item = self.tableWidget_test_resource.horizontalHeaderItem(0)
-        item.setText(_translate("Dialog", " "))
         item = self.tableWidget_test_resource.horizontalHeaderItem(1)
         item.setText(_translate("Dialog", "名称"))
         item = self.tableWidget_test_resource.horizontalHeaderItem(2)
@@ -234,8 +370,6 @@ class Ui_Dialog(object):
         self.tableWidget_test_resource.setSortingEnabled(__sortingEnabled)
         item = self.tableWidget.verticalHeaderItem(0)
         item.setText(_translate("Dialog", "1"))
-        item = self.tableWidget.horizontalHeaderItem(0)
-        item.setText(_translate("Dialog", " "))
         item = self.tableWidget.horizontalHeaderItem(1)
         item.setText(_translate("Dialog", "测试项目"))
         item = self.tableWidget.horizontalHeaderItem(2)
@@ -243,6 +377,7 @@ class Ui_Dialog(object):
         item = self.tableWidget.horizontalHeaderItem(3)
         item.setText(_translate("Dialog", "测试结论"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Dialog", "路由器模块测试"))
+import res.iconQrc_rc
 
 
 if __name__ == "__main__":

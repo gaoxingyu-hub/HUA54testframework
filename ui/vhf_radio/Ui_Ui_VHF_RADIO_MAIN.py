@@ -15,66 +15,50 @@ class Ui_Dialog(object):
         Dialog.setObjectName("Dialog")
         Dialog.resize(980, 980)
         Dialog.setStyleSheet("QDialog{\n"
-"background-color:#D0DAE5;\n"
+"background-color:#E3EAF4;\n"
 "margin-top:10px;\n"
 "}\n"
 "\n"
 "QTextBrower{\n"
-"background-color:#D0DAE5;\n"
+"background-color:#E3EAF4;\n"
 "border-width:0;border-style:outset\n"
 "}\n"
 "\n"
 "QLineEdit{\n"
-"background-color:#D0DAE5;\n"
+"background-color:#E3EAF4;\n"
 "}\n"
 "\n"
 "QWidget{\n"
-"background-color:#D0DAE5;\n"
+"background-color:#E3EAF4;\n"
 "}\n"
 "\n"
 "QStackedWidget{\n"
-"background-color:#D0DAE5;\n"
+"background-color:#E3EAF4;\n"
 "}\n"
 "\n"
 "QLabel{\n"
 "font-size:14px;\n"
 "font-family:Microsoft YaHei;\n"
-"background-color:#D0DAE5;\n"
+"background-color:#E3EAF4;\n"
 "}\n"
 "\n"
 "QGroupBox{\n"
 "font-size:14px;\n"
 "font-family:Microsoft YaHei;\n"
 "border:1px solid rgb(0, 0, 0);\n"
+"background-color:#E3EAF4;\n"
 "}\n"
 "\n"
-"/****QPushButton****/\n"
-"QPushButton{\n"
-"width:32px;\n"
-"height:32px;\n"
-"background-color:#F4F4F3;\n"
-"color: #FFFFFF;\n"
-"font-size:14px;\n"
-"font-family:Microsoft YaHei;\n"
-"}\n"
-"QPushButton#pushButton_close:hover{\n"
-"background-color:#2784D6;\n"
-"cursor:pointer;\n"
-"}\n"
-"QPushButton#pushButton_close:pressed{\n"
-"background-color:#2784D6;\n"
-"}\n"
+"\n"
 "QToolBar{\n"
-"background-color:#172545;\n"
+"background-color:#D5D5D5;\n"
 "height:30px;\n"
 "border:None;\n"
 "padding:1px;\n"
 "}\n"
-"\n"
-"\n"
 "/****QTreeWidget****/\n"
 "QTreeWidget{\n"
-"background-color:#D0DAE5;\n"
+"background-color:#E3EAF4;\n"
 "padding-top:20px;\n"
 "padding-left:10px;\n"
 "margin-top:20px;\n"
@@ -144,11 +128,21 @@ class Ui_Dialog(object):
 "QScrollBar:vertical{\n"
 "border: 5px solid #D5D5D5;\n"
 "}\n"
+"/****QPushButton****/\n"
+"QPushButton{\n"
+"width:32px;\n"
+"height:32px;\n"
+"background-color:#F4F4F3;\n"
+"color: #FFFFFF;\n"
+"font-size:14px;\n"
+"font-family:Microsoft YaHei;\n"
+"}\n"
 "QPushButton:hover{\n"
 "background-color:#2784D6;\n"
-"cursor:pointer;}\n"
-"QPushButton{\n"
-"background-color:#F4F4F3;\n"
+"cursor:pointer;\n"
+"}\n"
+"QPushButton:pressed{\n"
+"background-color:#2784D6;\n"
 "}\n"
 "")
         Dialog.setSizeGripEnabled(True)
@@ -161,29 +155,28 @@ class Ui_Dialog(object):
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
         self.pushButton_start = QtWidgets.QPushButton(Dialog)
-        self.pushButton_start.setStyleSheet("background-color:rgb(255, 255, 255);\n"
-"")
+        self.pushButton_start.setStyleSheet("")
         self.pushButton_start.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/newPrefix/icon/start1.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/icon/start.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_start.setIcon(icon)
         self.pushButton_start.setIconSize(QtCore.QSize(32, 31))
         self.pushButton_start.setObjectName("pushButton_start")
         self.gridLayout.addWidget(self.pushButton_start, 0, 0, 1, 1)
         self.pushButton_restart = QtWidgets.QPushButton(Dialog)
-        self.pushButton_restart.setStyleSheet("background-color:rgb(255, 255, 255);")
+        self.pushButton_restart.setStyleSheet("")
         self.pushButton_restart.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/newPrefix/icon/restart1.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/newPrefix/icon/stop.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_restart.setIcon(icon1)
         self.pushButton_restart.setIconSize(QtCore.QSize(32, 31))
         self.pushButton_restart.setObjectName("pushButton_restart")
         self.gridLayout.addWidget(self.pushButton_restart, 0, 1, 1, 1)
         self.pushButton_close = QtWidgets.QPushButton(Dialog)
-        self.pushButton_close.setStyleSheet("background-color:rgb(255, 255, 255);")
+        self.pushButton_close.setStyleSheet("")
         self.pushButton_close.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/newPrefix/icon/close1.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/newPrefix/icon/cancel.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_close.setIcon(icon2)
         self.pushButton_close.setIconSize(QtCore.QSize(32, 31))
         self.pushButton_close.setObjectName("pushButton_close")

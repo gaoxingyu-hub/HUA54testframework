@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>820</width>
-    <height>871</height>
+    <width>600</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="font">
@@ -21,48 +21,28 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog{
-background-color:#D0DAE5;
+background-color:#E3EAF4;
+margin-top:10px;
 }
-
-QTextBrower{
-background-color:#D0DAE5;
-}
-
-QLineEdit{
-background-color:#D0DAE5;
-}
-
-QWidget{
-background-color:#D0DAE5;
-}
-
-QStackedWidget{
-background-color:#D0DAE5;
-}
-
-QHeaderView{
-background-color:#D0DAE5;
-}
-
 QLabel{
-font-size:12px;
+font-size:14px;
 font-family:Microsoft YaHei;
-background-color:#D0DAE5;
+background-color:#E3EAF4;
 }
-
-QPushButton{         /*按钮自适应拉伸背景*/
-border-width: 2px 15px 2px 15px;
+QGroupBox{
+font-size:14px;
+font-family:Microsoft YaHei;
+border:1px solid rgb(0, 0, 0);
+background-color:#E3EAF4;
+}
+QPushButton{
+height:32px;
 background-color:#2884D8;
 color: #FFFFFF;
-font-size:12px;
+font-size:14px;
 font-family:Microsoft YaHei;
 }
-
-QGroupBox{
-font-size:12px;
-font-family:Microsoft YaHei;
-border:1px solid rgb(0, 0, 0); 
-}</string>
+</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
@@ -70,26 +50,30 @@ border:1px solid rgb(0, 0, 0);
      <property name="title">
       <string/>
      </property>
-     <layout class="QGridLayout" name="gridLayout_3">
+     <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
-       <layout class="QGridLayout" name="gridLayout" rowstretch="6,1" columnstretch="10">
-        <property name="verticalSpacing">
-         <number>6</number>
-        </property>
-        <item row="0" column="0">
+       <layout class="QVBoxLayout" name="verticalLayout" stretch="2,8">
+        <item>
          <widget class="QTextBrowser" name="textBrowser_contents">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>1</horstretch>
             <verstretch>10</verstretch>
            </sizepolicy>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QTextBrowser{
+border-width:0;
+border-style:outset;
+background-color:#E3EAF4;}
+</string>
           </property>
           <property name="sizeAdjustPolicy">
            <enum>QAbstractScrollArea::AdjustIgnored</enum>
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
+        <item>
          <widget class="QLabel" name="label_img">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -106,6 +90,12 @@ border:1px solid rgb(0, 0, 0);
       </item>
       <item row="1" column="0">
        <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="spacing">
+         <number>1</number>
+        </property>
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
         <item>
          <spacer name="horizontalSpacer_2">
           <property name="orientation">
@@ -122,7 +112,7 @@ border:1px solid rgb(0, 0, 0);
         <item>
          <widget class="QPushButton" name="pushButton_next">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -140,7 +130,7 @@ border:1px solid rgb(0, 0, 0);
           <property name="sizeHint" stdset="0">
            <size>
             <width>328</width>
-            <height>28</height>
+            <height>15</height>
            </size>
           </property>
          </spacer>

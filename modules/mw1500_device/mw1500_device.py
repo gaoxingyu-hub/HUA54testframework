@@ -125,26 +125,6 @@ class MW1500_DEVICE(QDialog, Ui_Dialog):
         self.tableWidget_test_results_coupler.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
         self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
 
-        self.pushButton_start.setStyleSheet("QPushButton:hover{\n"
-                                            "background-color:#2784D6;\n"
-                                            "cursor:pointer;}\n"
-                                            "QPushButton{\n"
-                                            "background-color:#D0DAE5;\n"
-                                            "}"
-                                            )
-        self.pushButton_close.setStyleSheet("QPushButton:hover{\n"
-                                            "background-color:#2784D6;\n"
-                                            "cursor:pointer;}\n"
-                                            "QPushButton{\n"
-                                            "background-color:#D0DAE5;\n"
-                                            "}")
-        self.pushButton_restart.setStyleSheet("QPushButton:hover{\n"
-                                              "background-color:#2784D6;\n"
-                                              "cursor:pointer;}\n"
-                                              "QPushButton{\n"
-                                              "background-color:#D0DAE5;\n"
-                                              "}")
-
         for x in range(len(self.test_config.test_case)):
             child = QTreeWidgetItem(parent)
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)

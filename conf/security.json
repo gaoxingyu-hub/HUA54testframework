@@ -130,7 +130,7 @@
 		}, {
 			"img": "",
 			"title": "IP误码仪测试-测试",
-			"contents": "IP数据加解密测试中，此过程可能持续数分钟，请耐心等待……",
+			"contents": "点击开始进行IP数据加解密测试此过程可能持续数分钟，请耐心等待",
 			"module": "DialogTestProcess",
 			"category": "execute"
 		}]

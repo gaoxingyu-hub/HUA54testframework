@@ -117,29 +117,7 @@ class DialogSecurityMain(QDialog, Ui_Dialog):
         self.tableWidget.setColumnWidth(1, 180)
         self.tableWidget_test_resource.setAlternatingRowColors(True)
         self.tableWidget.setAlternatingRowColors(True)
-        # table widget 自适应
-        # self.tableWidget_test_resource.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
-        # sself.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
-        # set putton style
-        self.pushButton_start.setStyleSheet("QPushButton:hover{\n"
-                                            "background-color:#2784D6;\n"
-                                            "cursor:pointer;}\n"
-                                            "QPushButton{\n"
-                                            "background-color:#F4F4F3;\n"
-                                            "}"
-                                            )
-        self.pushButton_close.setStyleSheet("QPushButton:hover{\n"
-                                            "background-color:#2784D6;\n"
-                                            "cursor:pointer;}\n"
-                                            "QPushButton{\n"
-                                            "background-color:#F4F4F3;\n"
-                                            "}")
-        self.pushButton_restart.setStyleSheet("QPushButton:hover{\n"
-                                              "background-color:#2784D6;\n"
-                                              "cursor:pointer;}\n"
-                                              "QPushButton{\n"
-                                              "background-color:#F4F4F3;\n"
-                                              "}")
+
         for x in range(len(self.test_config.test_case)):
             child = QTreeWidgetItem(parent)
             child.setFlags(child.flags() | Qt.ItemIsUserCheckable)

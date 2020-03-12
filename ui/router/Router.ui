@@ -16,10 +16,12 @@
   <property name="styleSheet">
    <string notr="true">QDialog{
 background-color:#E3EAF4;
+margin-top:10px;
 }
 
 QTextBrower{
 background-color:#E3EAF4;
+border-width:0;border-style:outset
 }
 
 QLineEdit{
@@ -44,107 +46,103 @@ QGroupBox{
 font-size:14px;
 font-family:Microsoft YaHei;
 border:1px solid rgb(0, 0, 0);
+background-color:#E3EAF4;
 }
 
-/****QPushButton****/
-QPushButton{
-border-width: 2px 15px 2px 15px;
-background-color:#2884D8;
-color: #FFFFFF;
-font-size:14px;
-font-family:Microsoft YaHei;
-}
 
-QPushButton:hover{
-    background-color:#3D90DB;
-    cursor:pointer;
-}
-QPushButton:pressed{
-    background-color:#2376C1;
-}
-QMainWindow{
-   background-color:#D0DAE5;
-}
 QToolBar{
-background-color:#172545;
+background-color:#D5D5D5;
 height:30px;
 border:None;
 padding:1px;
 }
-QDialog{
-margin-top:10px;
-}
 /****QTreeWidget****/
 QTreeWidget{
- background-color:#E3EAF4;
- padding-top:20px;
- padding-left:10px;
- margin-top:20px;
+background-color:#E3EAF4;
+padding-top:20px;
+padding-left:10px;
+margin-top:20px;
 }
 QTreeView::item{
- font: 14px;
+font: 14px;
 }
 QTreeView::item:selected{
-    selection-color: #1F95FF;
+selection-color: #1F95FF;
 }
-
 QTreeView::item:hover{
- background-color:#D0DAE5;
+background-color:#D0DAE5;
 }
 
 QTreeView::branch:has-children:!has-siblings:closed,
 QTreeView::branch:closed:has-children:has-siblings {
-        border-image: none;
-        image: url(imgs/common/plus.png);
+border-image: none;
+image: url(imgs/common/plus.png);
 }
 
 QTreeView::branch:open:has-children:!has-siblings,
 QTreeView::branch:open:has-children:has-siblings  {
-        border-image: none;
-        image: url(imgs/common/Minus.png);
+border-image: none;
+image: url(imgs/common/Minus.png);
 }
 
-/****QTableWidget****/
+QTreeView::branch:!has-children:!has-siblings:adjoins-item {
+    border-image: url(imgs/common/tree.png);
+}
 QTableWidget{
-    outline: none;
-    selection-color:#666666;
-    alternate-background-color:#F9FAFC;
+outline: none;
+selection-color:#666666;
+alternate-background-color:#F9FAFC;
 }
 QTableCornerButton::section{
-    background: #EDF2F8;
+background: #EDF2F8;
 }
 QTableWidget::item{
-    font-size:14px;
-    line-height:30px;
-    border:1px solid #D2D2D2;
+font-size:14px;
+line-height:30px;
+border:1px solid #D2D2D2;
 }
 
 QTableWidget::item:hover{
-    background-color:#EAF7FF;
+background-color:#EAF7FF;
 }
-
-/*QHeaderView*/
 QHeaderView::section:vertical {
-	color: #666666;
-	text-align:center;
-	font: 14px Arial;
-	border:1px solid #D2D2D2;
-	background: #F9FBFD;
-        width: 40px;
-        height:30px;
+color: #666666;
+text-align:center;
+font: 14px Arial;
+border:1px solid #D2D2D2;
+background: #F9FBFD;
+width: 40px;
+height:30px;
+alternate-background-color:#F9FAFC;
 }
 QHeaderView::section:horizontal {
-	color: #666666;
-	font: 14px Microsoft YaHei;
-	padding: 0px 1px 0 1px;
-	text-align:center;
-	border:1px solid #D2D2D2;
-	background: #EDF2F8;
-        height: 30px;
+color: #666666;
+font: 14px Microsoft YaHei;
+padding: 0px 1px 0 1px;
+text-align:center;
+border:1px solid #D2D2D2;
+background: #EDF2F8;
+height: 30px;
+alternate-background-color:#F9FAFC;
 }
-/*QScrollBar*/
 QScrollBar:vertical{
-    border: 5px solid #D5D5D5;
+border: 5px solid #D5D5D5;
+}
+/****QPushButton****/
+QPushButton{
+width:32px;
+height:32px;
+background-color:#F4F4F3;
+color: #FFFFFF;
+font-size:14px;
+font-family:Microsoft YaHei;
+}
+QPushButton:hover{
+background-color:#2784D6;
+cursor:pointer;
+}
+QPushButton:pressed{
+background-color:#2784D6;
 }
 </string>
   </property>
@@ -161,15 +159,14 @@ QScrollBar:vertical{
          <item row="0" column="0">
           <widget class="QPushButton" name="pushButton_start">
            <property name="styleSheet">
-            <string notr="true">background-color:rgb(255, 255, 255);
-</string>
+            <string notr="true"/>
            </property>
            <property name="text">
             <string/>
            </property>
            <property name="icon">
-            <iconset>
-             <normaloff>../icon/start.png</normaloff>../icon/start.png</iconset>
+            <iconset resource="../iconQrc.qrc">
+             <normaloff>:/newPrefix/icon/start.ico</normaloff>:/newPrefix/icon/start.ico</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -182,17 +179,17 @@ QScrollBar:vertical{
          <item row="0" column="2">
           <widget class="QPushButton" name="pushButton_close">
            <property name="autoFillBackground">
-            <bool>true</bool>
+            <bool>false</bool>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color:rgb(255, 255, 255);</string>
+            <string notr="true"/>
            </property>
            <property name="text">
             <string/>
            </property>
            <property name="icon">
-            <iconset>
-             <normaloff>../icon/cancel.png</normaloff>../icon/cancel.png</iconset>
+            <iconset resource="../iconQrc.qrc">
+             <normaloff>:/newPrefix/icon/cancel.ico</normaloff>:/newPrefix/icon/cancel.ico</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -205,14 +202,14 @@ QScrollBar:vertical{
          <item row="0" column="1">
           <widget class="QPushButton" name="pushButton_restart">
            <property name="styleSheet">
-            <string notr="true">background-color:rgb(255, 255, 255);</string>
+            <string notr="true"/>
            </property>
            <property name="text">
             <string/>
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>../icon/stop.png</normaloff>../icon/stop.png</iconset>
+             <normaloff>../icon/stop.ico</normaloff>../icon/stop.ico</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -336,6 +333,9 @@ QScrollBar:vertical{
               </property>
               <property name="textElideMode">
                <enum>Qt::ElideRight</enum>
+              </property>
+              <property name="showGrid">
+               <bool>false</bool>
               </property>
               <property name="gridStyle">
                <enum>Qt::DotLine</enum>
@@ -531,6 +531,8 @@ QScrollBar:vertical{
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../iconQrc.qrc"/>
+ </resources>
  <connections/>
 </ui>

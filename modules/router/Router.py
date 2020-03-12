@@ -131,25 +131,6 @@ class RouterDialog(QDialog, Ui_Dialog):
         self.tableWidget.setAlternatingRowColors(True)
         self.tableWidget.setShowGrid(False)
 
-        self.pushButton_start.setStyleSheet("QPushButton:hover{\n"
-                                            "background-color:#2784D6;\n"
-                                            "cursor:pointer;}\n"
-                                            "QPushButton{\n"
-                                            "background-color:#F4F4F3;\n"
-                                            "}"
-                                            )
-        self.pushButton_close.setStyleSheet("QPushButton:hover{\n"
-                                            "background-color:#2784D6;\n"
-                                            "cursor:pointer;}\n"
-                                            "QPushButton{\n"
-                                            "background-color:#F4F4F3;\n"
-                                            "}")
-        self.pushButton_restart.setStyleSheet("QPushButton:hover{\n"
-                                              "background-color:#2784D6;\n"
-                                              "cursor:pointer;}\n"
-                                              "QPushButton{\n"
-                                              "background-color:#F4F4F3;\n"
-                                              "}")
 
         self.test_result = {}
         logger.info("Router inited")

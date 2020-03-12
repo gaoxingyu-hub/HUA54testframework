@@ -106,25 +106,6 @@ class DialogMvComDevice(QDialog, Ui_Dialog):
             # set font center
             for a in range(0, 5):
                 self.tableWidget_test_resource.item(x, a).setTextAlignment(Qt.AlignCenter)
-        self.pushButton_start.setStyleSheet("QPushButton:hover{\n"
-                                            "background-color:#2784D6;\n"
-                                            "cursor:pointer;}\n"
-                                            "QPushButton{\n"
-                                            "background-color:#F4F4F3;\n"
-                                            "}"
-                                            )
-        self.pushButton_close.setStyleSheet("QPushButton:hover{\n"
-                                            "background-color:#2784D6;\n"
-                                            "cursor:pointer;}\n"
-                                            "QPushButton{\n"
-                                            "background-color:#F4F4F3;\n"
-                                            "}")
-        self.pushButton_restart.setStyleSheet("QPushButton:hover{\n"
-                                              "background-color:#2784D6;\n"
-                                              "cursor:pointer;}\n"
-                                              "QPushButton{\n"
-                                              "background-color:#F4F4F3;\n"
-                                              "}")
         self.tableWidget_test_resource.setColumnWidth(0, 30)
         self.tableWidget_test_resource.setColumnWidth(2, 60)
         self.tableWidget_test_results.setColumnWidth(0, 30)
