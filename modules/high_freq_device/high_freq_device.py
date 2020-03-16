@@ -30,7 +30,7 @@ import time
 from common.logConfig import Logger
 from common.th_thread_model import ThThreadTimerUpdateTestTime
 
-from ui.Ui_high_freq_device import Ui_Dialog
+from .Ui_high_freq_device import Ui_Dialog
 
 #test
 import sys

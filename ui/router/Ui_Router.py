@@ -144,6 +144,12 @@ class Ui_Dialog(object):
 "QPushButton:pressed{\n"
 "background-color:#2784D6;\n"
 "}\n"
+"QTreeWidget::indicator:checked {\n"
+"    image: url(imgs/common/checked.png);\n"
+"}\n"
+"QTreeWidget::indicator:unchecked {\n"
+"    image: url(imgs/common/check.png);\n"
+"}\n"
 "")
         Dialog.setSizeGripEnabled(True)
         self.gridLayout_8 = QtWidgets.QGridLayout(Dialog)
@@ -177,7 +183,7 @@ class Ui_Dialog(object):
         self.pushButton_restart.setStyleSheet("")
         self.pushButton_restart.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/newPrefix/icon/stop.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("../icon/stop.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_restart.setIcon(icon2)
         self.pushButton_restart.setIconSize(QtCore.QSize(32, 31))
         self.pushButton_restart.setObjectName("pushButton_restart")

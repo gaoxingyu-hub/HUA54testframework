@@ -47,31 +47,46 @@ padding-top:20px;
 padding-left:10px;
 margin-top:20px;
 }
-QTreeView::item{
-font: 14px;
+QTreeView {
+        border: 1px solid rgb(50, 50, 50);
+        background-color: #E3EAF4;
 }
-QTreeView::item:selected{
-selection-color: #1F95FF;
+QTreeView::item {
+        height: 25px;
+        color: #666666;
+        border: none;
+        background-color: transparent;
 }
-QTreeView::item:hover{
-background-color:#D0DAE5;
+QTreeView::item:hover, QTreeView::branch:hover { /** 鼠标滑过 **/
+        background-color: #D0DAE5;
+}
+QTreeView::item:selected, QTreeView::branch:selected { /** 鼠标选中 **/
+        color: #1F95FF;
+}
+QTreeView::branch {
+        background-color: transparent;
+}
+QTreeView::branch:open:has-children {
+        image: url(imgs/common/plus.png);
+}
+QTreeView::branch:closed:has-children {
+       image: url(imgs/common/Minus.png);
 }
 
-QTreeView::branch:has-children:!has-siblings:closed,
-QTreeView::branch:closed:has-children:has-siblings {
-border-image: none;
-image: url(imgs/common/plus.png);
+QCheckBox {
+    spacing: 5px;
+}
+QCheckBox::indicator {
+    width: 13px;
+    height: 13px;
+}
+QCheckBox::indicator:unchecked {
+    image: url(imgs/common/check.png);
+}
+QCheckBox::indicator:checked {
+    image: url(imgs/common/checked.png);
 }
 
-QTreeView::branch:open:has-children:!has-siblings,
-QTreeView::branch:open:has-children:has-siblings  {
-border-image: none;
-image: url(imgs/common/Minus.png);
-}
-
-QTreeView::branch:!has-children:!has-siblings:adjoins-item {
-    border-image: url(imgs/common/tree.png);
-}
 QTableWidget{
 outline: none;
 selection-color:#666666;

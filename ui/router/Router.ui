@@ -144,6 +144,12 @@ cursor:pointer;
 QPushButton:pressed{
 background-color:#2784D6;
 }
+QTreeWidget::indicator:checked {
+	image: url(imgs/common/checked.png);
+}
+QTreeWidget::indicator:unchecked {
+	image: url(imgs/common/check.png);
+}
 </string>
   </property>
   <property name="sizeGripEnabled">

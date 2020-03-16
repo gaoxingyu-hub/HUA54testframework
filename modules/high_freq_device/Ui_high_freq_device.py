@@ -148,6 +148,12 @@ class Ui_Dialog(object):
 "QPushButton:pressed{\n"
 "background-color:#2784D6;\n"
 "}\n"
+"QTreeWidget::indicator:checked {\n"
+"    image: url(imgs/common/checked.png);\n"
+"}\n"
+"QTreeWidget::indicator:unchecked {\n"
+"    image: url(imgs/common/check.png);\n"
+"}\n"
 "")
         self.gridLayout_8 = QtWidgets.QGridLayout(Dialog)
         self.gridLayout_8.setObjectName("gridLayout_8")

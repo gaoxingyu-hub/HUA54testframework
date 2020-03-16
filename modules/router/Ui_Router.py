@@ -144,6 +144,12 @@ class Ui_Dialog(object):
 "QPushButton:pressed{\n"
 "background-color:#2784D6;\n"
 "}\n"
+"QTreeWidget::indicator:checked {\n"
+"    image: url(imgs/common/checked.png);\n"
+"}\n"
+"QTreeWidget::indicator:unchecked {\n"
+"    image: url(imgs/common/check.png);\n"
+"}\n"
 "")
         Dialog.setSizeGripEnabled(True)
         self.gridLayout_8 = QtWidgets.QGridLayout(Dialog)
@@ -160,7 +166,7 @@ class Ui_Dialog(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/newPrefix/icon/start.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_start.setIcon(icon)
-        self.pushButton_start.setIconSize(QtCore.QSize(25, 25))
+        self.pushButton_start.setIconSize(QtCore.QSize(32, 31))
         self.pushButton_start.setObjectName("pushButton_start")
         self.gridLayout.addWidget(self.pushButton_start, 0, 0, 1, 1)
         self.pushButton_close = QtWidgets.QPushButton(Dialog)
@@ -170,7 +176,7 @@ class Ui_Dialog(object):
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/newPrefix/icon/cancel.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_close.setIcon(icon1)
-        self.pushButton_close.setIconSize(QtCore.QSize(20, 20))
+        self.pushButton_close.setIconSize(QtCore.QSize(32, 31))
         self.pushButton_close.setObjectName("pushButton_close")
         self.gridLayout.addWidget(self.pushButton_close, 0, 2, 1, 1)
         self.pushButton_restart = QtWidgets.QPushButton(Dialog)
@@ -179,7 +185,7 @@ class Ui_Dialog(object):
         icon2 = QtGui.QIcon()
         icon2.addPixmap(QtGui.QPixmap(":/newPrefix/icon/stop.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_restart.setIcon(icon2)
-        self.pushButton_restart.setIconSize(QtCore.QSize(20, 20))
+        self.pushButton_restart.setIconSize(QtCore.QSize(32, 31))
         self.pushButton_restart.setObjectName("pushButton_restart")
         self.gridLayout.addWidget(self.pushButton_restart, 0, 1, 1, 1)
         self.horizontalLayout_2.addLayout(self.gridLayout)
