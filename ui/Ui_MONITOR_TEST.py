@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'E:\autoTest\54testframework\ui\MONITOR_TEST.ui'
+# Form implementation generated from reading ui file 'D:\code\54testframework\ui\MONITOR_TEST.ui'
 #
-# Created by: PyQt5 UI code generator 5.14.1
+# Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -141,7 +141,7 @@ class Ui_Dialog(object):
         self.checkBox_v12.setText(_translate("Dialog", "V12指示灯闪烁"))
         self.checkBox_v13.setText(_translate("Dialog", "V13指示灯闪烁"))
         self.pushButton_next.setText(_translate("Dialog", "下一步"))
-import res.iconQrc_rc
+import iconQrc_rc
 
 
 if __name__ == "__main__":

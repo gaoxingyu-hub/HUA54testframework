@@ -172,21 +172,7 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         self.tableWidget_test_results_pa.setColumnWidth(2, 200)
         self.tableWidget_test_results_sc.setColumnWidth(2, 200)
         self.tableWidget_test_results_filter.setColumnWidth(2, 200)
-        self.pushButton_start.setStyleSheet("QPushButton{background-color:#F4F4F3;}\n"
-                                            "QPushButton:hover{\n"
-                                            "background-color:#2784D6;\n"
-                                            "cursor:pointer;\n"
-                                            "}")
-        self.pushButton_restart.setStyleSheet("QPushButton{background-color:#F4F4F3;}\n"
-                                            "QPushButton:hover{\n"
-                                            "background-color:#2784D6;\n"
-                                            "cursor:pointer;\n"
-                                            "}")
-        self.pushButton_close.setStyleSheet("QPushButton{background-color:#F4F4F3;}\n"
-                                            "QPushButton:hover{\n"
-                                            "background-color:#2784D6;\n"
-                                            "cursor:pointer;\n"
-                                            "}")
+
         logger.info("high_freq_device inited")
         self.tabWidget.setCurrentIndex(0)
         self.record_table_init()

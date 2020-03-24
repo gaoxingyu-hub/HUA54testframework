@@ -90,7 +90,7 @@ class Ui_Dialog(object):
 "}\n"
 "\n"
 "QTreeView::branch:!has-children:!has-siblings:adjoins-item {\n"
-"    border-image: url(imgs/common/tree.png);\n"
+"    border-image: url(imgs/common/end.png);\n"
 "}\n"
 "QTableWidget{\n"
 "outline: none;\n"
@@ -136,7 +136,7 @@ class Ui_Dialog(object):
 "QPushButton{\n"
 "width:32px;\n"
 "height:32px;\n"
-"background-color:#F4F4F3;\n"
+"background-color:#D0DBE5;\n"
 "color: #FFFFFF;\n"
 "font-size:14px;\n"
 "font-family:Microsoft YaHei;\n"
@@ -168,27 +168,27 @@ class Ui_Dialog(object):
 "")
         self.pushButton_start.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/newPrefix/icon/start.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/icon/start.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_start.setIcon(icon)
-        self.pushButton_start.setIconSize(QtCore.QSize(20, 20))
+        self.pushButton_start.setIconSize(QtCore.QSize(15, 15))
         self.pushButton_start.setObjectName("pushButton_start")
         self.gridLayout.addWidget(self.pushButton_start, 0, 0, 1, 1)
         self.pushButton_restart = QtWidgets.QPushButton(Dialog)
         self.pushButton_restart.setStyleSheet("")
         self.pushButton_restart.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/newPrefix/icon/stop.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/newPrefix/icon/stop.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_restart.setIcon(icon1)
-        self.pushButton_restart.setIconSize(QtCore.QSize(20, 20))
+        self.pushButton_restart.setIconSize(QtCore.QSize(15, 15))
         self.pushButton_restart.setObjectName("pushButton_restart")
         self.gridLayout.addWidget(self.pushButton_restart, 0, 1, 1, 1)
         self.pushButton_close = QtWidgets.QPushButton(Dialog)
         self.pushButton_close.setStyleSheet("")
         self.pushButton_close.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/newPrefix/icon/cancel.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/newPrefix/icon/close.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_close.setIcon(icon2)
-        self.pushButton_close.setIconSize(QtCore.QSize(20, 20))
+        self.pushButton_close.setIconSize(QtCore.QSize(15, 15))
         self.pushButton_close.setObjectName("pushButton_close")
         self.gridLayout.addWidget(self.pushButton_close, 0, 2, 1, 1)
         self.gridLayout_9.addLayout(self.gridLayout, 0, 0, 1, 1)

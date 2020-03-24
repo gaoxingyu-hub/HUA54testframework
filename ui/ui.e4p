@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project ui -->
-<!-- Saved: 2020-03-12, 15:15:45 -->
+<!-- Saved: 2020-03-23, 18:14:45 -->
 <!-- Copyright (C) 2020 ,  -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -15,6 +15,7 @@
   <Sources>
     <Source>MainWindowAction.py</Source>
     <Source>PIC_TEXT.py</Source>
+    <Source>QMess.py</Source>
     <Source>Router.py</Source>
     <Source>SIMPLE_TEST_PROCESS_1BTN.py</Source>
     <Source>SIMPLE_TEST_PROCESS_2BTN.py</Source>
@@ -27,10 +28,12 @@
     <Source>Ui_AUTO_TEST_PA.py</Source>
     <Source>Ui_AUTO_TEST_T.py</Source>
     <Source>Ui_Demo.py</Source>
+    <Source>Ui_ECOM-NS-2.py</Source>
     <Source>Ui_LO_TEST.py</Source>
     <Source>Ui_MONITOR_TEST.py</Source>
     <Source>Ui_MainWindow.py</Source>
     <Source>Ui_PIC_TEXT.py</Source>
+    <Source>Ui_QMess.py</Source>
     <Source>Ui_Router.py</Source>
     <Source>Ui_SIMPLE_TEST_PROCESS_1BTN.py</Source>
     <Source>Ui_SIMPLE_TEST_PROCESS_2BTN.py</Source>
@@ -101,6 +104,7 @@
     <Form>MONITOR_TEST.ui</Form>
     <Form>MainWindow.ui</Form>
     <Form>PIC_TEXT.ui</Form>
+    <Form>QMess.ui</Form>
     <Form>Router.ui</Form>
     <Form>SIMPLE_TEST_PROCESS_1BTN.ui</Form>
     <Form>SIMPLE_TEST_PROCESS_2BTN.ui</Form>

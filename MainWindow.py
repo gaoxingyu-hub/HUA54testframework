@@ -166,6 +166,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         _app.installTranslator(self.m_translator)
         self.retranslateUi(self)
 
+    @pyqtSlot()
+    def on_action_about_triggered(self):
+        """
+        Slot documentation goes here.
+        """
+        print("关于")
+
+    @pyqtSlot()
+    def on_action_help_triggered(self):
+        """
+        Slot documentation goes here.
+        """
+        print("帮助")
+
 
 class StatusCleanerThread(QtCore.QThread):
     """

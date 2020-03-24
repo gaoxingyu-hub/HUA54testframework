@@ -21,7 +21,7 @@ from common.logConfig import Logger
 from common.th_thread_model import ThThreadTimerUpdateTestTime
 from modules.mw1500_device.mw1500_constant import ModuleConstants
 
-from ui.mw1500_device.Ui_mw1500_device import Ui_Dialog
+from .Ui_mw1500_device import Ui_Dialog
 
 
 #test

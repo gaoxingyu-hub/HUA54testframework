@@ -67,12 +67,17 @@ QTreeView::branch {
         background-color: transparent;
 }
 QTreeView::branch:open:has-children {
-        image: url(imgs/common/plus.png);
+        image: url(imgs/common/Minus.png);
 }
 QTreeView::branch:closed:has-children {
-       image: url(imgs/common/Minus.png);
+       image: url(imgs/common/plus.png);
 }
-
+QTreeView::branch:has-siblings:adjoins-item {
+    border-image: url(imgs/common/more.png);
+}
+QTreeView::branch:!has-children:!has-siblings:adjoins-item {
+    border-image: url(imgs/common/end.png);
+}
 QCheckBox {
     spacing: 5px;
 }
@@ -135,11 +140,14 @@ background-color:#F4F4F3;
 color: #FFFFFF;
 font-size:14px;
 font-family:Microsoft YaHei;
+border:none;
 }
 QPushButton:hover{
 background-color:#2784D6;
 cursor:pointer;
+border:none;
 }
 QPushButton:pressed{
 background-color:#2784D6;
+border:none;
 }
