@@ -9,6 +9,7 @@ from PyQt5.QtWidgets import QDialog
 from PyQt5 import QtGui
 from PyQt5.QtCore import pyqtSignal
 
+from common.info import SystemLanguage
 from .Ui_LO_TEST import Ui_Dialog
 import os
 from InstrumentDrivers.VNADriver import AgilentN5242
@@ -18,7 +19,10 @@ from database.data_storage import ThTestResultsStorage
 import json
 from database.test_results_model import TestResultBase
 from InstrumentDrivers.SpectrumAnalyzerDriver import SpectrumAnalyzer
-from .high_freq_constant import ModuleConstants
+if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+    from modules.high_freq_device.high_freq_constant import ModuleConstants
+else:
+    from modules.high_freq_device.high_freq_constant_fr import ModuleConstants
 
 class MANUAL_TEST_LO(QDialog, Ui_Dialog):
     """

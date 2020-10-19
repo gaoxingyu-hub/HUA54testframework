@@ -4,6 +4,7 @@
 Module implementing MainWindow.
 """
 
+import PyQt5
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QMainWindow,QTreeWidgetItem,QMessageBox,QDesktopWidget,QApplication
 from modules.ecom_ns_1.ECOM_NS1_MAIN import EcomNs1Main
@@ -86,6 +87,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         if current_tree_item_index:
             if current_tree_item_index in self.menuindex2module:
+                a = globals()
                 self.child = globals()[self.menuindex2module[current_tree_item_index]]()
                 self.child.signalTitle.connect(self.deal_signal_title_emit_slot)
                 self.child.signalStatus.connect(self.deal_signal_status_emit_slot)

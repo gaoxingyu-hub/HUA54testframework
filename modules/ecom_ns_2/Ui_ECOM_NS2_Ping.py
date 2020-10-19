@@ -9,6 +9,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from common.info import SystemLanguage
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -123,11 +125,18 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.label_3.setText(_translate("Dialog", "IP地址"))
-        self.pushButton_ping.setText(_translate("Dialog", "ping"))
-        self.groupBox_2.setTitle(_translate("Dialog", "提示信息"))
-        self.pushButton_next.setText(_translate("Dialog", "下一步"))
-        self.groupBox_3.setTitle(_translate("Dialog", "日志"))
+        if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+            self.label_3.setText(_translate("Dialog", "Adresse IP"))
+            self.pushButton_ping.setText(_translate("Dialog", "ping"))
+            self.groupBox_2.setTitle(_translate("Dialog", "Information de remarque"))
+            self.pushButton_next.setText(_translate("Dialog", "Étape suivante"))
+            self.groupBox_3.setTitle(_translate("Dialog", "Journal"))
+        else:
+            self.label_3.setText(_translate("Dialog", "IP地址"))
+            self.pushButton_ping.setText(_translate("Dialog", "ping"))
+            self.groupBox_2.setTitle(_translate("Dialog", "提示信息"))
+            self.pushButton_next.setText(_translate("Dialog", "下一步"))
+            self.groupBox_3.setTitle(_translate("Dialog", "日志"))
         self.textBrowser_log.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

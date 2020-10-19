@@ -20,10 +20,14 @@ from .SG_Setting import VHF_TEST
 from .low_power_test import LOW_POWER_TEST
 from .high_power_test import HIGH_POWER_TEST
 from .Result_Confirm import RESULT_CONFIRM
+from modules.general.SIMPLE_TEST_PROCESS_2BTN import DialogSimpleTestProcess2Btn
+from modules.general.SIMPLE_TEST_PROCESS_1BTN import DialogSimpleTestProcess1Btn
+from modules.general.SIMPLE_JUMP_BTN import DialogSimpleJumpBtn
 from .vhf_radio_constant import ModuleConstants
 from database.data_storage import ThTestResultsStorage
 from database.test_results_model import TestResultBase
-from common.info import Constants
+from common.info import Constants, SystemLanguage
+
 SETUP_DIR = frozen_dir.app_path()
 logger = Logger.module_logger('com_control_device')
 
@@ -46,10 +50,20 @@ class VHF_RADIO(QDialog, Ui_Dialog):
         super(VHF_RADIO, self).__init__(parent)
         self.setupUi(self)
         self.current_test_step = 0
-        self.config_file_path = os.path.join(SETUP_DIR, 'conf', 'VHF_radio.json')
+
+        if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "fr", "VHF_radio.json")
+            self.pic_file_path = os.path.join(
+                SETUP_DIR, "imgs", "fr", "VHF_radio")
+        else:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "cn", "VHF_radio.json")
+            self.pic_file_path = os.path.join(
+                SETUP_DIR, "imgs", "cn", "VHF_radio")
+
         self.system_config_file_path = os.path.join(SETUP_DIR, 'conf', 'system.json')
         self.test_config = TestModuleConfigNew(self.config_file_path)
-        self.pic_file_path = os.path.join(SETUP_DIR, 'imgs', self.test_config.module_name)
         self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name
         self.test_time_update_obj = ThThreadTimerUpdateTestTime()
@@ -199,6 +213,41 @@ class VHF_RADIO(QDialog, Ui_Dialog):
                                 if temp_test_process['module'] == 'VHF_TEST':
                                     self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                                     self.current_test_step_dialog.initUi(temp_test_process['test_para'])
+                                elif temp_test_process['module'] == "DialogSimpleTestProcess2Btn":
+                                    self.current_test_step_dialog.set_button_contents([ModuleConstants.CONTENTS_YES,
+                                                                                       ModuleConstants.CONTENTS_NO])
+                                    self.current_test_step_dialog.set_contents(temp_test_process['title'],
+                                                                               temp_test_process['contents'],
+                                                                               os.path.join(
+                                                                                   self.pic_file_path,
+                                                                                   temp_test_process['img']))
+                                elif temp_test_process['module'] == "DialogSimpleTestProcess1Btn":
+                                    if self.last_test_case_status == ModuleConstants.PROCESS_CONTROL_NEXT:
+                                        self.current_test_step_dialog.set_contents(temp_test_process['title'],
+                                                                                   temp_test_process['contents'], "")
+                                        self.current_test_step_dialog.set_button_contents(
+                                            ModuleConstants.BUTTON_CONTENTS_NEXT)
+                                        self.current_test_step_dialog.set_msg(Constants.SIGNAL_NEXT)
+                                    else:
+                                        self.current_test_step_dialog \
+                                            .set_contents(
+                                            temp_test_process['title'][:-2] + ModuleConstants.CONTENTS_NOT +
+                                            temp_test_process['title'][-2:],
+                                            temp_test_process['contents'][:-2] + ModuleConstants.CONTENTS_NOT +
+                                            temp_test_process['contents'][-2:],
+                                            "")
+                                        self.current_test_step_dialog.set_button_contents(
+                                            ModuleConstants.BUTTON_CONTENTS_FINISH)
+                                        self.current_test_step_dialog.set_msg(Constants.SIGNAL_FINISH)
+                                elif temp_test_process['module'] == "DialogSimpleJumpBtn":
+                                    self.current_test_step_dialog.set_button_contents([ModuleConstants.CONTENTS_YES,
+                                                                                       ModuleConstants.CONTENTS_NO])
+                                    self.current_test_step_dialog.set_contents(temp_test_process['title'],
+                                                                               temp_test_process['contents'],
+                                                                               os.path.join(
+                                                                                   self.pic_file_path,
+                                                                                   temp_test_process['img']))
+                                    self.current_test_step_dialog.set_jump_point(temp_test_process['jump_point'][0],temp_test_process['jump_point'][1])
                                 else:
                                     self.current_test_step_dialog.set_contents(temp_test_process['title'], temp_test_process['contents'])
                             self.current_test_step_dialog.exec_()
@@ -219,8 +268,16 @@ class VHF_RADIO(QDialog, Ui_Dialog):
         :param paras:
         :return:
         """
+        if flag == Constants.SIGNAL_TEST_RESULT:
+            self.test_result.update(para)
+            return
+
         if self.current_test_step_dialog:
             self.current_test_step_dialog.action = 'next'
+
+            self.last_test_case_status = flag
+            self.last_test_case_result = para
+
             self.current_test_step_dialog.close()
             if flag == ModuleConstants.PROCESS_CONTROL_FINISH:
                 self.test_process_control(ModuleConstants.PROCESS_CONTROL_FINISH)
@@ -228,7 +285,9 @@ class VHF_RADIO(QDialog, Ui_Dialog):
                 self.test_result_display(self.current_test_case, para)
             elif flag == 'finish_all':
                 self.test_process_control(ModuleConstants.PROCESS_CONTROL_NEXT,ModuleConstants.PROCESS_CONTROL_FINISH)
-                
+            elif flag == 'jump_a':
+                self.test_cases_records[self.current_test_case]['current'] = \
+                self.test_cases_records[self.current_test_case]['current'] + para['point']
             else:
                 self.test_cases_records[self.current_test_case]['current'] = self.test_cases_records[self.current_test_case]['current'] + 1
             self.test_process_control(ModuleConstants.PROCESS_CONTROL_NEXT)
@@ -293,47 +352,72 @@ class VHF_RADIO(QDialog, Ui_Dialog):
         display the test result into table widget
         :return: none
         """
-        print(case)
-        if str(case).find('调谐') >= 0:
-            self.tabWidget.setCurrentIndex(0)
-            self.table = self.tableWidget_VF_IF
-        else:
-            if str(case).find('频率合成') >= 0:
-                self.tabWidget.setCurrentIndex(1)
-                self.table = self.tableWidget_low_power
-            else:
-                if str(case).find('50W滤波器') >= 0:
-                    self.tabWidget.setCurrentIndex(2)
-                    self.table = self.tableWidget_high_power
-                else:
-                    self.tabWidget.setCurrentIndex(3)
-                    self.table = self.tableWidget_IB
-        # set table row is zero
+        # print(case)
+        # self.tabWidget.setCurrentIndex(3)
+        # self.table = self.tableWidget_IB
+        # # if str(case).find('调谐') >= 0:
+        # #     self.tabWidget.setCurrentIndex(0)
+        # #     self.table = self.tableWidget_VF_IF
+        # # else:
+        # #     if str(case).find('频率合成') >= 0:
+        # #         self.tabWidget.setCurrentIndex(1)
+        # #         self.table = self.tableWidget_low_power
+        # #     else:
+        # #         if str(case).find('50W滤波器') >= 0:
+        # #             self.tabWidget.setCurrentIndex(2)
+        # #             self.table = self.tableWidget_high_power
+        # #         else:
+        #
+        # # set table row is zero
+        # while self.table.rowCount() > 0:
+        #     self.table.removeRow(0)
+        #
+        # rowCount = self.table.rowCount()
+        # self.table.insertRow(rowCount)
+        # current_row = rowCount
+        # mItem = result.test_item
+        #
+        # newItem = QTableWidgetItem(str(current_row+1))
+        # newItem.setTextAlignment(QtCore.Qt.AlignCenter)
+        # self.table.setItem(current_row, 0, newItem)
+        #
+        # newItem = QTableWidgetItem(mItem)
+        # newItem.setTextAlignment(QtCore.Qt.AlignCenter)
+        # self.table.setItem(current_row, 1, newItem)
+        # mItem = result.test_condition
+        # newItem = QTableWidgetItem(mItem)
+        # newItem.setTextAlignment(QtCore.Qt.AlignCenter)
+        # self.table.setItem(current_row, 2, newItem)
+        # mItem = str(result.test_results)
+        # newItem = QTableWidgetItem(mItem)
+        # newItem.setTextAlignment(QtCore.Qt.AlignCenter)
+        # self.table.setItem(current_row, 3, newItem)
+        # mItem = result.test_conclusion
+        # newItem = QTableWidgetItem(mItem)
+        # newItem.setTextAlignment(QtCore.Qt.AlignCenter)
+        # self.table.setItem(current_row, 4, newItem)
+
+        self.tabWidget.setCurrentIndex(3)
+        self.table = self.tableWidget_IB
         while self.table.rowCount() > 0:
             self.table.removeRow(0)
+        self.table.setRowCount(len(self.test_result))
+        temp_index = 0
+        for key, value in self.test_result.items():
+            item = QTableWidgetItem(str(temp_index + 1))
+            self.table.setItem(temp_index, 0, item)
 
-        rowCount = self.table.rowCount()
-        self.table.insertRow(rowCount)
-        current_row = rowCount
-        mItem = result.test_item
+            item = QTableWidgetItem(str(key))
+            self.table.setItem(temp_index, 1, item)
 
-        newItem = QTableWidgetItem(str(current_row+1))
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter)
-        self.table.setItem(current_row, 0, newItem)
+            item = QTableWidgetItem(str(value))
+            self.table.setItem(temp_index, 2, item)
 
-        newItem = QTableWidgetItem(mItem)
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter)
-        self.table.setItem(current_row, 1, newItem)
-        mItem = result.test_condition
-        newItem = QTableWidgetItem(mItem)
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter)
-        self.table.setItem(current_row, 2, newItem)
-        mItem = str(result.test_results)
-        newItem = QTableWidgetItem(mItem)
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter)
-        self.table.setItem(current_row, 3, newItem)
-        mItem = result.test_conclusion
-        newItem = QTableWidgetItem(mItem)
-        newItem.setTextAlignment(QtCore.Qt.AlignCenter)
-        self.table.setItem(current_row, 4, newItem)
+            item = QTableWidgetItem(str(value))
+            self.table.setItem(temp_index, 3, item)
 
+            item = QTableWidgetItem(str(temp_index + 1))
+            for a in range(0, 4):
+                self.table.item(temp_index, a).setTextAlignment(Qt.AlignCenter)
+
+            temp_index = temp_index + 1

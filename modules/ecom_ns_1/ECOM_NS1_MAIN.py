@@ -15,11 +15,16 @@ import time
 
 from modules.general.PIC_TEXT import DialogPicText
 from .ECOM_NS_1_CONSTANT import ModuleConstants
+from common.info import Constants, SystemLanguage
+if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+    from .ECOM_NS_1_CONSTANT_fr import ModuleConstants
+else:
+    from .ECOM_NS_1_CONSTANT import ModuleConstants
 from .Ui_ECOM_NS1_MAIN import Ui_Dialog
 from modules.general.SIMPLE_TEST_PROCESS_1BTN import DialogSimpleTestProcess1Btn
 from modules.general.SIMPLE_TEST_PROCESS_2BTN import DialogSimpleTestProcess2Btn
 from .ECOM_NS1_KEY_TEST import DialogEcomNs1KeyTest
-from common.info import Constants
+
 from database.data_storage import ThTestResultsStorage
 from database.test_results_model import TestResultBase
 from datetime import datetime
@@ -49,14 +54,20 @@ class EcomNs1Main(QDialog, Ui_Dialog):
 
         self.current_test_step = 0
 
-        self.config_file_path = os.path.join(
-            SETUP_DIR, "conf", "ecom_ns_1.json")
+        if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "fr", "ecom_ns_1.json")
+            self.pic_file_path = os.path.join(
+                SETUP_DIR, "imgs", "fr", "ecom_ns_1")
+        else:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "cn", "ecom_ns_1.json")
+            self.pic_file_path = os.path.join(
+                SETUP_DIR, "imgs", "cn", "ecom_ns_1")
+
         self.system_config_file_path = os.path.join(
             SETUP_DIR, "conf", "system.json")
         self.test_config = TestModuleConfigNew(self.config_file_path)
-
-        self.pic_file_path = os.path.join(
-            SETUP_DIR, "imgs", "ecom_ns_1")
 
         self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name

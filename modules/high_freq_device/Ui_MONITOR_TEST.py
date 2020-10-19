@@ -9,6 +9,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from common.info import SystemLanguage
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -129,18 +131,32 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.checkBox_v2.setText(_translate("Dialog", "V2指示灯亮起"))
-        self.checkBox_v3.setText(_translate("Dialog", "V3指示灯闪烁"))
-        self.checkBox_v4.setText(_translate("Dialog", "V4指示灯闪烁"))
-        self.checkBox_v5.setText(_translate("Dialog", "V5指示灯闪烁"))
-        self.checkBox_v6.setText(_translate("Dialog", "V6指示灯闪烁"))
-        self.checkBox_v8.setText(_translate("Dialog", "V8指示灯亮起"))
-        self.checkBox_v9.setText(_translate("Dialog", "V9指示灯亮起"))
-        self.checkBox_v10.setText(_translate("Dialog", "V10指示灯亮起"))
-        self.checkBox_v11.setText(_translate("Dialog", "V11指示灯亮起"))
-        self.checkBox_v12.setText(_translate("Dialog", "V12指示灯闪烁"))
-        self.checkBox_v13.setText(_translate("Dialog", "V13指示灯闪烁"))
-        self.pushButton_next.setText(_translate("Dialog", "下一步"))
+        if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+            self.checkBox_v2.setText(_translate("Dialog", "Le voyant V2 s’allume."))
+            self.checkBox_v3.setText(_translate("Dialog", "Le voyant V3 clignote"))
+            self.checkBox_v4.setText(_translate("Dialog", "Le voyant V4 clignote"))
+            self.checkBox_v5.setText(_translate("Dialog", "Le voyant V5 clignote"))
+            self.checkBox_v6.setText(_translate("Dialog", "Le voyant V6 clignote"))
+            self.checkBox_v8.setText(_translate("Dialog", "Le voyant V8 s’allume."))
+            self.checkBox_v9.setText(_translate("Dialog", "Le voyant V9 s’allume."))
+            self.checkBox_v10.setText(_translate("Dialog", "Le voyant V10 s’allume."))
+            self.checkBox_v11.setText(_translate("Dialog", "Le voyant V11 s’allume."))
+            self.checkBox_v12.setText(_translate("Dialog", "Le voyant V12 clignote"))
+            self.checkBox_v13.setText(_translate("Dialog", "Le voyant V13 clignote"))
+            self.pushButton_next.setText(_translate("Dialog", "Étape suivante"))
+        else:
+            self.checkBox_v2.setText(_translate("Dialog", "V2指示灯亮起"))
+            self.checkBox_v3.setText(_translate("Dialog", "V3指示灯闪烁"))
+            self.checkBox_v4.setText(_translate("Dialog", "V4指示灯闪烁"))
+            self.checkBox_v5.setText(_translate("Dialog", "V5指示灯闪烁"))
+            self.checkBox_v6.setText(_translate("Dialog", "V6指示灯闪烁"))
+            self.checkBox_v8.setText(_translate("Dialog", "V8指示灯亮起"))
+            self.checkBox_v9.setText(_translate("Dialog", "V9指示灯亮起"))
+            self.checkBox_v10.setText(_translate("Dialog", "V10指示灯亮起"))
+            self.checkBox_v11.setText(_translate("Dialog", "V11指示灯亮起"))
+            self.checkBox_v12.setText(_translate("Dialog", "V12指示灯闪烁"))
+            self.checkBox_v13.setText(_translate("Dialog", "V13指示灯闪烁"))
+            self.pushButton_next.setText(_translate("Dialog", "下一步"))
 import res.iconQrc_rc
 
 

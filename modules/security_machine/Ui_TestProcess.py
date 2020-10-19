@@ -9,6 +9,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from constant_trans import TransConstants
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -96,7 +98,7 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.pushButton.setText(_translate("Dialog", "下一步"))
+        self.pushButton.setText(_translate("Dialog", TransConstants.next))
 
 
 if __name__ == "__main__":

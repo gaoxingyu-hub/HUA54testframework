@@ -18,6 +18,8 @@ class SignalGenerator(PyVisaInstr.pyVisaInstr):
 #         PyVisaInstr.pyVisaInstr.__init__(self, Addr)
 #         self.SG=self.instr
         rm=visa.ResourceManager('@py')
+        print("SignalGenerator connection....")
+        print("连接地址： {}".format(Addr))
         try:
             self.instr = rm.open_resource(Addr)
             self.SG=self.instr

@@ -9,6 +9,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from common.info import SystemLanguage
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -110,13 +112,22 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.pushButton_next.setText(_translate("Dialog", "下一步"))
-        self.groupBox_4.setTitle(_translate("Dialog", "矢量网络分析仪"))
-        self.comboBox_sa_bw.setItemText(0, _translate("Dialog", "MHz"))
-        self.comboBox_na_freq.setItemText(0, _translate("Dialog", "MHz"))
-        self.label_8.setText(_translate("Dialog", "带宽"))
-        self.label_7.setText(_translate("Dialog", "频率"))
+        if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+            Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+            self.pushButton_next.setText(_translate("Dialog", "Étape suivante"))
+            self.groupBox_4.setTitle(_translate("Dialog", "Analyseur vectoriel de réseau"))
+            self.comboBox_sa_bw.setItemText(0, _translate("Dialog", "MHz"))
+            self.comboBox_na_freq.setItemText(0, _translate("Dialog", "MHz"))
+            self.label_8.setText(_translate("Dialog", "Largeur de bande"))
+            self.label_7.setText(_translate("Dialog", "Fréquence"))
+        else:
+            Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+            self.pushButton_next.setText(_translate("Dialog", "下一步"))
+            self.groupBox_4.setTitle(_translate("Dialog", "矢量网络分析仪"))
+            self.comboBox_sa_bw.setItemText(0, _translate("Dialog", "MHz"))
+            self.comboBox_na_freq.setItemText(0, _translate("Dialog", "MHz"))
+            self.label_8.setText(_translate("Dialog", "带宽"))
+            self.label_7.setText(_translate("Dialog", "频率"))
 import res.iconQrc_rc
 
 

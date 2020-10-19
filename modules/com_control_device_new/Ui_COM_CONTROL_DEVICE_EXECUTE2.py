@@ -9,6 +9,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from constant_trans import TransConstants
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -209,8 +211,8 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.groupBox_2.setTitle(_translate("Dialog", "协议转换与控制测试：COM1-COM4"))
-        self.testexecute_page3_label_3.setText(_translate("Dialog", "测试端口"))
+        self.groupBox_2.setTitle(_translate("Dialog", TransConstants.mw_com_xieyikongzhitest + "：COM1-COM4"))
+        self.testexecute_page3_label_3.setText(_translate("Dialog", TransConstants.test_port))
         __sortingEnabled = self.listWidget_com.isSortingEnabled()
         self.listWidget_com.setSortingEnabled(False)
         item = self.listWidget_com.item(0)
@@ -222,15 +224,15 @@ class Ui_Dialog(object):
         item = self.listWidget_com.item(3)
         item.setText(_translate("Dialog", "COM4"))
         self.listWidget_com.setSortingEnabled(__sortingEnabled)
-        self.testexecute_page4_label_10.setText(_translate("Dialog", "测试配置"))
-        self.testexecute_page4_label_6.setText(_translate("Dialog", "本地IP"))
-        self.testexecute_page4_label_7.setText(_translate("Dialog", "端口"))
-        self.pushButton_test.setText(_translate("Dialog", "测试"))
-        self.testexecute_page4_label_8.setText(_translate("Dialog", "远程IP"))
-        self.testexecute_page4_label_9.setText(_translate("Dialog", "端口"))
-        self.pushButton_remote_link.setText(_translate("Dialog", "连接"))
-        self.groupBox_3.setTitle(_translate("Dialog", "测试日志"))
-        self.pushButton_next.setText(_translate("Dialog", "下一步"))
+        self.testexecute_page4_label_10.setText(_translate("Dialog", TransConstants.test_configuration))
+        self.testexecute_page4_label_6.setText(_translate("Dialog", TransConstants.local_ip))
+        self.testexecute_page4_label_7.setText(_translate("Dialog", TransConstants.test_port))
+        self.pushButton_test.setText(_translate("Dialog", TransConstants.test))
+        self.testexecute_page4_label_8.setText(_translate("Dialog", TransConstants.remote_ip))
+        self.testexecute_page4_label_9.setText(_translate("Dialog", TransConstants.test_port))
+        self.pushButton_remote_link.setText(_translate("Dialog", TransConstants.link))
+        self.groupBox_3.setTitle(_translate("Dialog", TransConstants.log))
+        self.pushButton_next.setText(_translate("Dialog", TransConstants.next))
 import res.iconQrc_rc
 
 

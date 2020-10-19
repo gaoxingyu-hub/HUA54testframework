@@ -29,7 +29,7 @@ from .testResult import TestDataProtocolTransferBoard
 from .com_control_device_constant import ModuleConstants
 from database.data_storage import ThTestResultsStorage
 from database.test_results_model import TestResultBase
-from common.info import Constants
+from common.info import Constants, SystemLanguage
 
 SETUP_DIR = frozen_dir.app_path()
 
@@ -54,14 +54,20 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
         self.setupUi(self)
         self.current_test_step = 0
 
-        self.config_file_path = os.path.join(
-            SETUP_DIR, "conf", "com_control_device_new.json")
+        if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "fr", "com_control_device_new.json")
+            self.pic_file_path = os.path.join(
+                SETUP_DIR, "imgs", "fr", "com_control_device_new")
+        else:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "cn", "com_control_device_new.json")
+            self.pic_file_path = os.path.join(
+                SETUP_DIR, "imgs", "cn", "com_control_device_new")
+
         self.system_config_file_path = os.path.join(
             SETUP_DIR, "conf", "system.json")
         self.test_config = TestModuleConfigNew(self.config_file_path)
-
-        self.pic_file_path = os.path.join(
-            SETUP_DIR, "imgs", self.test_config.module_name)
 
         self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name

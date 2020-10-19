@@ -7,6 +7,8 @@ Module implementing COM_CONTROL_DEVICE.
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QDialog
 from PyQt5.QtCore import pyqtSignal,Qt
+
+from common.info import SystemLanguage
 from modules.info.testInfo import TestInfo
 from PyQt5.QtWidgets import QMessageBox
 from common.config import TestModuleConfigNew, SystemConfig
@@ -24,7 +26,10 @@ from modules.high_freq_device.AUTO_TEST_FILTER import AUTO_TEST_FILTER
 from modules.high_freq_device.AUTO_TEST_COUPLER import AUTO_TEST_COUPLER
 from modules.high_freq_device.MANUAL_TEST_SWITCH import MANUAL_TEST_SWITCH
 from modules.high_freq_device.MANUAL_TEST_MONITOR import MANUAL_TEST_MONITOR
-from modules.high_freq_device.high_freq_constant import ModuleConstants
+if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+    from modules.high_freq_device.high_freq_constant import ModuleConstants
+else:
+    from modules.high_freq_device.high_freq_constant_fr import ModuleConstants
 
 import time
 from common.logConfig import Logger
@@ -58,14 +63,22 @@ class HIGH_FREQ_DEVICE(QDialog, Ui_Dialog):
         self.current_test_step = 0
         
 
-        self.config_file_path = os.path.join(
-            SETUP_DIR, "conf", "high_freq_device.json")
+        if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "fr", "high_freq_device.json")
+            self.pic_file_path = os.path.join(
+                SETUP_DIR, "imgs", "fr", "high_freq_device")
+        else:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "cn", "high_freq_device.json")
+            self.pic_file_path = os.path.join(
+                SETUP_DIR, "imgs", "cn", "high_freq_device")
+
         self.system_config_file_path = os.path.join(
             SETUP_DIR, "conf", "system.json")
         self.test_config = TestModuleConfigNew(self.config_file_path)
 
-        self.pic_file_path = os.path.join(
-            SETUP_DIR, "imgs", "high_freq_device")
+
 
         self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name

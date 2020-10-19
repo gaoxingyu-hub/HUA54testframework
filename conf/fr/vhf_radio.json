@@ -1,0 +1,87 @@
+{
+    "title":"Radio VHF",
+    "module_name":"vhf_radio",
+    "test_case": ["综合业务模块"],
+    "test_case_detail":[
+        {
+            "case_name": "IF_VF",
+            "title": "综合业务模块",
+            "steps": [
+                {"img":"01.jpg","title":"测试准备","contents":"被测设备原位固定，参照图示进行接线，电台射频接口：S-RF,数据接口：DONNEES","module": "DialogPicText","category": "disassemble"},
+                {"img":"","title":"VHF电台电源测试","contents":"Mettez l'interrupteur d'alimentation situé à l'avant de l'adaptateur à bord sur la position M. Réglez le bouton MENU du panneau sur la position S.R. La radio peut-elle être allumée","module": "DialogSimpleTestProcess2Btn","category": "execute","next":["next","finish"]},
+                {"img":"","title":"VHF电台电源测试","contents":"VHF电台电源正常","module": "DialogSimpleTestProcess1Btn","category": "disassemble"},
+                {"img":"","title":"综合业务模件-系统加载","contents":"Le système est-il chargé avec succès","module": "DialogSimpleTestProcess2Btn","category": "execute","next":["next","finish"]},
+                {"img":"","title":"Le système est-il chargé avec succès","contents":"综合业务模件系统加载正常","module": "DialogSimpleTestProcess1Btn","category": "disassemble"},
+                {"img":"","title":"综合业务模件-操作面板测试","contents":"Les boutons et touches du panneau de commande peuvent-ils normalement commuter le mode de fonctionnement, configuer la fréquence, etc.","module": "DialogSimpleTestProcess2Btn","category": "execute","next":["next","finish"]},
+                {"img":"","title":"操作面板测试","contents":"综合业务模件操作面板操作正常","module": "DialogSimpleTestProcess1Btn","category": "disassemble"},
+                {"img":"02.png","title":"Mettez le générateur de signaux vectoriels sous tension et connectez le câble. ","contents":"Utilisez le câble de maintenance pour connecter le port RF du générateur de signaux vectoriels et l'interface S-RF de l'adaptateur à bord. Allumez l'interrupteur d'alimentation du générateur de signaux vectoriels et attendez que l'équipement termine le processus de démarrage","module": "DialogPicText","category": "disassemble"},
+                {"img":"","title":"Définissez l'état de fonctionnement de la radio. ","contents":"Opérez le panneau de l'unité principale de transmission, définissez l'état de fonctionnement de l'unité principale de transmission comme: Permanence S.R, fréquence fixe et claire CLAIR, fréquence de travail 55 MHz","module": "DialogPicText","category": "disassemble"},
+                {"img":"","title":"","contents":"L'émetteur et le récepteur de type combiné peuvent-ils émettre une tonalité unique claire","module": "DialogSimpleJumpBtn","category": "execute","next":["next","finish"], "jump_point": [2,1]},
+                {"img":"01.jpg","title":"测试准备","contents":"111被测设备原位固定，参照图示进行接线，电台射频接口：S-RF,数据接口：DONNEES","module": "DialogPicText","category": "disassemble"},
+                {"img":"01.jpg","title":"测试准备","contents":"222被测设备原位固定，参照图示进行接线，电台射频接口：S-RF,数据接口：DONNEES","module": "DialogPicText","category": "disassemble"}
+            ]
+        }
+    ],
+    "test_source": [
+        {
+            "name": "直流电源",
+            "number": "DH1798-1",
+            "count": "1",
+            "type": "仪器仪表"
+        },
+        {
+            "name": "频谱分析仪",
+            "number": "Keysight N9030B",
+            "count": "1",
+            "type": "仪器仪表"
+        },
+        {
+            "name": "矢量信号发生器",
+            "number": "Keysight E8267D",
+            "count": "1",
+            "type": "配件"
+        },
+        {
+            "name": "40dB固定衰减器",
+            "number": "",
+            "count": "2",
+            "type": "配件"
+        },
+        {
+            "name": "直流电源线缆",
+            "number": "",
+            "count": "1",
+            "type": "配件"
+        },
+        {
+            "name": "电台数据线缆",
+            "number": "",
+            "count": "2",
+            "type": "配件"
+        },
+        {
+            "name": "射频线缆",
+            "number": "",
+            "count": "1",
+            "type": "配件"
+        },
+        {
+            "name": "USB-serial电缆",
+            "number": "",
+            "count": "2",
+            "type": "配件"
+        },
+        {
+            "name": "前面板转接电缆",
+            "number": "",
+            "count": "1",
+            "type": "配件"
+        },
+        {
+            "name": "后盖板转接电缆",
+            "number": "",
+            "count": "1",
+            "type": "配件"
+        }
+    ]
+}

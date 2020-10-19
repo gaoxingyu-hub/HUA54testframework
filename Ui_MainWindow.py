@@ -9,6 +9,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from constant_trans import TransConstants
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -240,11 +242,11 @@ class Ui_MainWindow(object):
         self.treeWidget.topLevelItem(0).child(8).setText(0, _translate("MainWindow", "通信控制设备"))
         self.treeWidget.topLevelItem(0).child(9).setText(0, _translate("MainWindow", "路由器"))
         self.treeWidget.setSortingEnabled(__sortingEnabled)
-        self.groupBox.setTitle(_translate("MainWindow", "测试项目"))
+        self.groupBox.setTitle(_translate("MainWindow", TransConstants.TESTTABLE_ITEM))
         self.toolBar.setWindowTitle(_translate("MainWindow", "toolBar"))
-        self.action_about.setText(_translate("MainWindow", "关于"))
+        self.action_about.setText(_translate("MainWindow", TransConstants.about))
         self.action_about.setToolTip(_translate("MainWindow", "<html><head/><body><p><img src=\":/newPrefix/icon/start1.ico\"/></p></body></html>"))
-        self.action_help.setText(_translate("MainWindow", "帮助"))
+        self.action_help.setText(_translate("MainWindow", TransConstants.t_help))
         self.action_help.setToolTip(_translate("MainWindow", "<html><head/><body><p><img src=\":/newPrefix/icon/start1.ico\"/></p></body></html>"))
 import res.iconQrc_rc
 

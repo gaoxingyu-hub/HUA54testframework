@@ -9,13 +9,18 @@ from PyQt5.QtWidgets import QDialog
 from PyQt5 import QtGui
 from PyQt5.QtCore import pyqtSignal
 import time
+
+from common.info import SystemLanguage
 from .Ui_AUTO_TEST_T import Ui_Dialog
 import os
 from InstrumentDrivers.SignalGeneratorDriver import SignalGenerator
 from InstrumentDrivers.SpectrumAnalyzerDriver import SpectrumAnalyzer
 from PyQt5.Qt import QMessageBox
 import numpy as np
-from .high_freq_constant import ModuleConstants
+if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+    from .high_freq_constant import ModuleConstants
+else:
+    from .high_freq_constant_fr import ModuleConstants
 
 class AUTO_TEST_T(QDialog, Ui_Dialog):
     """

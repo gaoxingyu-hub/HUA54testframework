@@ -8,6 +8,8 @@ from PyQt5 import QtGui, QtCore
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import pyqtSignal, Qt
+
+from constant_trans import TransConstants
 from modules.info.testInfo import TestInfo
 from PyQt5.QtWidgets import QMessageBox
 from common.config import TestModuleConfigNew, SystemConfig
@@ -26,7 +28,7 @@ from modules.general.SIMPLE_TEST_PROCESS_2BTN import DialogSimpleTestProcess2Btn
 from .testResult import TestDataProtocolTransferBoard
 from database.data_storage import ThTestResultsStorage
 from database.test_results_model import TestResultBase
-from common.info import Constants
+from common.info import Constants, SystemLanguage
 from .mw_com_device_constant import ModuleConstants
 
 SETUP_DIR = frozen_dir.app_path()
@@ -52,14 +54,20 @@ class DialogMvComDevice(QDialog, Ui_Dialog):
         self.setupUi(self)
         self.current_test_step = 0
 
-        self.config_file_path = os.path.join(
-            SETUP_DIR, "conf", "mw_com_device.json")
+        if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "fr", "mw_com_device.json")
+            self.pic_file_path = os.path.join(
+                SETUP_DIR, "imgs", "fr", "mw_com_device")
+        else:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "cn", "mw_com_device.json")
+            self.pic_file_path = os.path.join(
+                SETUP_DIR, "imgs", "cn", "mw_com_device")
+
         self.system_config_file_path = os.path.join(
             SETUP_DIR, "conf", "system.json")
         self.test_config = TestModuleConfigNew(self.config_file_path)
-
-        self.pic_file_path = os.path.join(
-            SETUP_DIR, "imgs", self.test_config.module_name)
 
         self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name
@@ -241,8 +249,8 @@ class DialogMvComDevice(QDialog, Ui_Dialog):
                                     self.current_test_step_dialog.set_button_contents(ModuleConstants.BUTTON_CONTENTS_FINISH)
                                     self.current_test_step_dialog.set_msg(Constants.SIGNAL_FINISH)
                             elif temp_test_process['module'] == "DialogSimpleTestProcess2Btn":
-                                self.current_test_step_dialog.set_button_contents([ModuleConstants.CONTENTS_YES,
-                                                                                   ModuleConstants.CONTENTS_NO])
+                                self.current_test_step_dialog.set_button_contents([TransConstants.yes,
+                                                                                   TransConstants.no])
                                 self.current_test_step_dialog.set_contents(temp_test_process['title'],
                                                                            temp_test_process['contents'],
                                                                            os.path.join(

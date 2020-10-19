@@ -9,6 +9,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from common.info import SystemLanguage
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -100,7 +102,10 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.pushButton_next.setText(_translate("Dialog", "下一步"))
+        if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+            self.pushButton_next.setText(_translate("Dialog", "Étape suivante"))
+        else:
+            self.pushButton_next.setText(_translate("Dialog", "下一步"))
 import res.iconQrc_rc
 
 

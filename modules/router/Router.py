@@ -12,7 +12,7 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import QDialog
 
-from common.info import Constants
+from common.info import Constants, SystemLanguage
 from database.data_storage import ThTestResultsStorage
 from database.test_results_model import TestResultBase
 from modules.general.PIC_TEXT import DialogPicText
@@ -56,14 +56,21 @@ class RouterDialog(QDialog, Ui_Dialog):
         self.current_test_step = 0
         # self.setStyleSheet(LoadQSS.load())
         # config file
-        self.config_file_path = os.path.join(
-            SETUP_DIR, "conf", "router.json")
+
+        if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "fr", "router.json")
+            self.pic_file_path = os.path.join(
+                SETUP_DIR, "imgs", "fr", "router")
+        else:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "cn", "mw_com_device.json")
+            self.pic_file_path = os.path.join(
+                SETUP_DIR, "imgs", "cn", "mw_com_device")
+
         self.system_config_file_path = os.path.join(
             SETUP_DIR, "conf", "system.json")
         self.test_config = TestModuleConfigNew(self.config_file_path)
-
-        self.pic_file_path = os.path.join(
-            SETUP_DIR, "imgs", "router")
 
         self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name

@@ -9,6 +9,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from common.info import SystemLanguage
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -105,10 +107,16 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.label_5.setText(_translate("Dialog", "本振是否告警"))
-        self.comboBox_sg_addr.setItemText(0, _translate("Dialog", "无本振告警"))
-        self.comboBox_sg_addr.setItemText(1, _translate("Dialog", "有本振告警"))
-        self.pushButton_next.setText(_translate("Dialog", "下一步"))
+        if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+            self.label_5.setText(_translate("Dialog", "Si l’oacillation locale donne l’alarme."))
+            self.comboBox_sg_addr.setItemText(0, _translate("Dialog", "Aucune alarme d’oscillation locale."))
+            self.comboBox_sg_addr.setItemText(1, _translate("Dialog", "L’alarme d’oscillation locale existe."))
+            self.pushButton_next.setText(_translate("Dialog", "Étape suivante"))
+        else:
+            self.label_5.setText(_translate("Dialog", "本振是否告警"))
+            self.comboBox_sg_addr.setItemText(0, _translate("Dialog", "无本振告警"))
+            self.comboBox_sg_addr.setItemText(1, _translate("Dialog", "有本振告警"))
+            self.pushButton_next.setText(_translate("Dialog", "下一步"))
 import res.iconQrc_rc
 
 

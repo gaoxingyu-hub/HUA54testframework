@@ -8,6 +8,9 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from common.info import SystemLanguage
+
+
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
@@ -164,22 +167,40 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.groupBox_2.setTitle(_translate("Dialog", "信号源"))
-        self.comboBox_5.setItemText(0, _translate("Dialog", "LAN"))
-        self.label.setText(_translate("Dialog", "频率"))
-        self.comboBox.setItemText(0, _translate("Dialog", "MHz"))
-        self.label_2.setText(_translate("Dialog", "功率"))
-        self.comboBox_2.setItemText(0, _translate("Dialog", "dBm"))
-        self.label_5.setText(_translate("Dialog", "addr"))
-        self.groupBox_3.setTitle(_translate("Dialog", "频谱仪"))
-        self.label_3.setText(_translate("Dialog", "频率"))
-        self.label_4.setText(_translate("Dialog", "Span"))
-        self.comboBox_4.setItemText(0, _translate("Dialog", "MHz"))
-        self.comboBox_3.setItemText(0, _translate("Dialog", "MHz"))
-        self.comboBox_6.setItemText(0, _translate("Dialog", "LAN"))
-        self.label_6.setText(_translate("Dialog", "addr"))
-        self.pushButton_next.setText(_translate("Dialog", "下一步"))
+        if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+            Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+            self.groupBox_2.setTitle(_translate("Dialog", "Source de signal"))
+            self.comboBox_5.setItemText(0, _translate("Dialog", "LAN"))
+            self.label.setText(_translate("Dialog", "Fréquence"))
+            self.comboBox.setItemText(0, _translate("Dialog", "MHz"))
+            self.label_2.setText(_translate("Dialog", "Puissance"))
+            self.comboBox_2.setItemText(0, _translate("Dialog", "dBm"))
+            self.label_5.setText(_translate("Dialog", "addr"))
+            self.groupBox_3.setTitle(_translate("Dialog", "Spectographe"))
+            self.label_3.setText(_translate("Dialog", "Fréquence"))
+            self.label_4.setText(_translate("Dialog", "Span"))
+            self.comboBox_4.setItemText(0, _translate("Dialog", "MHz"))
+            self.comboBox_3.setItemText(0, _translate("Dialog", "MHz"))
+            self.comboBox_6.setItemText(0, _translate("Dialog", "LAN"))
+            self.label_6.setText(_translate("Dialog", "addr"))
+            self.pushButton_next.setText(_translate("Dialog", "Étape suivante"))
+        else:
+            Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+            self.groupBox_2.setTitle(_translate("Dialog", "信号源"))
+            self.comboBox_5.setItemText(0, _translate("Dialog", "LAN"))
+            self.label.setText(_translate("Dialog", "频率"))
+            self.comboBox.setItemText(0, _translate("Dialog", "MHz"))
+            self.label_2.setText(_translate("Dialog", "功率"))
+            self.comboBox_2.setItemText(0, _translate("Dialog", "dBm"))
+            self.label_5.setText(_translate("Dialog", "addr"))
+            self.groupBox_3.setTitle(_translate("Dialog", "频谱仪"))
+            self.label_3.setText(_translate("Dialog", "频率"))
+            self.label_4.setText(_translate("Dialog", "Span"))
+            self.comboBox_4.setItemText(0, _translate("Dialog", "MHz"))
+            self.comboBox_3.setItemText(0, _translate("Dialog", "MHz"))
+            self.comboBox_6.setItemText(0, _translate("Dialog", "LAN"))
+            self.label_6.setText(_translate("Dialog", "addr"))
+            self.pushButton_next.setText(_translate("Dialog", "下一步"))
 
 import res.iconQrc_rc
 

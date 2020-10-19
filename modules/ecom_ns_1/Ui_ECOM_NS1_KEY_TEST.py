@@ -9,6 +9,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from constant_trans import TransConstants
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -203,7 +205,7 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.groupBox_lan1.setTitle(_translate("Dialog", "IP误码仪端口1"))
+        self.groupBox_lan1.setTitle(_translate("Dialog", TransConstants.ip_bit_1))
         __sortingEnabled = self.listWidget_port1.isSortingEnabled()
         self.listWidget_port1.setSortingEnabled(False)
         item = self.listWidget_port1.item(0)
@@ -239,7 +241,7 @@ class Ui_Dialog(object):
         item = self.listWidget_port1.item(15)
         item.setText(_translate("Dialog", "Lan16"))
         self.listWidget_port1.setSortingEnabled(__sortingEnabled)
-        self.groupBox_lan1_2.setTitle(_translate("Dialog", "IP误码仪端口2"))
+        self.groupBox_lan1_2.setTitle(_translate("Dialog", TransConstants.ip_bit_2))
         __sortingEnabled = self.listWidget_port2.isSortingEnabled()
         self.listWidget_port2.setSortingEnabled(False)
         item = self.listWidget_port2.item(0)
@@ -275,14 +277,14 @@ class Ui_Dialog(object):
         item = self.listWidget_port2.item(15)
         item.setText(_translate("Dialog", "Lan16"))
         self.listWidget_port2.setSortingEnabled(__sortingEnabled)
-        self.groupBox_3.setTitle(_translate("Dialog", "日志"))
+        self.groupBox_3.setTitle(_translate("Dialog", TransConstants.log))
         self.textBrowser_log.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.groupBox_2.setTitle(_translate("Dialog", "提示信息"))
-        self.pushButton_process.setText(_translate("Dialog", "下一步"))
+        self.groupBox_2.setTitle(_translate("Dialog", TransConstants.tip_info))
+        self.pushButton_process.setText(_translate("Dialog", TransConstants.next))
 import res.iconQrc_rc
 
 

@@ -9,6 +9,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from constant_trans import TransConstants
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -148,9 +150,9 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.groupBox_2.setTitle(_translate("Dialog", "网络协议转换板测试"))
-        self.label_3.setText(_translate("Dialog", "测试端口"))
-        self.groupBox_3.setTitle(_translate("Dialog", "测试日志"))
+        self.groupBox_2.setTitle(_translate("Dialog", TransConstants.network_trans))
+        self.label_3.setText(_translate("Dialog", TransConstants.test_port))
+        self.groupBox_3.setTitle(_translate("Dialog", TransConstants.log))
         __sortingEnabled = self.listWidget_lan.isSortingEnabled()
         self.listWidget_lan.setSortingEnabled(False)
         item = self.listWidget_lan.item(0)
@@ -168,10 +170,10 @@ class Ui_Dialog(object):
         item = self.listWidget_lan.item(6)
         item.setText(_translate("Dialog", "LAN8"))
         self.listWidget_lan.setSortingEnabled(__sortingEnabled)
-        self.label_4.setText(_translate("Dialog", "测试IP地址"))
+        self.label_4.setText(_translate("Dialog", TransConstants.test_ip_address))
         self.lineEdit_ip.setText(_translate("Dialog", "192.168.1.200"))
-        self.pushButton_execute.setText(_translate("Dialog", "测试"))
-        self.pushButton_next.setText(_translate("Dialog", "下一步"))
+        self.pushButton_execute.setText(_translate("Dialog", TransConstants.test))
+        self.pushButton_next.setText(_translate("Dialog", TransConstants.next))
 import res.iconQrc_rc
 
 

@@ -9,11 +9,15 @@ from PyQt5.QtWidgets import QDialog
 from PyQt5 import QtGui
 from PyQt5.QtCore import pyqtSignal
 
+from common.info import SystemLanguage
 from .Ui_SWITCH_TEST import Ui_Dialog
 import os
 from PyQt5.Qt import QMessageBox
 import numpy as np
-from .high_freq_constant import ModuleConstants
+if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+    from .high_freq_constant import ModuleConstants
+else:
+    from .high_freq_constant_fr import ModuleConstants
 
 class MANUAL_TEST_SWITCH(QDialog, Ui_Dialog):
     """

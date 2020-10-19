@@ -48,7 +48,8 @@ class SpectrumAnalyzer():
 #         PyVisaInstr.pyVisaInstr.__init__(self,Addr)  
 #         self.SA=self.instr
         rm=ResourceManager('@py')
-        print("connection....")
+        print("Specturm Analyzer connection....")
+        print("连接地址： {}".format(Addr))
         try:
             self.instr = rm.open_resource(Addr)
             self.SA=self.instr
@@ -166,7 +167,7 @@ class SpectrumAnalyzer():
         return self.AskForNumber("SWE:TIME?")
     def SetSweepTime(self,value):
         '''
-        写频谱仪扫描时间
+        写频谱仪‘扫描时间
         '''
         self.Write("SWE:TIME "+str(value))
     

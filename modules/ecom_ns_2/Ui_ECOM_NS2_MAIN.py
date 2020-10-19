@@ -9,6 +9,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from constant_trans import TransConstants
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -317,22 +319,22 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.groupBox_test_modules.setTitle(_translate("Dialog", "测试项目"))
+        self.groupBox_test_modules.setTitle(_translate("Dialog", TransConstants.test_item))
         self.label_test_duration.setText(_translate("Dialog", "00:00:00"))
         self.treeWidget.headerItem().setText(0, _translate("Dialog", "1"))
-        self.groupBox_test_resource.setTitle(_translate("Dialog", "测试资源"))
+        self.groupBox_test_resource.setTitle(_translate("Dialog", TransConstants.test_resource))
         item = self.tableWidget_test_resource.verticalHeaderItem(0)
         item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_resource.verticalHeaderItem(1)
         item.setText(_translate("Dialog", "2"))
         item = self.tableWidget_test_resource.horizontalHeaderItem(1)
-        item.setText(_translate("Dialog", "名称"))
+        item.setText(_translate("Dialog", TransConstants.name))
         item = self.tableWidget_test_resource.horizontalHeaderItem(2)
-        item.setText(_translate("Dialog", "类型"))
+        item.setText(_translate("Dialog", TransConstants.type))
         item = self.tableWidget_test_resource.horizontalHeaderItem(3)
-        item.setText(_translate("Dialog", "编号/型号"))
+        item.setText(_translate("Dialog", TransConstants.id))
         item = self.tableWidget_test_resource.horizontalHeaderItem(4)
-        item.setText(_translate("Dialog", "数量"))
+        item.setText(_translate("Dialog", TransConstants.number))
         __sortingEnabled = self.tableWidget_test_resource.isSortingEnabled()
         self.tableWidget_test_resource.setSortingEnabled(False)
         item = self.tableWidget_test_resource.item(0, 1)
@@ -355,12 +357,12 @@ class Ui_Dialog(object):
         item = self.tableWidget_test_results.verticalHeaderItem(0)
         item.setText(_translate("Dialog", "1"))
         item = self.tableWidget_test_results.horizontalHeaderItem(1)
-        item.setText(_translate("Dialog", "测试项"))
+        item.setText(_translate("Dialog", TransConstants.test_item))
         item = self.tableWidget_test_results.horizontalHeaderItem(2)
-        item.setText(_translate("Dialog", "测试结果"))
+        item.setText(_translate("Dialog", TransConstants.test_result))
         item = self.tableWidget_test_results.horizontalHeaderItem(3)
-        item.setText(_translate("Dialog", "测试结论"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Dialog", "ECOM-NS-2测试"))
+        item.setText(_translate("Dialog", TransConstants.test_conclusion))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Dialog", "ECOM-NS-2 test"))
 import res.iconQrc_rc
 
 

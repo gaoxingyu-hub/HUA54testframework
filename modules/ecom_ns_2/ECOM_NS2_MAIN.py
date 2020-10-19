@@ -24,7 +24,7 @@ from .ECOM_NS2_KEY_TEST import DialogEcomNs2KeyTest
 from .ecom_ns2_test_data import TestDataEcomNs2
 from modules.general.SIMPLE_TEST_PROCESS_1BTN import DialogSimpleTestProcess1Btn
 from modules.general.SIMPLE_TEST_PROCESS_2BTN import DialogSimpleTestProcess2Btn
-from common.info import Constants
+from common.info import Constants, SystemLanguage
 from database.data_storage import ThTestResultsStorage
 from database.test_results_model import TestResultBase
 from datetime import datetime
@@ -54,14 +54,20 @@ class EcomNs2Main(QDialog, Ui_Dialog):
 
         self.current_test_step = 0
 
-        self.config_file_path = os.path.join(
-            SETUP_DIR, "conf", "ecom_ns_2.json")
+        if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "fr", "ecom_ns_2.json")
+            self.pic_file_path = os.path.join(
+                SETUP_DIR, "imgs", "fr", "ecom_ns_2")
+        else:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "cn", "ecom_ns_2.json")
+            self.pic_file_path = os.path.join(
+                SETUP_DIR, "imgs", "cn", "ecom_ns_2")
+
         self.system_config_file_path = os.path.join(
             SETUP_DIR, "conf", "system.json")
         self.test_config = TestModuleConfigNew(self.config_file_path)
-
-        self.pic_file_path = os.path.join(
-            SETUP_DIR, "imgs", "ecom_ns_2")
 
         self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name

@@ -7,6 +7,8 @@ Module implementing COM_CONTROL_DEVICE.
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QDialog
 from PyQt5.QtCore import pyqtSignal,Qt
+
+from common.info import SystemLanguage
 from modules.info.testInfo import TestInfo
 from PyQt5.QtWidgets import QMessageBox
 from common.config import TestModuleConfigNew, SystemConfig
@@ -19,7 +21,10 @@ from modules.mw1500_device.AUTO_TEST_TR_R import AUTO_TEST_TR_R
 import time
 from common.logConfig import Logger
 from common.th_thread_model import ThThreadTimerUpdateTestTime
-from modules.mw1500_device.mw1500_constant import ModuleConstants
+if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+    from modules.mw1500_device.mw1500_constant_fr import ModuleConstants
+else:
+    from modules.mw1500_device.mw1500_constant import ModuleConstants
 
 from .Ui_mw1500_device import Ui_Dialog
 
@@ -50,14 +55,20 @@ class MW1500_DEVICE(QDialog, Ui_Dialog):
         self.setupUi(self)
         self.current_test_step = 0
 
-        self.config_file_path = os.path.join(
-            SETUP_DIR, "conf", "mw1500_device.json")
+        if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "fr", "mw1500_device.json")
+            self.pic_file_path = os.path.join(
+                SETUP_DIR, "imgs", "fr", "mw1500_device")
+        else:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "cn", "mw1500_device.json")
+            self.pic_file_path = os.path.join(
+                SETUP_DIR, "imgs", "cn", "mw1500_device")
+
         self.system_config_file_path = os.path.join(
             SETUP_DIR, "conf", "system.json")
         self.test_config = TestModuleConfigNew(self.config_file_path)
-
-        self.pic_file_path = os.path.join(
-            SETUP_DIR, "imgs", "mw1500_device")
 
         self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name

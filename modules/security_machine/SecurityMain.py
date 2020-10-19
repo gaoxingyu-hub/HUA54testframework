@@ -10,7 +10,7 @@ import os
 from datetime import datetime
 import frozen_dir
 from common.config import TestModuleConfigNew, SystemConfig
-from common.info import Constants
+from common.info import Constants, SystemLanguage
 from common.logConfig import Logger
 from common.th_thread_model import ThThreadTimerUpdateTestTime
 from database.data_storage import ThTestResultsStorage
@@ -46,14 +46,21 @@ class DialogSecurityMain(QDialog, Ui_Dialog):
         self.setupUi(self)
         self.current_test_step = 0
         # 配置文件路径
-        self.config_file_path = os.path.join(
-            SETUP_DIR, "conf", "security.json")
+
+        if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "fr", "security.json")
+            self.pic_file_path = os.path.join(
+                SETUP_DIR, "imgs", "fr", "security_machine")
+        else:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "cn", "security.json")
+            self.pic_file_path = os.path.join(
+                SETUP_DIR, "imgs", "cn", "security_machine")
+
         self.system_config_file_path = os.path.join(
             SETUP_DIR, "conf", "system.json")
         self.test_config = TestModuleConfigNew(self.config_file_path)
-
-        self.pic_file_path = os.path.join(
-            SETUP_DIR, "imgs", "security_machine")
 
         self.system_config = SystemConfig(self.system_config_file_path)
         self.steps2Name = self.system_config.step2name

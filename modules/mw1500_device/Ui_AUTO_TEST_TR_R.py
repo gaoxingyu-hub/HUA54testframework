@@ -9,6 +9,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from common.info import SystemLanguage
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -230,20 +232,36 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.pushButton_next.setText(_translate("Dialog", "下一步"))
-        self.groupBox_2.setTitle(_translate("Dialog", "测试频率"))
-        self.label.setText(_translate("Dialog", "高频点"))
-        self.comboBox_freq_H.setItemText(0, _translate("Dialog", "1750"))
-        self.comboBox_freq_H.setItemText(1, _translate("Dialog", "1850"))
-        self.lineEdit_freq_sg.setText(_translate("Dialog", "MHz"))
-        self.label_2.setText(_translate("Dialog", "中频点"))
-        self.comboBox_freq_M.setItemText(0, _translate("Dialog", "1550"))
-        self.comboBox_freq_M.setItemText(1, _translate("Dialog", "1650"))
-        self.lineEdit_freq_sg_2.setText(_translate("Dialog", "MHz"))
-        self.label_3.setText(_translate("Dialog", "低频点"))
-        self.comboBox_freq_L.setItemText(0, _translate("Dialog", "1350"))
-        self.comboBox_freq_L.setItemText(1, _translate("Dialog", "1450"))
-        self.lineEdit_freq_sg_3.setText(_translate("Dialog", "MHz"))
+        if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+            self.pushButton_next.setText(_translate("Dialog", "Étape suivante"))
+            self.groupBox_2.setTitle(_translate("Dialog", "Fréquence de test"))
+            self.label.setText(_translate("Dialog", "Point de fréquence haute"))
+            self.comboBox_freq_H.setItemText(0, _translate("Dialog", "1750"))
+            self.comboBox_freq_H.setItemText(1, _translate("Dialog", "1850"))
+            self.lineEdit_freq_sg.setText(_translate("Dialog", "MHz"))
+            self.label_2.setText(_translate("Dialog", "Point de fréquence moyenne"))
+            self.comboBox_freq_M.setItemText(0, _translate("Dialog", "1550"))
+            self.comboBox_freq_M.setItemText(1, _translate("Dialog", "1650"))
+            self.lineEdit_freq_sg_2.setText(_translate("Dialog", "MHz"))
+            self.label_3.setText(_translate("Dialog", "Point de fréquence basse"))
+            self.comboBox_freq_L.setItemText(0, _translate("Dialog", "1350"))
+            self.comboBox_freq_L.setItemText(1, _translate("Dialog", "1450"))
+            self.lineEdit_freq_sg_3.setText(_translate("Dialog", "MHz"))
+        else:
+            self.pushButton_next.setText(_translate("Dialog", "下一步"))
+            self.groupBox_2.setTitle(_translate("Dialog", "测试频率"))
+            self.label.setText(_translate("Dialog", "高频点"))
+            self.comboBox_freq_H.setItemText(0, _translate("Dialog", "1750"))
+            self.comboBox_freq_H.setItemText(1, _translate("Dialog", "1850"))
+            self.lineEdit_freq_sg.setText(_translate("Dialog", "MHz"))
+            self.label_2.setText(_translate("Dialog", "中频点"))
+            self.comboBox_freq_M.setItemText(0, _translate("Dialog", "1550"))
+            self.comboBox_freq_M.setItemText(1, _translate("Dialog", "1650"))
+            self.lineEdit_freq_sg_2.setText(_translate("Dialog", "MHz"))
+            self.label_3.setText(_translate("Dialog", "低频点"))
+            self.comboBox_freq_L.setItemText(0, _translate("Dialog", "1350"))
+            self.comboBox_freq_L.setItemText(1, _translate("Dialog", "1450"))
+            self.lineEdit_freq_sg_3.setText(_translate("Dialog", "MHz"))
 import res.iconQrc_rc
 
 

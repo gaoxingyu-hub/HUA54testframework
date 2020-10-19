@@ -10,13 +10,17 @@ from PyQt5 import QtGui
 from PyQt5.QtCore import pyqtSignal
 import time
 
+from common.info import SystemLanguage
 from .Ui_AUTO_TEST import Ui_Dialog
 import os
 from InstrumentDrivers.SignalGeneratorDriver import SignalGenerator
 from InstrumentDrivers.SpectrumAnalyzerDriver import SpectrumAnalyzer
 from PyQt5.Qt import QMessageBox
 import numpy as np
-from .high_freq_constant import ModuleConstants
+if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+    from .high_freq_constant import ModuleConstants
+else:
+    from .high_freq_constant_fr import ModuleConstants
 
 class AUTO_TEST(QDialog, Ui_Dialog):
     """
@@ -83,9 +87,14 @@ class AUTO_TEST(QDialog, Ui_Dialog):
         addr_sa = "TCPIP0::" + addr_sa + "::inst0::INSTR"
         self.test_result=test_results()
         if not self.demo:
+            print("进入频谱仪连接测试-----------------------")
             try:
                 self.sa=SpectrumAnalyzer.SpectrumAnalyzer(addr_sa)
+                print("频谱仪内存地址打印-------------------")
+                print(self.sa)
                 self.sg = SignalGenerator.SignalGenerator(addr_sg)
+                print("信号源内存地址打印--------------------")
+                print(self.sg)
             except:
                 QMessageBox.warning(self,ModuleConstants.QMESSAGEBOX_WARN, 
                                     ModuleConstants.QMESSAGEBOX_WARN_INSTR_NOT_VALID)
@@ -122,6 +131,7 @@ class AUTO_TEST(QDialog, Ui_Dialog):
             self.sa.SetMarkerMode('POS')
             self.sa.SetMarkerFreq(self.freq_sa)
             mres=self.sa.GetMarkerValueViaIndex(1)
+            print("频谱仪和数据源读数计算完成，计算结果为：{}".format(mres))
             time.sleep(0.5)
             
 

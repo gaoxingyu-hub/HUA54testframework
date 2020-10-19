@@ -54,7 +54,7 @@
         <translation type="unfinished">Ad-Hoc Network microwave communication device</translation>
     </message>
     <message>
-        <location filename="Ui_MainWindow.py" line="98"/>
+        // <location filename="Ui_MainWindow.py" line="98"/>
         <source>SDSL设备</source>
         <translation type="unfinished">SDSL Device</translation>
     </message>

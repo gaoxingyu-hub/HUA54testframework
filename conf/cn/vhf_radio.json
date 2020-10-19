@@ -1,0 +1,87 @@
+{
+    "title":"VHF电台",
+    "module_name":"vhf_radio",
+    "test_case": ["综合业务模块"],
+    "test_case_detail":[
+        {
+            "case_name": "IF_VF",
+            "title": "综合业务模块",
+            "steps": [
+                {"img":"01.jpg","title":"测试准备","contents":"被测设备原位固定，参照图示进行接线，电台射频接口：S-RF,数据接口：DONNEES","module": "DialogPicText","category": "disassemble"},
+                {"img":"","title":"VHF电台电源测试","contents":"将车载适配器前方电源开关拨至M档。将面板MENU旋钮设置为S.R档。电台是否能够加电启动","module": "DialogSimpleTestProcess2Btn","category": "execute","next":["next","finish"]},
+                {"img":"","title":"VHF电台电源测试","contents":"VHF电台电源正常","module": "DialogSimpleTestProcess1Btn","category": "disassemble"},
+                {"img":"","title":"综合业务模件-系统加载","contents":"系统是否加载成功","module": "DialogSimpleTestProcess2Btn","category": "execute","next":["next","finish"]},
+                {"img":"","title":"系统是否加载成功","contents":"综合业务模件系统加载正常","module": "DialogSimpleTestProcess1Btn","category": "disassemble"},
+                {"img":"","title":"综合业务模件-操作面板测试","contents":"操作面板上的旋钮、按键，是否能够正常切换工作方式、设置频率等","module": "DialogSimpleTestProcess2Btn","category": "execute","next":["next","finish"]},
+                {"img":"","title":"操作面板测试","contents":"综合业务模件操作面板操作正常","module": "DialogSimpleTestProcess1Btn","category": "disassemble"},
+                {"img":"02.jpg","title":"打开矢量信号发生器电源，并连接电缆","contents":"使用维修电缆连接矢量信号发生器RF端口和车载适配器S-RF接口。打开矢量信号发生器电源开关，等待设备完成启动过程","module": "DialogPicText","category": "disassemble"},
+                {"img":"","title":"设置电台工作状态","contents":"操作通信主机面板，设置通信主机工作状态为：值守S.R，定明CLAIR，工作频率55MHz","module": "DialogPicText","category": "disassemble"},
+                {"img":"","title":"","contents":"手柄式送受话器能否输出清晰的单音","module": "DialogSimpleJumpBtn","category": "execute","next":["next","finish"], "jump_point": [2,1]},
+                {"img":"01.jpg","title":"测试准备","contents":"111被测设备原位固定，参照图示进行接线，电台射频接口：S-RF,数据接口：DONNEES","module": "DialogPicText","category": "disassemble"},
+                {"img":"01.jpg","title":"测试准备","contents":"222被测设备原位固定，参照图示进行接线，电台射频接口：S-RF,数据接口：DONNEES","module": "DialogPicText","category": "disassemble"}
+            ]
+        }
+    ],
+    "test_source": [
+        {
+            "name": "直流电源",
+            "number": "DH1798-1",
+            "count": "1",
+            "type": "仪器仪表"
+        },
+        {
+            "name": "频谱分析仪",
+            "number": "Keysight N9030B",
+            "count": "1",
+            "type": "仪器仪表"
+        },
+        {
+            "name": "矢量信号发生器",
+            "number": "Keysight E8267D",
+            "count": "1",
+            "type": "配件"
+        },
+        {
+            "name": "40dB固定衰减器",
+            "number": "",
+            "count": "2",
+            "type": "配件"
+        },
+        {
+            "name": "直流电源线缆",
+            "number": "",
+            "count": "1",
+            "type": "配件"
+        },
+        {
+            "name": "电台数据线缆",
+            "number": "",
+            "count": "2",
+            "type": "配件"
+        },
+        {
+            "name": "射频线缆",
+            "number": "",
+            "count": "1",
+            "type": "配件"
+        },
+        {
+            "name": "USB-serial电缆",
+            "number": "",
+            "count": "2",
+            "type": "配件"
+        },
+        {
+            "name": "前面板转接电缆",
+            "number": "",
+            "count": "1",
+            "type": "配件"
+        },
+        {
+            "name": "后盖板转接电缆",
+            "number": "",
+            "count": "1",
+            "type": "配件"
+        }
+    ]
+}
