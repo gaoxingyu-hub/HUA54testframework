@@ -81,7 +81,7 @@
 		}, {
 			"img": "",
 			"title": "Le voyant ALIM s'allume toujours.",
-			"contents": "la fonction d’alimentation est normale ;",
+			"contents": "la fonction d’alimentation est normal",
 			"module": "DialogSimpleTestProcess1Btn",
 			"category": "execute"
 		}, {
@@ -94,7 +94,7 @@
 		}, {
 			"img": "",
 			"title": "Le voyant FON clignote.",
-			"contents": " CPU fonctionne normalement ;",
+			"contents": " CPU fonctionne normal",
 			"module": "DialogSimpleTestProcess1Btn",
 			"category": "execute"
 		}, {

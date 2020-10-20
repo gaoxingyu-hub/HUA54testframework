@@ -14,7 +14,7 @@ class ModuleConstants:
         PROCESS_CONTROL_NEXT = "next"
         PROCESS_CONTROL_FINISH = "finish"
         CONTENTS_NEXT = "Étape suivante"
-        CONTENTS_NOT = "Non"
+        CONTENTS_NOT = "a"
         CONTENTS_OVER = "Fin de test"
         CONTENTS_YES = "Oui"
         CONTENTS_NO = "Non"

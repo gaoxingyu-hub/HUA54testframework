@@ -232,10 +232,13 @@ class COM_CONTROL_DEVICE(QDialog, Ui_Dialog):
                                     self.current_test_step_dialog.set_button_contents(ModuleConstants.BUTTON_CONTENTS_NEXT)
                                     self.current_test_step_dialog.set_msg(Constants.SIGNAL_NEXT)
                                 else:
+                                    not_index = -2
+                                    if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+                                        not_index = -6
                                     self.current_test_step_dialog \
                                         .set_contents(
-                                        temp_test_process['title'][:-2] + ModuleConstants.CONTENTS_NOT + temp_test_process['title'][-2:],
-                                        temp_test_process['contents'][:-2] + ModuleConstants.CONTENTS_NOT + temp_test_process['contents'][-2:],
+                                        temp_test_process['title'][:not_index] + ModuleConstants.CONTENTS_NOT + temp_test_process['title'][not_index:],
+                                        temp_test_process['contents'][:not_index] + ModuleConstants.CONTENTS_NOT + temp_test_process['contents'][not_index:],
                                         "")
                                     self.current_test_step_dialog.set_button_contents(ModuleConstants.BUTTON_CONTENTS_FINISH)
                                     self.current_test_step_dialog.set_msg(Constants.SIGNAL_FINISH)

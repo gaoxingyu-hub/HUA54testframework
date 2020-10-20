@@ -93,7 +93,7 @@
 		}, {
 			"img": "",
 			"title": "Le voyant “ALIM” s'allume toujours.",
-			"contents": "La fonction d'alimentation est normale",
+			"contents": "La fonction d'alimentation est normal",
 			"module": "DialogSimpleTestProcess1Btn",
 			"category": "execute"
 		}, {
@@ -106,7 +106,7 @@
 		}, {
 			"img": "",
 			"title": "Entrez dans l'interface de configuration",
-			"contents": "CPU fonctionne normalement",
+			"contents": "CPU fonctionne normal",
 			"module": "DialogSimpleTestProcess1Btn",
 			"category": "execute"
 		}, {

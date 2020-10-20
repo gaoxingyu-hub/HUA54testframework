@@ -18,16 +18,16 @@
                 {"img":"","title":"Allumez l'interrupteur d'alimentation de l'équipement à tester et du testeur de taux d'erreur de bit IP.","contents":"Allumez l'interrupteur d'alimentation de l'équipement à tester et du testeur de taux d'erreur de bit IP.","module": "DialogPicText","category": "execute"},
                 {"img":"","title":"L'équipement testé est en cours de démarrage, veuillez patienter ...","contents":"L'équipement testé est en cours de démarrage, veuillez patienter ...","module": "DialogPicText","category": "execute"},
                 {"img":"7.png","title":"voyant ALIM","contents":"Observez le voyant “ALIM” sur le panneau frontal d'équipement à tester.","module": "DialogSimpleTestProcess2Btn","category": "execute"},
-                {"img":"","title":"Si le fusible est normal ?","contents":"Le fusible est normal.","module": "DialogSimpleTestProcess1Btn","category": "execute"},
+                {"img":"","title":"Si le fusible est normal ?","contents":"Le fusible est normal","module": "DialogSimpleTestProcess1Btn","category": "execute"},
                 {"img":"8.png","title":"Configurez la boucle MAC.","contents":"Entrez dans la configuration d'interface d'entretien via la surveillance de cette machine pour configurer la boucle T/R.","module": "DialogPicText","category": "execute"},
                 {"img":"","title":"Test de boucle MAC","contents":"Observez si le panneau cristal aux liquides et le testeur de taux d’erreur de bit de réseau d'équipement à tester sont normaux.","module": "DialogSimpleTestProcess2Btn","category": "execute"},
-                {"img":"","title":"Si l'unité de traitement des siganux numériques est normale ? ","contents":"L'unité de traitement des siganux numériques est normale.","module": "DialogSimpleTestProcess1Btn","category": "execute"},
+                {"img":"","title":"Si l'unité de traitement des siganux numériques est normale ? ","contents":"L'unité de traitement des siganux numériques est normal","module": "DialogSimpleTestProcess1Btn","category": "execute"},
                 {"img":"9.png","title":"Configurer le circulateur de bande de base","contents":"Entrez dans la configuration d'interface d'entretien via la surveillance de cette machine pour configurer la boucle de bande de base.","module": "DialogPicText","category": "execute"},
                 {"img":"","title":"Test de boucle de bande de base","contents":"Observez si le panneau cristal aux liquides et le testeur de taux d’erreur de bit de réseau d'équipement à tester sont normaux.","module": "DialogSimpleTestProcess2Btn","category": "execute"},
-                {"img":"","title":"Si le câble mixte de transmission optronique est normal ?","contents":"L'unité de câble mixte de transmission optronique est normal.","module": "DialogSimpleTestProcess1Btn","category": "execute"},
+                {"img":"","title":"Si le câble mixte de transmission optronique est normal ?","contents":"L'unité de câble mixte de transmission optronique est normal","module": "DialogSimpleTestProcess1Btn","category": "execute"},
                 {"img":"10.png","title":"Configurez la boucle T/R.","contents":"Entrez dans la configuration d'interface d'entretien via la surveillance de cette machine pour configurer la boucle de bande de base.","module": "DialogPicText","category": "execute"},
                 {"img":"","title":"Test de boucle T/R","contents":"Observez si le panneau cristal aux liquides et le testeur de taux d’erreur de bit de réseau d'équipement à tester sont normaux.","module": "DialogSimpleTestProcess2Btn","category": "execute"},
-                {"img":"","title":"Si l'armoire extérieure est normale ?","contents":"L'unité d'armoire extérieure est normale.","module": "DialogSimpleTestProcess1Btn","category": "execute_finish"}
+                {"img":"","title":"Si l'armoire extérieure est normale ?","contents":"L'unité d'armoire extérieure est normal","module": "DialogSimpleTestProcess1Btn","category": "execute_finish"}
             ]
         }
     ],
