@@ -1,215 +1,216 @@
+
 {
-    "title":"MW-1500微波通信设备",
+    "title":"Équipement de communication micro-ondes MW-1500",
     "module_name":"mw1500_device",
-    "test_case": ["收发信机单元/发信机","收发信机单元/收信机","低噪声放大器","功放","自环器","滤波器","波导开关","耦合器","监控模块"],
+    "test_case": ["unité de réception et d’émission/l’émetteur ","unité de réception et d’émission/récepteur","amplificateur de bas bruit","amplificateur de puissance","circulateur de signal","filtre d’onde","interrupteur de guide d’onde","coupleur","module de surveillance"],
     "test_source": [{
-			"name": "信号源",
+			"name": "Source de signal ",
 			"number": "keysight E8257D",
 			"count": "1",
-			"type": "仪器仪表"
+			"type": "appareils utilisés"
 	},{
-			"name": "频谱仪",
+			"name": "Spectographe ",
 			"number": "keysight N9030B",
 			"count": "1",
-			"type": "仪器仪表"
+			"type": "appareils utilisés"
 	},{
 			"name": "功率计",
 			"number": "keysight N1911A",
 			"count": "1",
-			"type": "仪器仪表"
+			"type": "appareils utilisés"
 	},{
-			"name": "万用表",
+			"name": "multimètre",
 			"number": "keysight DSOX3012A",
 			"count": "1",
-			"type": "仪器仪表"
+			"type": "appareils utilisés"
 	},{
-			"name": "电源线",
+			"name": "Fil de source d’alimentation",
 			"number": "W001/220V",
 			"count": "1",
-			"type": "测试附件"
+			"type": "accessoires utilisés"
 	},{
-			"name": "电源线",
+			"name": "Fil de source d’alimentation",
 			"number": "W002/数据线",
 			"count": "1",
-			"type": "测试附件"
+			"type": "accessoires utilisés"
 	},{
 			"name": "射频电缆",
 			"number": "W003/(N/SMA-J/J)",
 			"count": "1",
-			"type": "测试附件"
+			"type": "accessoires utilisés"
 	},{
 			"name": "射频电缆",
 			"number": "W004/(N/SMA-J/J)",
 			"count": "1",
-			"type": "测试附件"
+			"type": "accessoires utilisés"
 	},{
 			"name": "射频电缆",
 			"number": "W005/(SMA/SMA-J/J)",
 			"count": "1",
-			"type": "测试附件"
+			"type": "accessoires utilisés"
 	},{
 			"name": "射频电缆",
 			"number": "W006/(SMA/SMA-J/J)",
 			"count": "1",
-			"type": "测试附件"
+			"type": "accessoires utilisés"
 	},{
 			"name": "射频电缆",
 			"number": "W007/(SMA/SMA-J/J)",
 			"count": "1",
-			"type": "测试附件"
+			"type": "accessoires utilisés"
 	},{
 			"name": "射频电缆",
 			"number": "W008/(SMA/SMA-J/J)",
 			"count": "1",
-			"type": "测试附件"
+			"type": "accessoires utilisés"
 	},{
 			"name": "测试台",
 			"number": "TA001",
 			"count": "1",
-			"type": "测试附件"
+			"type": "accessoires utilisés"
 	},{
-			"name": "衰减器",
+			"name": "Atténuateur ",
 			"number": "TA002",
 			"count": "1",
-			"type": "测试附件"
+			"type": "accessoires utilisés"
 	},{
 			"name": "N转换",
 			"number": "TA004/(N/N-K/K)",
 			"count": "1",
-			"type": "测试附件"
+			"type": "accessoires utilisés"
 	},{
-			"name": "SMA转换",
+			"name": "Circulateur SMA",
 			"number": "TA005/(SMA-K/K)",
 			"count": "1",
-			"type": "测试附件"
+			"type": "accessoires utilisés"
 	}],
     "test_case_detail":[
 	        {
-	            "case_name": "收发信机单元/发信机",
-	            "title": "收发信机单元/发信机故障定位",
+	            "case_name": "unité de réception et d’émission/d’émission",
+	            "title": "Méthode de localisation de panne sur le canal d’émission de l’unité de réception et d’émission (d’émission)",
 	            "steps":[
-	            	{"img":"","title":"MW-1500微波通信设备-收发信机单元/发信机","contents":"进行收发信机单元测试时需要对被测设备进行前面板拆除，所需工具为中号一字螺丝刀","module": "DialogPic"},
-	            	{"img":"","title":"MW-1500微波通信设备-收发信机单元/发信机","contents":"设置功率计频率并校准","module": "DialogPic"},
-			        {"img":"tr_t_1.png","title":"MW-1500微波通信设备-收发信机单元/发信机","contents":"关闭设备电源，如图所示，将开关打到“OFF”位置，并断开机箱电源线","module": "DialogPic"},
-			        {"img":"tr_t_2.png","title":"MW-1500微波通信设备-收发信机单元/发信机","contents":"使用十字型螺丝刀拧下机箱前面板边缘的12个螺钉，如图所示，螺钉如红色圆圈所标位置","module": "DialogPic"},
-			        {"img":"tr_t_3.png","title":"MW-1500微波通信设备-收发信机单元/发信机","contents":"拆除前面板，收发信机单元A5视图如图所示","module": "DialogPic"},
-			        {"img":"tr_t_4.png","title":"MW-1500微波通信设备-收发信机单元/发信机","contents":"按照图连接测试设备","module": "DialogPic"},
-			        {"img":"tr_t_1.png","title":"MW-1500微波通信设备-收发信机单元/发信机","contents":"设备加电打开被测设备电源开关，如图所示，将开关打到“ON”位置；设备上电5分钟","module": "DialogPic"},
-			        {"img":"","title":"MW-1500微波通信设备-收发信机单元/发信机","contents":"测试频点设置","module": "AUTO_TEST_TR_T"}
+	            	{"img":"","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/l’émetteur ","contents":"Il nécessite un tournevis moyen pour démonter le panneau frontal durant le test d’équipement à tester.","module": "DialogPic"},
+	            	{"img":"","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/l’émetteur ","contents":"设置功率计频率并校准","module": "DialogPic"},
+			        {"img":"tr_t_1.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/l’émetteur ","contents":"Eteindre la source d’alimentation, mettre l’interrupteur à la position d’\"OFF\" et couper le fil d’alimentation de la boîte de distribution d’alimentation. ","module": "DialogPic"},
+			        {"img":"tr_t_2.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/l’émetteur ","contents":"Dévisser le 12 vis, qui sont encerclés par la couleur rouge comme dans la Figure, avec le tournevis en croix sur le panneau frontal.","module": "DialogPic"},
+			        {"img":"tr_t_3.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/l’émetteur ","contents":"拆除前面板，收发信机单元A5视图如图所示","module": "DialogPic"},
+			        {"img":"tr_t_4.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/l’émetteur ","contents":"按照图连接测试设备","module": "DialogPic"},
+			        {"img":"tr_t_1.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/l’émetteur ","contents":"Alimenter l’équipement et allumer l’interrupteur d’équipement à tester, mettre l’interrupteur à la position de \"ON\" et configurer l’alimentation d’équipement à tester pour 2 minutes ","module": "DialogPic"},
+			        {"img":"","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/l’émetteur ","contents":"测试频点设置","module": "AUTO_TEST_TR_T"}
 			    ],
 			    "test_para":["1750","1550","1350"],
 			    "threshold":["-2","2"]
 	        },
 	        {
-	            "case_name": "收发信机单元/收信机",
-	            "title": "收发信机单元/收信机故障定位",
+	            "case_name": "unité de réception et d’émission/réception ",
+	            "title": "Méthode de localisation de panne sur le canal de réception de l’unité de réception et d’émission(réception)",
 	            "steps":[
-	            	{"img":"","title":"MW-1500微波通信设备-收发信机单元/收信机","contents":"进行收发信机单元测试时需要对被测设备进行前面板拆除，所需工具为中号一字螺丝刀","module": "DialogPic"},
-	            	{"img":"tr_t_1.png","title":"MW-1500微波通信设备-收发信机单元/收信机","contents":"关闭设备电源，如图所示，将开关打到“OFF”位置，并断开机箱电源线","module": "DialogPic"},
-			        {"img":"tr_r_2.png","title":"MW-1500微波通信设备-收发信机单元收信机","contents":"将被测设备放在附件TA001上，如图所示","module": "DialogPic"},
-			        {"img":"tr_r_2.png","title":"MW-1500微波通信设备-收发信机单元/收信机","contents":"使用十字型螺丝刀拧下机箱前面板边缘的12个螺钉，如图所示，螺钉如红色圆圈所标位置","module": "DialogPic"},
-			        {"img":"tr_r_3.png","title":"MW-1500微波通信设备-收发信机单元/收信机","contents":"拆除前面板，收发信机单元视图如图所示，断开电缆W21，W","module": "DialogPic"},
-			        {"img":"tr_r_4.png","title":"MW-1500微波通信设备-收发信机单元/收信机","contents":"按照图连接测试设备","module": "DialogPic"},
-			        {"img":"tr_t_1.png","title":"MW-1500微波通信设备-收发信机单元/收信机","contents":"设备加电打开被测设备电源开关，如图所示，将开关打到“ON”位置","module": "DialogPic"},
-			        {"img":"","title":"MW-1500微波通信设备-收发信机单元/收信机","contents":"测试频点设置","module": "AUTO_TEST_TR_R"}
+	            	{"img":"","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/réception ","contents":"Il nécessite un tournevis moyen pour démonter le panneau frontal durant le test d’équipement à tester.","module": "DialogPic"},
+	            	{"img":"tr_t_1.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/réception ","contents":"Eteindre la source d’alimentation, mettre l’interrupteur à la position d’\"OFF\" et couper le fil d’alimentation de la boîte de distribution d’alimentation. ","module": "DialogPic"},
+			        {"img":"tr_r_2.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/réception ","contents":"将被测设备放在附件TA001上，如图所示","module": "DialogPic"},
+			        {"img":"tr_r_2.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/réception ","contents":"Dévisser le 12 vis, qui sont encerclés par la couleur rouge comme dans la Figure, avec le tournevis en croix sur le panneau frontal.","module": "DialogPic"},
+			        {"img":"tr_r_3.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/réception ","contents":"拆除前面板，收发信机单元视图如图所示，断开电缆W21，W","module": "DialogPic"},
+			        {"img":"tr_r_4.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/réception ","contents":"按照图连接测试设备","module": "DialogPic"},
+			        {"img":"tr_t_1.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/réception ","contents":"Alimenter l’équipement et allumer l’interrupteur d’équipement à tester, mettre l’interrupteur à la position de \"ON\" ","module": "DialogPic"},
+			        {"img":"","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/réception ","contents":"测试频点设置","module": "AUTO_TEST_TR_R"}
 			    ],
 			    "test_para":["1750","1550","1350","-35","70","50","0"],
 			    "threshold":["-7.5","-3.5"]
 	        },
 	        {
-	            "case_name": "低噪声放大器",
-	            "title": "低噪声放大器故障定位",
+	            "case_name": "amplificateur de bas bruit",
+	            "title": "Méthode de loclisation de panne sur l’amplificateur de bas bruit",
 	            "steps":[
-	            	{"img":"5.png","title":"散射高频设备-低噪声放大器","contents":"低噪声放大器在高频中的位置如下图所示","module": "DialogPic"},
-			        {"img":"5.png","title":"散射高频设备-低噪声放大器","contents":"拆开高频设备的下盖板，露出低噪声放大器，拧下低噪声放大器的XS1和XS2处的连接线","module": "DialogPic"},
-			        {"img":"5.png","title":"散射高频设备-低噪声放大器","contents":"高频设备和信号源、频谱仪接地，接通电源","module": "DialogPic"},
-			        {"img":"6.png","title":"散射高频设备-低噪声放大器","contents":"按图连接好高频设备内部低噪声放大器的外部接线，低噪声放大器XS1和XS2按照连接到信号源和频谱仪","module": "DialogPic"},
-			        {"img":"6.png","title":"散射高频设备-低噪声放大器","contents":"打开高频设备开关，确认低噪声放大器VCC处的供电满足+15V","module": "DialogPic"},
-			        {"img":"","title":"散射高频设备-低噪声放大器","contents":"设置信号源和频谱仪相关参数","module": "AUTO_TEST_LNA"}
+	            	{"img":"5.png","title":"équipement troposphérique de transmission à haute fréquence-l’amplificateur de bas bruit","contents":"低噪声放大器在高频中的位置如下图所示","module": "DialogPic"},
+			        {"img":"5.png","title":"équipement troposphérique de transmission à haute fréquence-l’amplificateur de bas bruit","contents":"Ouvrir le couvercle bas de l’équipement à haute fréquence pour montrer l’amplificateur de bas bruit, dévisser le fil de connection entre XS1 et XS2 de l’amplificateur de bas bruit","module": "DialogPic"},
+			        {"img":"5.png","title":"équipement troposphérique de transmission à haute fréquence-l’amplificateur de bas bruit","contents":"Mettre à la terre l’équipement à haute fréquence, la source de signal et le spectographe, allumer la source d’alimentation","module": "DialogPic"},
+			        {"img":"6.png","title":"équipement troposphérique de transmission à haute fréquence-l’amplificateur de bas bruit","contents":"Connecter les fils extérieurs de l’amplificateur de bas bruit à l’intérieur de l’équipement à haute fréquence, et connecter XS1 et XS2 de l’amplificateur de bas bruit à la source de signal et au spectographe selon la Figure","module": "DialogPic"},
+			        {"img":"6.png","title":"équipement troposphérique de transmission à haute fréquence-l’amplificateur de bas bruit","contents":"Allumer l’interrupteur de l’équipement à haute fréquence, confirmer que l’alimentation VCC de l’amplificateur de bas bruit est satisfait à +15V","module": "DialogPic"},
+			        {"img":"","title":"équipement troposphérique de transmission à haute fréquence-l’amplificateur de bas bruit","contents":"设置信号源和频谱仪相关参数","module": "AUTO_TEST_LNA"}
 			    ],
 			    "test_para":["4700","-30","4700","100"],
 			    "threshold":["-3","10"]
 	        },
 	        {
-	            "case_name": "功放",
-	            "title": "功放故障定位",
+	            "case_name": "amplificateur de puissance",
+	            "title": "Méthode de localisation de panne sur l’amplificatur de puissance",
 	            "steps":[
-	            	{"img":"7.png","title":"散射高频设备-功放","contents":"功放在高频中的位置如下图所示","module": "DialogPic"},
-			        {"img":"7.png","title":"散射高频设备-功放","contents":"拆开高频设备的下盖板，露出功放，拧下低噪声放大器的XS1和W07处的连接线","module": "DialogPic"},
-			        {"img":"7.png","title":"散射高频设备-功放","contents":"高频设备和信号源、频谱仪接地，接通电源","module": "DialogPic"},
-			        {"img":"8.png","title":"散射高频设备-功放","contents":"按图连接好高频设备外部波导开关的接线，天线接口连接上大功率衰减器，内部功放XS1接口连接到信号源，W07耦合器50dB接口连接到频谱仪","module": "DialogPic"},
-			        {"img":"8.png","title":"散射高频设备-功放","contents":"打开高频设备开关，确认功放XS2处的供电满足+28V","module": "DialogPic"},
-			        {"img":"","title":"散射高频设备-功放","contents":"设置信号源和频谱仪相关参数","module": "AUTO_TEST_PA"}
+	            	{"img":"7.png","title":"Haute fréquence troposphérique équipement-amplificateur de puissance","contents":"功放在高频中的位置如下图所示","module": "DialogPic"},
+			        {"img":"7.png","title":"Haute fréquence troposphérique équipement-amplificateur de puissance","contents":"Ouvrir le couvercle haut de l’équipement à haute fréquence pour montrer le connecteur entre XS1 et W07 de l’amplificateur de puissance","module": "DialogPic"},
+			        {"img":"7.png","title":"Haute fréquence troposphérique équipement-amplificateur de puissance","contents":"Mettre à la terre l’équipement à haute fréquence, la source de signal et le spectographe, allumer la source d’alimentation","module": "DialogPic"},
+			        {"img":"8.png","title":"Haute fréquence troposphérique équipement-amplificateur de puissance","contents":"Connecter les fils extérieurs de l’interrupteur de guide d’onde à l’intérieur de l’équipement à haute fréquence, et connecter le port d’antenne à l’atténuateur à haute puissance, le port intérieur d’amplificateur de puissance XS1 à la source de signal, et le port 50dB de coupleur au spectographe selon la Figure","module": "DialogPic"},
+			        {"img":"8.png","title":"Haute fréquence troposphérique équipement-amplificateur de puissance","contents":"Allumer l’interrupteur de l’équipement à haute fréquence, confirmer que l’alimentation XS2 de l’amplificateur de puissance est satisfait à +28V","module": "DialogPic"},
+			        {"img":"","title":"Haute fréquence troposphérique équipement-amplificateur de puissance","contents":"设置信号源和频谱仪相关参数","module": "AUTO_TEST_PA"}
 			    ],
 			    "test_para":["4700","0","4700","100"],
 			    "threshold":["-3","3"]
 	        }, 
 	        {
-	            "case_name": "自环器",
-	            "title": "自环器故障定位",
+	            "case_name": "circulateur de signal",
+	            "title": "Méthode de localisation de panne sur le circulateur de signal",
 	            "steps":[
-	            	{"img":"9.png","title":"散射高频设备-自环器","contents":"自环器在高频中的位置如下图所示","module": "DialogPic"},
-			        {"img":"9.png","title":"散射高频设备-自环器","contents":"拆开高频设备的下盖板，露出自环器，拧下低噪声放大器的XS5处的连接线","module": "DialogPic"},
-			        {"img":"9.png","title":"散射高频设备-自环器","contents":"高频设备和信号源、频谱仪接地，接通电源","module": "DialogPic"},
-			        {"img":"10.png","title":"散射高频设备-自环器","contents":"按图连接好高频设备的外部接线，自环器XS5按照上图连接到环形器的2口，环形器的1口和3口分别接到信号源、频谱仪上","module": "DialogPic"},
-			        {"img":"10.png","title":"散射高频设备-自环器","contents":"打开高频设备开关查看设备的收发频率","module": "DialogPic"},
-			        {"img":"","title":"散射高频设备-自环器","contents":"设置信号源和频谱仪相关参数","module": "AUTO_TEST_LOOP"}
+	            	{"img":"9.png","title":"Haute fréquence troposphérique équipement-circulateur de signal","contents":"La position de circulateur de signal se refère dans la figure suivante","module": "DialogPic"},
+			        {"img":"9.png","title":"Haute fréquence troposphérique équipement-circulateur de signal","contents":"Ouvrir le couvercle haut de l’équipement à haute fréquence pour montrer le circulateur, dévisser le fil de connection à la position de XS5 sur le circulateur","module": "DialogPic"},
+			        {"img":"9.png","title":"Haute fréquence troposphérique équipement-circulateur de signal","contents":"Mettre à la terre l’équipement à haute fréquence, la source de signal et le spectographe, allumer la source d’alimentation ","module": "DialogPic"},
+			        {"img":"10.png","title":"Haute fréquence troposphérique équipement-circulateur de signal","contents":"Connecter les fils extérieurs de l’équipement à haute fréquence, et connecter le circulateur de signal XS5 au port 2 de boucle selon la figure, le port 1 et le port 3 de boucle sont connectés respectivement à la source de signal et au spectographe ","module": "DialogPic"},
+			        {"img":"10.png","title":"Haute fréquence troposphérique équipement-circulateur de signal","contents":"Allumer l’interrupteur de l’équipement à haute fréquence et observer la fréquence de réception et d’émission ","module": "DialogPic"},
+			        {"img":"","title":"Haute fréquence troposphérique équipement-circulateur de signal","contents":"设置信号源和频谱仪相关参数","module": "AUTO_TEST_LOOP"}
 			    ],
 			    "test_para":["4700","10","4700","100"],
 			    "threshold":["-55","-35"]
 	        },
 	        {
-	            "case_name": "滤波器",
-	            "title": "滤波器故障定位",
+	            "case_name": "filtre d’onde",
+	            "title": "Méthode de localisation de panne sur le filtre d’onde",
 	            "steps":[
-	            	{"img":"11.png","title":"散射高频设备-滤波器","contents":"滤波器在高频中的位置如下图所示，有两个，分为收滤波器和发滤波器","module": "DialogPic"},
-			        {"img":"11.png","title":"散射高频设备-滤波器","contents":"拆开高频设备的下盖板，露出滤波器，拧下滤波器的XS1和XS2处的连接线","module": "DialogPic"},
-			        {"img":"11.png","title":"散射高频设备-滤波器","contents":"高频设备和矢量网络分析仪接地，打开矢量网络分析仪电源，对仪器进行校准","module": "DialogPic"},
-			        {"img":"12.png","title":"散射高频设备-滤波器","contents":"按图连接好高频设备内部滤波器器的外部接线，滤波器XS1和XS2连接到矢量网络分析仪","module": "DialogPic"},
-			        {"img":"12.png","title":"散射高频设备-滤波器","contents":"打开高频设备开关，确认高频设备的收发频率","module": "DialogPic"},
-			        {"img":"","title":"散射高频设备-滤波器","contents":"设置矢量网络分析仪相关参数","module": "AUTO_TEST_FILTER"}
+	            	{"img":"11.png","title":"Haute fréquence troposphérique équipement-filtre d’onde","contents":"Le filtre d’onde est divisé en deux, filtre d’onde de réception et filtre d’onde d’émission ","module": "DialogPic"},
+			        {"img":"11.png","title":"Haute fréquence troposphérique équipement-filtre d’onde","contents":"Ouvrir le couvercle haut de l’équipement à haute fréquence pour montrer le filtre d’onde, dévisser le fil de connection entre XS1 et XS2 sur le filtre d’onde","module": "DialogPic"},
+			        {"img":"11.png","title":"Haute fréquence troposphérique équipement-filtre d’onde","contents":"高Mettre à la terre l’équipement à haute fréquence et l’analyseur de réseau vectoriel portable, allumer la source d’alimentation d’analyseur de réseau vectoriel portable et puis rectifier les appareils","module": "DialogPic"},
+			        {"img":"12.png","title":"Haute fréquence troposphérique équipement-filtre d’onde","contents":"Connecter les fils extérieurs de filtre d’onde à l’intérieur de l’équipement à haute fréquence, et connecter XS1 et XS2 de filtre d’onde à l’analyseur de réseau vectoriel portable selon la Figure","module": "DialogPic"},
+			        {"img":"12.png","title":"Haute fréquence troposphérique équipement-filtre d’onde","contents":"Allumer l’interrupteur de l’équipement à haute fréquence et confirmer sa fréquence de réception et d’émission","module": "DialogPic"},
+			        {"img":"","title":"Haute fréquence troposphérique équipement-filtre d’onde","contents":"设置矢量网络分析仪相关参数","module": "AUTO_TEST_FILTER"}
 			    ],
 			    "test_para":["4700","800"],
 			    "threshold":["-9999","-15","-2","0"]
 	        },
 	        {
-	            "case_name": "波导开关",
-	            "title": "波导开关故障定位",
+	            "case_name": "interrupteur de guide d’onde",
+	            "title": "Méthode de localisation de panne sur l’interrupteur de guide d’onde",
 	            "steps":[
-	            	{"img":"13.png","title":"散射高频设备-波导开关","contents":"如图所示，波导开关没有在高频设备里面，安装在通信方舱内部","module": "DialogPic"},
-			        {"img":"13.png","title":"散射高频设备-波导开关","contents":"高频设备接地，接通电源","module": "DialogPic"},
-			        {"img":"14.png","title":"散射高频设备-波导开关","contents":"按图连接好高频设备的外部接线，波导开关控制接口和高频设备后面板的XS08按照上图连接","module": "DialogPic"},
-			        {"img":"14.png","title":"散射高频设备-波导开关","contents":"打开高频设备开关，更换设备的发射、接收频率，观测波导开关是否有切换动作","module": "DialogPic"},
-			        {"img":"14.png","title":"散射高频设备-波导开关","contents":"如果波导开关有切换动作，并且高频设备可以完成改频，则认为波导开关正常","module": "DialogPic"},
-			        {"img":"14.png","title":"散射高频设备-波导开关","contents":"如果波导开关没动作，则高频断电，打开波导开关的电机保护罩，手动旋转电机，看看手动是否旋转灵活，如果卡住不能旋转，则断定波导开关故障","module": "DialogPic"},
-			        {"img":"","title":"散射高频设备-波导开关","contents":"填写波导开关状态","module": "MANUAL_TEST_SWITCH"}
+	            	{"img":"13.png","title":"Haute fréquence troposphérique équipement-interrupteur de guide d’onde","contents":"L’interrupteur de guide d’onde ne se trouve pas à l’intérieur de l’équipement à haute fréquence, mais il est installé à l’intérieur du shelter de transmission","module": "DialogPic"},
+			        {"img":"13.png","title":"Haute fréquence troposphérique équipement-interrupteur de guide d’onde","contents":"Mettre à la terre l’équipement à haute fréquence et allumer la source d’alimentation ","module": "DialogPic"},
+			        {"img":"14.png","title":"Haute fréquence troposphérique équipement-interrupteur de guide d’onde","contents":"Connecter les fils extérieurs de l’équipement à haute fréquence, et connecter XS08 du panneau arrière de l’équipement à haute fréquence au port de contrôle d’interrupteur de guide d’onde ","module": "DialogPic"},
+			        {"img":"14.png","title":"Haute fréquence troposphérique équipement-interrupteur de guide d’onde","contents":"Allumer l’interrupteur de l’équipement à haute fréquence, changer la fréquence d’émission et de réception de l’ équipement, observer si l’interrupteur de guide d’onde dispose du mouvement de modification ","module": "DialogPic"},
+			        {"img":"14.png","title":"Haute fréquence troposphérique équipement-interrupteur de guide d’onde","contents":"Si l’interrupteur de guide d’onde dispose du mouvement de modification et que l’équipement à haute fréquence puisse effectuer le changement de fréquence, alors l’interrupteur de guide d’onde fonctionne normalement ","module": "DialogPic"},
+			        {"img":"14.png","title":"Haute fréquence troposphérique équipement-interrupteur de guide d’onde","contents":"Si l’interrupteur de guide d’onde ne bouge pas, alors l’équipement à haute fréquence sera coupé, ouvrir le capot de protection de moteur d’interrupteur de guide d’onde, tourner manuellement le moteur pour voir si la modification manuelle est flexible, si elle est bloquée, alors l’interrupteur de guide d’onde est en panne","module": "DialogPic"},
+			        {"img":"","title":"Haute fréquence troposphérique équipement-interrupteur de guide d’onde","contents":"填写波导开关状态","module": "MANUAL_TEST_SWITCH"}
 			    ],
-			    "threshold":["波导开关正常","波导开关故障"]
+			    "threshold":["l’interrupteur de guide d’onde fonctionne normalement","l’interrupteur de guide d’onde est en panne"]
 	        },
 	        {
-	            "case_name": "耦合器",
-	            "title": "耦合器故障定位",
+	            "case_name": "coupleur",
+	            "title": "Méthode de localisation de panne sur le coupleur",
 	            "steps":[
-	            	{"img":"15.png","title":"散射高频设备-耦合器","contents":"耦合器在高频中的位置如下图所示","module": "DialogPic"},
-			        {"img":"15.png","title":"散射高频设备-耦合器","contents":"拆开高频设备的上盖板，露出耦合器，拧下耦合器XS3处的连接线","module": "DialogPic"},
-			        {"img":"15.png","title":"散射高频设备-耦合器","contents":"矢量网络分析仪接地，接通电源，选择通道S21，中心频率设置为4700MHz，带宽设置为800MHz，1dB/DIV，REFERENCE VALUE： -40 dB，仪器接SMA电缆进行校准","module": "DialogPic"},
-			        {"img":"16.png","title":"散射高频设备-耦合器","contents":"按图连接好高频设备天线口和内部耦合器的接线","module": "DialogPic"},
-			        {"img":"","title":"散射高频设备-耦合器","contents":"设置矢量网络分析仪相关参数","module": "AUTO_TEST_COUPLER"}
+	            	{"img":"15.png","title":"Haute fréquence troposphérique équipement-coupleur","contents":"Position de coupleur","module": "DialogPic"},
+			        {"img":"15.png","title":"Haute fréquence troposphérique équipement-coupleur","contents":"Ouvrir le couvercle haut de l’équipement à haute fréquence pour montrer le coupleur, dévisser le fil de connection XS3 sur le coupleur","module": "DialogPic"},
+			        {"img":"15.png","title":"Haute fréquence troposphérique équipement-coupleur","contents":"Mettre à la terre l’analyseur de réseau vectoriel portable et allumer la source d’alimentation, sélectionner le canal S21, la fréquence centrale est configurée comme 4700MHz, la largeur de bande est 800MHz, 1dB/DIV, REFERENCE VALUE : -40 dB, l’apareil est connecté au câble SMA pour rectifier","module": "DialogPic"},
+			        {"img":"16.png","title":"Haute fréquence troposphérique équipement-coupleur","contents":"按Connecter le fil entre le port d’antenne de l’équipement à haute fréquence et le coupleur intérieur selon la Figure","module": "DialogPic"},
+			        {"img":"","title":"Haute fréquence troposphérique équipement-coupleur","contents":"设置矢量网络分析仪相关参数","module": "AUTO_TEST_COUPLER"}
 			    ],
 			    "test_para":["4700","800"],
 			    "threshold":["-47","-33"]
 	        },
 	        {
-	            "case_name": "监控模块",
-	            "title": "监控模块故障定位",
+	            "case_name": "module de surveillance",
+	            "title": "Méthode de localisation de panne sur le module de surveillance",
 	            "steps":[
-	            	{"img":"17.png","title":"散射高频设备-监控模块","contents":"监控模块在高频中的位置如下图所示，监控模块故障定位方法采用目测法","module": "DialogPic"},
-			        {"img":"17.png","title":"散射高频设备-监控模块","contents":"拆开高频设备的上盖板，露出监控模块","module": "DialogPic"},
-			        {"img":"17.png","title":"散射高频设备-监控模块","contents":"高频设备接通电源，高频设备接地，打开高频设备前面板的开关","module": "DialogPic"},
-			        {"img":"17.png","title":"散射高频设备-监控模块","contents":"观察监控模块连接器JL35-4供电接口处V2发光二极管是否亮起，如果不亮说明监控供电不正常，需要排查监控+5V供电情况","module": "DialogPic"},
-			        {"img":"17.png","title":"散射高频设备-监控模块","contents":"观察监控模块发光二极管V3、V4、V5、V6是否闪烁，如果这四个发光二极管都不亮，说明监控单元没有程序运行","module": "DialogPic"},
-			        {"img":"17.png","title":"散射高频设备-监控模块","contents":"V8、V9、V10、V11、V12、V13是网络连接指示灯，其中：V8是网口物理连接指示灯，物理连接正常指示灯亮起；V13是发数据指示灯，发一组数据亮起一次；V12是收数据指示灯， 收一组数据亮起一次；V11是数据冲突指示灯；V10是全双工和半双工指示灯，全双工工作时亮起；V9是传输速率指示灯，传输100Mbps速率时亮起，10Mbps速率时灭。","module": "DialogPic"},
-			        {"img":"","title":"散射高频设备-监控模块","contents":"填写监控模块状态","module": "MANUAL_TEST_MONITOR"}
+	            	{"img":"17.png","title":"Haute fréquence troposphérique équipement-module de surveillance","contents":"监控模块在高频中的位置如下图所示，监控模块故障定位方法采用目测法","module": "DialogPic"},
+			        {"img":"17.png","title":"Haute fréquence troposphérique équipement-module de surveillance","contents":"Ouvrir le couvercle haut de l’équipement à haute fréquence pour montrer le module de surveillance","module": "DialogPic"},
+			        {"img":"17.png","title":"Haute fréquence troposphérique équipement-module de surveillance","contents":"高Allumer la source d’alimentation et mettre à la terre l’équipement à haute fréquence, ouvrir l’interrupteur de panneau frontal de l’équipement à haute fréquence","module": "DialogPic"},
+			        {"img":"17.png","title":"Haute fréquence troposphérique équipement-module de surveillance","contents":"Observer si le LED V2 à la position du port de connection d’alimentation de connecteur JL35-4 sur le module de surveillance est allumé, s’il n’est pas allumé, alors l’alimentation de surveillance est anormale, il faut vérifier l’alimentation de surveillance +5V ","module": "DialogPic"},
+			        {"img":"17.png","title":"Haute fréquence troposphérique équipement-module de surveillance","contents":"Observer si le LED V3, V4, V5 et V6 clignotent, si les quatres LED ne s’allument pas, alors aucun logiciel fonctionne sur l’unité de surveillance.","module": "DialogPic"},
+			        {"img":"17.png","title":"Haute fréquence troposphérique équipement-module de surveillance","contents":"V8, V9, V10, V11, V12 et V13 sont des voyants de connection de réseau, dont: 8 est le voyant de connection physique de port de réseau, il s’allume quand la connection physique est bien connectée;V13 est le voyant de données d’émission, il s’allume chaque fois avec l’envoi d’un groupe de données ;V12 est le voyant de données de réception, il s’allume chaque fois avec la réception d’un groupe de données ; V11 est le voyant de conflit de données ;V10 est le voyant de duplex intégral et de duplex partiel, il s’allume en état de duplex intégral ; V9 est le voyant de vitesse de transmission, il s’allume quand la vitesse de transmission est 100Mbps, et il s’éteint quand la vitesse de transmission est 10Mbps.","module": "DialogPic"},
+			        {"img":"","title":"Haute fréquence troposphérique équipement-module de surveillance","contents":"填写监控模块状态","module": "MANUAL_TEST_MONITOR"}
 			    ],
 			    "threshold":["监控供电正常","监控供电故障"]
 	        }

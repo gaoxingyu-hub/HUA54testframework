@@ -1,69 +1,69 @@
 {
-    "title":"切换(交换)模块(主控板)",
+    "title":"commutation(échange)module(Tableau de commande principal)",
     "module_name":"ecom_ns_1",
     "test_case": ["ecom_ns_1"],
     "test_case_detail":[
         {
             "case_name": "ecom_ns_1",
-            "title": "ecom_ns_1型交换机",
+            "title": "ommutateur de type ecom_ns_1",
             "steps": [
-                {"img":"1.png","title":"ecom_ns_1型交换机","contents":"测试框图","module": "DialogPicText","category": "prepare","next":[2]},
-                {"img":"2.png","title":"ecom_ns_1型交换机","contents":"测试流程","module": "DialogPicText","category": "prepare","next":[3]},
-                {"img":"3.png","title":"ecom_ns_1型交换机-拆机","contents":"拆交换板","module": "DialogPicText","category": "disassemble","next":[4]},
-                {"img":"4.png","title":"ecom_ns_1型交换机-拆机","contents":"拆电源板","module": "DialogPicText","category": "disassemble","next":[5]},
-                {"img":"5.png","title":"ecom_ns_1型交换机-拆机","contents":"拆滤波器","module": "DialogPicText","category": "disassemble","next":[6]},
-                {"img":"6.png","title":"ecom_ns_1型交换机-拆机","contents":"拆接口板","module": "DialogPicText","category": "disassemble","next":[7]},
-                {"img":"7.png","title":"ecom_ns_1型交换机-测试","contents":"现在开始测试ECOM-NS-1型交换机，配以被测设备示意图","module": "DialogPicText","category": "testprepare","next":[8]},
-                {"img":"1.png","title":"ecom_ns_1型交换机-测试","contents":"被测设备原位固定，按下图进行接线，测试以太网电缆连接XS02和XS03。","module": "DialogPicText","category": "testprepare","next":[9]},
-                {"img":"8.png","title":"ecom_ns_1型交换机-测试","contents":"测设备上的接插件位置如下图所示","module": "DialogPicText","category": "testprepare","next":[10]},
-                {"img":"","title":"ecom_ns_1型交换机-测试","contents":"打开被测设备和IP误码仪电源开关电源开关","module": "DialogPicText","category": "testprepare","next":[11]},
-                {"img":"","title":"ecom_ns_1型交换机-测试","contents":"被测设备正在启动，请稍后……","module": "DialogPicText","category": "execute","next":[12]},
-                {"img":"9.png","title":"ecom_ns_1型交换机-指示灯ALIM测试","contents":"观察被测设备前面板指示灯ALIM是否常亮？","module": "DialogSimpleTestProcess2Btn","category": "execute","next":["next","finish"]},
-                {"img":"","title":"指示灯ALIM常亮","contents":"电源功能正常","module": "DialogSimpleTestProcess1Btn","category": "execute","next":[15]},
-                {"img":"10.png","title":"ecom_ns_1型交换机-指示灯FON测试","contents":"观察被测设备前面板前面板指示灯FON是否闪烁？","module": "DialogSimpleTestProcess2Btn","category": "execute","next":["next","finish"]},
-                {"img":"","title":"指示灯FON闪烁","contents":"CPU工作正常","module": "DialogSimpleTestProcess1Btn","category": "execute","next":[18]},
-                {"img":"","title":"获取配置参数","contents":"正在获取配置参数，请稍后……","module": "DialogSimpleTestProcess2Btn","category": "execute","next":["next","finish"]},
-                {"img":"","title":"获取配置参数成功","contents":"获取配置参数成功","module": "DialogSimpleTestProcess1Btn","category": "execute","next":[21]},
-                {"img":"","title":"丢包率测试","contents":"","module": "DialogEcomNs1KeyTest","category": "execute","next":[21]}
+                {"img":"1.png","title":"commutateur de type ecom_ns_1","contents":"Schéma de test","module": "DialogPicText","category": "prepare","next":[2]},
+                {"img":"2.png","title":"commutateur de type ecom_ns_1","contents":"Schéma de processus de test","module": "DialogPicText","category": "prepare","next":[3]},
+                {"img":"3.png","title":"commutateur de type ecom_ns_1-Démonter","contents":"Démonter le panneau de commutation","module": "DialogPicText","category": "disassemble","next":[4]},
+                {"img":"4.png","title":"commutateur de type ecom_ns_1-Démonter","contents":"Démonter la plaque d’alimentation","module": "DialogPicText","category": "disassemble","next":[5]},
+                {"img":"5.png","title":"commutateur de type ecom_ns_1-Démonter","contents":"Démonter le filtre","module": "DialogPicText","category": "disassemble","next":[6]},
+                {"img":"6.png","title":"commutateur de type ecom_ns_1-Démonter","contents":"Démonter la plaque de port","module": "DialogPicText","category": "disassemble","next":[7]},
+                {"img":"7.png","title":"commutateur de type ecom_ns_1-test","contents":"le test de commutateur de type ECOM-NS-1 commence maintenant, équipé du schéma d’équipement à tester ","module": "DialogPicText","category": "testprepare","next":[8]},
+                {"img":"1.png","title":"commutateur de type ecom_ns_1-test","contents":" L’équipement de test est fixé sur place, il faut faire la connection de fils selon le schéma ci-dessous et tester la connection de câble électrique d’Ethernet XS02 et XS03.","module": "DialogPicText","category": "testprepare","next":[9]},
+                {"img":"8.png","title":"commutateur de type ecom_ns_1-test","contents":"la position de conjonction sur l’équipement à tester est indiquée dans la figure ci-dessous ","module": "DialogPicText","category": "testprepare","next":[10]},
+                {"img":"","title":"commutateur de type ecom_ns_1-test","contents":"allumer l’interrupteur d’alimentation d’équipement à tester et de testeur de taux d’erreur de bit IP","module": "DialogPicText","category": "testprepare","next":[11]},
+                {"img":"","title":"commutateur de type ecom_ns_1-test","contents":"l’équipement à tester est en cour de démarrer, attendez...","module": "DialogPicText","category": "execute","next":[12]},
+                {"img":"9.png","title":"commutateur de type ecom_ns_1-Test indicateur ALIM","contents":"Observer si le voyant \"ALIM\" sur le panneau frontal d’équipement à tester s’allume toujours？","module": "DialogSimpleTestProcess2Btn","category": "execute","next":["next","finish"]},
+                {"img":"","title":"le voyant \"ALIM\" s’allume toujours","contents":"la fonction d’alimentation est normale","module": "DialogSimpleTestProcess1Btn","category": "execute","next":[15]},
+                {"img":"10.png","title":"commutateur de type ecom_ns_1-Test indicateur FON","contents":"Observer si le voyant \"FON\" sur le panneau frontal d’équipement à tester clignote ？","module": "DialogSimpleTestProcess2Btn","category": "execute","next":["next","finish"]},
+                {"img":"","title":"le voyant \"FON\" clignote","contents":"CPU fonctionne normalement ","module": "DialogSimpleTestProcess1Btn","category": "execute","next":[18]},
+                {"img":"","title":"Obtenir les paramètres de configuration","contents":"obtension des paramètres de configuration est en cours, attendez...","module": "DialogSimpleTestProcess2Btn","category": "execute","next":["next","finish"]},
+                {"img":"","title":"réussite d’obtension des paramètres de configuration ","contents":"réussite d’obtension des paramètres de configuration ","module": "DialogSimpleTestProcess1Btn","category": "execute","next":[21]},
+                {"img":"","title":"Test du taux de perte de paquets","contents":"","module": "DialogEcomNs1KeyTest","category": "execute","next":[21]}
             ]
         }
       ],
       "test_source": [
           {
-            "name": "IP误码仪",
+            "name": "testeur de taux d’erreur de bit IP",
             "number": "",
             "count": "1",
             "type": ""
         },
         {
-            "name": "交流电源电缆",
+            "name": "Câble d'alimentation CA",
             "number": "MP-COM-B-003-W001",
             "count": "1",
-            "type": "配件"
+            "type": "accessoires"
         },
         {
-            "name": "管理以太网电缆",
+            "name": "Gérer les câbles Ethernet",
             "number": "MP-COM-B-003-W002",
             "count": "1",
-            "type": "配件"
+            "type": "accessoires"
         },
         {
-            "name": "地线",
+            "name": "Fil de terre",
             "number": "MP-COM-B-003-W003",
             "count": "1",
-            "type": "配件"
+            "type": "accessoires"
         },
         {
-            "name": "测试以太网电缆",
+            "name": "câble pour le test d’Ethernet ",
             "number": "MP-COM-B-003-W004",
             "count": "1",
-            "type": "配件"
+            "type": "accessoires"
         },
         {
-            "name": "测试以太网电缆",
+            "name": "câble pour le test d’Ethernet ",
             "number": "MP-COM-B-003-W005",
             "count": "1",
-            "type": "配件"
+            "type": "accessoires"
         }
       ]
 }
