@@ -14,7 +14,7 @@ from .Ui_ECOM_NS2_KEY_TEST import Ui_Dialog
 from common.logConfig import Logger
 from .ecom_ns2_test_process import TestProcessEcomNs2
 from common.config import EcomNs2TestModuleConfig
-from common.info import Constants,ThCommonNoticeInfo
+from common.info import Constants, ThCommonNoticeInfo, SystemLanguage
 
 SETUP_DIR = frozen_dir.app_path()
 logger = Logger.module_logger("DialogEcomNs2KeyTest")
@@ -46,8 +46,12 @@ class DialogEcomNs2KeyTest(QDialog, Ui_Dialog):
         self.max_test_steps = 24
         self.test_process_object = None
 
-        self.config_file_path = os.path.join(
-            SETUP_DIR, "conf", "ecom_ns_2_cases.json")
+        if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf","fr" , "ecom_ns_2_cases.json")
+        else:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "cn", "ecom_ns_2_cases.json")
         self.test_config = EcomNs2TestModuleConfig(self.config_file_path)
 
         port1 = 2 * (self.current_test_item - 1) + 1

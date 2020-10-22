@@ -1,218 +1,57 @@
-
 {
-    "title":"Équipement de communication micro-ondes MW-1500",
-    "module_name":"mw1500_device",
-    "test_case": ["unité de réception et d’émission/l’émetteur ","unité de réception et d’émission/récepteur","amplificateur de bas bruit","amplificateur de puissance","circulateur de signal","filtre d’onde","interrupteur de guide d’onde","coupleur","module de surveillance"],
-    "test_source": [{
-			"name": "Source de signal ",
-			"number": "keysight E8257D",
-			"count": "1",
-			"type": "appareils utilisés"
-	},{
-			"name": "Spectographe ",
-			"number": "keysight N9030B",
-			"count": "1",
-			"type": "appareils utilisés"
-	},{
-			"name": "功率计",
-			"number": "keysight N1911A",
-			"count": "1",
-			"type": "appareils utilisés"
-	},{
-			"name": "multimètre",
-			"number": "keysight DSOX3012A",
-			"count": "1",
-			"type": "appareils utilisés"
-	},{
-			"name": "Fil de source d’alimentation",
-			"number": "W001/220V",
-			"count": "1",
-			"type": "accessoires utilisés"
-	},{
-			"name": "Fil de source d’alimentation",
-			"number": "W002/数据线",
-			"count": "1",
-			"type": "accessoires utilisés"
-	},{
-			"name": "射频电缆",
-			"number": "W003/(N/SMA-J/J)",
-			"count": "1",
-			"type": "accessoires utilisés"
-	},{
-			"name": "射频电缆",
-			"number": "W004/(N/SMA-J/J)",
-			"count": "1",
-			"type": "accessoires utilisés"
-	},{
-			"name": "射频电缆",
-			"number": "W005/(SMA/SMA-J/J)",
-			"count": "1",
-			"type": "accessoires utilisés"
-	},{
-			"name": "射频电缆",
-			"number": "W006/(SMA/SMA-J/J)",
-			"count": "1",
-			"type": "accessoires utilisés"
-	},{
-			"name": "射频电缆",
-			"number": "W007/(SMA/SMA-J/J)",
-			"count": "1",
-			"type": "accessoires utilisés"
-	},{
-			"name": "射频电缆",
-			"number": "W008/(SMA/SMA-J/J)",
-			"count": "1",
-			"type": "accessoires utilisés"
-	},{
-			"name": "测试台",
-			"number": "TA001",
-			"count": "1",
-			"type": "accessoires utilisés"
-	},{
-			"name": "Atténuateur ",
-			"number": "TA002",
-			"count": "1",
-			"type": "accessoires utilisés"
-	},{
-			"name": "N转换",
-			"number": "TA004/(N/N-K/K)",
-			"count": "1",
-			"type": "accessoires utilisés"
-	},{
-			"name": "Circulateur SMA",
-			"number": "TA005/(SMA-K/K)",
-			"count": "1",
-			"type": "accessoires utilisés"
-	}],
+    "title":"Équipement MW-1500",
+    "module_name":"mw1500_radio",
+    "test_case": ["mw1500_radio"],
     "test_case_detail":[
 	        {
-	            "case_name": "unité de réception et d’émission/d’émission",
-	            "title": "Méthode de localisation de panne sur le canal d’émission de l’unité de réception et d’émission (d’émission)",
+	            "case_name": "",
+	            "title": "MW1500radio",
 	            "steps":[
-	            	{"img":"","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/l’émetteur ","contents":"Il nécessite un tournevis moyen pour démonter le panneau frontal durant le test d’équipement à tester.","module": "DialogPic"},
-	            	{"img":"","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/l’émetteur ","contents":"设置功率计频率并校准","module": "DialogPic"},
-			        {"img":"tr_t_1.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/l’émetteur ","contents":"Eteindre la source d’alimentation, mettre l’interrupteur à la position d’\"OFF\" et couper le fil d’alimentation de la boîte de distribution d’alimentation. ","module": "DialogPic"},
-			        {"img":"tr_t_2.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/l’émetteur ","contents":"Dévisser le 12 vis, qui sont encerclés par la couleur rouge comme dans la Figure, avec le tournevis en croix sur le panneau frontal.","module": "DialogPic"},
-			        {"img":"tr_t_3.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/l’émetteur ","contents":"拆除前面板，收发信机单元A5视图如图所示","module": "DialogPic"},
-			        {"img":"tr_t_4.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/l’émetteur ","contents":"按照图连接测试设备","module": "DialogPic"},
-			        {"img":"tr_t_1.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/l’émetteur ","contents":"Alimenter l’équipement et allumer l’interrupteur d’équipement à tester, mettre l’interrupteur à la position de \"ON\" et configurer l’alimentation d’équipement à tester pour 2 minutes ","module": "DialogPic"},
-			        {"img":"","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/l’émetteur ","contents":"测试频点设置","module": "AUTO_TEST_TR_T"}
-			    ],
-			    "test_para":["1750","1550","1350"],
-			    "threshold":["-2","2"]
-	        },
-	        {
-	            "case_name": "unité de réception et d’émission/réception ",
-	            "title": "Méthode de localisation de panne sur le canal de réception de l’unité de réception et d’émission(réception)",
-	            "steps":[
-	            	{"img":"","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/réception ","contents":"Il nécessite un tournevis moyen pour démonter le panneau frontal durant le test d’équipement à tester.","module": "DialogPic"},
-	            	{"img":"tr_t_1.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/réception ","contents":"Eteindre la source d’alimentation, mettre l’interrupteur à la position d’\"OFF\" et couper le fil d’alimentation de la boîte de distribution d’alimentation. ","module": "DialogPic"},
-			        {"img":"tr_r_2.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/réception ","contents":"将被测设备放在附件TA001上，如图所示","module": "DialogPic"},
-			        {"img":"tr_r_2.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/réception ","contents":"Dévisser le 12 vis, qui sont encerclés par la couleur rouge comme dans la Figure, avec le tournevis en croix sur le panneau frontal.","module": "DialogPic"},
-			        {"img":"tr_r_3.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/réception ","contents":"拆除前面板，收发信机单元视图如图所示，断开电缆W21，W","module": "DialogPic"},
-			        {"img":"tr_r_4.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/réception ","contents":"按照图连接测试设备","module": "DialogPic"},
-			        {"img":"tr_t_1.png","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/réception ","contents":"Alimenter l’équipement et allumer l’interrupteur d’équipement à tester, mettre l’interrupteur à la position de \"ON\" ","module": "DialogPic"},
-			        {"img":"","title":"Équipement de communication micro-ondes MW-1500-unité de réception et d’émission/réception ","contents":"测试频点设置","module": "AUTO_TEST_TR_R"}
-			    ],
-			    "test_para":["1750","1550","1350","-35","70","50","0"],
-			    "threshold":["-7.5","-3.5"]
-	        },
-	        {
-	            "case_name": "amplificateur de bas bruit",
-	            "title": "Méthode de loclisation de panne sur l’amplificateur de bas bruit",
-	            "steps":[
-	            	{"img":"5.png","title":"équipement troposphérique de transmission à haute fréquence-l’amplificateur de bas bruit","contents":"低噪声放大器在高频中的位置如下图所示","module": "DialogPic"},
-			        {"img":"5.png","title":"équipement troposphérique de transmission à haute fréquence-l’amplificateur de bas bruit","contents":"Ouvrir le couvercle bas de l’équipement à haute fréquence pour montrer l’amplificateur de bas bruit, dévisser le fil de connection entre XS1 et XS2 de l’amplificateur de bas bruit","module": "DialogPic"},
-			        {"img":"5.png","title":"équipement troposphérique de transmission à haute fréquence-l’amplificateur de bas bruit","contents":"Mettre à la terre l’équipement à haute fréquence, la source de signal et le spectographe, allumer la source d’alimentation","module": "DialogPic"},
-			        {"img":"6.png","title":"équipement troposphérique de transmission à haute fréquence-l’amplificateur de bas bruit","contents":"Connecter les fils extérieurs de l’amplificateur de bas bruit à l’intérieur de l’équipement à haute fréquence, et connecter XS1 et XS2 de l’amplificateur de bas bruit à la source de signal et au spectographe selon la Figure","module": "DialogPic"},
-			        {"img":"6.png","title":"équipement troposphérique de transmission à haute fréquence-l’amplificateur de bas bruit","contents":"Allumer l’interrupteur de l’équipement à haute fréquence, confirmer que l’alimentation VCC de l’amplificateur de bas bruit est satisfait à +15V","module": "DialogPic"},
-			        {"img":"","title":"équipement troposphérique de transmission à haute fréquence-l’amplificateur de bas bruit","contents":"设置信号源和频谱仪相关参数","module": "AUTO_TEST_LNA"}
-			    ],
-			    "test_para":["4700","-30","4700","100"],
-			    "threshold":["-3","10"]
-	        },
-	        {
-	            "case_name": "amplificateur de puissance",
-	            "title": "Méthode de localisation de panne sur l’amplificatur de puissance",
-	            "steps":[
-	            	{"img":"7.png","title":"Haute fréquence troposphérique équipement-amplificateur de puissance","contents":"功放在高频中的位置如下图所示","module": "DialogPic"},
-			        {"img":"7.png","title":"Haute fréquence troposphérique équipement-amplificateur de puissance","contents":"Ouvrir le couvercle haut de l’équipement à haute fréquence pour montrer le connecteur entre XS1 et W07 de l’amplificateur de puissance","module": "DialogPic"},
-			        {"img":"7.png","title":"Haute fréquence troposphérique équipement-amplificateur de puissance","contents":"Mettre à la terre l’équipement à haute fréquence, la source de signal et le spectographe, allumer la source d’alimentation","module": "DialogPic"},
-			        {"img":"8.png","title":"Haute fréquence troposphérique équipement-amplificateur de puissance","contents":"Connecter les fils extérieurs de l’interrupteur de guide d’onde à l’intérieur de l’équipement à haute fréquence, et connecter le port d’antenne à l’atténuateur à haute puissance, le port intérieur d’amplificateur de puissance XS1 à la source de signal, et le port 50dB de coupleur au spectographe selon la Figure","module": "DialogPic"},
-			        {"img":"8.png","title":"Haute fréquence troposphérique équipement-amplificateur de puissance","contents":"Allumer l’interrupteur de l’équipement à haute fréquence, confirmer que l’alimentation XS2 de l’amplificateur de puissance est satisfait à +28V","module": "DialogPic"},
-			        {"img":"","title":"Haute fréquence troposphérique équipement-amplificateur de puissance","contents":"设置信号源和频谱仪相关参数","module": "AUTO_TEST_PA"}
-			    ],
-			    "test_para":["4700","0","4700","100"],
-			    "threshold":["-3","3"]
-	        }, 
-	        {
-	            "case_name": "circulateur de signal",
-	            "title": "Méthode de localisation de panne sur le circulateur de signal",
-	            "steps":[
-	            	{"img":"9.png","title":"Haute fréquence troposphérique équipement-circulateur de signal","contents":"La position de circulateur de signal se refère dans la figure suivante","module": "DialogPic"},
-			        {"img":"9.png","title":"Haute fréquence troposphérique équipement-circulateur de signal","contents":"Ouvrir le couvercle haut de l’équipement à haute fréquence pour montrer le circulateur, dévisser le fil de connection à la position de XS5 sur le circulateur","module": "DialogPic"},
-			        {"img":"9.png","title":"Haute fréquence troposphérique équipement-circulateur de signal","contents":"Mettre à la terre l’équipement à haute fréquence, la source de signal et le spectographe, allumer la source d’alimentation ","module": "DialogPic"},
-			        {"img":"10.png","title":"Haute fréquence troposphérique équipement-circulateur de signal","contents":"Connecter les fils extérieurs de l’équipement à haute fréquence, et connecter le circulateur de signal XS5 au port 2 de boucle selon la figure, le port 1 et le port 3 de boucle sont connectés respectivement à la source de signal et au spectographe ","module": "DialogPic"},
-			        {"img":"10.png","title":"Haute fréquence troposphérique équipement-circulateur de signal","contents":"Allumer l’interrupteur de l’équipement à haute fréquence et observer la fréquence de réception et d’émission ","module": "DialogPic"},
-			        {"img":"","title":"Haute fréquence troposphérique équipement-circulateur de signal","contents":"设置信号源和频谱仪相关参数","module": "AUTO_TEST_LOOP"}
-			    ],
-			    "test_para":["4700","10","4700","100"],
-			    "threshold":["-55","-35"]
-	        },
-	        {
-	            "case_name": "filtre d’onde",
-	            "title": "Méthode de localisation de panne sur le filtre d’onde",
-	            "steps":[
-	            	{"img":"11.png","title":"Haute fréquence troposphérique équipement-filtre d’onde","contents":"Le filtre d’onde est divisé en deux, filtre d’onde de réception et filtre d’onde d’émission ","module": "DialogPic"},
-			        {"img":"11.png","title":"Haute fréquence troposphérique équipement-filtre d’onde","contents":"Ouvrir le couvercle haut de l’équipement à haute fréquence pour montrer le filtre d’onde, dévisser le fil de connection entre XS1 et XS2 sur le filtre d’onde","module": "DialogPic"},
-			        {"img":"11.png","title":"Haute fréquence troposphérique équipement-filtre d’onde","contents":"高Mettre à la terre l’équipement à haute fréquence et l’analyseur de réseau vectoriel portable, allumer la source d’alimentation d’analyseur de réseau vectoriel portable et puis rectifier les appareils","module": "DialogPic"},
-			        {"img":"12.png","title":"Haute fréquence troposphérique équipement-filtre d’onde","contents":"Connecter les fils extérieurs de filtre d’onde à l’intérieur de l’équipement à haute fréquence, et connecter XS1 et XS2 de filtre d’onde à l’analyseur de réseau vectoriel portable selon la Figure","module": "DialogPic"},
-			        {"img":"12.png","title":"Haute fréquence troposphérique équipement-filtre d’onde","contents":"Allumer l’interrupteur de l’équipement à haute fréquence et confirmer sa fréquence de réception et d’émission","module": "DialogPic"},
-			        {"img":"","title":"Haute fréquence troposphérique équipement-filtre d’onde","contents":"设置矢量网络分析仪相关参数","module": "AUTO_TEST_FILTER"}
-			    ],
-			    "test_para":["4700","800"],
-			    "threshold":["-9999","-15","-2","0"]
-	        },
-	        {
-	            "case_name": "interrupteur de guide d’onde",
-	            "title": "Méthode de localisation de panne sur l’interrupteur de guide d’onde",
-	            "steps":[
-	            	{"img":"13.png","title":"Haute fréquence troposphérique équipement-interrupteur de guide d’onde","contents":"L’interrupteur de guide d’onde ne se trouve pas à l’intérieur de l’équipement à haute fréquence, mais il est installé à l’intérieur du shelter de transmission","module": "DialogPic"},
-			        {"img":"13.png","title":"Haute fréquence troposphérique équipement-interrupteur de guide d’onde","contents":"Mettre à la terre l’équipement à haute fréquence et allumer la source d’alimentation ","module": "DialogPic"},
-			        {"img":"14.png","title":"Haute fréquence troposphérique équipement-interrupteur de guide d’onde","contents":"Connecter les fils extérieurs de l’équipement à haute fréquence, et connecter XS08 du panneau arrière de l’équipement à haute fréquence au port de contrôle d’interrupteur de guide d’onde ","module": "DialogPic"},
-			        {"img":"14.png","title":"Haute fréquence troposphérique équipement-interrupteur de guide d’onde","contents":"Allumer l’interrupteur de l’équipement à haute fréquence, changer la fréquence d’émission et de réception de l’ équipement, observer si l’interrupteur de guide d’onde dispose du mouvement de modification ","module": "DialogPic"},
-			        {"img":"14.png","title":"Haute fréquence troposphérique équipement-interrupteur de guide d’onde","contents":"Si l’interrupteur de guide d’onde dispose du mouvement de modification et que l’équipement à haute fréquence puisse effectuer le changement de fréquence, alors l’interrupteur de guide d’onde fonctionne normalement ","module": "DialogPic"},
-			        {"img":"14.png","title":"Haute fréquence troposphérique équipement-interrupteur de guide d’onde","contents":"Si l’interrupteur de guide d’onde ne bouge pas, alors l’équipement à haute fréquence sera coupé, ouvrir le capot de protection de moteur d’interrupteur de guide d’onde, tourner manuellement le moteur pour voir si la modification manuelle est flexible, si elle est bloquée, alors l’interrupteur de guide d’onde est en panne","module": "DialogPic"},
-			        {"img":"","title":"Haute fréquence troposphérique équipement-interrupteur de guide d’onde","contents":"填写波导开关状态","module": "MANUAL_TEST_SWITCH"}
-			    ],
-			    "threshold":["l’interrupteur de guide d’onde fonctionne normalement","l’interrupteur de guide d’onde est en panne"]
-	        },
-	        {
-	            "case_name": "coupleur",
-	            "title": "Méthode de localisation de panne sur le coupleur",
-	            "steps":[
-	            	{"img":"15.png","title":"Haute fréquence troposphérique équipement-coupleur","contents":"Position de coupleur","module": "DialogPic"},
-			        {"img":"15.png","title":"Haute fréquence troposphérique équipement-coupleur","contents":"Ouvrir le couvercle haut de l’équipement à haute fréquence pour montrer le coupleur, dévisser le fil de connection XS3 sur le coupleur","module": "DialogPic"},
-			        {"img":"15.png","title":"Haute fréquence troposphérique équipement-coupleur","contents":"Mettre à la terre l’analyseur de réseau vectoriel portable et allumer la source d’alimentation, sélectionner le canal S21, la fréquence centrale est configurée comme 4700MHz, la largeur de bande est 800MHz, 1dB/DIV, REFERENCE VALUE : -40 dB, l’apareil est connecté au câble SMA pour rectifier","module": "DialogPic"},
-			        {"img":"16.png","title":"Haute fréquence troposphérique équipement-coupleur","contents":"按Connecter le fil entre le port d’antenne de l’équipement à haute fréquence et le coupleur intérieur selon la Figure","module": "DialogPic"},
-			        {"img":"","title":"Haute fréquence troposphérique équipement-coupleur","contents":"设置矢量网络分析仪相关参数","module": "AUTO_TEST_COUPLER"}
-			    ],
-			    "test_para":["4700","800"],
-			    "threshold":["-47","-33"]
-	        },
-	        {
-	            "case_name": "module de surveillance",
-	            "title": "Méthode de localisation de panne sur le module de surveillance",
-	            "steps":[
-	            	{"img":"17.png","title":"Haute fréquence troposphérique équipement-module de surveillance","contents":"监控模块在高频中的位置如下图所示，监控模块故障定位方法采用目测法","module": "DialogPic"},
-			        {"img":"17.png","title":"Haute fréquence troposphérique équipement-module de surveillance","contents":"Ouvrir le couvercle haut de l’équipement à haute fréquence pour montrer le module de surveillance","module": "DialogPic"},
-			        {"img":"17.png","title":"Haute fréquence troposphérique équipement-module de surveillance","contents":"高Allumer la source d’alimentation et mettre à la terre l’équipement à haute fréquence, ouvrir l’interrupteur de panneau frontal de l’équipement à haute fréquence","module": "DialogPic"},
-			        {"img":"17.png","title":"Haute fréquence troposphérique équipement-module de surveillance","contents":"Observer si le LED V2 à la position du port de connection d’alimentation de connecteur JL35-4 sur le module de surveillance est allumé, s’il n’est pas allumé, alors l’alimentation de surveillance est anormale, il faut vérifier l’alimentation de surveillance +5V ","module": "DialogPic"},
-			        {"img":"17.png","title":"Haute fréquence troposphérique équipement-module de surveillance","contents":"Observer si le LED V3, V4, V5 et V6 clignotent, si les quatres LED ne s’allument pas, alors aucun logiciel fonctionne sur l’unité de surveillance.","module": "DialogPic"},
-			        {"img":"17.png","title":"Haute fréquence troposphérique équipement-module de surveillance","contents":"V8, V9, V10, V11, V12 et V13 sont des voyants de connection de réseau, dont: 8 est le voyant de connection physique de port de réseau, il s’allume quand la connection physique est bien connectée;V13 est le voyant de données d’émission, il s’allume chaque fois avec l’envoi d’un groupe de données ;V12 est le voyant de données de réception, il s’allume chaque fois avec la réception d’un groupe de données ; V11 est le voyant de conflit de données ;V10 est le voyant de duplex intégral et de duplex partiel, il s’allume en état de duplex intégral ; V9 est le voyant de vitesse de transmission, il s’allume quand la vitesse de transmission est 100Mbps, et il s’éteint quand la vitesse de transmission est 10Mbps.","module": "DialogPic"},
-			        {"img":"","title":"Haute fréquence troposphérique équipement-module de surveillance","contents":"填写监控模块状态","module": "MANUAL_TEST_MONITOR"}
-			    ],
-			    "threshold":["监控供电正常","监控供电故障"]
+	            	{"img":"1.jpg","title":"1.Stratégie de test de surveillance","contents":"Configurer la fréquence de test d’équipement à tester (fréquence d’émission : 1350MHz, fréquence de réception : 1850MHz), observer à vue l’interface de surveillance pour comparer et juger les spécifications de performance d’équipement","module": "DialogTest1"},
+	            	{"img":"2.jpg","title":"2.Test de EOW","contents":"Configurer le circulateur de bande de base de l’équipement à tester, l’affichage de taux de code erroné sur l’interface principale de surveillance est zéro, tester la communication via la manette de EOW, appuyer sur le bouton PTT, si on peut entendre clairement sa propre voix, alors EOW est normal, sinon, EOW ou l’unité de contrôle de réseau A8 est en panne.","module": "DialogTest2"},
+	                {"img":"3.jpg","title":"3.Stratégie de test de LNA et de circulateur RF","contents":"Eteindre la source d’alimentation, mettre l’interrupteur à la position d’ARRET et couper le fil d’alimentation de la boîte de distribution d’alimentation","module": "DialogTest3"},
+	                {"img":"4.jpg","title":"4.Stratégie de test de LNA et de circulateur RF","contents":"Dévisser le 12 vis, qui sont encerclés par la couleur rouge comme dans la Figure 37","module": "DialogTest3"},
+	                {"img":"5.jpg","title":"5.Stratégie de test de LNA et de circulateur RF","contents":"Démonter le panneau frontal,Dévisser les 12 vis sur le panneau arrière de boîte avec un tournevis en croix","module": "DialogTest3"},
+	                {"img":"6.jpg","title":"6.Stratégie de test de LNA et de circulateur RF","contents":"Déconnecter le câble XS1 et XS2 sur le panneau A5 de récepteur et d’émetteur, ainsi que le câble XS1 sur le panneau frontal ,Dévisser une vis de fixation","module": "DialogTest3"},
+	                {"img":"","title":"7.Stratégie de test de LNA et de circulateur RF","contents":"Sortir le module de circulateur","module": "DialogTest3"},
+	                {"img":"8.jpg","title":"8.Stratégie de test de LNA et de circulateur RF","contents":"allumer l’interrupteur d’alimentation d’équipement à tester en le mettant à la position de MARCHE","module": "DialogTest3"},
+                                {"img":"","title":"9.Stratégie de test de LNA et de circulateur RF","contents":"Configurer la fréquence d’émission du groupe 1 dans le Tableau 7 comme la fréquence sortie de la source de signal, le niveau sorti est 0 dBm, la fréquence de réception du groupe 1 dans le Tableau 7 est configurée comme la fréquence centrale de spectographe, la largeur de bande est 50MHz, le niveau de référence est 0dBm, lire le niveau sur le spectographe indiqué dans le Tablau 8","module": "DialogTest11"},
+                                {"img":"","title":"10.Test de duplexeur,Test d’unié de filtre d’émission","contents":" Allumer l’équipement, observer la fréquence émise de fonctionnement et la fréquence reçue de fonctionnement en faisant l’enregistrement deux minutes plus tard","module": "DialogTest3"},
+                                {"img":"","title":"11.Test de duplexeur,Test d’unié de filtre d’émission","contents":"Configurer la source de signal en état de scannage, la fréquence de commencement est 1300MHz, celle de fin est 1900MHz, le pas d’avancement de scannage est 1MHz, la puissance sortie est 0dBm","module": "DialogTest12"},
+                                {"img":"12.jpg","title":"12.Test de duplexeur,Test d’unié de filtre d’émission","contents":"Observer le spectographe dans dix minutes pour voir s’il existe la forme indiquée dans la Figure ci-dessous, s’il n’y en a pas, c’est la panne de duplexeur, s’il existe, il faut faire les étapes suivantes ","module": "DialogTest13"},
+                                {"img":"","title":"13.Test de duplexeur,Test d’unié de filtre d’émission","contents":"Appuyer sur le bouton MRK sur le panneau de contrôle de spectographe, appuyer sur le bouton M1 de sous-menu et enregistrer respectivement le fréquence Ft1 et l’amplitude At1 ; appuyer sur le bouton MRK, tourner le bouton de spectographe pour que l’icône de fréquence MK1 arrive à la position indiquée dans la Figure 47, enregistrer respectivement la fréquence Ft2 et l’amplitude At2.","module": "DialogTest3"},
+                                {"img":"","title":"14.Test de duplexeur,Test d’unié de filtre d’émission","contents":"Configurer la quantité d’atténuation de spectographe comme 1Bm par carreau, l’atténuation d’amplitude est mise à la valeur d’atténuation adéquate, il faut lire le domaine de mouvement ΔA de l’ampliude de signal dans la largeur de bande Ft1－Ft2, enregistrer le résultat et le mettre dans le tableau suivant.","module": "DialogTest3"},
+                                {"img":"","title":"15.Test de duplexeur,Test d’unité de filtre de récepteur","contents":"Allumer l’équipement, observer la fréquence émise de fonctionnement et la fréquence reçue de fonctionnement en faisant l’enregistrement deux minutes plus tard","module": "DialogTest3"},
+                                {"img":"","title":"16.Test de duplexeur,Test d’unité de filtre de récepteur","contents":"Configurer la source de signal en état de scannage, la fréquence de commencement est 1300MHz, celle de fin est 1900MHz, le pas d’avancement de scannage est 1MHz, la puissance sortie est 0dBm","module": "DialogTest12"},
+                                {"img":"12.jpg","title":"17.Test de duplexeur,Test d’unité de filtre de récepteur","contents":"Observer le spectographe dans dix minutes pour voir s’il existe la forme indiquée dans la Figure ci-dessous, s’il n’y en a pas, c’est la panne de duplexeur, s’il existe, il faut faire les étapes suivantes","module": "DialogTest13"},
+                                {"img":"","title":"18.Test de duplexeur,Test d’unité de filtre de récepteur","contents":"Observer le spectographe dans dix minutes pour voir s’il existe la forme indiquée dans la Figure ci-dessous, s’il n’y en a pas, c’est la panne de duplexeur, s’il existe, il faut faire les étapes suivantes","module": "DialogTest3"},
+                                {"img":"","title":"19.Test de duplexeur,Test d’unité de filtre de récepteur","contents":"Configurer la quantité d’atténuation de spectographe comme 1Bm par carreau, l’atténuation d’amplitude est mise à la valeur d’atténuation adéquate, il faut lire le domaine de mouvement ΔA de l’ampliude de signal dans la largeur de bande Ft1－Ft2, enregistrer le résultat et le mettre dans le tableau suivant.","module": "DialogTest3"}
+		      ],
+	            "test_para":["1350","1850","0","50","0","1300","1900","1"],
+                            "test_para1":["1350","1450","1550","1650","1750","1850","1850","1750","1650","1550","1450","1350"]
 	        }
-    ]
+    ],
+
+
+ "test_source": [{
+			"name": "Générateur de signaux vectoriels Keysight",
+			"number": "keysight E8257D",
+			"count": "1",
+			"type": "Instruments"
+	},{
+			"name": " spectographe",
+			"number": "keysight N9030B",
+			"count": "1",
+			"type": "Instruments"
+	},{
+			"name": "Puissance-mètre",
+			"number": "keysight N1911A",
+			"count": "1",
+			"type": "Instruments"
+	},{
+			"name": "Multimètre",
+			"number": "keysight DSOX3012A",
+			"count": "1",
+			"type": "Instruments"
+	}]
 }

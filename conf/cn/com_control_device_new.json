@@ -1,61 +1,61 @@
 {
-    "title":"通信控制设备测试",
+    "title":"Équipement de contrôle de transmission",
     "module_name":"com_control_device_new",
     "test_case": ["com_control_device"],
     "test_case_detail":[
         {
             "case_name": "com_control_device",
-            "title": "模块测试",
+            "title": "Test de module ",
             "steps": [
-                {"img":"1.png","title":"通信控制设备测试","contents":"拧开四个将设备固定在机柜上的螺钉，将设备从机柜上抽出","module": "DialogPicText","category": "disassemble"},
-                {"img":"2.png","title":"通信控制设备测试","contents":"保险丝安装于机箱后面板","module": "DialogPicText","category": "disassemble"},
-                {"img":"","title":"保险丝部分","contents":"电源指示灯不亮的时候，首先检查保险丝管是否完好，如果已经熔断请首先更换保险丝","module": "DialogSimpleTestProcess2Btn","category": "execute"},
-                {"img":"","title":"保险丝部分是否正常","contents":"保险丝部分正常","module": "DialogSimpleTestProcess1Btn","category": "execute"},
-                {"img":"","title":"电源部分","contents":"更换保险丝后，继续进行电源模块的输出电压测试，通信控制设备的电源模块V1为+5V，V2为+24V，使用万用表测试是否在规定范围内。如果电源电压不在规定范围内，请更换改电源模块，如果故障仍未排除，请继续进行后续测试。","module": "DialogSimpleTestProcess2Btn","category": "execute"},
-                {"img":"","title":"电源部分是否正常","contents":"电源部分正常","module": "DialogSimpleTestProcess1Btn","category": "execute"},
-                {"img":"","title":"网络协议转换板测试","contents":"","module": "DialogComControlDeviceExecute1","category": "execute"},
-                {"img":"","title":"协议转换与控制测试：COM1-COM4","contents":"","module": "DialogComControlDeviceExecute2","category": "execute"},
-                {"img":"","title":"协议转换与控制测试：COM5-COM8","contents":"","module": "DialogComControlDeviceExecute3","category": "execute"},
-                {"img":"","title":"协议转换与控制测试：COM9","contents":"","module": "DialogComControlDeviceExecute4","category": "execute"}
+                {"img":"1.png","title":"Test de dispositif de contrôle de transmission ","contents":"Dévissez les vis de fixation du panneau frontal, tirez l'équipement de contrôle de transmission hors de l'armoire","module": "DialogPicText","category": "disassemble"},
+                {"img":"2.png","title":"Test de dispositif de contrôle de transmission ","contents":"Le fusible est installé sur le panneau arrière de la boîte. ","module": "DialogPicText","category": "disassemble"},
+                {"img":"","title":"Fusible","contents":"Quand le voyant de source d'alimentaiton ne s'allume pas, il faut vérifier tout d'abord si le fusible est normal, s'il est cassé, il faut le remplacer. ","module": "DialogSimpleTestProcess2Btn","category": "execute"},
+                {"img":"","title":"Le fusible est normal.","contents":"Le fusible est normal.","module": "DialogSimpleTestProcess1Btn","category": "execute"},
+                {"img":"","title":"Source d'alimentation","contents":"Après le remplacement de fusible, il faut continuer le test de tension sortie du module de source d'alimentaiton, le module V1 de dispositif de contrôle de transmission est +5V, le V2 est +24V, il faut vérifier si les deux se trouvent dans le domaine exigé via un multimètre. Si la tension d'alimentation ne se trouve pas dans le domaine exigé, il faut remplacer le modue d'alimentation, mais si la panne existe encore, il faut continuer le test suivant. ","module": "DialogSimpleTestProcess2Btn","category": "execute"},
+                {"img":"","title":"La source d'alimentation est normale.","contents":"La source d'alimentation est normale.","module": "DialogSimpleTestProcess1Btn","category": "execute"},
+                {"img":"","title":"Test de panneau de commutation de protocole réseau","contents":"","module": "DialogComControlDeviceExecute1","category": "execute"},
+                {"img":"","title":"Commutation de protocole réseau et test de contrôle：COM1-COM4","contents":"","module": "DialogComControlDeviceExecute2","category": "execute"},
+                {"img":"","title":"Commutation de protocole réseau et test de contrôle：COM5-COM8","contents":"","module": "DialogComControlDeviceExecute3","category": "execute"},
+                {"img":"","title":"Commutation de protocole réseau et test de contrôle：COM9","contents":"","module": "DialogComControlDeviceExecute4","category": "execute"}
             ]
         }
     ],
     "test_source": [
         {
-            "name": "电源线",
+            "name": "Fil de source d'alimentation ",
             "number": "ECOM-CCU-W001",
             "count": "1",
-            "type": "配件"
+            "type": "Pièces de rechange"
         },
         {
-            "name": "通用网口测试线",
+            "name": "Fil de test des ports unifiés",
             "number": "ECOM-CCU-W002",
             "count": "1",
-            "type": "配件"
+            "type": "Pièces de rechange"
         },
         {
-            "name": "232自环头-1",
+            "name": "Tête de boucle 232-1",
             "number": "ECOM-CCU-W003",
             "count": "1",
-            "type": "配件"
+            "type": "Pièces de rechange"
         },
         {
-            "name": "422自环头",
+            "name": "Tête de boucle 422",
             "number": "ECOM-CCU-W004",
             "count": "1",
-            "type": "配件"
+            "type": "Pièces de rechange"
         },
         {
-            "name": "232自环头-2",
+            "name": "Tête de boucle 232-2",
             "number": "ECOM-CCU-W005",
             "count": "1",
-            "type": "配件"
+            "type": "Pièces de rechange"
         },
         {
-            "name": "485测试电缆",
+            "name": "Câble de test 485",
             "number": "ECOM-CCU-W006",
             "count": "1",
-            "type": "配件"
+            "type": "Pièces de rechange"
         }
     ]
 }

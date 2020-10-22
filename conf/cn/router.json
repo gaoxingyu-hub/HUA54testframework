@@ -1,152 +1,152 @@
 {
-	"title": "路由器测试",
+	"title": "Test de routeur",
 	"module_name": "ROUTER",
 	"test_case": ["case1"],
 	"test_case_detail": [{
 		"case_name": "case1",
-		"title": "ECOM-RT型路由器",
+		"title": "Routeur de type ECOM-RT",
 		"steps": [{
 			"img": "1.png",
-			"title": "路由器测试-测试准备",
-			"contents": "现在开始测试ECOM-RT型路由器，测试框图",
+			"title": "Test de routeur-préparation de test",
+			"contents": "Le test de routeur de type ECOM-RT commence maintenant, le scéma de test",
 			"module": "DialogPicText",
 			"category": "prepare"
 		}, {
 			"img": "2.png",
-			"title": "路由器测试-测试准备",
-			"contents": "测试流程图",
+			"title": "Test de routeur-préparation de test",
+			"contents": "Schéma de processus de test",
 			"module": "DialogPicText",
 			"category": "prepare"
 		}, {
 			"img": "3.png",
-			"title": "路由器测试-拆机",
-			"contents": "拆交换板",
+			"title": "Test de routeur-démontage",
+			"contents": " Démonter le panneau de commutation",
 			"module": "DialogPicText",
 			"category": "disassemble"
 		}, {
 			"img": "4.png",
-			"title": "路由器测试-拆机",
-			"contents": "拆电源板",
+			"title": "Test de routeur-démontage",
+			"contents": " Démonter la plaque d’alimentation",
 			"module": "DialogPicText",
 			"category": "disassemble"
 		}, {
 			"img": "5.png",
-			"title": "路由器测试-拆机",
-			"contents": "拆滤波器",
+			"title": "Test de routeur-démontage",
+			"contents": " Démonter le filtre",
 			"module": "DialogPicText",
 			"category": "disassemble"
 		}, {
 			"img": "6.png",
-			"title": "路由器测试-测试拆机",
-			"contents": "拆接口板",
+			"title": "Test de routeur-test de démontage",
+			"contents": "Démonter la plaque de port",
 			"module": "DialogPicText",
 			"category": "disassemble"
 		}, {
 			"img": "7.jpg",
-			"title": "路由器测试-测试",
-			"contents": "现在开始测试ECOM-RT型路由器",
+			"title": "Test de routeur-démontage",
+			"contents": "Le test de routeur de type ECOM-RT commence maintenant.",
 			"module": "DialogPicText",
 			"category": "testprepare"
 		}, {
 			"img": "8.png",
-			"title": "路由器测试-测试",
-			"contents": "被测设备原位固定，按下图进行接线，测试以太网电缆连接XS02和XS03",
+			"title": "Test de routeur-démontage",
+			"contents": "L’équipement de test est fixé sur place, il faut faire la connection de fils selon le schéma ci-dessous et tester la connection de câble électrique d’Ethernet XS02 et XS03 ;",
 			"module": "DialogPicText",
 			"category": "testprepare"
 		}, {
 			"img": "9.png",
-			"title": "路由器测试-测试",
-			"contents": "被测设备上的接插件位置如下图所示",
+			"title": "Test de routeur-démontage",
+			"contents": "la position de conjonction sur l’équipement à tester est indiquée dans la figure ci-dessous ;",
 			"module": "DialogPicText",
 			"category": "testprepare"
 		}, {
 			"img": "",
-			"title": "路由器测试-测试",
-			"contents": "打开被测设备和IP误码仪电源开关电源开关",
+			"title": "Test de routeur-démontage",
+			"contents": "allumer l’interrupteur d’alimentation d’équipement à tester et de testeur de taux d’erreur de bit IP ;",
 			"module": "DialogPicText",
 			"category": "testprepare"
 		}, {
 			"img": "",
-			"title": "路由器测试-测试",
-			"contents": "被测设备正在启动，请稍后……(强制停止30s)",
+			"title": "Test de routeur-démontage",
+			"contents": "l’équipement à tester est en cour de démarrer, attendez...(Arrêt obligatoire 30s)",
 			"module": "DialogPicText",
 			"category": "execute"
 		}, {
 			"img": "10.png",
-			"title": "指示灯ALIM常亮-测试",
-			"contents": "观察被测设备前面板指示灯ALIM是否常亮？",
+			"title": "Le voyant ALIM s'allume toujours-test",
+			"contents": "Observer si le voyant \"ALIM\" sur le panneau frontal d’équipement à tester s’allume toujours ;",
 			"module": "DialogSimpleTestProcess2Btn",
 			"category": "execute",
 			"next": ["next", "finish"]
 		}, {
 			"img": "",
-			"title": "指示灯ALIM常亮",
-			"contents": "电源功能正常",
+			"title": "Le voyant ALIM s'allume toujours.",
+			"contents": "la fonction d’alimentation est normale ;",
 			"module": "DialogSimpleTestProcess1Btn",
 			"category": "execute"
 		}, {
 			"img": "11.png",
-			"title": "路由器-测试",
-			"contents": "观察被测设备前面板前面板指示灯FON是否闪烁？",
+			"title": "Routeur-test",
+			"contents": "Observer si le voyant \"FON\" sur le panneau frontal d’équipement à tester clignote ;",
 			"module": "DialogSimpleTestProcess2Btn",
 			"category": "execute",
 			"next": ["next", "finish"]
 		}, {
 			"img": "",
-			"title": "指示灯FON闪烁",
-			"contents": "CPU工作正常",
+			"title": "Le voyant FON clignote.",
+			"contents": " CPU fonctionne normalement ;",
 			"module": "DialogSimpleTestProcess1Btn",
 			"category": "execute"
 		}, {
 			"img": "",
-			"title": "获取配置参数",
-			"contents": "正在获取配置参数，请稍后……",
+			"title": "Obtension des paramètres configurés",
+			"contents": "obtension des paramètres de configuration est en cours, attendez...",
 			"module": "DialogSimpleTestProcess2Btn",
 			"category": "execute",
 			"next": ["next", "finish"]
 		}, {
 			"img": "",
-			"title": "获取配置参数成功",
-			"contents": "获取配置参数成功",
+			"title": "Réussite d'obtension des paramètres configurés",
+			"contents": "réussite d’obtension des paramètres de configuration ;",
 			"module": "DialogSimpleTestProcess1Btn",
 			"category": "execute"
 		}, {
 			"img": "",
-			"title": "IP误码仪测试",
+			"title": "Test de testeur de taux d’erreur de bit IP ",
 			"contents": "",
 			"module": "DialogRouterLanTest",
 			"category": "execute"
 		}]
 	}],
 	"test_source": [{
-			"name": "IP误码仪",
+			"name": "Testeur de taux d’erreur de bit IP ",
 			"number": "",
 			"count": "1",
 			"type": ""
 		},
 		{
-			"name": "交流电源电缆",
+			"name": "Câble de source d'alimentation AC",
 			"number": "MP-COM-B-003-W001",
 			"count": "1",
-			"type": "配件"
+			"type": "Pièces de rechange"
 		},
 		{
-			"name": "管理以太网电缆",
+			"name": "Gestion de câble  d'Ethernet ",
 			"number": "MP-COM-B-003-W002",
 			"count": "1",
-			"type": "配件"
+			"type": "Pièces de rechange"
 		},
 		{
-			"name": "地线",
+			"name": "Fil de terre",
 			"number": "MP-COM-B-003-W003",
 			"count": "1",
-			"type": "配件"
+			"type": "Pièces de rechange"
 		},
 		{
-			"name": "测试以太网电缆",
+			"name": "Tester le câble  d'Ethernet ",
 			"number": "MP-COM-B-003-W004",
 			"count": "1",
-			"type": "配件"
+			"type": "Pièces de rechange"
 		}
 	]
 }

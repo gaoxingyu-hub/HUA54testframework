@@ -12,7 +12,7 @@ from common.config import RouterLanTestModuleConfig
 from common.logConfig import Logger
 from .router_test_process import TestProcessRouter
 from modules.router.Ui_Router_Lan_test import Ui_Dialog
-from common.info import Constants,ThCommonNoticeInfo
+from common.info import Constants, ThCommonNoticeInfo, SystemLanguage
 
 SETUP_DIR = frozen_dir.app_path()
 logger = Logger.module_logger("RouterLanTest")
@@ -47,8 +47,12 @@ class DialogRouterLanTest(QDialog, Ui_Dialog):
         self.max_test_steps = 24
         self.test_process_object = None
         # IP误码仪测试步骤配置文件
-        self.config_file_path = os.path.join(
-            SETUP_DIR, "conf", "router_lan_test.json")
+        if SystemLanguage.LANGUAGE == SystemLanguage.fr_FR:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "fr", "router_lan_test.json")
+        else:
+            self.config_file_path = os.path.join(
+                SETUP_DIR, "conf", "cn", "router_lan_test.json")
         self.test_config = RouterLanTestModuleConfig(self.config_file_path)
         # 成对测试Lan端口
         port1 = 2 * (self.current_test_item - 1) + 1
@@ -120,9 +124,9 @@ class DialogRouterLanTest(QDialog, Ui_Dialog):
 
     def test_step_control(self, action):
         if action == "next":
-            self.current_test_button_status = self.test_config.steps[self.current_test_step-1]["status"]
-            self.textBrowser_tips.setText(self.test_config.steps[self.current_test_step-1]["contents"])
-            self.pushButton_process.setText(self.test_config.steps[self.current_test_step-1]["button"])
+            self.current_test_button_status = self.test_config.steps[self.current_test_step - 1]["status"]
+            self.textBrowser_tips.setText(self.test_config.steps[self.current_test_step - 1]["contents"])
+            self.pushButton_process.setText(self.test_config.steps[self.current_test_step - 1]["button"])
 
     def slot_test_process(self, para1, para2):
         self.current_test_step = self.current_test_step + 1
@@ -148,10 +152,10 @@ class DialogRouterLanTest(QDialog, Ui_Dialog):
                                            + "\n" + str(temp_result_str)))
             self.pushButton_process.setText(self.test_config.steps[self.current_test_step - 1]["button"])
 
-    def slot_test_process_information(self,signal,para1):
+    def slot_test_process_information(self, signal, para1):
         self.update_display_log(para1)
 
-    def update_display_log(self,contents):
+    def update_display_log(self, contents):
         if self.textBrowser_log.document().blockCount() > 50:
             self.textBrowser_log.clear()
         self.textBrowser_log.append(contents)
